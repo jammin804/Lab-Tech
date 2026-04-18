@@ -1,20 +1,24 @@
 [gd_scene format=3 uid="uid://dmqv875jehqwm"]
 
 [ext_resource type="Texture2D" uid="uid://c50ph4scvg3u2" path="res://assets/backgrounds/TechLab-battle.png" id="1_bb6uc"]
+[ext_resource type="Script" uid="uid://62af6pey5nu4" path="res://scenes/lab.gd" id="1_f1r8i"]
 [ext_resource type="Texture2D" uid="uid://4ice6uiioh1a" path="res://assets/props/capsule2.png" id="2_hem3r"]
 [ext_resource type="Texture2D" uid="uid://mhmvngsgg13v" path="res://assets/props/lab-table.png" id="3_f680m"]
-[ext_resource type="Script" uid="uid://5tgjvbweswvp" path="res://scenes/clicker.gd" id="3_q4uld"]
+[ext_resource type="Script" uid="uid://5tgjvbweswvp" path="res://scripts/clicker.gd" id="3_q4uld"]
 [ext_resource type="Texture2D" uid="uid://dxyc6i7d1knac" path="res://assets/props/console.png" id="4_q4uld"]
 [ext_resource type="Texture2D" uid="uid://cpfdlcvph5yn1" path="res://assets/ui/progress_bar/BG.png" id="6_064jp"]
 [ext_resource type="Texture2D" uid="uid://07hqe7ibsqha" path="res://assets/ui/progress_bar/Borders.png" id="7_4kvtl"]
 [ext_resource type="Texture2D" uid="uid://b7yt3vc0aobm3" path="res://assets/ui/progress_bar/blue.png" id="8_f1r8i"]
+[ext_resource type="Texture2D" uid="uid://brvmjalwweco2" path="res://assets/ui/hud/Sprite-0001.png" id="10_jy24p"]
+[ext_resource type="PackedScene" uid="uid://cqhfkor2q2blf" path="res://scenes/stats_tile.tscn" id="10_q6p6e"]
+[ext_resource type="PackedScene" uid="uid://dbxsfllyrb1yt" path="res://scenes/player.tscn" id="11_xu7et"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hem3r"]
 atlas = ExtResource("1_bb6uc")
 region = Rect2(0, 0, 288, 208)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_064jp"]
-bg_color = Color(0.33660764, 0.3366076, 0.3366076, 0.9098039)
+bg_color = Color(0.21270496, 0.28028557, 0.25980982, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jy24p"]
 atlas = ExtResource("6_064jp")
@@ -60,6 +64,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Clicker:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(132, 57)]
+}
 
 [sub_resource type="Animation" id="Animation_f1r8i"]
 resource_name = "scale_squish"
@@ -77,11 +93,32 @@ tracks/0/keys = {
 "values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1.3, 1.3), Vector2(1.2, 1.2), Vector2(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_q6p6e"]
+resource_name = "small_shake"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Clicker:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(132, 57), Vector2(130, 57), Vector2(132, 57), Vector2(134, 57), Vector2(132, 57)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jy24p"]
 _data = {
 &"RESET": SubResource("Animation_4kvtl"),
-&"scale_squish": SubResource("Animation_f1r8i")
+&"scale_squish": SubResource("Animation_f1r8i"),
+&"small_shake": SubResource("Animation_q6p6e")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xu7et"]
+atlas = ExtResource("10_jy24p")
+region = Rect2(48, 48, 16, 16)
 
 [node name="Lab" type="Control" unique_id=1174447750]
 layout_mode = 3
@@ -90,8 +127,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_f1r8i")
 
-[node name="background" type="TextureRect" parent="." unique_id=1778385885]
+[node name="Cackground" type="TextureRect" parent="." unique_id=1778385885]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -102,7 +140,7 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_hem3r")
 expand_mode = 2
 
-[node name="clicker" type="TextureButton" parent="." unique_id=1143035170]
+[node name="Clicker" type="TextureButton" parent="." unique_id=1143035170]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -137,12 +175,12 @@ theme_override_font_sizes/font_size = 16
 text = "Click Here"
 horizontal_alignment = 1
 
-[node name="props" type="Control" parent="." unique_id=1898880921]
+[node name="Props" type="Control" parent="." unique_id=1898880921]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TextureRect" type="TextureRect" parent="props" unique_id=133571857]
+[node name="TextureRect" type="TextureRect" parent="Props" unique_id=133571857]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -157,7 +195,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_f680m")
 
-[node name="TextureRect2" type="TextureRect" parent="props" unique_id=2008137043]
+[node name="TextureRect2" type="TextureRect" parent="Props" unique_id=2008137043]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -183,51 +221,50 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_064jp")
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=747679111]
 layout_mode = 2
 theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 10
+theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=988117125]
+[node name="StatsResourceDisplay" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=988117125]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 1
 
-[node name="LevelLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1806277989]
+[node name="LevelLabel" type="Label" parent="PanelContainer/MarginContainer/StatsResourceDisplay" unique_id=1806277989]
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_font_sizes/font_size = 5
 text = "Lv 10"
 horizontal_alignment = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1536908938]
+[node name="HPDisplay" type="HBoxContainer" parent="PanelContainer/MarginContainer/StatsResourceDisplay" unique_id=1536908938]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=769854733]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/StatsResourceDisplay/HPDisplay" unique_id=769854733]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer" unique_id=2011062496]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer" unique_id=2011062496]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 6
 alignment = 1
 
-[node name="HpMarginAdjusment" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer" unique_id=1852789372]
+[node name="HpMarginAdjusment" type="MarginContainer" parent="PanelContainer/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer/HBoxContainer" unique_id=1852789372]
 layout_mode = 2
 theme_override_constants/margin_top = -3
 theme_override_constants/margin_bottom = -2
 
-[node name="HPLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer/HpMarginAdjusment" unique_id=1603939462]
+[node name="HPLabel" type="Label" parent="PanelContainer/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer/HBoxContainer/HpMarginAdjusment" unique_id=1603939462]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 5
 text = "HP"
 horizontal_alignment = 2
 
-[node name="HPProgressBar" type="TextureProgressBar" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer" unique_id=185305321]
+[node name="HPProgressBar" type="TextureProgressBar" parent="PanelContainer/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer/HBoxContainer" unique_id=185305321]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -237,30 +274,37 @@ texture_under = SubResource("AtlasTexture_jy24p")
 texture_over = SubResource("AtlasTexture_q6p6e")
 texture_progress = SubResource("AtlasTexture_5tteu")
 
-[node name="HpNumbers" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer" unique_id=1114797958]
+[node name="HpNumbers" type="Label" parent="PanelContainer/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer" unique_id=1114797958]
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_font_sizes/font_size = 5
 text = "20/ 20"
 horizontal_alignment = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=633202980]
+[node name="ExpDisplay" type="HBoxContainer" parent="PanelContainer/MarginContainer/StatsResourceDisplay" unique_id=633202980]
 layout_mode = 2
 alignment = 2
 
-[node name="ExpMarginAdjusment" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1028581885]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/StatsResourceDisplay/ExpDisplay" unique_id=1256552765]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/StatsResourceDisplay/ExpDisplay/VBoxContainer" unique_id=1839384961]
+layout_mode = 2
+
+[node name="ExpMarginAdjusment" type="MarginContainer" parent="PanelContainer/MarginContainer/StatsResourceDisplay/ExpDisplay/VBoxContainer/HBoxContainer" unique_id=1028581885]
 layout_mode = 2
 theme_override_constants/margin_top = -2
 theme_override_constants/margin_bottom = -2
 
-[node name="ExpLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ExpMarginAdjusment" unique_id=1139810864]
+[node name="ExpLabel" type="Label" parent="PanelContainer/MarginContainer/StatsResourceDisplay/ExpDisplay/VBoxContainer/HBoxContainer/ExpMarginAdjusment" unique_id=1139810864]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 5
 text = "EXP"
 horizontal_alignment = 2
 
-[node name="ExpProgressBar" type="TextureProgressBar" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=653050384]
+[node name="ExpProgressBar" type="TextureProgressBar" parent="PanelContainer/MarginContainer/StatsResourceDisplay/ExpDisplay/VBoxContainer/HBoxContainer" unique_id=653050384]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -270,8 +314,88 @@ texture_under = SubResource("AtlasTexture_f1r8i")
 texture_over = SubResource("AtlasTexture_m131j")
 texture_progress = SubResource("AtlasTexture_ds7rc")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=855286506]
-libraries/ = SubResource("AnimationLibrary_jy24p")
-autoplay = &"scale_squish"
+[node name="ExpNumbers" type="Label" parent="PanelContainer/MarginContainer/StatsResourceDisplay/ExpDisplay/VBoxContainer" unique_id=736548970]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 5
+text = "20/ 100"
+horizontal_alignment = 2
 
-[connection signal="pressed" from="clicker" to="clicker" method="_on_pressed"]
+[node name="ResourceDisplay" type="HBoxContainer" parent="PanelContainer/MarginContainer/StatsResourceDisplay" unique_id=1162004925]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/StatsResourceDisplay/ResourceDisplay" unique_id=676410084]
+layout_mode = 2
+
+[node name="ResourceMarginAdjusment" type="MarginContainer" parent="PanelContainer/MarginContainer/StatsResourceDisplay/ResourceDisplay/HBoxContainer" unique_id=1843200819]
+layout_mode = 2
+theme_override_constants/margin_top = -2
+theme_override_constants/margin_bottom = -2
+
+[node name="ResourceLabel" type="Label" parent="PanelContainer/MarginContainer/StatsResourceDisplay/ResourceDisplay/HBoxContainer/ResourceMarginAdjusment" unique_id=302162036]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 5
+text = "(L0) Energry"
+horizontal_alignment = 2
+
+[node name="ResourceNumbers" type="Label" parent="PanelContainer/MarginContainer/StatsResourceDisplay/ResourceDisplay" unique_id=479737967]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 5
+text = "20/ 20"
+horizontal_alignment = 2
+
+[node name="Spacer" type="Control" parent="PanelContainer/MarginContainer/StatsResourceDisplay" unique_id=1331786783]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/StatsResourceDisplay" unique_id=1333988359]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="StatsTile" parent="PanelContainer/MarginContainer/StatsResourceDisplay/HBoxContainer2" unique_id=2066520154 instance=ExtResource("10_q6p6e")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatsTile2" parent="PanelContainer/MarginContainer/StatsResourceDisplay/HBoxContainer2" unique_id=953847955 instance=ExtResource("10_q6p6e")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/MarginContainer/StatsResourceDisplay" unique_id=88203180]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="StatsTile" parent="PanelContainer/MarginContainer/StatsResourceDisplay/HBoxContainer3" unique_id=1837468252 instance=ExtResource("10_q6p6e")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatsTile2" parent="PanelContainer/MarginContainer/StatsResourceDisplay/HBoxContainer3" unique_id=1335990417 instance=ExtResource("10_q6p6e")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=855286506]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_jy24p")
+
+[node name="AnimationTimer" type="Timer" parent="." unique_id=411291968]
+
+[node name="PauseBtn" type="TextureButton" parent="." unique_id=660265438]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -24.0
+offset_top = 6.0
+offset_right = -8.0
+offset_bottom = 22.0
+grow_horizontal = 0
+texture_normal = SubResource("AtlasTexture_xu7et")
+
+[node name="Player" parent="." unique_id=2126503732 instance=ExtResource("11_xu7et")]
+position = Vector2(250, 118)
+autoplay = "idle"
+
+[connection signal="pressed" from="Clicker" to="Clicker" method="_on_pressed"]
