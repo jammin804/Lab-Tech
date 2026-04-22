@@ -1,16 +1,17 @@
 [gd_scene format=3 uid="uid://dmqv875jehqwm"]
 
 [ext_resource type="Texture2D" uid="uid://c50ph4scvg3u2" path="res://assets/backgrounds/TechLab-battle.png" id="1_bb6uc"]
-[ext_resource type="Script" uid="uid://62af6pey5nu4" path="res://scenes/lab.gd" id="1_f1r8i"]
+[ext_resource type="Script" uid="uid://62af6pey5nu4" path="res://scripts/lab.gd" id="1_f1r8i"]
 [ext_resource type="Texture2D" uid="uid://4ice6uiioh1a" path="res://assets/props/capsule2.png" id="2_hem3r"]
 [ext_resource type="Texture2D" uid="uid://mhmvngsgg13v" path="res://assets/props/lab-table.png" id="3_f680m"]
 [ext_resource type="Script" uid="uid://5tgjvbweswvp" path="res://scripts/clicker.gd" id="3_q4uld"]
 [ext_resource type="Texture2D" uid="uid://dxyc6i7d1knac" path="res://assets/props/console.png" id="4_q4uld"]
 [ext_resource type="Texture2D" uid="uid://cpfdlcvph5yn1" path="res://assets/ui/progress_bar/BG.png" id="6_064jp"]
-[ext_resource type="Texture2D" uid="uid://07hqe7ibsqha" path="res://assets/ui/progress_bar/Borders.png" id="7_4kvtl"]
 [ext_resource type="Texture2D" uid="uid://b7yt3vc0aobm3" path="res://assets/ui/progress_bar/blue.png" id="8_f1r8i"]
+[ext_resource type="Script" uid="uid://ddosnjtj6r58g" path="res://scripts/hp_progress_bar.gd" id="8_q6p6e"]
 [ext_resource type="Texture2D" uid="uid://brvmjalwweco2" path="res://assets/ui/hud/Sprite-0001.png" id="10_jy24p"]
 [ext_resource type="PackedScene" uid="uid://cqhfkor2q2blf" path="res://scenes/stats_tile.tscn" id="10_q6p6e"]
+[ext_resource type="Script" uid="uid://bmay8p0oh3t6s" path="res://scenes/exp_progress_bar.gd" id="11_or42m"]
 [ext_resource type="PackedScene" uid="uid://dbxsfllyrb1yt" path="res://scenes/player.tscn" id="11_xu7et"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hem3r"]
@@ -24,13 +25,6 @@ bg_color = Color(0.21270496, 0.28028557, 0.25980982, 1)
 atlas = ExtResource("6_064jp")
 region = Rect2(131, 85, 41, 5)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xu7et"]
-load_path = "res://.godot/imported/Borders.png-0badf80ec21e4b0f499b286091a96d7f.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_q6p6e"]
-atlas = SubResource("CompressedTexture2D_xu7et")
-region = Rect2(131, 85, 41, 5)
-
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_or42m"]
 load_path = "res://.godot/imported/Colors.png-1fff1ca367b887a4f3c0d27bfa45af14.ctex"
 
@@ -41,10 +35,6 @@ region = Rect2(131, 85, 41, 5)
 [sub_resource type="AtlasTexture" id="AtlasTexture_f1r8i"]
 atlas = ExtResource("6_064jp")
 region = Rect2(131, 85, 41, 5)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m131j"]
-atlas = ExtResource("7_4kvtl")
-region = Rect2(131, 103, 41, 5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ds7rc"]
 atlas = ExtResource("8_f1r8i")
@@ -75,6 +65,59 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(132, 57)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PanelContainer/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer/HBoxContainer/HPProgressBar:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PanelContainer/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer/HpNumbers:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_or42m"]
+resource_name = "health_warning"
+length = 4.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer/HBoxContainer/HPProgressBar:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1.101, 0.191, 0.341, 1), Color(1, 1, 1, 1), Color(1.1013197, 0.190761, 0.34052396, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer/HpNumbers:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.19215687, 0.34117648, 1), Color(1, 1, 1, 1), Color(1, 0.19215687, 0.34117648, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_f1r8i"]
@@ -112,6 +155,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jy24p"]
 _data = {
 &"RESET": SubResource("Animation_4kvtl"),
+&"health_warning": SubResource("Animation_or42m"),
 &"scale_squish": SubResource("Animation_f1r8i"),
 &"small_shake": SubResource("Animation_q6p6e")
 }
@@ -128,6 +172,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_f1r8i")
+
+[node name="Player" parent="." unique_id=2126503732 instance=ExtResource("11_xu7et")]
+z_index = 99
+position = Vector2(250, 118)
+autoplay = "idle"
+debug_regen = false
+has_been_hit = false
+regen_rate = 10.0
+current_health = 20.0
 
 [node name="Cackground" type="TextureRect" parent="." unique_id=1778385885]
 texture_filter = 1
@@ -264,17 +317,18 @@ theme_override_font_sizes/font_size = 5
 text = "HP"
 horizontal_alignment = 2
 
-[node name="HPProgressBar" type="TextureProgressBar" parent="PanelContainer/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer/HBoxContainer" unique_id=185305321]
+[node name="HPProgressBar" type="TextureProgressBar" parent="PanelContainer/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer/HBoxContainer" unique_id=185305321 node_paths=PackedStringArray("player")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-step = 5.0
-value = 40.0
+value = 10.0
 texture_under = SubResource("AtlasTexture_jy24p")
-texture_over = SubResource("AtlasTexture_q6p6e")
 texture_progress = SubResource("AtlasTexture_5tteu")
+script = ExtResource("8_q6p6e")
+player = NodePath("../../../../../../../Player")
 
 [node name="HpNumbers" type="Label" parent="PanelContainer/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer" unique_id=1114797958]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_font_sizes/font_size = 5
@@ -304,17 +358,20 @@ theme_override_font_sizes/font_size = 5
 text = "EXP"
 horizontal_alignment = 2
 
-[node name="ExpProgressBar" type="TextureProgressBar" parent="PanelContainer/MarginContainer/StatsResourceDisplay/ExpDisplay/VBoxContainer/HBoxContainer" unique_id=653050384]
+[node name="ExpProgressBar" type="TextureProgressBar" parent="PanelContainer/MarginContainer/StatsResourceDisplay/ExpDisplay/VBoxContainer/HBoxContainer" unique_id=653050384 node_paths=PackedStringArray("player")]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 step = 5.0
 value = 80.0
 texture_under = SubResource("AtlasTexture_f1r8i")
-texture_over = SubResource("AtlasTexture_m131j")
 texture_progress = SubResource("AtlasTexture_ds7rc")
+script = ExtResource("11_or42m")
+player = NodePath("../../../../../../../Player")
 
 [node name="ExpNumbers" type="Label" parent="PanelContainer/MarginContainer/StatsResourceDisplay/ExpDisplay/VBoxContainer" unique_id=736548970]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_font_sizes/font_size = 5
@@ -379,6 +436,7 @@ size_flags_horizontal = 3
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=855286506]
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_jy24p")
+autoplay = &"health_warning"
 
 [node name="AnimationTimer" type="Timer" parent="." unique_id=411291968]
 
@@ -393,9 +451,5 @@ offset_right = -8.0
 offset_bottom = 22.0
 grow_horizontal = 0
 texture_normal = SubResource("AtlasTexture_xu7et")
-
-[node name="Player" parent="." unique_id=2126503732 instance=ExtResource("11_xu7et")]
-position = Vector2(250, 118)
-autoplay = "idle"
 
 [connection signal="pressed" from="Clicker" to="Clicker" method="_on_pressed"]

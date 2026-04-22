@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dbxsfllyrb1yt"]
 
 [ext_resource type="Texture2D" uid="uid://byscocjfpkm5q" path="res://assets/character/player-no-helm.png" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://cfw1xi42xueu7" path="res://scenes/player.gd" id="2_g2els"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("1_3vyb7")
@@ -42,3 +43,15 @@ animations = [{
 sprite_frames = SubResource("SpriteFrames_tuyoq")
 animation = &"idle"
 frame_progress = 0.06215727
+script = ExtResource("2_g2els")
+has_been_hit = true
+
+[node name="RegenTimer" type="Timer" parent="." unique_id=710062912]
+unique_name_in_owner = true
+autostart = true
+
+[node name="LastTimeHitTimer" type="Timer" parent="." unique_id=274504091]
+unique_name_in_owner = true
+
+[connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]
+[connection signal="timeout" from="LastTimeHitTimer" to="." method="_on_last_time_hit_timer_timeout"]
