@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dbk58vbjnhos6"]
+
+[ext_resource type="Script" uid="uid://txbrbq2y72mm" path="res://plugin/OvaniPlugin/OvaniPlayer.gd" id="1_h55b5"]
+[ext_resource type="Script" uid="uid://m1bfaxshhh8l" path="res://plugin/OvaniPlugin/OvaniSong.gd" id="2_b4tav"]
+[ext_resource type="Resource" uid="uid://srv7ffo3rdex" path="res://assets/music/bgm/Evil Grudge (RT 1.875)/EvilGrudge.tres" id="3_sskyn"]
+
+[node name="OvaniPlayer" type="Node" unique_id=347116950]
+script = ExtResource("1_h55b5")
+QueuedSongs = Array[ExtResource("2_b4tav")]([ExtResource("3_sskyn")])
+Volume = -15.808000000000007
+LoopQueue = true
+metadata/_custom_type_script = "uid://txbrbq2y72mm"

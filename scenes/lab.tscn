@@ -11,10 +11,9 @@
 [ext_resource type="Script" uid="uid://ddosnjtj6r58g" path="res://scripts/hp_progress_bar.gd" id="8_q6p6e"]
 [ext_resource type="Texture2D" uid="uid://brvmjalwweco2" path="res://assets/ui/hud/Sprite-0001.png" id="10_jy24p"]
 [ext_resource type="PackedScene" uid="uid://cqhfkor2q2blf" path="res://scenes/stats_tile.tscn" id="10_q6p6e"]
-[ext_resource type="Script" uid="uid://bmay8p0oh3t6s" path="res://scenes/exp_progress_bar.gd" id="11_or42m"]
+[ext_resource type="Script" uid="uid://bmay8p0oh3t6s" path="res://scripts/exp_progress_bar.gd" id="11_or42m"]
 [ext_resource type="PackedScene" uid="uid://dbxsfllyrb1yt" path="res://scenes/player.tscn" id="11_xu7et"]
 [ext_resource type="AudioStream" uid="uid://c6pwf33mn2agb" path="res://assets/music/sfx/steam_hiss.wav" id="14_5tteu"]
-[ext_resource type="PackedScene" uid="uid://yy2nj0md438f" path="res://scenes/ovani_player.tscn" id="14_kfqsw"]
 [ext_resource type="Texture2D" uid="uid://b8h7y5diislmb" path="res://assets/ui/hud/Settigns.png" id="17_ftxkm"]
 [ext_resource type="Texture2D" uid="uid://hk8jsqntk3b5" path="res://assets/ui/hud/battleButton.png" id="18_eavsi"]
 
@@ -274,6 +273,44 @@ theme_override_font_sizes/font_size = 16
 text = "Click Here"
 horizontal_alignment = 1
 
+[node name="UpgradeLabel" type="Label" parent="." unique_id=1030032563]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -105.0
+offset_right = -28.0
+offset_bottom = -91.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(39, 12)
+theme_override_colors/font_color = Color(0, 1, 0.9411765, 1)
+theme_override_font_sizes/font_size = 10
+text = "Upgrades"
+horizontal_alignment = 1
+
+[node name="StatsLabel" type="Label" parent="." unique_id=2016514304]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 23.0
+offset_top = -103.0
+offset_right = 70.0
+offset_bottom = -89.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(39, 12)
+theme_override_colors/font_color = Color(0, 1, 0.9411765, 1)
+theme_override_font_sizes/font_size = 10
+text = "Stats"
+horizontal_alignment = 1
+
 [node name="Props" type="Control" parent="." unique_id=1898880921]
 anchors_preset = 0
 offset_right = 40.0
@@ -493,8 +530,6 @@ stream = SubResource("AudioStreamWAV_m131j")
 [node name="SteamSound" type="AudioStreamPlayer2D" parent="." unique_id=1861285990]
 unique_name_in_owner = true
 stream = ExtResource("14_5tteu")
-
-[node name="OvaniPlayer" parent="." unique_id=1804323020 instance=ExtResource("14_kfqsw")]
 
 [node name="PauseBtn" type="TextureButton" parent="." unique_id=660265438]
 layout_mode = 1

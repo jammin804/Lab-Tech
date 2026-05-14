@@ -1,22 +1,22 @@
-[gd_scene format=3 uid="uid://dbxsfllyrb1yt"]
+[gd_scene format=3 uid="uid://c0kf8jf65pub1"]
 
-[ext_resource type="Texture2D" uid="uid://byscocjfpkm5q" path="res://assets/character/player-no-helm.png" id="1_3vyb7"]
-[ext_resource type="Script" uid="uid://cfw1xi42xueu7" path="res://scripts/player.gd" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://byscocjfpkm5q" path="res://assets/character/player-no-helm.png" id="1_omjo4"]
+[ext_resource type="Script" uid="uid://cfw1xi42xueu7" path="res://scripts/player.gd" id="2_hugls"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
-atlas = ExtResource("1_3vyb7")
+atlas = ExtResource("1_omjo4")
 region = Rect2(0, 144, 75, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
-atlas = ExtResource("1_3vyb7")
+atlas = ExtResource("1_omjo4")
 region = Rect2(75, 144, 75, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
-atlas = ExtResource("1_3vyb7")
+atlas = ExtResource("1_omjo4")
 region = Rect2(150, 144, 75, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qlg0r"]
-atlas = ExtResource("1_3vyb7")
+atlas = ExtResource("1_omjo4")
 region = Rect2(225, 144, 75, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tuyoq"]
@@ -43,7 +43,7 @@ animations = [{
 sprite_frames = SubResource("SpriteFrames_tuyoq")
 animation = &"idle"
 frame_progress = 0.06215727
-script = ExtResource("2_g2els")
+script = ExtResource("2_hugls")
 has_been_hit = true
 
 [node name="RegenTimer" type="Timer" parent="." unique_id=710062912]

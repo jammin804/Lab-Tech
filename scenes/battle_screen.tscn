@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://bdpj78s126rdu"]
+
+[ext_resource type="Texture2D" uid="uid://hw3yy7aoqac3" path="res://assets/backgrounds/bg-1.png" id="1_441kk"]
+[ext_resource type="Texture2D" uid="uid://b3ntyiv7oq1hh" path="res://assets/character/player.png" id="2_jkca0"]
+[ext_resource type="Script" uid="uid://bx5l1p7gaj63o" path="res://scripts/battle_player.gd" id="3_y5my5"]
+[ext_resource type="PackedScene" uid="uid://w1niwwnqbb4y" path="res://scenes/projectile.tscn" id="4_6lb5u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkca0"]
+atlas = ExtResource("1_441kk")
+region = Rect2(0, 0, 288, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vehr2"]
+atlas = ExtResource("2_jkca0")
+region = Rect2(0, 480, 75, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nma8"]
+atlas = ExtResource("2_jkca0")
+region = Rect2(75, 480, 75, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikkpg"]
+atlas = ExtResource("2_jkca0")
+region = Rect2(0, 192, 75, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lskjy"]
+atlas = ExtResource("2_jkca0")
+region = Rect2(75, 192, 75, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qm3lx"]
+atlas = ExtResource("2_jkca0")
+region = Rect2(150, 192, 75, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5bt8"]
+atlas = ExtResource("2_jkca0")
+region = Rect2(225, 192, 75, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ikkpg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vehr2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nma8")
+}],
+"loop": true,
+"name": &"Fire",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ikkpg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lskjy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qm3lx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5bt8")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="BattleScreen" type="Control" unique_id=1695514153]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="." unique_id=62776617]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_jkca0")
+expand_mode = 2
+
+[node name="BattlePlayer" type="AnimatedSprite2D" parent="." unique_id=47165904]
+position = Vector2(39, 155)
+sprite_frames = SubResource("SpriteFrames_ikkpg")
+animation = &"Idle"
+script = ExtResource("3_y5my5")
+bullet = ExtResource("4_6lb5u")
+max_fire_delay = 5.0
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=825904063]
+unique_name_in_owner = true
+position = Vector2(59, 155)
+
+[node name="Timer" type="Timer" parent="." unique_id=182636926]
+unique_name_in_owner = true
+one_shot = true
