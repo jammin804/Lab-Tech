@@ -1,5 +1,5 @@
-extends AnimatedSprite2D
 class_name Player
+extends AnimatedSprite2D
 
 signal health_changed
 signal exp_changed

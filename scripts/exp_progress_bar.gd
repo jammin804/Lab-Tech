@@ -2,6 +2,7 @@ extends TextureProgressBar
 class_name ExpBar
 
 @export var player: Player
+
 @onready var exp_numbers: Label = %ExpNumbers
 
 func _ready() -> void:

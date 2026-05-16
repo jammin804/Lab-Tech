@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://b3ntyiv7oq1hh" path="res://assets/character/player.png" id="2_jkca0"]
 [ext_resource type="Script" uid="uid://bx5l1p7gaj63o" path="res://scripts/battle_player.gd" id="3_y5my5"]
 [ext_resource type="PackedScene" uid="uid://w1niwwnqbb4y" path="res://scenes/projectile.tscn" id="4_6lb5u"]
+[ext_resource type="PackedScene" uid="uid://cqueta70ubjqr" path="res://scenes/mob.tscn" id="5_jwmpd"]
+[ext_resource type="Script" uid="uid://b850wre5f8oip" path="res://scripts/mob.gd" id="6_aqsb2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jkca0"]
 atlas = ExtResource("1_441kk")
@@ -89,7 +91,6 @@ sprite_frames = SubResource("SpriteFrames_ikkpg")
 animation = &"Idle"
 script = ExtResource("3_y5my5")
 bullet = ExtResource("4_6lb5u")
-max_fire_delay = 5.0
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=825904063]
 unique_name_in_owner = true
@@ -98,3 +99,7 @@ position = Vector2(59, 155)
 [node name="Timer" type="Timer" parent="." unique_id=182636926]
 unique_name_in_owner = true
 one_shot = true
+
+[node name="Mob" parent="." unique_id=658756721 instance=ExtResource("5_jwmpd")]
+position = Vector2(299, 158)
+script = ExtResource("6_aqsb2")

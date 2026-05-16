@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cqueta70ubjqr"]
+
+[ext_resource type="PackedScene" uid="uid://cluqesxih2vx0" path="res://scenes/enemy.tscn" id="1_4are2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bsing"]
+radius = 17.0
+height = 42.0
+
+[node name="Mob" type="RigidBody2D" unique_id=658756721]
+gravity_scale = 0.0
+
+[node name="enemy" parent="." unique_id=1601589879 instance=ExtResource("1_4are2")]
+scale = Vector2(-1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=570825910]
+position = Vector2(-1, -3)
+shape = SubResource("CapsuleShape2D_bsing")

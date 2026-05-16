@@ -8,9 +8,6 @@ class_name HealthBar
 var health_warning_anim
 
 func _ready():
-	#health_warning_anim = animation_player.get_animation("health_warning")
-	#health_warning_anim.loop_mode = Animation.LOOP_LINEAR
-	
 	player.health_changed.connect(update_hpbar)
 	update_hpbar()
 
