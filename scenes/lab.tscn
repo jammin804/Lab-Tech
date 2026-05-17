@@ -9,13 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://cpfdlcvph5yn1" path="res://assets/ui/progress_bar/BG.png" id="6_064jp"]
 [ext_resource type="Texture2D" uid="uid://b7yt3vc0aobm3" path="res://assets/ui/progress_bar/blue.png" id="8_f1r8i"]
 [ext_resource type="Script" uid="uid://ddosnjtj6r58g" path="res://scripts/hp_progress_bar.gd" id="8_q6p6e"]
-[ext_resource type="Texture2D" uid="uid://brvmjalwweco2" path="res://assets/ui/hud/Sprite-0001.png" id="10_jy24p"]
 [ext_resource type="PackedScene" uid="uid://cqhfkor2q2blf" path="res://scenes/stats_tile.tscn" id="10_q6p6e"]
 [ext_resource type="Script" uid="uid://bmay8p0oh3t6s" path="res://scripts/exp_progress_bar.gd" id="11_or42m"]
 [ext_resource type="PackedScene" uid="uid://dbxsfllyrb1yt" path="res://scenes/player.tscn" id="11_xu7et"]
 [ext_resource type="AudioStream" uid="uid://c6pwf33mn2agb" path="res://assets/music/sfx/steam_hiss.wav" id="14_5tteu"]
 [ext_resource type="Texture2D" uid="uid://b8h7y5diislmb" path="res://assets/ui/hud/Settigns.png" id="17_ftxkm"]
-[ext_resource type="PackedScene" uid="uid://dmqv875jehqwm" path="res://scenes/lab.tscn" id="17_kfqsw"]
+[ext_resource type="PackedScene" uid="uid://bdpj78s126rdu" path="res://scenes/battle_screen.tscn" id="17_kfqsw"]
 [ext_resource type="Texture2D" uid="uid://hk8jsqntk3b5" path="res://assets/ui/hud/battleButton.png" id="18_eavsi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hem3r"]
@@ -197,16 +196,19 @@ region = Rect2(16, 23, 32, 16)
 atlas = ExtResource("18_eavsi")
 region = Rect2(16, 44, 32, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kvhjj"]
-atlas = ExtResource("10_jy24p")
-region = Rect2(32, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfqsw"]
+atlas = ExtResource("18_eavsi")
+region = Rect2(16, 4, 32, 16)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kxeyc"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-texture = SubResource("AtlasTexture_kvhjj")
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvhjj"]
+atlas = ExtResource("18_eavsi")
+region = Rect2(16, 44, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iyn56"]
+atlas = ExtResource("18_eavsi")
+region = Rect2(16, 23, 32, 16)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ds7rc"]
 
 [node name="Lab" type="Control" unique_id=1174447750]
 layout_mode = 3
@@ -221,6 +223,8 @@ script = ExtResource("1_f1r8i")
 max_energy = 20
 
 [node name="UpgradeScreen" type="Control" parent="." unique_id=1309087774]
+unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -251,6 +255,7 @@ regen_rate = 10.0
 current_health = 20.0
 
 [node name="Clicker" type="TextureButton" parent="UpgradeScreen" unique_id=1143035170]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -494,6 +499,7 @@ text = "(L0) Energry"
 horizontal_alignment = 2
 
 [node name="ResourceNumbers" type="Label" parent="UpgradeScreen/PanelContainer/MarginContainer/StatsResourceDisplay/ResourceDisplay" unique_id=479737967]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_font_sizes/font_size = 5
@@ -577,27 +583,70 @@ texture_pressed = SubResource("AtlasTexture_ftxkm")
 texture_hover = SubResource("AtlasTexture_xu0ho")
 texture_disabled = SubResource("AtlasTexture_eavsi")
 
-[node name="BattleBtn" type="Button" parent="UpgradeScreen" unique_id=1548715632]
+[node name="BattleBtn" type="TextureButton" parent="UpgradeScreen" unique_id=1122038097]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -49.0
-offset_top = -31.0
-offset_right = 6.0
-offset_bottom = 6.0
+offset_left = -43.0
+offset_top = -25.0
+offset_right = -11.0
+offset_bottom = -9.0
 grow_horizontal = 0
 grow_vertical = 0
-scale = Vector2(0.75, 0.75)
-theme_override_font_sizes/font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxTexture_kxeyc")
-text = "Battle"
+texture_normal = SubResource("AtlasTexture_kfqsw")
+texture_pressed = SubResource("AtlasTexture_kvhjj")
+texture_hover = SubResource("AtlasTexture_iyn56")
 
 [node name="BattleScreen" parent="." unique_id=1695514153 instance=ExtResource("17_kfqsw")]
-visible = false
+unique_name_in_owner = true
 layout_mode = 1
+
+[node name="EndLevelPopUp" type="CanvasLayer" parent="BattleScreen" unique_id=1427651393]
+unique_name_in_owner = true
+
+[node name="Panel" type="PanelContainer" parent="BattleScreen/EndLevelPopUp" unique_id=672778341]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = -55.0
+offset_right = 114.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ds7rc")
+
+[node name="MarginContainer" type="MarginContainer" parent="BattleScreen/EndLevelPopUp/Panel" unique_id=1650945195]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BattleScreen/EndLevelPopUp/Panel/MarginContainer" unique_id=505626344]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="BattleScreen/EndLevelPopUp/Panel/MarginContainer/VBoxContainer" unique_id=1576175098]
+layout_mode = 2
+text = "Level Complete"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BattleScreen/EndLevelPopUp/Panel/MarginContainer/VBoxContainer" unique_id=173631164]
+layout_mode = 2
+
+[node name="ReturnToLabBtn" type="Button" parent="BattleScreen/EndLevelPopUp/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=74757962]
+layout_mode = 2
+text = "Return to Lab"
+
+[node name="NextLevelBtn" type="Button" parent="BattleScreen/EndLevelPopUp/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1252566486]
+layout_mode = 2
+text = "Next Level"
 
 [connection signal="pressed" from="UpgradeScreen/Clicker" to="UpgradeScreen/Clicker" method="_on_pressed"]
 [connection signal="finished" from="UpgradeScreen/ClickSound" to="UpgradeScreen/Clicker" method="_on_click_sound_finished"]
+[connection signal="pressed" from="UpgradeScreen/BattleBtn" to="." method="_on_battle_btn_pressed"]
+[connection signal="pressed" from="BattleScreen/EndLevelPopUp/Panel/MarginContainer/VBoxContainer/HBoxContainer/ReturnToLabBtn" to="." method="_on_return_to_lab_btn_pressed"]

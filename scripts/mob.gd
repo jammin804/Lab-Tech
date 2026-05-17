@@ -14,4 +14,4 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	position.x += move_speed * delta * -1
-	print(position.x)
+	#print(position.x)

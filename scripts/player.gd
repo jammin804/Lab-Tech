@@ -4,9 +4,6 @@ extends AnimatedSprite2D
 signal health_changed
 signal exp_changed
 
-@onready var regen_timer: Timer = %RegenTimer
-@onready var last_time_hit_timer: Timer = %LastTimeHitTimer
-
 @export_category("Debug")
 @export var debug_regen: bool = true
 
@@ -25,10 +22,11 @@ signal exp_changed
 @export var current_exp: float = 20.0
 @export var max_exp: float = 100.0
 
+@onready var regen_timer: Timer = %RegenTimer
+@onready var last_time_hit_timer: Timer = %LastTimeHitTimer
 
 
 func _ready() -> void:
-	#current_health = max_health
 	pass
 	
 func _process(delta: float) -> void:
@@ -40,10 +38,9 @@ func damage_player(damage_amount: int) -> void:
 	health_changed.emit()
 	last_time_hit_timer.start()
 
-func regen_health() -> void:
+func regen_health() -> void: #This should only be for in battle otherwise fill health to 100%
 	if current_health < max_health and can_regen_health == true:
 		current_health += regen_amount / regen_rate
-		#print(current_health)
 		health_changed.emit()
 	elif current_health >= max_health:
 		can_regen_health = false
@@ -52,8 +49,6 @@ func regen_health() -> void:
 
 func _on_regen_timer_timeout() -> void:
 	can_regen_health = true
-	#print("started")
-	#regen_health()
 
 
 func _on_last_time_hit_timer_timeout() -> void:

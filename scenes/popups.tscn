@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://idy4nmohqieh"]
+
+[node name="Popups" type="Control" unique_id=1014158114]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=2066613594]
+
+[node name="PopupPanel" type="PopupPanel" parent="UI" unique_id=825081403]
+oversampling_override = 1.0
+position = Vector2i(55, 35)
+size = Vector2i(207, 100)
+visible = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/PopupPanel" unique_id=257971027]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 203.0
+offset_bottom = 96.0
+
+[node name="Label" type="Label" parent="UI/PopupPanel/VBoxContainer" unique_id=59566694]
+layout_mode = 2
+text = "Level Complete"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/PopupPanel/VBoxContainer" unique_id=962744234]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="UI/PopupPanel/VBoxContainer/HBoxContainer" unique_id=531431508]
+layout_mode = 2
+text = "Return"
+
+[node name="Button2" type="Button" parent="UI/PopupPanel/VBoxContainer/HBoxContainer" unique_id=1931841668]
+layout_mode = 2
+text = "Go to next Level"
