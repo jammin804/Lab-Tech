@@ -41,6 +41,7 @@ func _on_battle_btn_pressed() -> void:
 	upgrade_screen.visible = false
 	is_in_battle_scene = true
 	battle_screen.visible = true
+	emit_signal("battle_scene_start")
 	
 	
 func _on_return_to_lab_btn_pressed() -> void:
@@ -48,3 +49,4 @@ func _on_return_to_lab_btn_pressed() -> void:
 	is_in_battle_scene = false
 	battle_screen.visible = false
 	end_level_pop_up.visible = false
+	emit_signal("uprgrade_scene_start")

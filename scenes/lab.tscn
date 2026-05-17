@@ -224,7 +224,6 @@ max_energy = 20
 
 [node name="UpgradeScreen" type="Control" parent="." unique_id=1309087774]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -602,10 +601,12 @@ texture_hover = SubResource("AtlasTexture_iyn56")
 
 [node name="BattleScreen" parent="." unique_id=1695514153 instance=ExtResource("17_kfqsw")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 
 [node name="EndLevelPopUp" type="CanvasLayer" parent="BattleScreen" unique_id=1427651393]
 unique_name_in_owner = true
+visible = false
 
 [node name="Panel" type="PanelContainer" parent="BattleScreen/EndLevelPopUp" unique_id=672778341]
 anchors_preset = 8
@@ -646,7 +647,13 @@ text = "Return to Lab"
 layout_mode = 2
 text = "Next Level"
 
+[connection signal="battle_scene_start" from="." to="BattleScreen/BattlePlayer" method="_on_lab_battle_scene_start"]
+[connection signal="battle_scene_start" from="." to="BattleScreen/Mob" method="_on_lab_battle_scene_start"]
+[connection signal="uprgrade_scene_start" from="." to="BattleScreen/BattlePlayer" method="_on_lab_uprgrade_scene_start"]
+[connection signal="uprgrade_scene_start" from="." to="BattleScreen/Mob" method="_on_lab_uprgrade_scene_start"]
 [connection signal="pressed" from="UpgradeScreen/Clicker" to="UpgradeScreen/Clicker" method="_on_pressed"]
 [connection signal="finished" from="UpgradeScreen/ClickSound" to="UpgradeScreen/Clicker" method="_on_click_sound_finished"]
 [connection signal="pressed" from="UpgradeScreen/BattleBtn" to="." method="_on_battle_btn_pressed"]
 [connection signal="pressed" from="BattleScreen/EndLevelPopUp/Panel/MarginContainer/VBoxContainer/HBoxContainer/ReturnToLabBtn" to="." method="_on_return_to_lab_btn_pressed"]
+
+[editable path="BattleScreen"]
