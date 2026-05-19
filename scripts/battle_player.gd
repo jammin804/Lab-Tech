@@ -8,6 +8,8 @@ var is_in_battle_scene : bool = false
 
 @onready var marker_2d: Marker2D = %Marker2D
 @onready var timer: Timer = %Timer
+@onready var player: Player = $"../../UpgradeScreen/Player"
+@onready var mob: Mob = $"../Mob"
 
 
 func _ready() -> void:
@@ -36,3 +38,7 @@ func _on_lab_battle_scene_start() -> void:
 
 func _on_lab_uprgrade_scene_start() -> void:
 	is_in_battle_scene = false
+
+
+func _on_mob_body_entered(body: Node) -> void:
+	print("something touched me")

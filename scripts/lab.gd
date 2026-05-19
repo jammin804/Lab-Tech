@@ -4,6 +4,9 @@ extends Control
 signal battle_scene_start
 signal uprgrade_scene_start
 
+@export_category("Debug Varibles")
+@export var toggle_debug : bool = false
+
 @export_category("Energy Resource")
 @export var current_energy: int
 @export var max_energy: int
@@ -14,6 +17,7 @@ var is_in_battle_scene : bool = false
 @onready var clicker: Clicker = %Clicker
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var resource_numbers: Label = %ResourceNumbers
+@onready var player: Player = %Player
 
 # Scenes
 @onready var upgrade_screen: Control = %UpgradeScreen
@@ -23,10 +27,15 @@ var is_in_battle_scene : bool = false
 #UI
 @onready var end_level_pop_up: CanvasLayer = %EndLevelPopUp
 
+
 func _ready() -> void:
 	clicker.connect("clicker_pressed", update_energy)
 	animation_player.play("scale_squish")
 
+func _process(delta: float) -> void:
+	if toggle_debug:
+		if Input.is_action_just_pressed("ui_accept"):
+			player.current_health -= 10
 
 func update_energy() -> void:
 	if current_energy < max_energy:

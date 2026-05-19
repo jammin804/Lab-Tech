@@ -10,8 +10,8 @@ signal exp_changed
 @export_category("Health Data")
 @export var can_regen_health: bool = true
 @export var has_been_hit: bool = false
-@export var regen_amount: float = 5.0
-@export var regen_rate: = 1.0
+@export var regen_amount: float = 2.0
+@export var regen_rate: = 100.0
 @export var max_health: float = 100.0
 @export var current_health: float
 @export var regen_cap = max_health/3
@@ -22,15 +22,20 @@ signal exp_changed
 @export var current_exp: float = 20.0
 @export var max_exp: float = 100.0
 
+@export_category("Scene Check")
+@export var is_in_battle_scene : bool = false
+@export var is_in_upgrade_scene : bool = false
+
 @onready var regen_timer: Timer = %RegenTimer
 @onready var last_time_hit_timer: Timer = %LastTimeHitTimer
 
 
 func _ready() -> void:
-	pass
+	current_health = max_health
+	health_changed.emit()
 	
 func _process(delta: float) -> void:
-	if can_regen_health == true and has_been_hit == false and debug_regen == false:
+	if can_regen_health == true and has_been_hit == false and debug_regen == false and is_in_battle_scene:
 		regen_health()
 
 func damage_player(damage_amount: int) -> void:
@@ -46,7 +51,6 @@ func regen_health() -> void: #This should only be for in battle otherwise fill h
 		can_regen_health = false
 		
 
-
 func _on_regen_timer_timeout() -> void:
 	can_regen_health = true
 
@@ -54,3 +58,17 @@ func _on_regen_timer_timeout() -> void:
 func _on_last_time_hit_timer_timeout() -> void:
 	has_been_hit = false
 	regen_timer.start()
+
+
+func _on_lab_uprgrade_scene_start() -> void:
+	is_in_upgrade_scene = true
+	is_in_battle_scene = false
+	current_health = max_health
+	health_changed.emit()
+
+
+func _on_lab_battle_scene_start() -> void:
+	is_in_battle_scene = true
+	is_in_upgrade_scene = false
+	regen_timer.start()
+	

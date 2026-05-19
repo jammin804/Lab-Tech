@@ -21,28 +21,6 @@
 atlas = ExtResource("1_bb6uc")
 region = Rect2(0, 0, 288, 208)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_064jp"]
-bg_color = Color(0.21270496, 0.28028557, 0.25980982, 1)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jy24p"]
-atlas = ExtResource("6_064jp")
-region = Rect2(131, 85, 41, 5)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_or42m"]
-load_path = "res://.godot/imported/Colors.png-1fff1ca367b887a4f3c0d27bfa45af14.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5tteu"]
-atlas = SubResource("CompressedTexture2D_or42m")
-region = Rect2(131, 85, 41, 5)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f1r8i"]
-atlas = ExtResource("6_064jp")
-region = Rect2(131, 85, 41, 5)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ds7rc"]
-atlas = ExtResource("8_f1r8i")
-region = Rect2(3, 1, 41, 5)
-
 [sub_resource type="Animation" id="Animation_4kvtl"]
 length = 0.001
 tracks/0/type = "value"
@@ -72,7 +50,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("UpgradeScreen/PanelContainer/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer/HBoxContainer/HPProgressBar:self_modulate")
+tracks/2/path = NodePath("HudUI/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer/HBoxContainer/HPProgressBar:self_modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -84,7 +62,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("UpgradeScreen/PanelContainer/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer/HpNumbers:self_modulate")
+tracks/3/path = NodePath("HudUI/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer/HpNumbers:self_modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -101,7 +79,7 @@ loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("UpgradeScreen/PanelContainer/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer/HBoxContainer/HPProgressBar:self_modulate")
+tracks/0/path = NodePath("HudUI/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer/HBoxContainer/HPProgressBar:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -113,7 +91,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("UpgradeScreen/PanelContainer/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer/HpNumbers:self_modulate")
+tracks/1/path = NodePath("HudUI/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer/HpNumbers:self_modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -210,6 +188,28 @@ region = Rect2(16, 23, 32, 16)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ds7rc"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_064jp"]
+bg_color = Color(0.21270496, 0.28028557, 0.25980982, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jy24p"]
+atlas = ExtResource("6_064jp")
+region = Rect2(131, 85, 41, 5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_or42m"]
+load_path = "res://.godot/imported/Colors.png-1fff1ca367b887a4f3c0d27bfa45af14.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tteu"]
+atlas = SubResource("CompressedTexture2D_or42m")
+region = Rect2(131, 85, 41, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1r8i"]
+atlas = ExtResource("6_064jp")
+region = Rect2(131, 85, 41, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ds7rc"]
+atlas = ExtResource("8_f1r8i")
+region = Rect2(3, 1, 41, 5)
+
 [node name="Lab" type="Control" unique_id=1174447750]
 layout_mode = 3
 anchors_preset = 15
@@ -220,6 +220,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_f1r8i")
+toggle_debug = true
 max_energy = 20
 
 [node name="UpgradeScreen" type="Control" parent="." unique_id=1309087774]
@@ -244,13 +245,13 @@ texture = SubResource("AtlasTexture_hem3r")
 expand_mode = 2
 
 [node name="Player" parent="UpgradeScreen" unique_id=2126503732 instance=ExtResource("11_xu7et")]
+unique_name_in_owner = true
 z_index = 99
 position = Vector2(250, 118)
 autoplay = "idle"
 debug_regen = false
 can_regen_health = false
 has_been_hit = false
-regen_rate = 10.0
 current_health = 20.0
 
 [node name="Clicker" type="TextureButton" parent="UpgradeScreen" unique_id=1143035170]
@@ -362,177 +363,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("4_q4uld")
 
-[node name="PanelContainer" type="PanelContainer" parent="UpgradeScreen" unique_id=1500915538]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.2
-anchor_bottom = 1.0
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_064jp")
-
-[node name="MarginContainer" type="MarginContainer" parent="UpgradeScreen/PanelContainer" unique_id=747679111]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-
-[node name="StatsResourceDisplay" type="VBoxContainer" parent="UpgradeScreen/PanelContainer/MarginContainer" unique_id=988117125]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/separation = 1
-
-[node name="LevelLabel" type="Label" parent="UpgradeScreen/PanelContainer/MarginContainer/StatsResourceDisplay" unique_id=1806277989]
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 5
-text = "Lv 10"
-horizontal_alignment = 2
-
-[node name="HPDisplay" type="HBoxContainer" parent="UpgradeScreen/PanelContainer/MarginContainer/StatsResourceDisplay" unique_id=1536908938]
-layout_mode = 2
-theme_override_constants/separation = 4
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UpgradeScreen/PanelContainer/MarginContainer/StatsResourceDisplay/HPDisplay" unique_id=769854733]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UpgradeScreen/PanelContainer/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer" unique_id=2011062496]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/separation = 6
-alignment = 1
-
-[node name="HpMarginAdjusment" type="MarginContainer" parent="UpgradeScreen/PanelContainer/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer/HBoxContainer" unique_id=1852789372]
-layout_mode = 2
-theme_override_constants/margin_top = -3
-theme_override_constants/margin_bottom = -2
-
-[node name="HPLabel" type="Label" parent="UpgradeScreen/PanelContainer/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer/HBoxContainer/HpMarginAdjusment" unique_id=1603939462]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 5
-text = "HP"
-horizontal_alignment = 2
-
-[node name="HPProgressBar" type="TextureProgressBar" parent="UpgradeScreen/PanelContainer/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer/HBoxContainer" unique_id=185305321 node_paths=PackedStringArray("player")]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-value = 10.0
-texture_under = SubResource("AtlasTexture_jy24p")
-texture_progress = SubResource("AtlasTexture_5tteu")
-script = ExtResource("8_q6p6e")
-player = NodePath("../../../../../../../Player")
-
-[node name="HpNumbers" type="Label" parent="UpgradeScreen/PanelContainer/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer" unique_id=1114797958]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 5
-text = "20/ 20"
-horizontal_alignment = 2
-
-[node name="ExpDisplay" type="HBoxContainer" parent="UpgradeScreen/PanelContainer/MarginContainer/StatsResourceDisplay" unique_id=633202980]
-layout_mode = 2
-alignment = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UpgradeScreen/PanelContainer/MarginContainer/StatsResourceDisplay/ExpDisplay" unique_id=1256552765]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UpgradeScreen/PanelContainer/MarginContainer/StatsResourceDisplay/ExpDisplay/VBoxContainer" unique_id=1839384961]
-layout_mode = 2
-
-[node name="ExpMarginAdjusment" type="MarginContainer" parent="UpgradeScreen/PanelContainer/MarginContainer/StatsResourceDisplay/ExpDisplay/VBoxContainer/HBoxContainer" unique_id=1028581885]
-layout_mode = 2
-theme_override_constants/margin_top = -2
-theme_override_constants/margin_bottom = -2
-
-[node name="ExpLabel" type="Label" parent="UpgradeScreen/PanelContainer/MarginContainer/StatsResourceDisplay/ExpDisplay/VBoxContainer/HBoxContainer/ExpMarginAdjusment" unique_id=1139810864]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 5
-text = "EXP"
-horizontal_alignment = 2
-
-[node name="ExpProgressBar" type="TextureProgressBar" parent="UpgradeScreen/PanelContainer/MarginContainer/StatsResourceDisplay/ExpDisplay/VBoxContainer/HBoxContainer" unique_id=653050384 node_paths=PackedStringArray("player")]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-step = 5.0
-value = 80.0
-texture_under = SubResource("AtlasTexture_f1r8i")
-texture_progress = SubResource("AtlasTexture_ds7rc")
-script = ExtResource("11_or42m")
-player = NodePath("../../../../../../../Player")
-
-[node name="ExpNumbers" type="Label" parent="UpgradeScreen/PanelContainer/MarginContainer/StatsResourceDisplay/ExpDisplay/VBoxContainer" unique_id=736548970]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 5
-text = "20/ 100"
-horizontal_alignment = 2
-
-[node name="ResourceDisplay" type="HBoxContainer" parent="UpgradeScreen/PanelContainer/MarginContainer/StatsResourceDisplay" unique_id=1162004925]
-layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UpgradeScreen/PanelContainer/MarginContainer/StatsResourceDisplay/ResourceDisplay" unique_id=676410084]
-layout_mode = 2
-
-[node name="ResourceMarginAdjusment" type="MarginContainer" parent="UpgradeScreen/PanelContainer/MarginContainer/StatsResourceDisplay/ResourceDisplay/HBoxContainer" unique_id=1843200819]
-layout_mode = 2
-theme_override_constants/margin_top = -2
-theme_override_constants/margin_bottom = -2
-
-[node name="ResourceLabel" type="Label" parent="UpgradeScreen/PanelContainer/MarginContainer/StatsResourceDisplay/ResourceDisplay/HBoxContainer/ResourceMarginAdjusment" unique_id=302162036]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 5
-text = "(L0) Energry"
-horizontal_alignment = 2
-
-[node name="ResourceNumbers" type="Label" parent="UpgradeScreen/PanelContainer/MarginContainer/StatsResourceDisplay/ResourceDisplay" unique_id=479737967]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 5
-text = "20/ 20"
-horizontal_alignment = 2
-
-[node name="Spacer" type="Control" parent="UpgradeScreen/PanelContainer/MarginContainer/StatsResourceDisplay" unique_id=1331786783]
-custom_minimum_size = Vector2(0, 5)
-layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="UpgradeScreen/PanelContainer/MarginContainer/StatsResourceDisplay" unique_id=1333988359]
-layout_mode = 2
-theme_override_constants/separation = 1
-
-[node name="StatsTile" parent="UpgradeScreen/PanelContainer/MarginContainer/StatsResourceDisplay/HBoxContainer2" unique_id=2066520154 instance=ExtResource("10_q6p6e")]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="StatsTile2" parent="UpgradeScreen/PanelContainer/MarginContainer/StatsResourceDisplay/HBoxContainer2" unique_id=953847955 instance=ExtResource("10_q6p6e")]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="UpgradeScreen/PanelContainer/MarginContainer/StatsResourceDisplay" unique_id=88203180]
-layout_mode = 2
-theme_override_constants/separation = 1
-
-[node name="StatsTile" parent="UpgradeScreen/PanelContainer/MarginContainer/StatsResourceDisplay/HBoxContainer3" unique_id=1837468252 instance=ExtResource("10_q6p6e")]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="StatsTile2" parent="UpgradeScreen/PanelContainer/MarginContainer/StatsResourceDisplay/HBoxContainer3" unique_id=1335990417 instance=ExtResource("10_q6p6e")]
-layout_mode = 2
-size_flags_horizontal = 3
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UpgradeScreen" unique_id=855286506]
 unique_name_in_owner = true
 root_node = NodePath("../..")
@@ -604,6 +434,9 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 1
 
+[node name="Mob" parent="BattleScreen" index="3" unique_id=658756721]
+move_speed = 100.0
+
 [node name="EndLevelPopUp" type="CanvasLayer" parent="BattleScreen" unique_id=1427651393]
 unique_name_in_owner = true
 visible = false
@@ -647,13 +480,188 @@ text = "Return to Lab"
 layout_mode = 2
 text = "Next Level"
 
-[connection signal="battle_scene_start" from="." to="BattleScreen/BattlePlayer" method="_on_lab_battle_scene_start"]
+[node name="HudUI" type="PanelContainer" parent="." unique_id=1500915538]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.2
+anchor_bottom = 1.0
+offset_bottom = -61.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_064jp")
+
+[node name="MarginContainer" type="MarginContainer" parent="HudUI" unique_id=747679111]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+
+[node name="StatsResourceDisplay" type="VBoxContainer" parent="HudUI/MarginContainer" unique_id=988117125]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 1
+
+[node name="LevelLabel" type="Label" parent="HudUI/MarginContainer/StatsResourceDisplay" unique_id=1806277989]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 5
+text = "Lv 10"
+horizontal_alignment = 2
+
+[node name="HPDisplay" type="HBoxContainer" parent="HudUI/MarginContainer/StatsResourceDisplay" unique_id=1536908938]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HudUI/MarginContainer/StatsResourceDisplay/HPDisplay" unique_id=769854733]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HudUI/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer" unique_id=2011062496]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="HpMarginAdjusment" type="MarginContainer" parent="HudUI/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer/HBoxContainer" unique_id=1852789372]
+layout_mode = 2
+theme_override_constants/margin_top = -3
+theme_override_constants/margin_bottom = -2
+
+[node name="HPLabel" type="Label" parent="HudUI/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer/HBoxContainer/HpMarginAdjusment" unique_id=1603939462]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 5
+text = "HP"
+horizontal_alignment = 2
+
+[node name="HPProgressBar" type="TextureProgressBar" parent="HudUI/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer/HBoxContainer" unique_id=185305321 node_paths=PackedStringArray("player")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 10.0
+texture_under = SubResource("AtlasTexture_jy24p")
+texture_progress = SubResource("AtlasTexture_5tteu")
+script = ExtResource("8_q6p6e")
+player = NodePath("../../../../../../../UpgradeScreen/Player")
+
+[node name="HpNumbers" type="Label" parent="HudUI/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer" unique_id=1114797958]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 5
+text = "20/ 20"
+horizontal_alignment = 2
+
+[node name="ExpDisplay" type="HBoxContainer" parent="HudUI/MarginContainer/StatsResourceDisplay" unique_id=633202980]
+layout_mode = 2
+alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HudUI/MarginContainer/StatsResourceDisplay/ExpDisplay" unique_id=1256552765]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HudUI/MarginContainer/StatsResourceDisplay/ExpDisplay/VBoxContainer" unique_id=1839384961]
+layout_mode = 2
+
+[node name="ExpMarginAdjusment" type="MarginContainer" parent="HudUI/MarginContainer/StatsResourceDisplay/ExpDisplay/VBoxContainer/HBoxContainer" unique_id=1028581885]
+layout_mode = 2
+theme_override_constants/margin_top = -2
+theme_override_constants/margin_bottom = -2
+
+[node name="ExpLabel" type="Label" parent="HudUI/MarginContainer/StatsResourceDisplay/ExpDisplay/VBoxContainer/HBoxContainer/ExpMarginAdjusment" unique_id=1139810864]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 5
+text = "EXP"
+horizontal_alignment = 2
+
+[node name="ExpProgressBar" type="TextureProgressBar" parent="HudUI/MarginContainer/StatsResourceDisplay/ExpDisplay/VBoxContainer/HBoxContainer" unique_id=653050384 node_paths=PackedStringArray("player")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+step = 5.0
+value = 80.0
+texture_under = SubResource("AtlasTexture_f1r8i")
+texture_progress = SubResource("AtlasTexture_ds7rc")
+script = ExtResource("11_or42m")
+player = NodePath("../../../../../../../UpgradeScreen/Player")
+
+[node name="ExpNumbers" type="Label" parent="HudUI/MarginContainer/StatsResourceDisplay/ExpDisplay/VBoxContainer" unique_id=736548970]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 5
+text = "20/ 100"
+horizontal_alignment = 2
+
+[node name="ResourceDisplay" type="HBoxContainer" parent="HudUI/MarginContainer/StatsResourceDisplay" unique_id=1162004925]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HudUI/MarginContainer/StatsResourceDisplay/ResourceDisplay" unique_id=676410084]
+layout_mode = 2
+
+[node name="ResourceMarginAdjusment" type="MarginContainer" parent="HudUI/MarginContainer/StatsResourceDisplay/ResourceDisplay/HBoxContainer" unique_id=1843200819]
+layout_mode = 2
+theme_override_constants/margin_top = -2
+theme_override_constants/margin_bottom = -2
+
+[node name="ResourceLabel" type="Label" parent="HudUI/MarginContainer/StatsResourceDisplay/ResourceDisplay/HBoxContainer/ResourceMarginAdjusment" unique_id=302162036]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 5
+text = "(L0) Energry"
+horizontal_alignment = 2
+
+[node name="ResourceNumbers" type="Label" parent="HudUI/MarginContainer/StatsResourceDisplay/ResourceDisplay" unique_id=479737967]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 5
+text = "20/ 20"
+horizontal_alignment = 2
+
+[node name="Spacer" type="Control" parent="HudUI/MarginContainer/StatsResourceDisplay" unique_id=1331786783]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HudUI/MarginContainer/StatsResourceDisplay" unique_id=1333988359]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="StatsTile" parent="HudUI/MarginContainer/StatsResourceDisplay/HBoxContainer2" unique_id=2066520154 instance=ExtResource("10_q6p6e")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatsTile2" parent="HudUI/MarginContainer/StatsResourceDisplay/HBoxContainer2" unique_id=953847955 instance=ExtResource("10_q6p6e")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="HudUI/MarginContainer/StatsResourceDisplay" unique_id=88203180]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="StatsTile" parent="HudUI/MarginContainer/StatsResourceDisplay/HBoxContainer3" unique_id=1837468252 instance=ExtResource("10_q6p6e")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatsTile2" parent="HudUI/MarginContainer/StatsResourceDisplay/HBoxContainer3" unique_id=1335990417 instance=ExtResource("10_q6p6e")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="battle_scene_start" from="." to="UpgradeScreen/Player" method="_on_lab_battle_scene_start"]
+[connection signal="battle_scene_start" from="." to="BattleScreen/BattlePlayer/AnimatedSprite2D" method="_on_lab_battle_scene_start"]
 [connection signal="battle_scene_start" from="." to="BattleScreen/Mob" method="_on_lab_battle_scene_start"]
-[connection signal="uprgrade_scene_start" from="." to="BattleScreen/BattlePlayer" method="_on_lab_uprgrade_scene_start"]
+[connection signal="uprgrade_scene_start" from="." to="UpgradeScreen/Player" method="_on_lab_uprgrade_scene_start"]
+[connection signal="uprgrade_scene_start" from="." to="BattleScreen/BattlePlayer/AnimatedSprite2D" method="_on_lab_uprgrade_scene_start"]
 [connection signal="uprgrade_scene_start" from="." to="BattleScreen/Mob" method="_on_lab_uprgrade_scene_start"]
 [connection signal="pressed" from="UpgradeScreen/Clicker" to="UpgradeScreen/Clicker" method="_on_pressed"]
 [connection signal="finished" from="UpgradeScreen/ClickSound" to="UpgradeScreen/Clicker" method="_on_click_sound_finished"]
 [connection signal="pressed" from="UpgradeScreen/BattleBtn" to="." method="_on_battle_btn_pressed"]
+[connection signal="body_entered" from="BattleScreen/Mob" to="BattleScreen/BattlePlayer/AnimatedSprite2D" method="_on_mob_body_entered"]
 [connection signal="pressed" from="BattleScreen/EndLevelPopUp/Panel/MarginContainer/VBoxContainer/HBoxContainer/ReturnToLabBtn" to="." method="_on_return_to_lab_btn_pressed"]
 
 [editable path="BattleScreen"]

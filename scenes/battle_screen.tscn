@@ -66,6 +66,10 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aqsb2"]
+radius = 13.0
+height = 36.0
+
 [node name="BattleScreen" type="Control" unique_id=1695514153]
 layout_mode = 3
 anchors_preset = 15
@@ -85,16 +89,22 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_jkca0")
 expand_mode = 2
 
-[node name="BattlePlayer" type="AnimatedSprite2D" parent="." unique_id=47165904]
-position = Vector2(39, 155)
+[node name="BattlePlayer" type="CharacterBody2D" parent="." unique_id=1319077070]
+position = Vector2(39, 156)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BattlePlayer" unique_id=47165904]
 sprite_frames = SubResource("SpriteFrames_ikkpg")
 animation = &"Idle"
 script = ExtResource("3_y5my5")
 bullet = ExtResource("4_6lb5u")
 
-[node name="Marker2D" type="Marker2D" parent="." unique_id=825904063]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BattlePlayer" unique_id=2086856117]
+position = Vector2(1, 5)
+shape = SubResource("CapsuleShape2D_aqsb2")
+
+[node name="Marker2D" type="Marker2D" parent="BattlePlayer" unique_id=825904063]
 unique_name_in_owner = true
-position = Vector2(59, 155)
+position = Vector2(20, -1)
 
 [node name="Timer" type="Timer" parent="." unique_id=182636926]
 unique_name_in_owner = true
