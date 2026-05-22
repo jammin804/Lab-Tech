@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 MusicManager="*uid://dbk58vbjnhos6"
+DamageNumbers="*uid://cefil43yqsm40"
 
 [display]
 
@@ -31,6 +32,7 @@ window/stretch/mode="canvas_items"
 
 folder_colors={
 "res://assets/": "yellow",
+"res://resources/": "green",
 "res://scenes/": "blue",
 "res://scripts/": "orange"
 }

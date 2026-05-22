@@ -2,7 +2,7 @@ extends TextureProgressBar
 class_name HealthBar
 
 @export var player: Player
-@onready var animation_player: AnimationPlayer = %AnimationPlayer
+@export var animation_player: AnimationPlayer
 @onready var hp_numbers: Label = %HpNumbers
 
 var health_warning_anim

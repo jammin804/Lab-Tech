@@ -2,7 +2,7 @@ class_name Player
 extends AnimatedSprite2D
 
 signal health_changed
-signal exp_changed
+signal exp_changed #should remove here and have it in the battle scene
 
 @export_category("Debug")
 @export var debug_regen: bool = true
@@ -28,6 +28,7 @@ signal exp_changed
 
 @onready var regen_timer: Timer = %RegenTimer
 @onready var last_time_hit_timer: Timer = %LastTimeHitTimer
+@onready var battle_player: AnimatedSprite2D = $"../../BattleScreen/BattlePlayer"
 
 
 func _ready() -> void:
@@ -41,7 +42,7 @@ func _process(delta: float) -> void:
 func damage_player(damage_amount: int) -> void:
 	current_health -= damage_amount
 	health_changed.emit()
-	last_time_hit_timer.start()
+	#last_time_hit_timer.start()
 
 func regen_health() -> void: #This should only be for in battle otherwise fill health to 100%
 	if current_health < max_health and can_regen_health == true:
@@ -72,3 +73,7 @@ func _on_lab_battle_scene_start() -> void:
 	is_in_upgrade_scene = false
 	regen_timer.start()
 	
+
+
+func _on_battle_player_battle_health_changed(amount: int) -> void:
+	damage_player(amount)

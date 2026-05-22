@@ -1,0 +1,211 @@
+[gd_scene format=3 uid="uid://bdmoxx66c3fja"]
+
+[ext_resource type="Texture2D" uid="uid://cpfdlcvph5yn1" path="res://assets/ui/progress_bar/BG.png" id="1_dh3a3"]
+[ext_resource type="Script" uid="uid://ddosnjtj6r58g" path="res://scripts/hp_progress_bar.gd" id="2_47rti"]
+[ext_resource type="Texture2D" uid="uid://b7yt3vc0aobm3" path="res://assets/ui/progress_bar/blue.png" id="3_kkiei"]
+[ext_resource type="Script" uid="uid://bmay8p0oh3t6s" path="res://scripts/exp_progress_bar.gd" id="4_n3kp7"]
+[ext_resource type="PackedScene" uid="uid://cqhfkor2q2blf" path="res://scenes/stats_tile.tscn" id="5_cq5av"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_064jp"]
+bg_color = Color(0.21270496, 0.28028557, 0.25980982, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jy24p"]
+atlas = ExtResource("1_dh3a3")
+region = Rect2(131, 85, 41, 5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_or42m"]
+load_path = "res://.godot/imported/Colors.png-1fff1ca367b887a4f3c0d27bfa45af14.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tteu"]
+atlas = SubResource("CompressedTexture2D_or42m")
+region = Rect2(131, 85, 41, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1r8i"]
+atlas = ExtResource("1_dh3a3")
+region = Rect2(131, 85, 41, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ds7rc"]
+atlas = ExtResource("3_kkiei")
+region = Rect2(3, 1, 41, 5)
+
+[node name="HudUI" type="PanelContainer" unique_id=1756770991]
+anchors_preset = -1
+anchor_right = 0.2
+anchor_bottom = 1.0
+offset_bottom = -61.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_064jp")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1737550446]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+
+[node name="StatsResourceDisplay" type="VBoxContainer" parent="MarginContainer" unique_id=860308354]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 1
+
+[node name="LevelLabel" type="Label" parent="MarginContainer/StatsResourceDisplay" unique_id=843974710]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 5
+text = "Lv 10"
+horizontal_alignment = 2
+
+[node name="HPDisplay" type="HBoxContainer" parent="MarginContainer/StatsResourceDisplay" unique_id=430454911]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/StatsResourceDisplay/HPDisplay" unique_id=717499396]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer" unique_id=784338819]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="HpMarginAdjusment" type="MarginContainer" parent="MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer/HBoxContainer" unique_id=2075263735]
+layout_mode = 2
+theme_override_constants/margin_top = -3
+theme_override_constants/margin_bottom = -2
+
+[node name="HPLabel" type="Label" parent="MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer/HBoxContainer/HpMarginAdjusment" unique_id=1052692549]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 5
+text = "HP"
+horizontal_alignment = 2
+
+[node name="HPProgressBar" type="TextureProgressBar" parent="MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer/HBoxContainer" unique_id=1635345270]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 10.0
+texture_under = SubResource("AtlasTexture_jy24p")
+texture_progress = SubResource("AtlasTexture_5tteu")
+script = ExtResource("2_47rti")
+
+[node name="HpNumbers" type="Label" parent="MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer" unique_id=244522330]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 5
+text = "20/ 20"
+horizontal_alignment = 2
+
+[node name="ExpDisplay" type="HBoxContainer" parent="MarginContainer/StatsResourceDisplay" unique_id=820882873]
+layout_mode = 2
+alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/StatsResourceDisplay/ExpDisplay" unique_id=1358724082]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/StatsResourceDisplay/ExpDisplay/VBoxContainer" unique_id=1037389090]
+layout_mode = 2
+
+[node name="ExpMarginAdjusment" type="MarginContainer" parent="MarginContainer/StatsResourceDisplay/ExpDisplay/VBoxContainer/HBoxContainer" unique_id=1828441076]
+layout_mode = 2
+theme_override_constants/margin_top = -2
+theme_override_constants/margin_bottom = -2
+
+[node name="ExpLabel" type="Label" parent="MarginContainer/StatsResourceDisplay/ExpDisplay/VBoxContainer/HBoxContainer/ExpMarginAdjusment" unique_id=853428074]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 5
+text = "EXP"
+horizontal_alignment = 2
+
+[node name="ExpProgressBar" type="TextureProgressBar" parent="MarginContainer/StatsResourceDisplay/ExpDisplay/VBoxContainer/HBoxContainer" unique_id=2081183563]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+step = 5.0
+value = 80.0
+texture_under = SubResource("AtlasTexture_f1r8i")
+texture_progress = SubResource("AtlasTexture_ds7rc")
+script = ExtResource("4_n3kp7")
+
+[node name="ExpNumbers" type="Label" parent="MarginContainer/StatsResourceDisplay/ExpDisplay/VBoxContainer" unique_id=1362622687]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 5
+text = "20/ 100"
+horizontal_alignment = 2
+
+[node name="ResourceDisplay" type="HBoxContainer" parent="MarginContainer/StatsResourceDisplay" unique_id=2128307597]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/StatsResourceDisplay/ResourceDisplay" unique_id=1917036816]
+layout_mode = 2
+
+[node name="ResourceMarginAdjusment" type="MarginContainer" parent="MarginContainer/StatsResourceDisplay/ResourceDisplay/HBoxContainer" unique_id=1623442972]
+layout_mode = 2
+theme_override_constants/margin_top = -2
+theme_override_constants/margin_bottom = -2
+
+[node name="ResourceLabel" type="Label" parent="MarginContainer/StatsResourceDisplay/ResourceDisplay/HBoxContainer/ResourceMarginAdjusment" unique_id=798293509]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 5
+text = "(L0) Energry"
+horizontal_alignment = 2
+
+[node name="ResourceNumbers" type="Label" parent="MarginContainer/StatsResourceDisplay/ResourceDisplay" unique_id=1672682238]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 5
+text = "20/ 20"
+horizontal_alignment = 2
+
+[node name="Spacer" type="Control" parent="MarginContainer/StatsResourceDisplay" unique_id=336041828]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/StatsResourceDisplay" unique_id=302176490]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="StatsTile" parent="MarginContainer/StatsResourceDisplay/HBoxContainer2" unique_id=2066520154 instance=ExtResource("5_cq5av")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatsTile2" parent="MarginContainer/StatsResourceDisplay/HBoxContainer2" unique_id=1469918215 instance=ExtResource("5_cq5av")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatNameLabel" parent="MarginContainer/StatsResourceDisplay/HBoxContainer2/StatsTile2/MarginContainer/PowerCard" parent_id_path=PackedInt32Array(1469918215, 604588854) index="0" unique_id=561706339]
+text = "Charge"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/StatsResourceDisplay" unique_id=1392936702]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="StatsTile" parent="MarginContainer/StatsResourceDisplay/HBoxContainer3" unique_id=272125311 instance=ExtResource("5_cq5av")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatNameLabel" parent="MarginContainer/StatsResourceDisplay/HBoxContainer3/StatsTile/MarginContainer/PowerCard" parent_id_path=PackedInt32Array(272125311, 604588854) index="0" unique_id=561706339]
+text = "Range"
+
+[node name="StatsTile2" parent="MarginContainer/StatsResourceDisplay/HBoxContainer3" unique_id=1370532855 instance=ExtResource("5_cq5av")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatNameLabel" parent="MarginContainer/StatsResourceDisplay/HBoxContainer3/StatsTile2/MarginContainer/PowerCard" parent_id_path=PackedInt32Array(1370532855, 604588854) index="0" unique_id=561706339]
+text = "Rapid"
+
+[editable path="MarginContainer/StatsResourceDisplay/HBoxContainer2/StatsTile2"]
+[editable path="MarginContainer/StatsResourceDisplay/HBoxContainer3/StatsTile"]
+[editable path="MarginContainer/StatsResourceDisplay/HBoxContainer3/StatsTile2"]

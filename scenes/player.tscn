@@ -44,7 +44,6 @@ sprite_frames = SubResource("SpriteFrames_tuyoq")
 animation = &"idle"
 frame_progress = 0.06215727
 script = ExtResource("2_g2els")
-has_been_hit = true
 
 [node name="RegenTimer" type="Timer" parent="." unique_id=710062912]
 unique_name_in_owner = true

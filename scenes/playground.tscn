@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bgjmun27jjhmi"]
+
+[ext_resource type="PackedScene" uid="uid://cqueta70ubjqr" path="res://scenes/mob.tscn" id="1_hddm4"]
+[ext_resource type="PackedScene" uid="uid://dbxsfllyrb1yt" path="res://scenes/player.tscn" id="2_kddj0"]
+[ext_resource type="PackedScene" uid="uid://cl6xfxk4un85" path="res://scenes/battle_player.tscn" id="3_q8s1k"]
+
+[node name="Playground" type="Control" unique_id=1225275163]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="ColorRect" parent="." unique_id=395674650]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.23753911, 0.23753914, 0.23753911, 1)
+
+[node name="Player" parent="." unique_id=2126503732 instance=ExtResource("2_kddj0")]
+position = Vector2(29, 56)
+
+[node name="BattlePlayer" parent="." unique_id=116780474 node_paths=PackedStringArray("player") instance=ExtResource("3_q8s1k")]
+position = Vector2(28, 120)
+player = NodePath("../Player")
+
+[node name="Mob" parent="." unique_id=658756721 groups=["enemy"] instance=ExtResource("1_hddm4")]
+position = Vector2(260, 59)
+is_in_debug_mode = true
+move_speed = 200.0
+
+[node name="Mob2" parent="." unique_id=554777807 groups=["enemy"] instance=ExtResource("1_hddm4")]
+position = Vector2(269, 122)
+is_in_debug_mode = true
+move_speed = 200.0

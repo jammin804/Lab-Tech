@@ -1,57 +1,85 @@
-[gd_scene format=3 uid="uid://c0kf8jf65pub1"]
+[gd_scene format=3 uid="uid://cl6xfxk4un85"]
 
-[ext_resource type="Texture2D" uid="uid://byscocjfpkm5q" path="res://assets/character/player-no-helm.png" id="1_omjo4"]
-[ext_resource type="Script" uid="uid://cfw1xi42xueu7" path="res://scripts/player.gd" id="2_hugls"]
+[ext_resource type="Script" uid="uid://mngtaamw8hpp" path="res://scripts/battle_player.gd" id="1_hugls"]
+[ext_resource type="PackedScene" uid="uid://w1niwwnqbb4y" path="res://scenes/projectile.tscn" id="2_g11ij"]
+[ext_resource type="Texture2D" uid="uid://b3ntyiv7oq1hh" path="res://assets/character/player.png" id="3_r6oyp"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
-atlas = ExtResource("1_omjo4")
-region = Rect2(0, 144, 75, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_vehr2"]
+atlas = ExtResource("3_r6oyp")
+region = Rect2(0, 480, 75, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
-atlas = ExtResource("1_omjo4")
-region = Rect2(75, 144, 75, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nma8"]
+atlas = ExtResource("3_r6oyp")
+region = Rect2(75, 480, 75, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
-atlas = ExtResource("1_omjo4")
-region = Rect2(150, 144, 75, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikkpg"]
+atlas = ExtResource("3_r6oyp")
+region = Rect2(0, 192, 75, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qlg0r"]
-atlas = ExtResource("1_omjo4")
-region = Rect2(225, 144, 75, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_lskjy"]
+atlas = ExtResource("3_r6oyp")
+region = Rect2(75, 192, 75, 48)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_tuyoq"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qm3lx"]
+atlas = ExtResource("3_r6oyp")
+region = Rect2(150, 192, 75, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5bt8"]
+atlas = ExtResource("3_r6oyp")
+region = Rect2(225, 192, 75, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ikkpg"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_g2els")
+"texture": SubResource("AtlasTexture_vehr2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qhqgy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dqkch")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qlg0r")
+"texture": SubResource("AtlasTexture_2nma8")
 }],
 "loop": true,
-"name": &"idle",
-"speed": 6.0
+"name": &"Fire",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ikkpg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lskjy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qm3lx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5bt8")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
 }]
 
-[node name="Player" type="AnimatedSprite2D" unique_id=2126503732]
-sprite_frames = SubResource("SpriteFrames_tuyoq")
-animation = &"idle"
-frame_progress = 0.06215727
-script = ExtResource("2_hugls")
-has_been_hit = true
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aqsb2"]
+radius = 13.0
+height = 36.0
 
-[node name="RegenTimer" type="Timer" parent="." unique_id=710062912]
+[node name="BattlePlayer" type="AnimatedSprite2D" unique_id=166741663]
+sprite_frames = SubResource("SpriteFrames_ikkpg")
+animation = &"Idle"
+script = ExtResource("1_hugls")
+bullet = ExtResource("2_g11ij")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=978875492]
 unique_name_in_owner = true
-autostart = true
+position = Vector2(20, -1)
 
-[node name="LastTimeHitTimer" type="Timer" parent="." unique_id=274504091]
-unique_name_in_owner = true
+[node name="Area2D" type="Area2D" parent="." unique_id=134412771 groups=["player"]]
 
-[connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]
-[connection signal="timeout" from="LastTimeHitTimer" to="." method="_on_last_time_hit_timer_timeout"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1546086998]
+position = Vector2(1, 5)
+shape = SubResource("CapsuleShape2D_aqsb2")
+
+[node name="ShootCooldownTimer" type="Timer" parent="." unique_id=926354550]
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
