@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dwenemt7ssst1"]
+
+[ext_resource type="Script" uid="uid://cfpw4gpj7y2oi" path="res://scripts/ui/upgrade.gd" id="1_avble"]
+
+[node name="Upgrade" type="TextureButton" unique_id=1345479849]
+offset_right = 40.0
+offset_bottom = 40.0
+toggle_mode = true
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("1_avble")
+
+[node name="Panel" type="Panel" parent="." unique_id=1453821056]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 1
