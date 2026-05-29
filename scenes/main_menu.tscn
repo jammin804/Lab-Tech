@@ -1,36 +1,96 @@
-[gd_scene format=3 uid="uid://73fqfj6fhsj2"]
+[gd_scene format=3 uid="uid://1lqqs1b6h2wp"]
 
-[ext_resource type="PackedScene" uid="uid://dwenemt7ssst1" path="res://scenes/UI Components/upgrade.tscn" id="1_l6cm7"]
+[ext_resource type="Script" uid="uid://or3x410au1eh" path="res://scripts/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="PackedScene" uid="uid://cbvkqygoialpb" path="res://scenes/button.tscn" id="2_bqqt6"]
 
-[node name="MainMenu" type="Control" unique_id=1367496878]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vue75"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ekxnf"]
+
+[node name="MainMenu" type="Control" unique_id=897463082]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_l6cm7")
 
-[node name="SkillTree" type="Panel" parent="." unique_id=892870870]
+[node name="Background" type="ColorRect" parent="." unique_id=1635937403]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.050980393, 0.05490196, 0.21176471, 1)
 
-[node name="Charge" type="Control" parent="SkillTree" unique_id=1938438967]
+[node name="GameTitle" type="Label" parent="." unique_id=1102116343]
+layout_mode = 1
+offset_right = 272.0
+offset_bottom = 45.0
+theme_override_font_sizes/font_size = 32
+text = "MegaIncremental"
+
+[node name="Options Container" type="PanelContainer" parent="." unique_id=1838281311]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -88.0
+offset_top = -15.0
+offset_right = 92.0
+offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vue75")
 
-[node name="Upgrade" parent="SkillTree/Charge" unique_id=1345479849 instance=ExtResource("1_l6cm7")]
-layout_mode = 0
+[node name="VBoxContainer" type="VBoxContainer" parent="Options Container" unique_id=387110239]
+layout_mode = 2
+
+[node name="StartButton" parent="Options Container/VBoxContainer" unique_id=1002760254 instance=ExtResource("2_bqqt6")]
+layout_mode = 2
+text = "START"
+
+[node name="SettingsBtn" parent="Options Container/VBoxContainer" unique_id=1462179087 instance=ExtResource("2_bqqt6")]
+layout_mode = 2
+text = "SETTINGS"
+
+[node name="QuitBtn" parent="Options Container/VBoxContainer" unique_id=643844570 instance=ExtResource("2_bqqt6")]
+layout_mode = 2
+text = "QUIT"
+
+[node name="Footer" type="PanelContainer" parent="." unique_id=582029688]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -7.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ekxnf")
+
+[node name="MarginContainer" type="MarginContainer" parent="Footer" unique_id=899080169]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 2
+
+[node name="Copyright" type="Label" parent="Footer/MarginContainer" unique_id=1588718787]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 0.49803922)
+theme_override_font_sizes/font_size = 4
+text = "© Mike Harris 2026"
+
+[node name="Version" type="Label" parent="Footer/MarginContainer" unique_id=2032888687]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.49803922)
+theme_override_font_sizes/font_size = 4
+text = "V.0.0.1"
+horizontal_alignment = 2
+
+[connection signal="pressed" from="Options Container/VBoxContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]
