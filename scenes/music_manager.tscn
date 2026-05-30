@@ -7,6 +7,6 @@
 [node name="OvaniPlayer" type="Node" unique_id=347116950]
 script = ExtResource("1_h55b5")
 QueuedSongs = Array[ExtResource("2_b4tav")]([ExtResource("3_sskyn")])
-Volume = -15.808000000000007
+Volume = -80.0
 LoopQueue = true
 metadata/_custom_type_script = "uid://txbrbq2y72mm"

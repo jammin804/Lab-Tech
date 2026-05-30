@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c1y88j5pwfyu8" path="res://scripts/button.gd" id="1_rhj8v"]
 [ext_resource type="AudioStream" uid="uid://l7486jyqi2hy" path="res://assets/music/sfx/settings_click.wav" id="2_3q610"]
+[ext_resource type="AudioStream" uid="uid://dv65sbva8bpt0" path="res://assets/music/sfx/blinghover.wav" id="3_3q610"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6cm7"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -12,7 +13,7 @@ bg_color = Color(0.2542, 0.44280007, 0.82, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wu84c"]
 bg_color = Color(0.2542, 0.44280007, 0.82, 0.6156863)
 
-[node name="Button" type="Button" unique_id=1002760254 node_paths=PackedStringArray("click")]
+[node name="Button" type="Button" unique_id=1002760254 node_paths=PackedStringArray("click", "hover")]
 theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxFlat_l6cm7")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_8ln24")
@@ -20,9 +21,15 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_wu84c")
 text = "Button"
 script = ExtResource("1_rhj8v")
 click = NodePath("Click")
+hover = NodePath("Hover")
 
 [node name="Click" type="AudioStreamPlayer" parent="." unique_id=998493346]
 stream = ExtResource("2_3q610")
 volume_db = -12.0
 
+[node name="Hover" type="AudioStreamPlayer" parent="." unique_id=634302134]
+stream = ExtResource("3_3q610")
+volume_db = -12.0
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="." to="." method="_on_pressed"]
