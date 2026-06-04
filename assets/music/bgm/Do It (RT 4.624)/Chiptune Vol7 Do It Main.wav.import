@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://oyl65rapnofy"
+path="res://.godot/imported/Chiptune Vol7 Do It Main.wav-2d4c3352d6e2e6179ac27b45bcc4cf30.sample"
+
+[deps]
+
+source_file="res://assets/music/bgm/Do It (RT 4.624)/Chiptune Vol7 Do It Main.wav"
+dest_files=["res://.godot/imported/Chiptune Vol7 Do It Main.wav-2d4c3352d6e2e6179ac27b45bcc4cf30.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

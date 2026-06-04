@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="OvaniSong" format=3 uid="uid://srv7ffo3rdex"]
+
+[ext_resource type="AudioStream" uid="uid://vn8y6qhcxasq" path="res://assets/music/bgm/Evil Grudge (RT 1.875)/Chiptune Vol2 Evil Grudge Intensity 1.wav" id="1_6pi60"]
+[ext_resource type="Script" uid="uid://m1bfaxshhh8l" path="res://plugin/OvaniPlugin/OvaniSong.gd" id="1_ul50k"]
+[ext_resource type="AudioStream" uid="uid://bwtij2yo5ej4s" path="res://assets/music/bgm/Evil Grudge (RT 1.875)/Chiptune Vol2 Evil Grudge Intensity 2.wav" id="2_juw15"]
+[ext_resource type="AudioStream" uid="uid://bki6hpddo6sgq" path="res://assets/music/bgm/Evil Grudge (RT 1.875)/Chiptune Vol2 Evil Grudge Main.wav" id="3_4gt7y"]
+[ext_resource type="AudioStream" uid="uid://dns3qgwnnowek" path="res://assets/music/bgm/Evil Grudge (RT 1.875)/Chiptune Vol2 Evil Grudge Cut 30.wav" id="4_iyu3q"]
+[ext_resource type="AudioStream" uid="uid://jd0ufa8gnual" path="res://assets/music/bgm/Evil Grudge (RT 1.875)/Chiptune Vol2 Evil Grudge Cut 60.wav" id="5_74oef"]
+
+[resource]
+script = ExtResource("1_ul50k")
+Intensity1 = ExtResource("1_6pi60")
+Intensity2 = ExtResource("2_juw15")
+Intensity3 = ExtResource("3_4gt7y")
+Loop30 = ExtResource("4_iyu3q")
+Loop60 = ExtResource("5_74oef")
+ReverbTail = 1.875
+metadata/_custom_type_script = "uid://m1bfaxshhh8l"

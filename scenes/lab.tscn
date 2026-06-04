@@ -8,7 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://dxyc6i7d1knac" path="res://assets/props/console.png" id="4_q4uld"]
 [ext_resource type="PackedScene" uid="uid://dbxsfllyrb1yt" path="res://scenes/player.tscn" id="11_xu7et"]
 [ext_resource type="PackedScene" uid="uid://bdmoxx66c3fja" path="res://scenes/hud_ui.tscn" id="12_q6p6e"]
+[ext_resource type="Script" uid="uid://txbrbq2y72mm" path="res://plugin/OvaniPlugin/OvaniPlayer.gd" id="13_m131j"]
 [ext_resource type="AudioStream" uid="uid://c6pwf33mn2agb" path="res://assets/music/sfx/steam_hiss.wav" id="14_5tteu"]
+[ext_resource type="Script" uid="uid://m1bfaxshhh8l" path="res://plugin/OvaniPlugin/OvaniSong.gd" id="14_ds7rc"]
+[ext_resource type="Resource" uid="uid://srv7ffo3rdex" path="res://resources/Ovani/EvilGrudge.tres" id="15_kfqsw"]
 [ext_resource type="Texture2D" uid="uid://b8h7y5diislmb" path="res://assets/ui/hud/Settigns.png" id="17_ftxkm"]
 [ext_resource type="PackedScene" uid="uid://bdpj78s126rdu" path="res://scenes/battle_screen.tscn" id="17_kfqsw"]
 [ext_resource type="Texture2D" uid="uid://hk8jsqntk3b5" path="res://assets/ui/hud/battleButton.png" id="18_eavsi"]
@@ -404,9 +407,6 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 1
 
-[node name="BattlePlayer" parent="BattleScreen" index="1" unique_id=409017460 node_paths=PackedStringArray("player")]
-player = NodePath("../../UpgradeScreen/Player")
-
 [node name="EndLevelPopUp" type="CanvasLayer" parent="BattleScreen" unique_id=1427651393]
 unique_name_in_owner = true
 visible = false
@@ -464,6 +464,12 @@ animation_player = NodePath("../../../../../../../UpgradeScreen/AnimationPlayer"
 
 [node name="ExpProgressBar" parent="HudUI/MarginContainer/StatsResourceDisplay/ExpDisplay/VBoxContainer/HBoxContainer" parent_id_path=PackedInt32Array(1756770991, 1037389090) index="1" unique_id=2081183563 node_paths=PackedStringArray("player")]
 player = NodePath("../../../../../../../UpgradeScreen/Player")
+
+[node name="LabBGM" type="Node" parent="." unique_id=185395556]
+script = ExtResource("13_m131j")
+QueuedSongs = Array[ExtResource("14_ds7rc")]([ExtResource("15_kfqsw")])
+Volume = -20.0
+metadata/_custom_type_script = "uid://txbrbq2y72mm"
 
 [connection signal="battle_scene_start" from="." to="UpgradeScreen/Player" method="_on_lab_battle_scene_start"]
 [connection signal="battle_scene_start" from="." to="BattleScreen/BattlePlayer" method="_on_lab_battle_scene_start"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://txbrbq2y72mm" path="res://plugin/OvaniPlugin/OvaniPlayer.gd" id="1_ohg88"]
 [ext_resource type="Script" uid="uid://m1bfaxshhh8l" path="res://plugin/OvaniPlugin/OvaniSong.gd" id="2_i0uua"]
-[ext_resource type="Resource" uid="uid://srv7ffo3rdex" path="res://assets/music/bgm/Evil Grudge (RT 1.875)/EvilGrudge.tres" id="3_rdxi4"]
+[ext_resource type="Resource" uid="uid://srv7ffo3rdex" path="res://resources/Ovani/EvilGrudge.tres" id="3_rdxi4"]
 
 [node name="OvaniPlayer" type="Node" unique_id=1804323020]
 script = ExtResource("1_ohg88")

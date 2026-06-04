@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="OvaniSong" format=3 uid="uid://cmvrwwtuj7vp4"]
+
+[ext_resource type="AudioStream" uid="uid://b67i0rpbkmjr1" path="res://assets/music/bgm/Do It (RT 4.624)/Chiptune Vol7 Do It Intensity 1.wav" id="1_uogap"]
+[ext_resource type="Script" uid="uid://m1bfaxshhh8l" path="res://plugin/OvaniPlugin/OvaniSong.gd" id="1_uv1w2"]
+[ext_resource type="AudioStream" uid="uid://cd6p1tiduuveh" path="res://assets/music/bgm/Do It (RT 4.624)/Chiptune Vol7 Do It Intensity 2.wav" id="2_fhovf"]
+[ext_resource type="AudioStream" uid="uid://oyl65rapnofy" path="res://assets/music/bgm/Do It (RT 4.624)/Chiptune Vol7 Do It Main.wav" id="3_441uc"]
+[ext_resource type="AudioStream" uid="uid://bqhx2x3xhoieo" path="res://assets/music/bgm/Do It (RT 4.624)/Chiptune Vol7 Do It Cut 30.wav" id="4_hne5i"]
+[ext_resource type="AudioStream" uid="uid://jvh6asjujn47" path="res://assets/music/bgm/Do It (RT 4.624)/Chiptune Vol7 Do It Cut 60.wav" id="5_8248n"]
+
+[resource]
+script = ExtResource("1_uv1w2")
+Intensity1 = ExtResource("1_uogap")
+Intensity2 = ExtResource("2_fhovf")
+Intensity3 = ExtResource("3_441uc")
+Loop30 = ExtResource("4_hne5i")
+Loop60 = ExtResource("5_8248n")
+ReverbTail = 4.624
+metadata/_custom_type_script = "uid://m1bfaxshhh8l"

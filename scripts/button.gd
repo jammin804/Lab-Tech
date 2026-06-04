@@ -1,3 +1,4 @@
+class_name UI_Button
 extends Button
 
 @export var click: AudioStreamPlayer

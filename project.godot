@@ -11,13 +11,16 @@ config_version=5
 [application]
 
 config/name="LabTech"
-run/main_scene="uid://dmqv875jehqwm"
+run/main_scene="uid://1lqqs1b6h2wp"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://dyvulllqvghxb"
+
 [autoload]
 
-MusicManager="*uid://dbk58vbjnhos6"
 DamageNumbers="*uid://cefil43yqsm40"
 
 [display]
