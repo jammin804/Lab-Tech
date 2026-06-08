@@ -25,12 +25,12 @@ hover = NodePath("Hover")
 
 [node name="Click" type="AudioStreamPlayer" parent="." unique_id=998493346]
 stream = ExtResource("2_3q610")
-volume_db = -15.0
+volume_db = -5.0
 bus = &"SFX"
 
 [node name="Hover" type="AudioStreamPlayer" parent="." unique_id=634302134]
 stream = ExtResource("3_3q610")
-volume_db = -25.0
+volume_db = -10.0
 bus = &"SFX"
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

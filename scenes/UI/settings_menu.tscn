@@ -1,0 +1,324 @@
+[gd_scene format=3 uid="uid://bd1e7fmt2sl4m"]
+
+[ext_resource type="Script" uid="uid://xhlq3ux3qxdg" path="res://scripts/ui/video_btn.gd" id="1_uxg4l"]
+[ext_resource type="AudioStream" uid="uid://l7486jyqi2hy" path="res://assets/music/sfx/settings_click.wav" id="2_1en5i"]
+[ext_resource type="AudioStream" uid="uid://dv65sbva8bpt0" path="res://assets/music/sfx/blinghover.wav" id="3_6jt7n"]
+[ext_resource type="Script" uid="uid://ddjpa0fbdlvbd" path="res://scripts/ui/audio_btn.gd" id="4_878o3"]
+[ext_resource type="Script" uid="uid://de8cb71260pxg" path="res://scripts/ui/lang_btn.gd" id="5_3i1ia"]
+[ext_resource type="Script" uid="uid://bqem5s34cvuve" path="res://scripts/ui/settings_container.gd" id="6_1en5i"]
+[ext_resource type="Script" uid="uid://dnubu0lx4htl" path="res://scripts/ui/video_settings.gd" id="6_jl7gk"]
+[ext_resource type="Script" uid="uid://dg0yx0yjxtcel" path="res://scripts/ui/audio_settings.gd" id="7_ecjli"]
+[ext_resource type="Script" uid="uid://c1y88j5pwfyu8" path="res://scripts/button.gd" id="8_jfsmy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqqt6"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+bg_color = Color(0.039215688, 0.02745098, 0.14901961, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.05882353, 0.27058825, 0.21176471, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rtw2f"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+bg_color = Color(0.039215688, 0.02745098, 0.14901961, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.6784314, 0.81960785, 0.45882353, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hstxw"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+bg_color = Color(0.039215688, 0.02745098, 0.14901961, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.05882353, 0.27058825, 0.21176471, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8egab"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+bg_color = Color(0.039215688, 0.02745098, 0.14901961, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.6784314, 0.81960785, 0.45882353, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="SettingsMenu" type="Control" unique_id=1195811390]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_1en5i")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=472722460]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.040649988, 0.0285, 0.15, 0.9882353)
+
+[node name="Label" type="Label" parent="." unique_id=600108388]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -31.0
+offset_right = 31.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Settings"
+
+[node name="SettingsMenuButtons" type="VBoxContainer" parent="." unique_id=627617667]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.0
+offset_top = 39.0
+offset_right = 126.0
+offset_bottom = 79.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsMenuButtons" unique_id=1423601366]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VideoBtn" type="Button" parent="SettingsMenuButtons/HBoxContainer" unique_id=651002308 node_paths=PackedStringArray("click", "hover")]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.6784314, 0.81960785, 0.45882353, 1)
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rtw2f")
+theme_override_styles/hover = SubResource("StyleBoxFlat_rtw2f")
+toggle_mode = true
+text = "Video"
+script = ExtResource("1_uxg4l")
+click = NodePath("Click")
+hover = NodePath("Hover")
+
+[node name="Click" type="AudioStreamPlayer" parent="SettingsMenuButtons/HBoxContainer/VideoBtn" unique_id=1348278163]
+stream = ExtResource("2_1en5i")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="Hover" type="AudioStreamPlayer" parent="SettingsMenuButtons/HBoxContainer/VideoBtn" unique_id=917423782]
+stream = ExtResource("3_6jt7n")
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="AudioBtn" type="Button" parent="SettingsMenuButtons/HBoxContainer" unique_id=75847718 node_paths=PackedStringArray("click", "hover")]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.6784314, 0.81960785, 0.45882353, 1)
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rtw2f")
+theme_override_styles/hover = SubResource("StyleBoxFlat_rtw2f")
+toggle_mode = true
+text = "Audio"
+script = ExtResource("4_878o3")
+click = NodePath("Click")
+hover = NodePath("Hover")
+
+[node name="Click" type="AudioStreamPlayer" parent="SettingsMenuButtons/HBoxContainer/AudioBtn" unique_id=1625419100]
+stream = ExtResource("2_1en5i")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="Hover" type="AudioStreamPlayer" parent="SettingsMenuButtons/HBoxContainer/AudioBtn" unique_id=706292586]
+stream = ExtResource("3_6jt7n")
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="LangBtn" type="Button" parent="SettingsMenuButtons/HBoxContainer" unique_id=606781604 node_paths=PackedStringArray("click", "hover")]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.6784314, 0.81960785, 0.45882353, 1)
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rtw2f")
+theme_override_styles/hover = SubResource("StyleBoxFlat_rtw2f")
+toggle_mode = true
+text = "Language"
+script = ExtResource("5_3i1ia")
+click = NodePath("Click")
+hover = NodePath("Hover")
+
+[node name="Click" type="AudioStreamPlayer" parent="SettingsMenuButtons/HBoxContainer/LangBtn" unique_id=360903735]
+stream = ExtResource("2_1en5i")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="Hover" type="AudioStreamPlayer" parent="SettingsMenuButtons/HBoxContainer/LangBtn" unique_id=37677370]
+stream = ExtResource("3_6jt7n")
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="SettingsContainer" type="VBoxContainer" parent="." unique_id=1542557380]
+layout_mode = 0
+offset_left = 34.5
+offset_top = 72.0
+offset_right = 285.5
+offset_bottom = 176.0
+
+[node name="VideoSettings" type="GridContainer" parent="SettingsContainer" unique_id=1943710598 node_paths=PackedStringArray("resolution_option", "fullscreen_check", "borderless_check", "vysnc_check")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/v_separation = 0
+columns = 2
+script = ExtResource("6_jl7gk")
+resolution_option = NodePath("Resolution")
+fullscreen_check = NodePath("Fullscreen")
+borderless_check = NodePath("Borderless")
+vysnc_check = NodePath("Vysnc")
+
+[node name="Label" type="Label" parent="SettingsContainer/VideoSettings" unique_id=759306528]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Resolution"
+
+[node name="Resolution" type="OptionButton" parent="SettingsContainer/VideoSettings" unique_id=704822925]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Label2" type="Label" parent="SettingsContainer/VideoSettings" unique_id=86790897]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Fullscreen"
+
+[node name="Fullscreen" type="CheckBox" parent="SettingsContainer/VideoSettings" unique_id=1031827975]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Label3" type="Label" parent="SettingsContainer/VideoSettings" unique_id=759024881]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Borderless"
+
+[node name="Borderless" type="CheckBox" parent="SettingsContainer/VideoSettings" unique_id=31009869]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Label4" type="Label" parent="SettingsContainer/VideoSettings" unique_id=1277347757]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "VSync"
+
+[node name="Vysnc" type="CheckBox" parent="SettingsContainer/VideoSettings" unique_id=2006964494]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="AudioSettings" type="GridContainer" parent="SettingsContainer" unique_id=77102329 node_paths=PackedStringArray("master_slider", "sfx_slider", "music_slider")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+columns = 2
+script = ExtResource("7_ecjli")
+master_slider = NodePath("Master")
+sfx_slider = NodePath("SFX")
+music_slider = NodePath("Music")
+
+[node name="Label" type="Label" parent="SettingsContainer/AudioSettings" unique_id=1629689810]
+layout_mode = 2
+text = "Master"
+
+[node name="Master" type="HSlider" parent="SettingsContainer/AudioSettings" unique_id=1943989369]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="SettingsContainer/AudioSettings" unique_id=1382812711]
+layout_mode = 2
+text = "Music"
+
+[node name="Music" type="HSlider" parent="SettingsContainer/AudioSettings" unique_id=26500595]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label3" type="Label" parent="SettingsContainer/AudioSettings" unique_id=1627309955]
+layout_mode = 2
+text = "SFX"
+
+[node name="SFX" type="HSlider" parent="SettingsContainer/AudioSettings" unique_id=1274314055]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LanguageSettings" type="GridContainer" parent="SettingsContainer" unique_id=1035448736]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="SettingsContainer/LanguageSettings" unique_id=528084991]
+layout_mode = 2
+text = "Language"
+
+[node name="Language" type="OptionButton" parent="SettingsContainer/LanguageSettings" unique_id=434305613]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BackBtn" type="Button" parent="." unique_id=1420031373 node_paths=PackedStringArray("click", "hover")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 7.0
+offset_top = 5.0
+offset_right = 75.0
+offset_bottom = 24.0
+scale = Vector2(0.75, 0.75)
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_hstxw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8egab")
+theme_override_styles/hover = SubResource("StyleBoxFlat_rtw2f")
+text = "Back"
+script = ExtResource("8_jfsmy")
+click = NodePath("Click")
+hover = NodePath("Hover")
+
+[node name="Click" type="AudioStreamPlayer" parent="BackBtn" unique_id=928486534]
+stream = ExtResource("2_1en5i")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="Hover" type="AudioStreamPlayer" parent="BackBtn" unique_id=164145318]
+stream = ExtResource("3_6jt7n")
+volume_db = -15.0
+bus = &"SFX"
+
+[connection signal="mouse_entered" from="SettingsMenuButtons/HBoxContainer/VideoBtn" to="." method="_on_video_btn_mouse_entered"]
+[connection signal="pressed" from="SettingsMenuButtons/HBoxContainer/VideoBtn" to="." method="_on_video_btn_pressed"]
+[connection signal="pressed" from="SettingsMenuButtons/HBoxContainer/VideoBtn" to="SettingsMenuButtons/HBoxContainer/VideoBtn" method="_on_pressed"]
+[connection signal="mouse_entered" from="SettingsMenuButtons/HBoxContainer/AudioBtn" to="." method="_on_audio_btn_mouse_entered"]
+[connection signal="pressed" from="SettingsMenuButtons/HBoxContainer/AudioBtn" to="." method="_on_audio_btn_pressed"]
+[connection signal="mouse_entered" from="SettingsMenuButtons/HBoxContainer/LangBtn" to="." method="_on_lang_btn_mouse_entered"]
+[connection signal="pressed" from="SettingsMenuButtons/HBoxContainer/LangBtn" to="." method="_on_lang_btn_pressed"]
+[connection signal="mouse_entered" from="BackBtn" to="." method="_on_back_btn_mouse_entered"]
+[connection signal="pressed" from="BackBtn" to="." method="_on_back_btn_pressed"]
