@@ -192,7 +192,6 @@ offset_bottom = 176.0
 
 [node name="VideoSettings" type="GridContainer" parent="SettingsContainer" unique_id=1943710598 node_paths=PackedStringArray("resolution_option", "fullscreen_check", "borderless_check", "vysnc_check")]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 theme_override_constants/v_separation = 0
 columns = 2
@@ -240,6 +239,7 @@ size_flags_horizontal = 8
 
 [node name="AudioSettings" type="GridContainer" parent="SettingsContainer" unique_id=77102329 node_paths=PackedStringArray("master_slider", "sfx_slider", "music_slider")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 columns = 2

@@ -17,8 +17,10 @@ signal damage
 var explosion_damage_dealt : int = 40
 @export var is_in_battle_scene : bool = false
 
+@export var camera:Camera2D
 @onready var enemy: AnimatedSprite2D = $enemy
 @onready var hit_flash_anim: AnimationPlayer = $HitFlashAnim
+@onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
 
 
 func _ready() -> void:
@@ -41,7 +43,14 @@ func _on_lab_uprgrade_scene_start() -> void:
 	
 func take_damage(damage : int) -> void:
 	enemy_health -= damage
+	
 	hit_flash_anim.play("hit")
+	
+	camera.screen_shake(2, 0.5)
+	
+	gpu_particles_2d.restart()
+	gpu_particles_2d.emitting = true
+	
 	if enemy_health <= 0:
 		#Call enemy health depleated signal
 		self.queue_free()

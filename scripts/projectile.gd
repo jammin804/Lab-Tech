@@ -4,15 +4,33 @@ extends Area2D
 var direction : Vector2 = Vector2.RIGHT
 var speed : float = 750
 var damage : float = 1
+var has_collided : bool = false
+
+@onready var hit: AnimatedSprite2D = $Hit
+@onready var bullet: Sprite2D = $Bullet
+
+
 
 func _physics_process(delta: float) -> void:
-	position += direction * speed * delta
+	if not has_collided:
+		position += direction * speed * delta
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
 
 
 func _on_body_entered(body: Node2D) -> void:
+	# Ignore new collisions if we are already playing the hit animation
+	if has_collided:
+		return
+	
 	if body.has_method("take_damage"):
 		body.take_damage(damage)
-		queue_free()
+		
+	has_collided = true
+	bullet.hide()
+	hit.show()
+	hit.play("hit")
+	
+	await hit.animation_finished
+	queue_free()

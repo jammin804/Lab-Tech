@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b850wre5f8oip" path="res://scripts/mob.gd" id="1_bsing"]
 [ext_resource type="Shader" uid="uid://cht2qws53baj7" path="res://shaders/hitflash.gdshader" id="3_d4cuo"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_71rcx"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d4cuo"]
 resource_local_to_scene = true
 shader = ExtResource("3_d4cuo")
 shader_parameter/hit_flash_color = Color(1, 1, 1, 1)
@@ -55,12 +55,33 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_d4cuo"]
 radius = 23.021729
 
+[sub_resource type="Gradient" id="Gradient_71rcx"]
+offsets = PackedFloat32Array(0, 0.98578197)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xsfyf"]
+gradient = SubResource("Gradient_71rcx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h8ps3"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 25.0
+direction = Vector3(0.5, -0.5, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 400.0
+gravity = Vector3(0, 700, 0)
+damping_min = 100.00001
+damping_max = 800.00006
+scale_max = 3.0
+color_ramp = SubResource("GradientTexture1D_xsfyf")
+
 [node name="Mob" type="RigidBody2D" unique_id=658756721 groups=["enemy"]]
 gravity_scale = 0.0
 script = ExtResource("1_bsing")
 
 [node name="enemy" parent="." unique_id=1601589879 instance=ExtResource("1_4are2")]
-material = SubResource("ShaderMaterial_71rcx")
+material = SubResource("ShaderMaterial_d4cuo")
 scale = Vector2(-1, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=570825910]
@@ -78,3 +99,11 @@ libraries/ = SubResource("AnimationLibrary_ebxvl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionArea" unique_id=1494460161]
 shape = SubResource("CircleShape2D_d4cuo")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1566758503]
+emitting = false
+amount = 20
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_h8ps3")

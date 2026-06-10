@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://mngtaamw8hpp" path="res://scripts/battle_player.gd" id="1_hugls"]
 [ext_resource type="PackedScene" uid="uid://w1niwwnqbb4y" path="res://scenes/projectile.tscn" id="2_g11ij"]
 [ext_resource type="Texture2D" uid="uid://b3ntyiv7oq1hh" path="res://assets/character/player.png" id="3_r6oyp"]
+[ext_resource type="PackedScene" uid="uid://d37hr5i350lqv" path="res://scenes/spark.tscn" id="5_r6oyp"]
+[ext_resource type="AudioStream" uid="uid://dhhi0c4g00jnp" path="res://assets/music/sfx/shot2.wav" id="6_2tcgp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r6oyp"]
 shader = ExtResource("1_g11ij")
@@ -133,4 +135,14 @@ one_shot = true
 [node name="HitFlashAnim" type="AnimationPlayer" parent="." unique_id=795432850]
 libraries/ = SubResource("AnimationLibrary_goy34")
 
+[node name="Spark" parent="." unique_id=515015113 instance=ExtResource("5_r6oyp")]
+
+[node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=685664484]
+
+[node name="Fire" type="AudioStreamPlayer2D" parent="." unique_id=1488178504]
+stream = ExtResource("6_2tcgp")
+bus = &"SFX"
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

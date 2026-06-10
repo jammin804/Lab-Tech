@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://hw3yy7aoqac3" path="res://assets/backgrounds/bg-1.png" id="1_441kk"]
 [ext_resource type="PackedScene" uid="uid://cl6xfxk4un85" path="res://scenes/battle_player.tscn" id="2_y5my5"]
+[ext_resource type="PackedScene" uid="uid://cooeppa7wcj7x" path="res://scenes/camera.tscn" id="4_6lb5u"]
 [ext_resource type="PackedScene" uid="uid://cqueta70ubjqr" path="res://scenes/mob.tscn" id="5_jwmpd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jkca0"]
@@ -15,6 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Background" type="TextureRect" parent="." unique_id=62776617]
 texture_filter = 1
@@ -27,17 +29,23 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_jkca0")
 expand_mode = 2
 
-[node name="BattlePlayer" parent="." unique_id=409017460 instance=ExtResource("2_y5my5")]
-position = Vector2(39, 156)
-
 [node name="Timer" type="Timer" parent="." unique_id=182636926]
 unique_name_in_owner = true
 one_shot = true
 
-[node name="Mob2" parent="." unique_id=1825073127 instance=ExtResource("5_jwmpd")]
+[node name="Mob2" parent="." unique_id=1825073127 node_paths=PackedStringArray("camera") instance=ExtResource("5_jwmpd")]
 position = Vector2(244, 158)
 move_speed = 100.0
+camera = NodePath("../Camera")
 
-[node name="Mob3" parent="." unique_id=658756721 instance=ExtResource("5_jwmpd")]
+[node name="Mob3" parent="." unique_id=658756721 node_paths=PackedStringArray("camera") instance=ExtResource("5_jwmpd")]
 position = Vector2(294, 158)
 move_speed = 100.0
+camera = NodePath("../Camera")
+
+[node name="BattlePlayer" parent="." unique_id=166741663 node_paths=PackedStringArray("camera") instance=ExtResource("2_y5my5")]
+position = Vector2(38, 154)
+camera = NodePath("../Camera")
+
+[node name="Camera" parent="." unique_id=263792174 instance=ExtResource("4_6lb5u")]
+position = Vector2(160, 90)

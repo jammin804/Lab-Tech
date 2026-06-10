@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://b8h7y5diislmb" path="res://assets/ui/hud/Settigns.png" id="17_ftxkm"]
 [ext_resource type="PackedScene" uid="uid://bdpj78s126rdu" path="res://scenes/battle_screen.tscn" id="17_kfqsw"]
 [ext_resource type="Texture2D" uid="uid://hk8jsqntk3b5" path="res://assets/ui/hud/battleButton.png" id="18_eavsi"]
+[ext_resource type="PackedScene" uid="uid://blqe7ke2t7a3n" path="res://scenes/UI/custom_mouse.tscn" id="18_ijdgx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hem3r"]
 atlas = ExtResource("1_bb6uc")
@@ -147,18 +148,6 @@ data = PackedByteArray("cW9hZgAAwXkBALuAFAAIGAAAAAAAAAAAAAAAAOAAQAAA0Q5Y09UGgQAA
 format = 3
 mix_rate = 48000
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kxeyc"]
-atlas = ExtResource("17_ftxkm")
-region = Rect2(26, 2, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jie0k"]
-atlas = ExtResource("17_ftxkm")
-region = Rect2(26, 42, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ffhs6"]
-atlas = ExtResource("17_ftxkm")
-region = Rect2(26, 21, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_kfqsw"]
 atlas = ExtResource("18_eavsi")
 region = Rect2(16, 4, 32, 16)
@@ -173,6 +162,18 @@ region = Rect2(16, 23, 32, 16)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ds7rc"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxeyc"]
+atlas = ExtResource("17_ftxkm")
+region = Rect2(26, 2, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jie0k"]
+atlas = ExtResource("17_ftxkm")
+region = Rect2(26, 42, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffhs6"]
+atlas = ExtResource("17_ftxkm")
+region = Rect2(26, 21, 16, 16)
+
 [node name="Lab" type="Control" unique_id=1174447750 node_paths=PackedStringArray("pause_menu", "settings_menu")]
 process_mode = 3
 layout_mode = 3
@@ -183,12 +184,15 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 1
 script = ExtResource("1_f1r8i")
-toggle_debug = true
 max_energy = 20
 pause_menu = NodePath("PauseMenu")
 settings_menu = NodePath("SettingsMenu")
 metadata/_edit_vertical_guides_ = [-86.0]
+
+[node name="CustomMouse" parent="." unique_id=289937816 instance=ExtResource("18_ijdgx")]
+layer = 128
 
 [node name="Pausable" type="Control" parent="." unique_id=1461376495]
 process_mode = 1
@@ -198,9 +202,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="UpgradeScreen" type="Control" parent="Pausable" unique_id=1309087774]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -350,20 +356,6 @@ stream = SubResource("AudioStreamWAV_m131j")
 unique_name_in_owner = true
 stream = ExtResource("14_5tteu")
 
-[node name="PauseBtn" type="TextureButton" parent="Pausable/UpgradeScreen" unique_id=660265438]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -27.0
-offset_top = 7.0
-offset_right = -11.0
-offset_bottom = 23.0
-grow_horizontal = 0
-texture_normal = SubResource("AtlasTexture_kxeyc")
-texture_pressed = SubResource("AtlasTexture_jie0k")
-texture_hover = SubResource("AtlasTexture_ffhs6")
-
 [node name="BattleBtn" type="TextureButton" parent="Pausable/UpgradeScreen" unique_id=1122038097]
 layout_mode = 1
 anchors_preset = 3
@@ -383,7 +375,6 @@ texture_hover = SubResource("AtlasTexture_iyn56")
 
 [node name="BattleScreen" parent="Pausable" unique_id=1695514153 instance=ExtResource("17_kfqsw")]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 
 [node name="EndLevelPopUp" type="CanvasLayer" parent="Pausable/BattleScreen" unique_id=1427651393]
@@ -452,7 +443,22 @@ Volume = -10.0
 Bus = &"Music"
 metadata/_custom_type_script = "uid://txbrbq2y72mm"
 
+[node name="PauseBtn" type="TextureButton" parent="Pausable" unique_id=660265438]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -27.0
+offset_top = 7.0
+offset_right = -11.0
+offset_bottom = 23.0
+grow_horizontal = 0
+texture_normal = SubResource("AtlasTexture_kxeyc")
+texture_pressed = SubResource("AtlasTexture_jie0k")
+texture_hover = SubResource("AtlasTexture_ffhs6")
+
 [node name="PauseMenu" type="Control" parent="." unique_id=380289479]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -512,17 +518,17 @@ visible = false
 layout_mode = 1
 
 [connection signal="battle_scene_start" from="." to="Pausable/UpgradeScreen/Player" method="_on_lab_battle_scene_start"]
-[connection signal="battle_scene_start" from="." to="Pausable/BattleScreen/BattlePlayer" method="_on_lab_battle_scene_start"]
 [connection signal="battle_scene_start" from="." to="Pausable/BattleScreen/Mob3" method="_on_lab_battle_scene_start"]
+[connection signal="battle_scene_start" from="." to="Pausable/BattleScreen/BattlePlayer" method="_on_lab_battle_scene_start"]
 [connection signal="uprgrade_scene_start" from="." to="Pausable/UpgradeScreen/Player" method="_on_lab_uprgrade_scene_start"]
-[connection signal="uprgrade_scene_start" from="." to="Pausable/BattleScreen/BattlePlayer" method="_on_lab_uprgrade_scene_start"]
 [connection signal="uprgrade_scene_start" from="." to="Pausable/BattleScreen/Mob3" method="_on_lab_uprgrade_scene_start"]
+[connection signal="uprgrade_scene_start" from="." to="Pausable/BattleScreen/BattlePlayer" method="_on_lab_uprgrade_scene_start"]
 [connection signal="pressed" from="Pausable/UpgradeScreen/Clicker" to="Pausable/UpgradeScreen/Clicker" method="_on_pressed"]
 [connection signal="finished" from="Pausable/UpgradeScreen/ClickSound" to="Pausable/UpgradeScreen/Clicker" method="_on_click_sound_finished"]
-[connection signal="pressed" from="Pausable/UpgradeScreen/PauseBtn" to="." method="_on_pause_btn_pressed"]
 [connection signal="pressed" from="Pausable/UpgradeScreen/BattleBtn" to="." method="_on_battle_btn_pressed"]
 [connection signal="battle_health_changed" from="Pausable/BattleScreen/BattlePlayer" to="Pausable/UpgradeScreen/Player" method="_on_battle_player_battle_health_changed"]
 [connection signal="pressed" from="Pausable/BattleScreen/EndLevelPopUp/Panel/MarginContainer/VBoxContainer/HBoxContainer/ReturnToLabBtn" to="." method="_on_return_to_lab_btn_pressed"]
+[connection signal="pressed" from="Pausable/PauseBtn" to="." method="_on_pause_btn_pressed"]
 [connection signal="pressed" from="PauseMenu/CenterContainer/MarginContainer/VBoxContainer/ResumeBtn" to="." method="_on_resume_btn_pressed"]
 [connection signal="pressed" from="PauseMenu/CenterContainer/MarginContainer/VBoxContainer/OptionsBtn" to="." method="_on_options_btn_pressed"]
 [connection signal="pressed" from="PauseMenu/CenterContainer/MarginContainer/VBoxContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]
