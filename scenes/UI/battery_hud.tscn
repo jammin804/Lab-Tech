@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://b3gf3rdu50uej"]
+
+[ext_resource type="Texture2D" uid="uid://da2j18xbxhgj2" path="res://assets/ui/progress_bar/Battery_darkfill.png" id="1_63cwj"]
+[ext_resource type="Script" uid="uid://bqfqcjiahph2k" path="res://scripts/ui/battery.gd" id="1_x1ohx"]
+[ext_resource type="Texture2D" uid="uid://l7iw1jqy1r03" path="res://assets/ui/progress_bar/Battery.png" id="2_x1ohx"]
+[ext_resource type="Texture2D" uid="uid://c8cibbq0ltnfx" path="res://assets/ui/progress_bar/Battery_fill.png" id="3_18dya"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p55td"]
+atlas = ExtResource("1_63cwj")
+region = Rect2(3, 0, 10, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r23y2"]
+atlas = ExtResource("2_x1ohx")
+region = Rect2(3, 0, 10, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3w2i"]
+atlas = ExtResource("1_63cwj")
+region = Rect2(19, 0, 10, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f40nx"]
+atlas = ExtResource("3_18dya")
+region = Rect2(3, 0, 10, 16)
+
+[node name="Battery" type="Control" unique_id=1694848608 node_paths=PackedStringArray("back_bar", "front_bar", "back_bar2", "front_bar2", "back_bar3", "front_bar3")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 43.0
+offset_bottom = 44.0
+script = ExtResource("1_x1ohx")
+back_bar = NodePath("HBoxContainer/Tier1/BackBar1")
+front_bar = NodePath("HBoxContainer/Tier1/FrontBar1")
+back_bar2 = NodePath("HBoxContainer/Tier2/BackBar2")
+front_bar2 = NodePath("HBoxContainer/Tier2/FrontBar2")
+back_bar3 = NodePath("HBoxContainer/Tier3/BackBar3")
+front_bar3 = NodePath("HBoxContainer/Tier3/FrontBar3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1018777876]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 12
+
+[node name="Tier1" type="Control" parent="HBoxContainer" unique_id=850308133]
+layout_mode = 2
+
+[node name="BackBar1" type="TextureProgressBar" parent="HBoxContainer/Tier1" unique_id=1237664591]
+layout_mode = 0
+offset_right = 10.0
+offset_bottom = 16.0
+value = 33.0
+fill_mode = 3
+texture_under = SubResource("AtlasTexture_p55td")
+texture_over = SubResource("AtlasTexture_r23y2")
+texture_progress = SubResource("AtlasTexture_l3w2i")
+metadata/_edit_group_ = true
+
+[node name="FrontBar1" type="TextureProgressBar" parent="HBoxContainer/Tier1" unique_id=1508788055]
+layout_mode = 0
+offset_right = 10.0
+offset_bottom = 16.0
+value = 51.0
+fill_mode = 3
+texture_progress = SubResource("AtlasTexture_f40nx")
+metadata/_edit_group_ = true
+
+[node name="Tier2" type="Control" parent="HBoxContainer" unique_id=1101645348]
+layout_mode = 2
+
+[node name="BackBar2" type="TextureProgressBar" parent="HBoxContainer/Tier2" unique_id=420344974]
+layout_mode = 0
+offset_right = 10.0
+offset_bottom = 16.0
+value = 49.0
+fill_mode = 3
+texture_under = SubResource("AtlasTexture_p55td")
+texture_over = SubResource("AtlasTexture_r23y2")
+texture_progress = SubResource("AtlasTexture_l3w2i")
+metadata/_edit_group_ = true
+
+[node name="FrontBar2" type="TextureProgressBar" parent="HBoxContainer/Tier2" unique_id=2086133914]
+layout_mode = 0
+offset_right = 10.0
+offset_bottom = 16.0
+value = 28.0
+fill_mode = 3
+texture_progress = SubResource("AtlasTexture_f40nx")
+metadata/_edit_group_ = true
+
+[node name="Tier3" type="Control" parent="HBoxContainer" unique_id=433344490]
+layout_mode = 2
+
+[node name="BackBar3" type="TextureProgressBar" parent="HBoxContainer/Tier3" unique_id=732145098]
+layout_mode = 0
+offset_right = 10.0
+offset_bottom = 16.0
+value = 33.0
+fill_mode = 3
+texture_under = SubResource("AtlasTexture_p55td")
+texture_over = SubResource("AtlasTexture_r23y2")
+texture_progress = SubResource("AtlasTexture_l3w2i")
+metadata/_edit_group_ = true
+
+[node name="FrontBar3" type="TextureProgressBar" parent="HBoxContainer/Tier3" unique_id=1098081667]
+layout_mode = 0
+offset_right = 10.0
+offset_bottom = 16.0
+value = 51.0
+fill_mode = 3
+texture_progress = SubResource("AtlasTexture_f40nx")
+metadata/_edit_group_ = true

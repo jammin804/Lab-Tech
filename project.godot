@@ -22,6 +22,7 @@ buses/default_bus_layout="uid://dyvulllqvghxb"
 [autoload]
 
 DamageNumbers="*uid://cefil43yqsm40"
+Events="*uid://dey05byvojpap"
 
 [display]
 
@@ -30,6 +31,10 @@ window/size/viewport_height=180
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg")
 
 [file_customization]
 

@@ -109,7 +109,7 @@ _data = {
 &"RESET": SubResource("Animation_yi774")
 }
 
-[node name="BattlePlayer" type="AnimatedSprite2D" unique_id=166741663]
+[node name="BattlePlayer" type="AnimatedSprite2D" unique_id=166741663 groups=["player"]]
 material = SubResource("ShaderMaterial_r6oyp")
 sprite_frames = SubResource("SpriteFrames_ikkpg")
 animation = &"Idle"

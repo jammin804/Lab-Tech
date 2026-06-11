@@ -39,11 +39,12 @@ animations = [{
 "speed": 6.0
 }]
 
-[node name="Player" type="AnimatedSprite2D" unique_id=2126503732]
+[node name="Player" type="AnimatedSprite2D" unique_id=2126503732 groups=["player"]]
 sprite_frames = SubResource("SpriteFrames_tuyoq")
 animation = &"idle"
 frame_progress = 0.06215727
 script = ExtResource("2_g2els")
+max_health = 400.0
 
 [node name="RegenTimer" type="Timer" parent="." unique_id=710062912]
 unique_name_in_owner = true

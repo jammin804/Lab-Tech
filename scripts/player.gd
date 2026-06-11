@@ -1,8 +1,7 @@
 class_name Player
 extends AnimatedSprite2D
 
-signal health_changed
-signal exp_changed #should remove here and have it in the battle scene
+signal health_changed()
 
 @export_category("Debug")
 @export var debug_regen: bool = true
@@ -30,19 +29,19 @@ signal exp_changed #should remove here and have it in the battle scene
 @onready var last_time_hit_timer: Timer = %LastTimeHitTimer
 @onready var battle_player: AnimatedSprite2D = $"../../BattleScreen/BattlePlayer"
 
+var is_passives_active : bool
 
 func _ready() -> void:
+	Events.player_spawned.emit(self)
+	
 	current_health = max_health
 	health_changed.emit()
-	
-func _process(delta: float) -> void:
-	if can_regen_health == true and has_been_hit == false and debug_regen == false and is_in_battle_scene:
-		regen_health()
 
 func damage_player(damage_amount: int) -> void:
 	current_health -= damage_amount
+	current_health = clampf(current_health, 0.0, max_health)
+
 	health_changed.emit()
-	#last_time_hit_timer.start()
 
 func regen_health() -> void: #This should only be for in battle otherwise fill health to 100%
 	if current_health < max_health and can_regen_health == true:
@@ -74,6 +73,17 @@ func _on_lab_battle_scene_start() -> void:
 	regen_timer.start()
 	
 
+func _can_use_passives() -> void:
+	if current_health == 0:
+		is_passives_active = false
+	else:
+		is_passives_active = true
 
-func _on_battle_player_battle_health_changed(amount: int) -> void:
-	damage_player(amount)
+#FIXME: Fix the max health clampping
+func add_to_max_health(increase_amount: int):
+	max_health += increase_amount
+	max_health = clamp(max_health, 0, 300)
+	current_health = max_health
+	print("Player -> Add Health: Max Player health is:" + str(max_health))
+	health_changed.emit()
+	

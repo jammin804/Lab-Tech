@@ -193,7 +193,6 @@ tile_set = SubResource("TileSet_akbqt")
 [node name="BattlePlayer" parent="." unique_id=166741663 node_paths=PackedStringArray("camera") instance=ExtResource("3_q8s1k")]
 position = Vector2(38, 102)
 camera = NodePath("../Camera")
-drain_amount = 20
 
 [node name="Player" parent="BattlePlayer" unique_id=2126503732 instance=ExtResource("3_f40nx")]
 visible = false
@@ -206,6 +205,5 @@ camera = NodePath("../Camera")
 [node name="Camera" parent="." unique_id=263792174 instance=ExtResource("4_c4o2e")]
 position = Vector2(160, 91)
 
-[node name="Battery" parent="." unique_id=1694848608 instance=ExtResource("7_84lju")]
-
-[editable path="Battery"]
+[node name="Battery" parent="." unique_id=1694848608 node_paths=PackedStringArray("player") instance=ExtResource("7_84lju")]
+player = NodePath("../BattlePlayer/Player")

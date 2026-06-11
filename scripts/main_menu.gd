@@ -1,7 +1,7 @@
 class_name MainMenu
 extends Control
 
-
+#FIXME The large asset error that appears when I save this scene
 @onready var settings_menu: Control = $SettingsMenu
 var lab_scene: String = "res://scenes/lab.tscn"
 

@@ -5,6 +5,7 @@ var direction : Vector2 = Vector2.RIGHT
 var speed : float = 750
 var damage : float = 1
 var has_collided : bool = false
+var life_steal : int = 5
 
 @onready var hit: AnimatedSprite2D = $Hit
 @onready var bullet: Sprite2D = $Bullet
@@ -25,8 +26,9 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 	
 	if body.has_method("take_damage"):
+		Events.enemy_hit_by_projectile.emit(life_steal)
 		body.take_damage(damage)
-		
+	
 	has_collided = true
 	bullet.hide()
 	hit.show()
