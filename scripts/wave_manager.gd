@@ -1,0 +1,84 @@
+class_name Wave_Manager
+extends Node
+
+@export_category("Dependencies")
+@export var waves: Array[WaveData]
+@export var ground_spawn_point : Marker2D
+@export var air_spawn_point : Marker2D
+@export var enemy_container: Node
+
+var current_wave_index: int = 0
+var enemies_alive: int = 0
+var level_multipler: float = 1.0
+
+func start_wave():
+	if current_wave_index >= waves.size():
+		_handle_level_completed()
+		return
+		
+	var current_wave = waves[current_wave_index]
+	
+	if current_wave.is_boss_wave:
+		_spawn_boss(current_wave)
+	else:
+		_spawn_enemies(current_wave)
+	
+func _spawn_enemies(wave: WaveData):
+	for spawn_group in wave.spawns:
+		var valid_points
+		if spawn_group.zone == SpawnInfo.SpawnZone.GROUND:	
+			valid_points = ground_spawn_point
+		elif spawn_group.zone == SpawnInfo.SpawnZone.SKY:	
+			valid_points = air_spawn_point 
+		
+		#if valid_points.is_empty():
+			#push_error("No spawn points found for group: " + spawn_group.spawn_group_name)
+			#continue
+			
+		for i in range(spawn_group.enemy_count):
+			var spawn_point = valid_points
+			
+			var enemy = spawn_group.enemy_scene.instantiate()
+			enemy.global_position = spawn_point.global_position
+			
+			enemy.died.connect(_on_enemy_died)
+			
+			if enemy_container:
+				enemy_container.add_child(enemy)
+			else:
+				add_child(enemy)
+			
+			enemies_alive += 1
+			
+			if spawn_group.spawn_delay > 0:
+				await get_tree().create_timer(spawn_group.spawn_delay).timeout
+	
+func _spawn_boss(wave: WaveData):
+	var spawn_point = ground_spawn_point
+	var boss = wave.boss_scene.instantiate()
+	boss.died.connect(_on_enemy_died)
+	spawn_point.add_child(boss)
+	enemies_alive += 1
+	
+func _on_enemy_died():
+	enemies_alive -= 1
+	
+	if enemies_alive <= 0:
+		_complete_wave()
+	
+func _complete_wave():
+	print('Wave ', current_wave_index + 1, ' Completed!')
+	current_wave_index += 1
+	
+	await get_tree().create_timer(3.0).timeout
+	start_wave()
+	
+func _handle_level_completed():
+	print("Level Complete!")
+	current_wave_index = 0
+	level_multipler += 0.5 
+	start_wave()
+
+
+func _on_in_between_waves_timeout() -> void:
+	start_wave()

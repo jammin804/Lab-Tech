@@ -23,6 +23,7 @@ buses/default_bus_layout="uid://dyvulllqvghxb"
 
 DamageNumbers="*uid://cefil43yqsm40"
 Events="*uid://dey05byvojpap"
+Globals="*uid://cy6wbaxf4mmiy"
 
 [display]
 

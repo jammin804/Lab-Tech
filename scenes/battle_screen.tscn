@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://hw3yy7aoqac3" path="res://assets/backgrounds/bg-1.png" id="1_441kk"]
 [ext_resource type="PackedScene" uid="uid://cl6xfxk4un85" path="res://scenes/battle_player.tscn" id="2_y5my5"]
 [ext_resource type="PackedScene" uid="uid://cooeppa7wcj7x" path="res://scenes/camera.tscn" id="4_6lb5u"]
-[ext_resource type="PackedScene" uid="uid://cqueta70ubjqr" path="res://scenes/mob.tscn" id="5_jwmpd"]
+[ext_resource type="PackedScene" uid="uid://cqueta70ubjqr" path="res://scenes/enemy.tscn" id="5_jwmpd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jkca0"]
 atlas = ExtResource("1_441kk")

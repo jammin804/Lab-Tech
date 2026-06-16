@@ -1,38 +1,239 @@
-[gd_scene format=3 uid="uid://cluqesxih2vx0"]
+[gd_scene format=3 uid="uid://cqueta70ubjqr"]
 
-[ext_resource type="Texture2D" uid="uid://vxcgvx8a67u6" path="res://assets/enemy/sentinel1.png" id="1_xwavj"]
-[ext_resource type="Texture2D" uid="uid://dubovpnsxaadm" path="res://assets/enemy/sentinel2.png" id="2_nenq2"]
-[ext_resource type="Texture2D" uid="uid://c2kj0viatkflt" path="res://assets/enemy/sentinel3.png" id="3_md484"]
-[ext_resource type="Texture2D" uid="uid://dojfgm4us20c2" path="res://assets/enemy/sentinel4.png" id="4_ipns3"]
-[ext_resource type="Texture2D" uid="uid://8h202vivcuyp" path="res://assets/enemy/sentinel5.png" id="5_8qclf"]
-[ext_resource type="Texture2D" uid="uid://bsgfofj11g115" path="res://assets/enemy/sentinel6.png" id="6_w8i8w"]
+[ext_resource type="Script" uid="uid://b850wre5f8oip" path="res://scripts/enemy.gd" id="1_4ra3w"]
+[ext_resource type="PackedScene" uid="uid://cluqesxih2vx0" path="res://scenes/enemy_sprite.tscn" id="2_5uy6h"]
+[ext_resource type="PackedScene" uid="uid://c3j8bdc87ysqc" path="res://scenes/Currency/canister.tscn" id="2_c4w8v"]
+[ext_resource type="Shader" uid="uid://cht2qws53baj7" path="res://shaders/hitflash.gdshader" id="3_c4w8v"]
+[ext_resource type="Texture2D" uid="uid://dcstwgwvdksfg" path="res://assets/enemy/explosions/explode9.png" id="4_5uy6h"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_otmr2"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c4w8v"]
+resource_local_to_scene = true
+shader = ExtResource("3_c4w8v")
+shader_parameter/hit_flash_color = Color(1, 1, 1, 1)
+shader_parameter/hit_flash_on = false
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bsing"]
+radius = 17.0
+height = 42.0
+
+[sub_resource type="Animation" id="Animation_xsfyf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("enemy:material:shader_parameter/hit_flash_on")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("enemy:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_c4w8v"]
+resource_name = "death"
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("enemy:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.20000845, 0.4000169, 0.5930483, 0.79538244, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, true]
+}
+
+[sub_resource type="Animation" id="Animation_h8ps3"]
+resource_name = "hit"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("enemy:material:shader_parameter/hit_flash_on")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ebxvl"]
+_data = {
+&"RESET": SubResource("Animation_xsfyf"),
+&"death": SubResource("Animation_c4w8v"),
+&"hit": SubResource("Animation_h8ps3")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d4cuo"]
+radius = 23.021729
+
+[sub_resource type="Gradient" id="Gradient_71rcx"]
+offsets = PackedFloat32Array(0, 0.98578197)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xsfyf"]
+gradient = SubResource("Gradient_71rcx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h8ps3"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 25.0
+direction = Vector3(0.5, -0.5, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 400.0
+gravity = Vector3(0, 700, 0)
+damping_min = 100.00001
+damping_max = 800.00006
+scale_max = 3.0
+color_ramp = SubResource("GradientTexture1D_xsfyf")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4w8v"]
+atlas = ExtResource("4_5uy6h")
+region = Rect2(0, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwavj"]
+atlas = ExtResource("4_5uy6h")
+region = Rect2(80, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nenq2"]
+atlas = ExtResource("4_5uy6h")
+region = Rect2(160, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_md484"]
+atlas = ExtResource("4_5uy6h")
+region = Rect2(240, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipns3"]
+atlas = ExtResource("4_5uy6h")
+region = Rect2(320, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qclf"]
+atlas = ExtResource("4_5uy6h")
+region = Rect2(400, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8i8w"]
+atlas = ExtResource("4_5uy6h")
+region = Rect2(480, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otmr2"]
+atlas = ExtResource("4_5uy6h")
+region = Rect2(560, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtq4b"]
+atlas = ExtResource("4_5uy6h")
+region = Rect2(640, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0cyh"]
+atlas = ExtResource("4_5uy6h")
+region = Rect2(720, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0wcc"]
+atlas = ExtResource("4_5uy6h")
+region = Rect2(800, 0, 80, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s1ycm"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_xwavj")
+"texture": SubResource("AtlasTexture_c4w8v")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_nenq2")
+"texture": SubResource("AtlasTexture_xwavj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_md484")
+"texture": SubResource("AtlasTexture_nenq2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_ipns3")
+"texture": SubResource("AtlasTexture_md484")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_8qclf")
+"texture": SubResource("AtlasTexture_ipns3")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_w8i8w")
+"texture": SubResource("AtlasTexture_8qclf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8i8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otmr2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wtq4b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j0cyh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0wcc")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
-"speed": 5.0
+"speed": 13.0
 }]
 
-[node name="enemy" type="AnimatedSprite2D" unique_id=1601589879]
-sprite_frames = SubResource("SpriteFrames_otmr2")
-frame_progress = 0.9830335
+[node name="Enemy" type="RigidBody2D" unique_id=658756721 groups=["enemy"]]
+gravity_scale = 0.0
+script = ExtResource("1_4ra3w")
+max_enemy_health = 3
+is_in_battle_scene = true
+canister = ExtResource("2_c4w8v")
+
+[node name="enemy" parent="." unique_id=1601589879 instance=ExtResource("2_5uy6h")]
+material = SubResource("ShaderMaterial_c4w8v")
+scale = Vector2(-1, 1)
+frame = 5
+frame_progress = 0.46939105
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=570825910]
+visible = false
+position = Vector2(-1, -3)
+shape = SubResource("CapsuleShape2D_bsing")
+
+[node name="DamageNumberOrigin" type="Node2D" parent="." unique_id=560720877]
+position = Vector2(1, -25)
+
+[node name="HitFlashAnim" type="AnimationPlayer" parent="." unique_id=1013581890]
+libraries/ = SubResource("AnimationLibrary_ebxvl")
+
+[node name="PlayerDetectionArea" type="Area2D" parent="." unique_id=1832158773 groups=["enemy"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionArea" unique_id=1494460161]
+shape = SubResource("CircleShape2D_d4cuo")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1566758503]
+emitting = false
+amount = 20
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_h8ps3")
+
+[node name="DestroyAnim" type="AnimatedSprite2D" parent="." unique_id=147869462]
+visible = false
+sprite_frames = SubResource("SpriteFrames_s1ycm")
+
+[node name="Spawner" type="Marker2D" parent="." unique_id=1707807662]
+position = Vector2(0, 12)
+
+[connection signal="animation_finished" from="HitFlashAnim" to="." method="_on_hit_flash_anim_animation_finished"]

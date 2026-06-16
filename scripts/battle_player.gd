@@ -12,7 +12,8 @@ class_name Battle_Player
 @onready var fire: AudioStreamPlayer2D = $Fire
 
 @onready var shoot_cooldown_timer: Timer = $ShootCooldownTimer
-@onready var mob: Mob = $"../Mob"
+@onready var enemy: Enemy = $"../Enemy"
+
 @onready var hit_flash_anim: AnimationPlayer = $HitFlashAnim
 
 
@@ -38,6 +39,7 @@ func _input(event) -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_select"):
 		add_to_max_health(100)
+		
 		
 	
 	if Input.is_action_just_pressed("left_click") and mouse_is_on_player and shoot_cooldown_timer.is_stopped():

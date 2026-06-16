@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SpawnInfo" format=3 uid="uid://dp1iphj31u35i"]
+
+[ext_resource type="PackedScene" uid="uid://cqueta70ubjqr" path="res://scenes/enemy.tscn" id="1_48ace"]
+[ext_resource type="Script" uid="uid://dl60evs3evp8i" path="res://resources/WaveData/spawn_info.gd" id="1_r74f4"]
+
+[resource]
+script = ExtResource("1_r74f4")
+enemy_scene = ExtResource("1_48ace")
+enemy_count = 3
+spawn_delay = 1.0
+metadata/_custom_type_script = "uid://dl60evs3evp8i"

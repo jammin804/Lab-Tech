@@ -82,7 +82,7 @@ func _can_use_passives() -> void:
 #FIXME: Fix the max health clampping
 func add_to_max_health(increase_amount: int):
 	max_health += increase_amount
-	max_health = clamp(max_health, 0, 300)
+	max_health = clamp(max_health, 0, 600)
 	current_health = max_health
 	print("Player -> Add Health: Max Player health is:" + str(max_health))
 	health_changed.emit()

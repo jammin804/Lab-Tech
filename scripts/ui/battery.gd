@@ -67,7 +67,7 @@ func update_hpbar_animated():
 #FIXME: Math Bug for the 3rd battery upgrade for max health
 #region Math Bug for the 3rd battery upgrade for max health
 	 #--- TIER 3 MATH (above 600 HP) --- Fix this bug
-	if player.max_health > 300:
+	if player.max_health > 600:
 		if front_bar3: front_bar3.show()
 		if back_bar3: back_bar3.show()
 		
