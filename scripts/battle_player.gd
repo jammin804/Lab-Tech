@@ -2,7 +2,6 @@ extends Player
 class_name Battle_Player
 
 @export var bullet : PackedScene
-@export var fire_rate : float = 0.5 #will be replaced by rapid stat pulled from resources
 @export var camera : Camera2D
 
 
@@ -12,10 +11,8 @@ class_name Battle_Player
 @onready var fire: AudioStreamPlayer2D = $Fire
 
 @onready var shoot_cooldown_timer: Timer = $ShootCooldownTimer
-@onready var enemy: Enemy = $"../Enemy"
 
 @onready var hit_flash_anim: AnimationPlayer = $HitFlashAnim
-
 
 var is_auto_shoot: bool
 var mouse_is_on_player: bool = false
@@ -24,9 +21,11 @@ var mouse_is_on_player: bool = false
 
 
 func _ready() -> void:
-	current_health = max_health
+	super()
+	var stats = PlayerManager.current_stats
+	#current_health = max_health
 	
-	shoot_cooldown_timer.wait_time = fire_rate
+	shoot_cooldown_timer.wait_time = stats.fire_rate
 	shoot_cooldown_timer.one_shot = true
 	
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bta3my2bfuxdr" path="res://resources/WaveData/wave_data.gd" id="1_ms7b7"]
 [ext_resource type="Script" uid="uid://dl60evs3evp8i" path="res://resources/WaveData/spawn_info.gd" id="2_wh3c1"]
-[ext_resource type="Resource" uid="uid://dp1iphj31u35i" path="res://resources/WaveData/spawn_ground_bots.tres" id="3_wh3c1"]
+[ext_resource type="Resource" uid="uid://dp1iphj31u35i" path="res://resources/WaveData/spawn_info/level1/spawn_ground_bots.tres" id="3_wh3c1"]
 
 [resource]
 script = ExtResource("1_ms7b7")

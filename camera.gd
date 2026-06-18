@@ -1,3 +1,4 @@
+class_name GameCamera
 extends Camera2D
 
 
@@ -10,6 +11,12 @@ var shake_time: float = 0.0
 var shake_time_speed: float = 20.0
 
 var noise = FastNoiseLite.new()
+
+func _ready() -> void:
+	Events.screen_shake_requested.connect(_on_screen_shake_requested)
+	
+func _on_screen_shake_requested(intensity: float, duration: float) -> void:
+	screen_shake(intensity, duration)
 
 func _physics_process(delta: float) -> void:
 	if active_shake_time > 0:

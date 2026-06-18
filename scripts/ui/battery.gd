@@ -37,26 +37,25 @@ func _ready() -> void:
 		_on_player_spawned(active_players[0])
 		
 func update_hpbar_animated():
+	var tank_cap: float = PlayerManager.current_stats.battery_tank_points
 	if not player:
 		return
 		
 	# --- TIER 1 MATH (0 to 200 HP) ---
-	var tier_1_current = clamp(player.current_health, 0, 200)
-	var tier_1_max = clamp(player.max_health, 0, 200)
-	var bar_1_percent = (tier_1_current * 100) / tier_1_max
+	var tier_1_current = clamp(player.current_health, 0, tank_cap)
+	var bar_1_percent = (tier_1_current * 100) / tank_cap
 	
 	front_bar.value = bar_1_percent
 	animate_back_bar(back_bar, health_tween, bar_1_percent)
 	
 	# --- TIER 2 MATH (200 to 400 HP) ---
-	if player.max_health > 200:
+	if player.max_health > tank_cap:
 		if front_bar2: front_bar2.show()
 		if back_bar2: back_bar2.show()
 		
-		var tier_2_current = clamp(player.current_health - 200, 0, 200)
-		var tier_2_max = clamp(player.max_health - 200, 0, 200)
+		var tier_2_current = clamp(player.current_health - tank_cap, 0, tank_cap)
 		
-		var bar_2_percent = (tier_2_current * 100) / tier_2_max
+		var bar_2_percent = (tier_2_current * 100) / tank_cap
 		
 		if front_bar2: 
 			front_bar2.value = bar_2_percent
@@ -67,14 +66,13 @@ func update_hpbar_animated():
 #FIXME: Math Bug for the 3rd battery upgrade for max health
 #region Math Bug for the 3rd battery upgrade for max health
 	 #--- TIER 3 MATH (above 600 HP) --- Fix this bug
-	if player.max_health > 600:
+	if player.max_health > tank_cap * 2:
 		if front_bar3: front_bar3.show()
 		if back_bar3: back_bar3.show()
 		
-		var tier_3_current = clamp(player.current_health - 300, 100, 300)
-		var tier_3_max = clamp(player.max_health - 300, 100, 300)
+		var tier_3_current = clamp(player.current_health - tank_cap * 2, 0, tank_cap)
 		
-		var bar_3_percent = (tier_3_current * 100) / tier_3_max
+		var bar_3_percent = (tier_3_current * 100) / tank_cap
 		
 		if front_bar3: 
 			front_bar3.value = bar_3_percent

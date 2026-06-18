@@ -1,12 +1,7 @@
 [gd_scene format=3 uid="uid://e62qr3cbpar6"]
 
-[ext_resource type="Script" uid="uid://b3dx3eb0x6l7p" path="res://scenes/stats_component.gd" id="1_x3kst"]
-[ext_resource type="Resource" uid="uid://d4ajj4fs8xn6p" path="res://resources/Player.tres" id="2_lchu5"]
 [ext_resource type="PackedScene" uid="uid://b3gf3rdu50uej" path="res://scenes/UI/battery_hud.tscn" id="3_shrgu"]
 
-[node name="StatsComponent" type="Node2D" unique_id=397425176 node_paths=PackedStringArray("health_bar")]
-script = ExtResource("1_x3kst")
-attributes = ExtResource("2_lchu5")
-health_bar = NodePath("BatteryHUD")
+[node name="StatsComponent" type="Node2D" unique_id=397425176]
 
 [node name="BatteryHUD" parent="." unique_id=1694848608 instance=ExtResource("3_shrgu")]

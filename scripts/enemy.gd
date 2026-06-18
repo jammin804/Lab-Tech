@@ -1,5 +1,5 @@
 class_name Enemy
-extends RigidBody2D
+extends CharacterBody2D
 
 signal died
 
@@ -10,19 +10,19 @@ signal died
 #endregion
 
 @export_category("Base Variables")
+@export var stats: Resource
 @export var move_speed : float = 10.0
-@export var max_enemy_health : int
+@export var max_enemy_health : int = 3
 @export var current_enemy_health : int = 3
 @export var is_in_battle_scene : bool = false
 
 @export_category("Dependency")
-@export var camera:Camera2D
 @export var canister : PackedScene
 
 var explosion_damage_dealt : int = 40
 var is_dead : bool = false
 
-@onready var enemy: AnimatedSprite2D = $enemy
+@onready var enemy_sprite: AnimatedSprite2D = $enemy
 @onready var hit_flash_anim: AnimationPlayer = $HitFlashAnim
 @onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
 @onready var destroy_anim: AnimatedSprite2D = $DestroyAnim
@@ -32,50 +32,42 @@ var is_dead : bool = false
 func _ready() -> void:
 	destroy_anim.hide()
 	current_enemy_health = max_enemy_health
-	print(max_enemy_health)
 
 func _process(delta: float) -> void:
-	
-	if current_enemy_health > 0 and not is_dead:
+	if not is_dead:
 		move_enemy(delta)
 	
-	else:	
-		destroy()
-
-func _on_lab_battle_scene_start() -> void:
-	is_in_battle_scene = true
-
-
-func _on_lab_uprgrade_scene_start() -> void:
-	is_in_battle_scene = false
-	
 func take_damage(damage : int) -> void:
+	if is_dead:
+		return
+		
 	current_enemy_health -= damage
 	
 	hit_flash_anim.play("hit")
 	
-	camera.screen_shake(2, 0.5)
+	Events.screen_shake_requested.emit(2.0, 0.5)
 	
 	gpu_particles_2d.restart()
 	gpu_particles_2d.emitting = true
 	
+	if current_enemy_health <= 0:
+		destroy()
 
 func destroy():
 	is_dead = true
 	died.emit()
 	
-	enemy.stop()
-	move_speed = 0
+	enemy_sprite.stop()
+	enemy_sprite.hide()
+	
 	#turn off collsiion so shots can go through and hit the next enemy
 	set_deferred("collision_layer", 0)
 	set_deferred("collision_mask", 0)
 	
 	destroy_anim.show()
 	destroy_anim.play("default")
-	get_tree().create_timer(10)
 	hit_flash_anim.play("death")
-	#play explosion sound
-	#when animations end drop resources (currency)
+
 	
 	
 	
@@ -84,14 +76,22 @@ func destroy():
 func move_enemy(delta):
 	if is_in_battle_scene or is_in_debug_mode:
 		position.x += move_speed * delta * -1
-		enemy.play()
+		enemy_sprite.play()
 
 
 func _on_hit_flash_anim_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "death":
-		var new_gear = canister.instantiate()
-		print(spawner.global_position)
-		new_gear.transform = spawner.global_transform 
-		
-		get_tree().get_root().add_child(new_gear)
+		if canister:
+			var new_gear = canister.instantiate()
+			new_gear.transform = spawner.global_transform 
+			get_tree().get_root().add_child(new_gear)
+			
 		self.queue_free()
+		
+		
+func _on_lab_battle_scene_start() -> void:
+	is_in_battle_scene = true
+
+
+func _on_lab_uprgrade_scene_start() -> void:
+	is_in_battle_scene = false

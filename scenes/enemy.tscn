@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b850wre5f8oip" path="res://scripts/enemy.gd" id="1_4ra3w"]
 [ext_resource type="PackedScene" uid="uid://cluqesxih2vx0" path="res://scenes/enemy_sprite.tscn" id="2_5uy6h"]
 [ext_resource type="PackedScene" uid="uid://c3j8bdc87ysqc" path="res://scenes/Currency/canister.tscn" id="2_c4w8v"]
+[ext_resource type="Resource" uid="uid://c6lgcvy8xml40" path="res://resources/EnemyData/BasicBot.tres" id="2_xwavj"]
 [ext_resource type="Shader" uid="uid://cht2qws53baj7" path="res://shaders/hitflash.gdshader" id="3_c4w8v"]
 [ext_resource type="Texture2D" uid="uid://dcstwgwvdksfg" path="res://assets/enemy/explosions/explode9.png" id="4_5uy6h"]
 
@@ -192,16 +193,16 @@ animations = [{
 "speed": 13.0
 }]
 
-[node name="Enemy" type="RigidBody2D" unique_id=658756721 groups=["enemy"]]
-gravity_scale = 0.0
+[node name="Enemy" type="CharacterBody2D" unique_id=1965764076 groups=["enemy"]]
 script = ExtResource("1_4ra3w")
-max_enemy_health = 3
+stats = ExtResource("2_xwavj")
 is_in_battle_scene = true
 canister = ExtResource("2_c4w8v")
 
 [node name="enemy" parent="." unique_id=1601589879 instance=ExtResource("2_5uy6h")]
 material = SubResource("ShaderMaterial_c4w8v")
-scale = Vector2(-1, 1)
+rotation = -3.1415927
+scale = Vector2(1, -1)
 frame = 5
 frame_progress = 0.46939105
 

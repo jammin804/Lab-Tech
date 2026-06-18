@@ -1,0 +1,235 @@
+[gd_scene format=4 uid="uid://dseya0nayjcpf"]
+
+[ext_resource type="Texture2D" uid="uid://8aayan6npc78" path="res://assets/backgrounds/tileset.png" id="1_ro015"]
+[ext_resource type="PackedScene" uid="uid://cl6xfxk4un85" path="res://scenes/battle_player.tscn" id="2_wjupv"]
+[ext_resource type="PackedScene" uid="uid://dbxsfllyrb1yt" path="res://scenes/player.tscn" id="3_5s7m7"]
+[ext_resource type="PackedScene" uid="uid://cooeppa7wcj7x" path="res://scenes/camera.tscn" id="4_lrb5f"]
+[ext_resource type="PackedScene" uid="uid://b3gf3rdu50uej" path="res://scenes/UI/battery_hud.tscn" id="5_ej762"]
+[ext_resource type="PackedScene" uid="uid://dooqlpvnyl0ah" path="res://scenes/Systems/spawner.tscn" id="6_683te"]
+[ext_resource type="PackedScene" uid="uid://cmjh6j164ltci" path="res://scenes/Playground Scenes/enemy_container.tscn" id="7_rx5cm"]
+[ext_resource type="PackedScene" uid="uid://83rd1mmscj3k" path="res://scenes/Playground Scenes/wave_manager.tscn" id="8_33t6o"]
+[ext_resource type="Script" uid="uid://bta3my2bfuxdr" path="res://resources/WaveData/wave_data.gd" id="9_ubthj"]
+[ext_resource type="Resource" uid="uid://b53godrykoobg" path="res://resources/WaveData/level1_waves/wave_01.tres" id="10_kliua"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c4o2e"]
+texture = ExtResource("1_ro015")
+15:1/0 = 0
+16:1/0 = 0
+17:1/0 = 0
+18:1/0 = 0
+20:1/0 = 0
+21:1/0 = 0
+22:1/0 = 0
+23:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+10:2/0 = 0
+11:2/0 = 0
+13:2/0 = 0
+15:2/0 = 0
+16:2/0 = 0
+17:2/0 = 0
+18:2/0 = 0
+20:2/0 = 0
+21:2/0 = 0
+22:2/0 = 0
+23:2/0 = 0
+25:2/0 = 0
+27:2/0 = 0
+29:2/0 = 0
+30:2/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+11:3/0 = 0
+15:3/0 = 0
+16:3/0 = 0
+17:3/0 = 0
+18:3/0 = 0
+20:3/0 = 0
+21:3/0 = 0
+22:3/0 = 0
+23:3/0 = 0
+25:3/0 = 0
+27:3/0 = 0
+29:3/0 = 0
+30:3/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+10:4/0 = 0
+11:4/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+10:5/0 = 0
+11:5/0 = 0
+13:5/0 = 0
+15:5/0 = 0
+16:5/0 = 0
+17:5/0 = 0
+18:5/0 = 0
+20:5/0 = 0
+21:5/0 = 0
+22:5/0 = 0
+23:5/0 = 0
+25:5/0 = 0
+26:5/0 = 0
+27:5/0 = 0
+28:5/0 = 0
+30:5/0 = 0
+31:5/0 = 0
+32:5/0 = 0
+33:5/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+9:6/0 = 0
+10:6/0 = 0
+11:6/0 = 0
+13:6/0 = 0
+15:6/0 = 0
+16:6/0 = 0
+17:6/0 = 0
+18:6/0 = 0
+20:6/0 = 0
+21:6/0 = 0
+22:6/0 = 0
+23:6/0 = 0
+25:6/0 = 0
+26:6/0 = 0
+27:6/0 = 0
+28:6/0 = 0
+30:6/0 = 0
+31:6/0 = 0
+32:6/0 = 0
+33:6/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+7:7/0 = 0
+8:7/0 = 0
+9:7/0 = 0
+10:7/0 = 0
+11:7/0 = 0
+13:7/0 = 0
+15:7/0 = 0
+16:7/0 = 0
+17:7/0 = 0
+18:7/0 = 0
+20:7/0 = 0
+21:7/0 = 0
+22:7/0 = 0
+23:7/0 = 0
+25:7/0 = 0
+26:7/0 = 0
+27:7/0 = 0
+28:7/0 = 0
+30:7/0 = 0
+31:7/0 = 0
+32:7/0 = 0
+33:7/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+7:8/0 = 0
+8:8/0 = 0
+9:8/0 = 0
+10:8/0 = 0
+11:8/0 = 0
+13:8/0 = 0
+15:8/0 = 0
+16:8/0 = 0
+17:8/0 = 0
+18:8/0 = 0
+20:8/0 = 0
+21:8/0 = 0
+22:8/0 = 0
+23:8/0 = 0
+25:8/0 = 0
+26:8/0 = 0
+27:8/0 = 0
+28:8/0 = 0
+30:8/0 = 0
+31:8/0 = 0
+32:8/0 = 0
+33:8/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_akbqt"]
+sources/0 = SubResource("TileSetAtlasSource_c4o2e")
+
+[node name="Playground" type="Node2D" unique_id=434561328]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=541840669]
+tile_map_data = PackedByteArray("AAAAAAcAAAANAAUAAAAAAAgAAAANAAYAAAAAAAkAAAANAAcAAAAAAAoAAAANAAgAAAABAAcAAAAPAAUAAAABAAgAAAAPAAYAAAABAAkAAAAPAAcAAAABAAoAAAAPAAgAAAACAAcAAAAQAAUAAAACAAgAAAAQAAYAAAACAAkAAAAQAAcAAAACAAoAAAAQAAgAAAADAAcAAAARAAUAAAADAAgAAAARAAYAAAADAAkAAAARAAcAAAADAAoAAAARAAgAAAAEAAcAAAASAAUAAAAEAAgAAAASAAYAAAAEAAkAAAASAAcAAAAEAAoAAAASAAgAAAAFAAcAAAAPAAUAAAAFAAgAAAAPAAYAAAAFAAkAAAAPAAcAAAAFAAoAAAAPAAgAAAAGAAcAAAAQAAUAAAAGAAgAAAAQAAYAAAAGAAkAAAAQAAcAAAAGAAoAAAAQAAgAAAAHAAcAAAARAAUAAAAHAAgAAAARAAYAAAAHAAkAAAARAAcAAAAHAAoAAAARAAgAAAAIAAcAAAASAAUAAAAIAAgAAAASAAYAAAAIAAkAAAASAAcAAAAIAAoAAAASAAgAAAAJAAcAAAASAAUAAAAJAAgAAAASAAYAAAAJAAkAAAASAAcAAAAJAAoAAAASAAgAAAAKAAcAAAAUAAUAAAAKAAgAAAAUAAYAAAAKAAkAAAAUAAcAAAAKAAoAAAAUAAgAAAALAAcAAAAVAAUAAAALAAgAAAAVAAYAAAALAAkAAAAVAAcAAAALAAoAAAAVAAgAAAAMAAcAAAAWAAUAAAAMAAgAAAAWAAYAAAAMAAkAAAAWAAcAAAAMAAoAAAAWAAgAAAANAAcAAAAXAAUAAAANAAgAAAAXAAYAAAANAAkAAAAXAAcAAAANAAoAAAAXAAgAAAAOAAcAAAAUAAUAAAAOAAgAAAAUAAYAAAAOAAkAAAAUAAcAAAAOAAoAAAAUAAgAAAAPAAcAAAAVAAUAAAAPAAgAAAAVAAYAAAAPAAkAAAAVAAcAAAAPAAoAAAAVAAgAAAAQAAcAAAAWAAUAAAAQAAgAAAAWAAYAAAAQAAkAAAAWAAcAAAAQAAoAAAAWAAgAAAARAAcAAAAXAAUAAAARAAgAAAAXAAYAAAARAAkAAAAXAAcAAAARAAoAAAAXAAgAAAASAAcAAAAUAAUAAAASAAgAAAAUAAYAAAASAAkAAAAUAAcAAAASAAoAAAAUAAgAAAATAAcAAAAVAAUAAAATAAgAAAAVAAYAAAATAAkAAAAVAAcAAAATAAoAAAAVAAgAAAAUAAcAAAAWAAUAAAAUAAgAAAAWAAYAAAAUAAkAAAAWAAcAAAAUAAoAAAAWAAgAAAAVAAcAAAANAAUAABAVAAgAAAANAAYAABAVAAkAAAANAAcAABAVAAoAAAANAAgAABAAAAQAAAAPAAcAAAAAAAUAAAAPAAgAAAABAAQAAAAQAAcAAAABAAUAAAAQAAgAAAACAAQAAAARAAcAAAACAAUAAAARAAgAAAADAAQAAAASAAcAAAADAAUAAAASAAgAAAAEAAQAAAAPAAcAAAAEAAUAAAAPAAgAAAAFAAQAAAAQAAcAAAAFAAUAAAAQAAgAAAAGAAQAAAARAAcAAAAGAAUAAAARAAgAAAAHAAQAAAASAAcAAAAHAAUAAAASAAgAAAAIAAQAAAAPAAcAAAAIAAUAAAAPAAgAAAAJAAQAAAAQAAcAAAAJAAUAAAAQAAgAAAAKAAQAAAARAAcAAAAKAAUAAAARAAgAAAALAAQAAAASAAcAAAALAAUAAAASAAgAAAAMAAQAAAAPAAcAAAAMAAUAAAAPAAgAAAANAAQAAAAQAAcAAAANAAUAAAAQAAgAAAAOAAQAAAARAAcAAAAOAAUAAAARAAgAAAAPAAQAAAASAAcAAAAPAAUAAAASAAgAAAAQAAQAAAAPAAcAAAAQAAUAAAAPAAgAAAARAAQAAAAQAAcAAAARAAUAAAAQAAgAAAASAAQAAAAPAAcAAAASAAUAAAAPAAgAAAATAAQAAAAQAAcAAAATAAUAAAAQAAgAAAAUAAQAAAARAAcAAAAUAAUAAAARAAgAAAAVAAQAAAASAAcAAAAVAAUAAAASAAgAAAA=")
+tile_set = SubResource("TileSet_akbqt")
+
+[node name="BattlePlayer" parent="." unique_id=166741663 node_paths=PackedStringArray("camera") instance=ExtResource("2_wjupv")]
+position = Vector2(38, 102)
+camera = NodePath("../Camera")
+drain_amount = 20
+
+[node name="Player" parent="BattlePlayer" unique_id=2126503732 instance=ExtResource("3_5s7m7")]
+visible = false
+
+[node name="Camera" parent="." unique_id=263792174 instance=ExtResource("4_lrb5f")]
+position = Vector2(160, 91)
+
+[node name="Battery" parent="." unique_id=1694848608 instance=ExtResource("5_ej762")]
+
+[node name="Spawner" parent="." unique_id=1807237094 instance=ExtResource("6_683te")]
+
+[node name="EnemySpawnPoint" type="Marker2D" parent="." unique_id=1559572353 groups=["ground_spawns"]]
+unique_name_in_owner = true
+position = Vector2(320, 107)
+
+[node name="EnemySpawnPoint2" type="Marker2D" parent="." unique_id=1747823709 groups=["sky_spawns"]]
+unique_name_in_owner = true
+position = Vector2(329, 71)
+
+[node name="InBetweenWaves" type="Timer" parent="." unique_id=1405347825]
+one_shot = true
+autostart = true
+
+[node name="EnemyContainer" parent="." unique_id=1128214486 instance=ExtResource("7_rx5cm")]
+y_sort_enabled = true
+
+[node name="WaveManager" parent="." unique_id=1472363141 node_paths=PackedStringArray("ground_spawn_point", "air_spawn_point", "enemy_container") instance=ExtResource("8_33t6o")]
+waves = Array[ExtResource("9_ubthj")]([ExtResource("10_kliua")])
+ground_spawn_point = NodePath("../EnemySpawnPoint")
+air_spawn_point = NodePath("../EnemySpawnPoint2")
+enemy_container = NodePath("../EnemyContainer")
+
+[connection signal="timeout" from="InBetweenWaves" to="WaveManager" method="_on_in_between_waves_timeout"]
+
+[editable path="Battery"]

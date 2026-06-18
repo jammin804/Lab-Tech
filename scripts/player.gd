@@ -27,15 +27,32 @@ signal health_changed()
 
 @onready var regen_timer: Timer = %RegenTimer
 @onready var last_time_hit_timer: Timer = %LastTimeHitTimer
-@onready var battle_player: AnimatedSprite2D = $"../../BattleScreen/BattlePlayer"
 
 var is_passives_active : bool
 
 func _ready() -> void:
+	#Updated Code:
+	var stats = PlayerManager.current_stats #FIXME The autoload wouldn't allow me to name is GlobalPlayerManager
+	recalculate_max_health()
+	current_health = max_health
+	
+	match stats.current_form:
+		PlayerStats.Form.DEFAULT:
+			print("Base Form")
+		PlayerStats.Form.COMBINED:
+			print("Player Unlocked All Friends. Now is Voltron")
+		PlayerStats.Form.AVATAR:
+			print("Player has now mastered all elements. They are the avatar")
+			
+		
+	#Old Code:
 	Events.player_spawned.emit(self)
 	
-	current_health = max_health
+	#current_health = max_health
 	health_changed.emit()
+
+func recalculate_max_health():
+	max_health = PlayerManager.current_stats.battery_tanks * PlayerManager.current_stats.battery_tank_points
 
 func damage_player(damage_amount: int) -> void:
 	current_health -= damage_amount
@@ -81,8 +98,9 @@ func _can_use_passives() -> void:
 
 #FIXME: Fix the max health clampping
 func add_to_max_health(increase_amount: int):
-	max_health += increase_amount
-	max_health = clamp(max_health, 0, 600)
+	PlayerManager.current_stats.battery_tanks += 1
+	recalculate_max_health()
+	#max_health = clamp(max_health, 0, 600)
 	current_health = max_health
 	print("Player -> Add Health: Max Player health is:" + str(max_health))
 	health_changed.emit()

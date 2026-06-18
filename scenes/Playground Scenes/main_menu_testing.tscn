@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://73fqfj6fhsj2"]
 
 [ext_resource type="PackedScene" uid="uid://dwenemt7ssst1" path="res://scenes/UI Components/upgrade.tscn" id="1_57bl3"]
+[ext_resource type="Script" uid="uid://bvspus7ba3ohw" path="res://scenes/Playground Scenes/main_menu_testing.gd" id="1_hgtpg"]
+[ext_resource type="PackedScene" uid="uid://b8umcoij18id8" path="res://stage_manager.tscn" id="3_1y031"]
 
 [node name="MainMenu" type="Control" unique_id=1367496878]
 layout_mode = 3
@@ -9,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_hgtpg")
 
 [node name="SkillTree" type="Panel" parent="." unique_id=892870870]
 layout_mode = 1
@@ -34,3 +37,7 @@ grow_vertical = 2
 
 [node name="Upgrade" parent="SkillTree/Charge" unique_id=1345479849 instance=ExtResource("1_57bl3")]
 layout_mode = 0
+
+[node name="StageManager" parent="." unique_id=2021695030 instance=ExtResource("3_1y031")]
+
+[node name="LevelContainer" type="Node2D" parent="." unique_id=474836512]

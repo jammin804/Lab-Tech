@@ -31,9 +31,6 @@ func _spawn_enemies(wave: WaveData):
 		elif spawn_group.zone == SpawnInfo.SpawnZone.SKY:	
 			valid_points = air_spawn_point 
 		
-		#if valid_points.is_empty():
-			#push_error("No spawn points found for group: " + spawn_group.spawn_group_name)
-			#continue
 			
 		for i in range(spawn_group.enemy_count):
 			var spawn_point = valid_points
@@ -77,7 +74,7 @@ func _handle_level_completed():
 	print("Level Complete!")
 	current_wave_index = 0
 	level_multipler += 0.5 
-	start_wave()
+	#start_wave()
 
 
 func _on_in_between_waves_timeout() -> void:
