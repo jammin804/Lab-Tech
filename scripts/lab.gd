@@ -40,7 +40,7 @@ var main_menu: String = "res://scenes/main_menu.tscn"
 #Input
 @export var pause_action = "pause"
 
-
+#FIXME Currently player can unpause while in options menu
 
 
 func _ready() -> void:
@@ -109,7 +109,7 @@ func _on_options_btn_pressed() -> void:
 
 
 func _on_quit_btn_pressed() -> void:
-	get_tree().change_scene_to_file(main_menu)
+	LevelTransition.change_scene_to(main_menu)
 	
 func hide_menu() -> void:
 	settings_menu.hide()

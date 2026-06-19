@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dwenemt7ssst1" path="res://scenes/UI Components/upgrade.tscn" id="1_57bl3"]
 [ext_resource type="Script" uid="uid://bvspus7ba3ohw" path="res://scenes/Playground Scenes/main_menu_testing.gd" id="1_hgtpg"]
-[ext_resource type="PackedScene" uid="uid://b8umcoij18id8" path="res://stage_manager.tscn" id="3_1y031"]
+[ext_resource type="PackedScene" uid="uid://b8umcoij18id8" path="res://scenes/Systems/stage_manager.tscn" id="3_1y031"]
 
 [node name="MainMenu" type="Control" unique_id=1367496878]
 layout_mode = 3

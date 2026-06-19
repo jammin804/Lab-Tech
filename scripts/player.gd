@@ -45,10 +45,8 @@ func _ready() -> void:
 			print("Player has now mastered all elements. They are the avatar")
 			
 		
-	#Old Code:
 	Events.player_spawned.emit(self)
 	
-	#current_health = max_health
 	health_changed.emit()
 
 func recalculate_max_health():
@@ -96,12 +94,10 @@ func _can_use_passives() -> void:
 	else:
 		is_passives_active = true
 
-#FIXME: Fix the max health clampping
 func add_to_max_health(increase_amount: int):
 	PlayerManager.current_stats.battery_tanks += 1
 	recalculate_max_health()
-	#max_health = clamp(max_health, 0, 600)
 	current_health = max_health
-	print("Player -> Add Health: Max Player health is:" + str(max_health))
+	#print("Player -> Add Health: Max Player health is:" + str(max_health))
 	health_changed.emit()
 	

@@ -421,6 +421,7 @@ layout_mode = 2
 text = "Next Level"
 
 [node name="HudUI" parent="Pausable" unique_id=1756770991 instance=ExtResource("12_q6p6e")]
+visible = false
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
@@ -518,15 +519,12 @@ visible = false
 layout_mode = 1
 
 [connection signal="battle_scene_start" from="." to="Pausable/UpgradeScreen/Player" method="_on_lab_battle_scene_start"]
-[connection signal="battle_scene_start" from="." to="Pausable/BattleScreen/Mob3" method="_on_lab_battle_scene_start"]
 [connection signal="battle_scene_start" from="." to="Pausable/BattleScreen/BattlePlayer" method="_on_lab_battle_scene_start"]
 [connection signal="uprgrade_scene_start" from="." to="Pausable/UpgradeScreen/Player" method="_on_lab_uprgrade_scene_start"]
-[connection signal="uprgrade_scene_start" from="." to="Pausable/BattleScreen/Mob3" method="_on_lab_uprgrade_scene_start"]
 [connection signal="uprgrade_scene_start" from="." to="Pausable/BattleScreen/BattlePlayer" method="_on_lab_uprgrade_scene_start"]
 [connection signal="pressed" from="Pausable/UpgradeScreen/Clicker" to="Pausable/UpgradeScreen/Clicker" method="_on_pressed"]
 [connection signal="finished" from="Pausable/UpgradeScreen/ClickSound" to="Pausable/UpgradeScreen/Clicker" method="_on_click_sound_finished"]
 [connection signal="pressed" from="Pausable/UpgradeScreen/BattleBtn" to="." method="_on_battle_btn_pressed"]
-[connection signal="battle_health_changed" from="Pausable/BattleScreen/BattlePlayer" to="Pausable/UpgradeScreen/Player" method="_on_battle_player_battle_health_changed"]
 [connection signal="pressed" from="Pausable/BattleScreen/EndLevelPopUp/Panel/MarginContainer/VBoxContainer/HBoxContainer/ReturnToLabBtn" to="." method="_on_return_to_lab_btn_pressed"]
 [connection signal="pressed" from="Pausable/PauseBtn" to="." method="_on_pause_btn_pressed"]
 [connection signal="pressed" from="PauseMenu/CenterContainer/MarginContainer/VBoxContainer/ResumeBtn" to="." method="_on_resume_btn_pressed"]

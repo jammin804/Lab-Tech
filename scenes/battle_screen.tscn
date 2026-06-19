@@ -3,7 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://hw3yy7aoqac3" path="res://assets/backgrounds/bg-1.png" id="1_441kk"]
 [ext_resource type="PackedScene" uid="uid://cl6xfxk4un85" path="res://scenes/battle_player.tscn" id="2_y5my5"]
 [ext_resource type="PackedScene" uid="uid://cooeppa7wcj7x" path="res://scenes/camera.tscn" id="4_6lb5u"]
-[ext_resource type="PackedScene" uid="uid://cqueta70ubjqr" path="res://scenes/enemy.tscn" id="5_jwmpd"]
+[ext_resource type="PackedScene" uid="uid://83rd1mmscj3k" path="res://scenes/Playground Scenes/wave_manager.tscn" id="4_jwmpd"]
+[ext_resource type="Script" uid="uid://bta3my2bfuxdr" path="res://resources/WaveData/wave_data.gd" id="5_aqsb2"]
+[ext_resource type="Resource" uid="uid://b53godrykoobg" path="res://resources/WaveData/level1_waves/wave_01.tres" id="6_h607l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jkca0"]
 atlas = ExtResource("1_441kk")
@@ -29,19 +31,10 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_jkca0")
 expand_mode = 2
 
-[node name="Timer" type="Timer" parent="." unique_id=182636926]
+[node name="InBetweenWaves" type="Timer" parent="." unique_id=182636926]
 unique_name_in_owner = true
 one_shot = true
-
-[node name="Mob2" parent="." unique_id=1825073127 node_paths=PackedStringArray("camera") instance=ExtResource("5_jwmpd")]
-position = Vector2(244, 158)
-move_speed = 100.0
-camera = NodePath("../Camera")
-
-[node name="Mob3" parent="." unique_id=658756721 node_paths=PackedStringArray("camera") instance=ExtResource("5_jwmpd")]
-position = Vector2(294, 158)
-move_speed = 100.0
-camera = NodePath("../Camera")
+autostart = true
 
 [node name="BattlePlayer" parent="." unique_id=166741663 node_paths=PackedStringArray("camera") instance=ExtResource("2_y5my5")]
 position = Vector2(38, 154)
@@ -49,3 +42,21 @@ camera = NodePath("../Camera")
 
 [node name="Camera" parent="." unique_id=263792174 instance=ExtResource("4_6lb5u")]
 position = Vector2(160, 90)
+
+[node name="EnemySpawnPoint" type="Marker2D" parent="." unique_id=195233964 groups=["ground_spawns"]]
+unique_name_in_owner = true
+position = Vector2(314, 157)
+
+[node name="EnemySpawnPoint2" type="Marker2D" parent="." unique_id=1077596327 groups=["ground_spawns"]]
+unique_name_in_owner = true
+position = Vector2(314, 107)
+
+[node name="Enemies" type="Node2D" parent="." unique_id=374635073]
+
+[node name="WaveManager" parent="." unique_id=1472363141 node_paths=PackedStringArray("ground_spawn_point", "air_spawn_point", "enemy_container") instance=ExtResource("4_jwmpd")]
+waves = Array[ExtResource("5_aqsb2")]([ExtResource("6_h607l")])
+ground_spawn_point = NodePath("../EnemySpawnPoint")
+air_spawn_point = NodePath("../EnemySpawnPoint2")
+enemy_container = NodePath("../Enemies")
+
+[connection signal="timeout" from="InBetweenWaves" to="WaveManager" method="_on_in_between_waves_timeout"]

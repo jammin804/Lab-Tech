@@ -1,7 +1,7 @@
-extends Player
 class_name Battle_Player
+extends Player
 
-@export var bullet : PackedScene
+@export var current_weapon: WeaponData
 @export var camera : Camera2D
 
 
@@ -23,10 +23,8 @@ var mouse_is_on_player: bool = false
 func _ready() -> void:
 	super()
 	var stats = PlayerManager.current_stats
-	#current_health = max_health
-	
-	shoot_cooldown_timer.wait_time = stats.fire_rate
-	shoot_cooldown_timer.one_shot = true
+	PlayerManager.active_player = self
+	PlayerManager.load_player_state(self)
 	
 
 func _input(event) -> void:
@@ -39,25 +37,41 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_select"):
 		add_to_max_health(100)
 		
-		
-	
+
 	if Input.is_action_just_pressed("left_click") and mouse_is_on_player and shoot_cooldown_timer.is_stopped():
 		shoot()
-		shoot_cooldown_timer.start()
 	else:
 		play("Idle")
 
 func shoot() -> void:
 	play("Fire") #plays animation
 	fire.play() #plays sfx
-	var new_bullet = bullet.instantiate()
+	
+	var new_bullet : Projectile = current_weapon.projectile_node.instantiate()
 	var spark_anim = spark.get_child(0)
 	spark_anim.play("electric")
-	new_bullet.transform = marker_2d.global_transform
-	get_tree().get_root().add_child(new_bullet)
 	
+	
+	var player_stats = PlayerManager.current_stats
+	var final_fire_rate = current_weapon.base_rapid * player_stats.fire_rate_multipler
+	shoot_cooldown_timer.wait_time = final_fire_rate
+	shoot_cooldown_timer.start()
+	
+	var final_damage = current_weapon.base_power * player_stats.damage_multipler
+	var final_element = current_weapon.current_element
+	
+	if final_element == current_weapon.Element.DEFAULT:
+		final_element = current_weapon.base_element
+		
+	
+		
+	new_bullet.damage = final_damage
+	new_bullet.current_element = final_element
+	
+	new_bullet.global_transform = marker_2d.global_transform
+	
+	get_tree().current_scene.add_child(new_bullet)
 	damage_player(drain_amount)
-	
 
 
 func _on_lab_battle_scene_start() -> void:
@@ -78,6 +92,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 
 func _on_area_2d_mouse_entered() -> void:
+	print("here")
 	mouse_is_on_player = true
 
 

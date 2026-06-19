@@ -36,7 +36,9 @@ func _spawn_enemies(wave: WaveData):
 			var spawn_point = valid_points
 			
 			var enemy = spawn_group.enemy_scene.instantiate()
-			enemy.global_position = spawn_point.global_position
+			var x_offset = i * 40.0
+			
+			enemy.global_position = spawn_point.global_position + Vector2(x_offset, 0)
 			
 			enemy.died.connect(_on_enemy_died)
 			
@@ -51,10 +53,14 @@ func _spawn_enemies(wave: WaveData):
 				await get_tree().create_timer(spawn_group.spawn_delay).timeout
 	
 func _spawn_boss(wave: WaveData):
-	var spawn_point = ground_spawn_point
+	#var spawn_point = ground_spawn_point
 	var boss = wave.boss_scene.instantiate()
+	boss.global_position = ground_spawn_point.global_position
 	boss.died.connect(_on_enemy_died)
-	spawn_point.add_child(boss)
+	if enemy_container:
+		enemy_container.add_child(boss)
+	else:
+		add_child(boss)
 	enemies_alive += 1
 	
 func _on_enemy_died():
@@ -72,10 +78,14 @@ func _complete_wave():
 	
 func _handle_level_completed():
 	print("Level Complete!")
-	current_wave_index = 0
-	level_multipler += 0.5 
-	#start_wave()
+	PlayerManager.save_player_state(PlayerManager.active_player)
+	LevelTransition.change_scene_to("res://scenes/Playground Scenes/playground2.tscn")
+	#TODO Move everything under to the ready of each level or Game State as it will track the how what the level diffuclty multiplier should move to
+	#current_wave_index = 0
+	#level_multipler += 0.5 
+	
 
 
 func _on_in_between_waves_timeout() -> void:
+	print('Start Wave')
 	start_wave()

@@ -2,13 +2,15 @@ class_name Projectile
 extends Area2D
 
 var direction : Vector2 = Vector2.RIGHT
-var speed : float = 750
-var damage : float = 1
+var speed : float = 750.0
+var damage : float = 1.0
 var has_collided : bool = false
 var life_steal : int = 5
 
 @onready var hit: AnimatedSprite2D = $Hit
 @onready var bullet: Sprite2D = $Bullet
+
+var current_element : WeaponData.Element = WeaponData.Element.DEFAULT
 
 
 
@@ -27,7 +29,13 @@ func _on_body_entered(body: Node2D) -> void:
 	
 	if body.has_method("take_damage"):
 		Events.enemy_hit_by_projectile.emit(life_steal)
-		body.take_damage(damage)
+		
+		var hit_data = HitBoxData.new()
+		hit_data.base_damage = damage
+		hit_data.element = current_element
+		hit_data.source_node = self
+		
+		body.take_damage(hit_data)
 	
 	has_collided = true
 	bullet.hide()

@@ -2709,6 +2709,7 @@ offset_right = 200.0
 offset_bottom = 120.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("2_8ln24")
 
 [node name="GameTitle" type="Label" parent="." unique_id=1102116343]
@@ -2732,11 +2733,13 @@ offset_right = 92.0
 offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme = SubResource("Theme_j7ex8")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_vue75")
 
 [node name="MainButtons" type="VBoxContainer" parent="Options Container" unique_id=387110239]
 layout_mode = 2
+mouse_filter = 0
 
 [node name="StartBtn" parent="Options Container/MainButtons" unique_id=1002760254 instance=ExtResource("2_bqqt6")]
 unique_name_in_owner = true

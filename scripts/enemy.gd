@@ -37,11 +37,11 @@ func _process(delta: float) -> void:
 	if not is_dead:
 		move_enemy(delta)
 	
-func take_damage(damage : int) -> void:
+func take_damage(hitbox_data_ref : HitBoxData) -> void:
 	if is_dead:
 		return
 		
-	current_enemy_health -= damage
+	current_enemy_health -= hitbox_data_ref.base_damage
 	
 	hit_flash_anim.play("hit")
 	

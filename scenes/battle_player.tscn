@@ -2,8 +2,8 @@
 
 [ext_resource type="Shader" uid="uid://cht2qws53baj7" path="res://shaders/hitflash.gdshader" id="1_g11ij"]
 [ext_resource type="Script" uid="uid://mngtaamw8hpp" path="res://scripts/battle_player.gd" id="1_hugls"]
-[ext_resource type="PackedScene" uid="uid://w1niwwnqbb4y" path="res://scenes/projectile.tscn" id="2_g11ij"]
 [ext_resource type="Texture2D" uid="uid://b3ntyiv7oq1hh" path="res://assets/character/player.png" id="3_r6oyp"]
+[ext_resource type="Resource" uid="uid://ctgyx0laiurs3" path="res://resources/Weapons/Blaster.tres" id="4_yi774"]
 [ext_resource type="PackedScene" uid="uid://d37hr5i350lqv" path="res://scenes/spark.tscn" id="5_r6oyp"]
 [ext_resource type="AudioStream" uid="uid://dhhi0c4g00jnp" path="res://assets/music/sfx/shot2.wav" id="6_2tcgp"]
 
@@ -45,7 +45,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2nma8")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Fire",
 "speed": 5.0
 }, {
@@ -62,7 +62,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_p5bt8")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Idle",
 "speed": 5.0
 }]
@@ -114,7 +114,7 @@ material = SubResource("ShaderMaterial_r6oyp")
 sprite_frames = SubResource("SpriteFrames_ikkpg")
 animation = &"Idle"
 script = ExtResource("1_hugls")
-bullet = ExtResource("2_g11ij")
+current_weapon = ExtResource("4_yi774")
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=978875492]
 unique_name_in_owner = true

@@ -230,6 +230,9 @@ ground_spawn_point = NodePath("../EnemySpawnPoint")
 air_spawn_point = NodePath("../EnemySpawnPoint2")
 enemy_container = NodePath("../EnemyContainer")
 
+[node name="PlayerSpawnPoint" type="Marker2D" parent="." unique_id=1449025550]
+position = Vector2(38, 102)
+
 [connection signal="timeout" from="InBetweenWaves" to="WaveManager" method="_on_in_between_waves_timeout"]
 
 [editable path="Battery"]

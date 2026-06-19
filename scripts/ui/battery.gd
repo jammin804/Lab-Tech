@@ -62,10 +62,7 @@ func update_hpbar_animated():
 		if back_bar2: 
 			animate_back_bar2(back_bar2, health_tween2, bar_2_percent)
 			
-
-#FIXME: Math Bug for the 3rd battery upgrade for max health
-#region Math Bug for the 3rd battery upgrade for max health
-	 #--- TIER 3 MATH (above 600 HP) --- Fix this bug
+	 #--- TIER 3 MATH
 	if player.max_health > tank_cap * 2:
 		if front_bar3: front_bar3.show()
 		if back_bar3: back_bar3.show()
@@ -80,7 +77,6 @@ func update_hpbar_animated():
 			animate_back_bar3(back_bar3, health_tween3, bar_3_percent)
 			
 		print("From battery -> update_hpbar_animated for tier 3 batter: " + str(player.current_health))
-#endregion
 
 func _on_player_spawned(player_ref: Player) -> void:
 	

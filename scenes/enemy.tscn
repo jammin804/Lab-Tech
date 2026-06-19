@@ -7,7 +7,7 @@
 [ext_resource type="Shader" uid="uid://cht2qws53baj7" path="res://shaders/hitflash.gdshader" id="3_c4w8v"]
 [ext_resource type="Texture2D" uid="uid://dcstwgwvdksfg" path="res://assets/enemy/explosions/explode9.png" id="4_5uy6h"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_c4w8v"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xwavj"]
 resource_local_to_scene = true
 shader = ExtResource("3_c4w8v")
 shader_parameter/hit_flash_color = Color(1, 1, 1, 1)
@@ -188,7 +188,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_g0wcc")
 }],
-"loop": false,
+"loop": 0,
 "name": &"default",
 "speed": 13.0
 }]
@@ -200,7 +200,7 @@ is_in_battle_scene = true
 canister = ExtResource("2_c4w8v")
 
 [node name="enemy" parent="." unique_id=1601589879 instance=ExtResource("2_5uy6h")]
-material = SubResource("ShaderMaterial_c4w8v")
+material = SubResource("ShaderMaterial_xwavj")
 rotation = -3.1415927
 scale = Vector2(1, -1)
 frame = 5
@@ -236,5 +236,7 @@ sprite_frames = SubResource("SpriteFrames_s1ycm")
 
 [node name="Spawner" type="Marker2D" parent="." unique_id=1707807662]
 position = Vector2(0, 12)
+
+[node name="StatusComponent" type="Node2D" parent="." unique_id=1350344235]
 
 [connection signal="animation_finished" from="HitFlashAnim" to="." method="_on_hit_flash_anim_animation_finished"]

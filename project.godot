@@ -12,7 +12,7 @@ config_version=5
 
 config/name="LabTech"
 run/main_scene="uid://1lqqs1b6h2wp"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [audio]
@@ -25,6 +25,7 @@ DamageNumbers="*uid://cefil43yqsm40"
 Events="*uid://dey05byvojpap"
 PlayerManager="*uid://dnt7gojkk7ir0"
 Globals="*uid://cy6wbaxf4mmiy"
+LevelTransition="*uid://b8umcoij18id8"
 
 [display]
 

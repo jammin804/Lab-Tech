@@ -1,12 +1,13 @@
-[gd_resource type="Resource" script_class="SingleShot" format=3 uid="uid://ctgyx0laiurs3"]
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://ctgyx0laiurs3"]
 
 [ext_resource type="PackedScene" uid="uid://w1niwwnqbb4y" path="res://scenes/projectile.tscn" id="1_q534r"]
-[ext_resource type="Script" uid="uid://dtm2ha35cfw40" path="res://scripts/SingleShot.gd" id="2_nocth"]
+[ext_resource type="Script" uid="uid://71e7nibathln" path="res://resources/Weapons/weapon_data.gd" id="2_nocth"]
 
 [resource]
 script = ExtResource("2_nocth")
-title = "Blaster"
-damage = 1.0
-cooldown = 1.0
-speed = 400.0
-metadata/_custom_type_script = "uid://dtm2ha35cfw40"
+title = "SFR Blaster"
+can_charge = true
+base_stagger_damage = 0.0
+base_burn_chance = 0.0
+base_burn_damage = 0.0
+metadata/_custom_type_script = "uid://71e7nibathln"
