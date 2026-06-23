@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://dg66c7f7p6iii"]
+
+[ext_resource type="Script" uid="uid://jknf7kxvaq51" path="res://scripts/ui/pause_menu.gd" id="1_myx47"]
+[ext_resource type="PackedScene" uid="uid://cbvkqygoialpb" path="res://scenes/button.tscn" id="1_n87rw"]
+
+[node name="PauseMenu" type="Control" unique_id=1716673666]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_myx47")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=781056045]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.14, 0.14, 0.14, 0.7490196)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=880023979]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -27.5
+offset_right = 27.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer" unique_id=300158058]
+layout_mode = 2
+theme_override_constants/margin_top = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer" unique_id=965300959]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 15
+
+[node name="ResumeBtn" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=1002760254 instance=ExtResource("1_n87rw")]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Resume"
+
+[node name="OptionsBtn" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=13100885 instance=ExtResource("1_n87rw")]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Options"
+
+[node name="QuitBtn" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=919113196 instance=ExtResource("1_n87rw")]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Exit To Title Screen"
+
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/ResumeBtn" to="." method="_on_resume_btn_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/OptionsBtn" to="." method="_on_options_btn_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]

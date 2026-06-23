@@ -1,6 +1,7 @@
 class_name PlayerStats
 extends Resource
 
+#TODO Help creating kill tree and have the skill tree communicate with the player stats with passives 
 enum Form {DEFAULT, COMBINED, AVATAR}
 
 @export var battery_tanks : int = 1

@@ -1,9 +1,12 @@
 extends Sprite2D
 
+#FIXME Fix custom cursor fly in bug
 var hotspot : Vector2 = Vector2(16, 16)
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	
+	#global_position = DisplayServer.mouse_get_position()
 	
 func _physics_process(delta: float) -> void:
 	global_position = lerp(global_position, get_global_mouse_position(), 16.5*delta)

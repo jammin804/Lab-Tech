@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://lccgrpafmldk"]
+
+[ext_resource type="Script" uid="uid://dobdwkl8yxt2d" path="res://scripts/debug/debug_text_overlay.gd" id="1_fosph"]
+
+[node name="DebugTextOverlay" type="Control" unique_id=1309649993]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fosph")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1212351335]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -59.0
+offset_right = 110.0
+grow_vertical = 0
+theme_override_constants/margin_left = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=367694274]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = -2
+
+[node name="FpsLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1189601553]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.30060697, 0.7792928, 1.540184e-06, 1)
+theme_override_font_sizes/font_size = 6
+text = "FPS: 9.001"
+
+[node name="VersionInfo" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1676875941]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Build:  "
+
+[node name="DebugInfo" type="Label" parent="MarginContainer/VBoxContainer" unique_id=202733022]
+layout_mode = 2
+theme_override_constants/line_spacing = -2
+theme_override_font_sizes/font_size = 6
+text = "MegaIncrement
+Developed by Mike Harris"

@@ -1,4 +1,7 @@
+class_name Settings
 extends Control
+
+signal back_button_pressed
 
 @onready var video_btn: Button = %VideoBtn
 @onready var audio_btn: Button = %AudioBtn
@@ -54,6 +57,7 @@ func hide_settings() -> void:
 
 
 func _on_back_btn_pressed() -> void:
+	back_button_pressed.emit()
 	back_btn.get_child(0).play()
 	hide()
 

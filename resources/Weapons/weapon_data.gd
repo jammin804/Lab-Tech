@@ -1,6 +1,8 @@
 class_name WeaponData
 extends Resource
 
+#TODO Help creating kill tree and have the skill tree communicate with the weapon stats with passives and changing the types of bullets passed on element type and synergies
+
 enum Element {DEFAULT, EARTH, WATER, WIND, FIRE, LIGHTING, VOID}
 
 @export var title : String
@@ -25,6 +27,7 @@ enum Element {DEFAULT, EARTH, WATER, WIND, FIRE, LIGHTING, VOID}
 @export_category("Collision Info")
 @export var base_hitbox_size : int = 25
 @export var hitbox_collider_shape: String
+
 @export_category("Loot Info")
 @export var loot_type : String #What type of loot does this have a chance of dropping when enemy dies
 @export var loot_type_chance : float = 0.2 #chance for loot to drop

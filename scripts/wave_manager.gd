@@ -1,6 +1,10 @@
 class_name Wave_Manager
 extends Node
 
+#FIXME Tighten up Wave Manager, Currently the spanwns are off and the enemies and clumping
+
+#signal wave_update
+
 @export_category("Dependencies")
 @export var waves: Array[WaveData]
 @export var ground_spawn_point : Marker2D
@@ -79,7 +83,7 @@ func _complete_wave():
 func _handle_level_completed():
 	print("Level Complete!")
 	PlayerManager.save_player_state(PlayerManager.active_player)
-	LevelTransition.change_scene_to("res://scenes/Playground Scenes/playground2.tscn")
+	LevelTransition.change_scene_to("res://scenes/lab.tscn")
 	#TODO Move everything under to the ready of each level or Game State as it will track the how what the level diffuclty multiplier should move to
 	#current_wave_index = 0
 	#level_multipler += 0.5 

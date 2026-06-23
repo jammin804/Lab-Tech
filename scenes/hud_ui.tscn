@@ -5,9 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b7yt3vc0aobm3" path="res://assets/ui/progress_bar/blue.png" id="3_kkiei"]
 [ext_resource type="Script" uid="uid://bmay8p0oh3t6s" path="res://scripts/exp_progress_bar.gd" id="4_n3kp7"]
 [ext_resource type="PackedScene" uid="uid://cqhfkor2q2blf" path="res://scenes/stats_tile.tscn" id="5_cq5av"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_064jp"]
-bg_color = Color(0.21270496, 0.28028557, 0.25980982, 1)
+[ext_resource type="Texture2D" uid="uid://b8h7y5diislmb" path="res://assets/ui/hud/Settigns.png" id="6_47rti"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jy24p"]
 atlas = ExtResource("1_dh3a3")
@@ -28,16 +26,24 @@ region = Rect2(131, 85, 41, 5)
 atlas = ExtResource("3_kkiei")
 region = Rect2(3, 1, 41, 5)
 
-[node name="HudUI" type="PanelContainer" unique_id=1756770991]
-anchors_preset = -1
-anchor_right = 0.2
-anchor_bottom = 1.0
-offset_bottom = -61.0
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_064jp")
+[sub_resource type="AtlasTexture" id="AtlasTexture_kkiei"]
+atlas = ExtResource("6_47rti")
+region = Rect2(26, 2, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3kp7"]
+atlas = ExtResource("6_47rti")
+region = Rect2(26, 42, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cq5av"]
+atlas = ExtResource("6_47rti")
+region = Rect2(26, 21, 16, 16)
+
+[node name="HudUI" type="CanvasLayer" unique_id=1308777192]
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1737550446]
-layout_mode = 2
+visible = false
+offset_right = 64.0
+offset_bottom = 119.0
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
@@ -205,6 +211,30 @@ size_flags_horizontal = 3
 
 [node name="StatNameLabel" parent="MarginContainer/StatsResourceDisplay/HBoxContainer3/StatsTile2/MarginContainer/PowerCard" parent_id_path=PackedInt32Array(1370532855, 604588854) index="0" unique_id=561706339]
 text = "Rapid"
+
+[node name="PanelContainer" type="Control" parent="." unique_id=1346791138]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PauseBtn" type="TextureButton" parent="PanelContainer" unique_id=1389679551]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -27.0
+offset_top = 7.0
+offset_right = -11.0
+offset_bottom = 23.0
+grow_horizontal = 0
+texture_normal = SubResource("AtlasTexture_kkiei")
+texture_pressed = SubResource("AtlasTexture_n3kp7")
+texture_hover = SubResource("AtlasTexture_cq5av")
 
 [editable path="MarginContainer/StatsResourceDisplay/HBoxContainer2/StatsTile2"]
 [editable path="MarginContainer/StatsResourceDisplay/HBoxContainer3/StatsTile"]

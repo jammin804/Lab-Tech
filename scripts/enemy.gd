@@ -11,18 +11,18 @@ signal died
 
 @export_category("Base Variables")
 @export var stats: Resource
-@export var move_speed : float = 10.0
-@export var max_enemy_health : int = 3
-@export var current_enemy_health : int = 3
 @export var is_in_battle_scene : bool = false
 
 @export_category("Dependency")
 @export var canister : PackedScene
 
+var current_enemy_health : float
+var current_data: Resource
 var explosion_damage_dealt : int = 40
 var is_dead : bool = false
 
 @onready var enemy_sprite: AnimatedSprite2D = $enemy
+@onready var status_component: Node = $StatusComponent
 @onready var hit_flash_anim: AnimationPlayer = $HitFlashAnim
 @onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
 @onready var destroy_anim: AnimatedSprite2D = $DestroyAnim
@@ -31,19 +31,38 @@ var is_dead : bool = false
 
 func _ready() -> void:
 	destroy_anim.hide()
-	current_enemy_health = max_enemy_health
+	if stats:
+		current_data = stats.duplicate()
+	#Change health based on level
+	current_enemy_health = current_data.health 
+	current_enemy_health = floor( (current_enemy_health + 10) * Globals.level * randf_range(1.0, 1.5) )
 
 func _process(delta: float) -> void:
 	if not is_dead:
 		move_enemy(delta)
 	
-func take_damage(hitbox_data_ref : HitBoxData) -> void:
+func take_damage(hitbox_data : HitBoxData) -> void:
 	if is_dead:
 		return
-		
-	current_enemy_health -= hitbox_data_ref.base_damage
+	#TODO Get help understanding hitbox using the refcount 
+	var final_damage = hitbox_data.base_damage
+	match hitbox_data.element:
+		WeaponData.Element.WATER:
+			#Apply wet status
+			status_component.apply_status(WeaponData.Element.WATER, 5.0)
+		WeaponData.Element.LIGHTING:
+			if status_component.has_status(WeaponData.Element.WATER):
+				final_damage *= 2.0 #double the damage
+				print("SYNERGY: Wet + Lighting")
+				#TODO: Trigger chain-lighting visual or AOE here
+		WeaponData.Element.FIRE:
+			#Apply Burn Status
+			status_component.apply_status(WeaponData.Element.FIRE, 3.0)
+			
+	current_enemy_health -= final_damage
 	
 	hit_flash_anim.play("hit")
+	#TODO Spawn floating damage numbers here using 'final damage'
 	
 	Events.screen_shake_requested.emit(2.0, 0.5)
 	
@@ -68,14 +87,11 @@ func destroy():
 	destroy_anim.play("default")
 	hit_flash_anim.play("death")
 
-	
-	
-	
 
 
 func move_enemy(delta):
 	if is_in_battle_scene or is_in_debug_mode:
-		position.x += move_speed * delta * -1
+		position.x += current_data.move_speed * delta * -1
 		enemy_sprite.play()
 
 
@@ -83,8 +99,8 @@ func _on_hit_flash_anim_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "death":
 		if canister:
 			var new_gear = canister.instantiate()
-			new_gear.transform = spawner.global_transform 
-			get_tree().get_root().add_child(new_gear)
+			new_gear.global_transform = spawner.global_transform 
+			get_tree().current_scene.add_child(new_gear)
 			
 		self.queue_free()
 		

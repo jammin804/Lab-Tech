@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bcebcrmmn3c50"]
+
+[ext_resource type="Texture2D" uid="uid://b8h7y5diislmb" path="res://assets/ui/hud/Settigns.png" id="1_p0pbj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxeyc"]
+atlas = ExtResource("1_p0pbj")
+region = Rect2(26, 2, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jie0k"]
+atlas = ExtResource("1_p0pbj")
+region = Rect2(26, 42, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffhs6"]
+atlas = ExtResource("1_p0pbj")
+region = Rect2(26, 21, 16, 16)
+
+[node name="PauseBtn" type="TextureButton" unique_id=1146139691]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -27.0
+offset_top = 7.0
+offset_right = -11.0
+offset_bottom = 23.0
+grow_horizontal = 0
+texture_normal = SubResource("AtlasTexture_kxeyc")
+texture_pressed = SubResource("AtlasTexture_jie0k")
+texture_hover = SubResource("AtlasTexture_ffhs6")

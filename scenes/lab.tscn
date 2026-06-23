@@ -7,15 +7,13 @@
 [ext_resource type="Script" uid="uid://5tgjvbweswvp" path="res://scripts/clicker.gd" id="3_q4uld"]
 [ext_resource type="Texture2D" uid="uid://dxyc6i7d1knac" path="res://assets/props/console.png" id="4_q4uld"]
 [ext_resource type="PackedScene" uid="uid://dbxsfllyrb1yt" path="res://scenes/player.tscn" id="11_xu7et"]
-[ext_resource type="PackedScene" uid="uid://bdmoxx66c3fja" path="res://scenes/hud_ui.tscn" id="12_q6p6e"]
 [ext_resource type="Script" uid="uid://txbrbq2y72mm" path="res://plugin/OvaniPlugin/OvaniPlayer.gd" id="13_m131j"]
 [ext_resource type="AudioStream" uid="uid://c6pwf33mn2agb" path="res://assets/music/sfx/steam_hiss.wav" id="14_5tteu"]
 [ext_resource type="Script" uid="uid://m1bfaxshhh8l" path="res://plugin/OvaniPlugin/OvaniSong.gd" id="14_ds7rc"]
 [ext_resource type="Resource" uid="uid://srv7ffo3rdex" path="res://resources/Ovani/EvilGrudge.tres" id="15_kfqsw"]
-[ext_resource type="PackedScene" uid="uid://cbvkqygoialpb" path="res://scenes/button.tscn" id="16_ds7rc"]
 [ext_resource type="PackedScene" uid="uid://bd1e7fmt2sl4m" path="res://scenes/UI/settings_menu.tscn" id="17_eavsi"]
 [ext_resource type="Texture2D" uid="uid://b8h7y5diislmb" path="res://assets/ui/hud/Settigns.png" id="17_ftxkm"]
-[ext_resource type="PackedScene" uid="uid://bdpj78s126rdu" path="res://scenes/battle_screen.tscn" id="17_kfqsw"]
+[ext_resource type="PackedScene" uid="uid://dg66c7f7p6iii" path="res://scenes/pause_menu.tscn" id="17_ijdgx"]
 [ext_resource type="Texture2D" uid="uid://hk8jsqntk3b5" path="res://assets/ui/hud/battleButton.png" id="18_eavsi"]
 [ext_resource type="PackedScene" uid="uid://blqe7ke2t7a3n" path="res://scenes/UI/custom_mouse.tscn" id="18_ijdgx"]
 
@@ -28,96 +26,24 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = false
-tracks/0/path = NodePath("Pausable/UpgradeScreen/CTA:scale")
+tracks/0/path = NodePath("Pausable/UpgradeScreen/Clicker:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath("Pausable/UpgradeScreen/Clicker:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
 "values": [Vector2(132, 57)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Pausable/HudUI/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer/HBoxContainer/HPProgressBar:self_modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Pausable/HudUI/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer/HpNumbers:self_modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_or42m"]
 resource_name = "health_warning"
 length = 4.0
 loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pausable/HudUI/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer/HBoxContainer/HPProgressBar:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2, 3, 4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1.101, 0.191, 0.341, 1), Color(1, 1, 1, 1), Color(1.1013197, 0.190761, 0.34052396, 1), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Pausable/HudUI/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer/HpNumbers:self_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1, 2, 3, 4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 0.19215687, 0.34117648, 1), Color(1, 1, 1, 1), Color(1, 0.19215687, 0.34117648, 1), Color(1, 1, 1, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_f1r8i"]
 resource_name = "scale_squish"
 loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pausable/UpgradeScreen/CTA:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1.3, 1.3), Vector2(1.2, 1.2), Vector2(1, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_q6p6e"]
 resource_name = "small_shake"
@@ -160,8 +86,6 @@ region = Rect2(16, 44, 32, 16)
 atlas = ExtResource("18_eavsi")
 region = Rect2(16, 23, 32, 16)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ds7rc"]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_kxeyc"]
 atlas = ExtResource("17_ftxkm")
 region = Rect2(26, 2, 16, 16)
@@ -174,29 +98,24 @@ region = Rect2(26, 42, 16, 16)
 atlas = ExtResource("17_ftxkm")
 region = Rect2(26, 21, 16, 16)
 
-[node name="Lab" type="Control" unique_id=1174447750 node_paths=PackedStringArray("pause_menu", "settings_menu")]
+[node name="Lab" type="Node2D" unique_id=448967938 node_paths=PackedStringArray("pause_menu", "settings_menu")]
 process_mode = 3
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 1
 script = ExtResource("1_f1r8i")
-max_energy = 20
-pause_menu = NodePath("PauseMenu")
-settings_menu = NodePath("SettingsMenu")
+pause_menu = NodePath("CanvasLayer/PauseMenu")
+settings_menu = NodePath("CanvasLayer/SettingsMenu")
+levels = Array[String](["res://scenes/battle_screen.tscn"])
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1472098651]
+process_mode = 3
+layer = -10
 metadata/_edit_vertical_guides_ = [-86.0]
 
-[node name="CustomMouse" parent="." unique_id=289937816 instance=ExtResource("18_ijdgx")]
+[node name="CustomMouse" parent="CanvasLayer" unique_id=289937816 instance=ExtResource("18_ijdgx")]
 layer = 128
 
-[node name="Pausable" type="Control" parent="." unique_id=1461376495]
+[node name="Pausable" type="Control" parent="CanvasLayer" unique_id=1461376495]
 process_mode = 1
-layout_mode = 1
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -204,9 +123,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="UpgradeScreen" type="Control" parent="Pausable" unique_id=1309087774]
+[node name="UpgradeScreen" type="Control" parent="CanvasLayer/Pausable" unique_id=1309087774]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -214,7 +132,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Background" type="TextureRect" parent="Pausable/UpgradeScreen" unique_id=1778385885]
+[node name="Background" type="TextureRect" parent="CanvasLayer/Pausable/UpgradeScreen" unique_id=1778385885]
 z_index = -100
 texture_filter = 1
 layout_mode = 1
@@ -226,12 +144,12 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_hem3r")
 expand_mode = 2
 
-[node name="Player" parent="Pausable/UpgradeScreen" unique_id=2126503732 instance=ExtResource("11_xu7et")]
+[node name="Player" parent="CanvasLayer/Pausable/UpgradeScreen" unique_id=2126503732 instance=ExtResource("11_xu7et")]
 unique_name_in_owner = true
 position = Vector2(250, 118)
 autoplay = "idle"
 
-[node name="Clicker" type="TextureButton" parent="Pausable/UpgradeScreen" unique_id=1143035170]
+[node name="Clicker" type="TextureButton" parent="CanvasLayer/Pausable/UpgradeScreen" unique_id=1143035170]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -248,31 +166,12 @@ grow_vertical = 2
 texture_normal = ExtResource("2_hem3r")
 script = ExtResource("3_q4uld")
 
-[node name="CTA" type="Label" parent="Pausable/UpgradeScreen" unique_id=687652733]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 101.0
-offset_top = 102.0
-offset_right = 179.0
-offset_bottom = 125.0
-grow_horizontal = 2
-grow_vertical = 0
-pivot_offset = Vector2(39, 12)
-theme_override_colors/font_color = Color(0.08627451, 0.09411765, 0.15294118, 1)
-theme_override_font_sizes/font_size = 16
-text = "Click Here"
-horizontal_alignment = 1
-
-[node name="Props" type="Control" parent="Pausable/UpgradeScreen" unique_id=1898880921]
+[node name="Props" type="Control" parent="CanvasLayer/Pausable/UpgradeScreen" unique_id=1898880921]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="UpgradeLabel" type="Label" parent="Pausable/UpgradeScreen/Props" unique_id=1030032563]
+[node name="UpgradeLabel" type="Label" parent="CanvasLayer/Pausable/UpgradeScreen/Props" unique_id=1030032563]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -291,7 +190,7 @@ theme_override_font_sizes/font_size = 10
 text = "Upgrades"
 horizontal_alignment = 1
 
-[node name="StatsLabel" type="Label" parent="Pausable/UpgradeScreen/Props" unique_id=2016514304]
+[node name="StatsLabel" type="Label" parent="CanvasLayer/Pausable/UpgradeScreen/Props" unique_id=2016514304]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -310,7 +209,7 @@ theme_override_font_sizes/font_size = 10
 text = "Stats"
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="Pausable/UpgradeScreen/Props" unique_id=133571857]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Pausable/UpgradeScreen/Props" unique_id=133571857]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -325,7 +224,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_f680m")
 
-[node name="UpgradesBtn" type="TextureButton" parent="Pausable/UpgradeScreen/Props" unique_id=2104824135]
+[node name="UpgradesBtn" type="TextureButton" parent="CanvasLayer/Pausable/UpgradeScreen/Props" unique_id=2104824135]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -340,23 +239,23 @@ grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("4_q4uld")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Pausable/UpgradeScreen" unique_id=855286506]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Pausable/UpgradeScreen" unique_id=855286506]
 unique_name_in_owner = true
 root_node = NodePath("../../..")
 libraries/ = SubResource("AnimationLibrary_jy24p")
 autoplay = &"health_warning"
 
-[node name="AnimationTimer" type="Timer" parent="Pausable/UpgradeScreen" unique_id=411291968]
+[node name="AnimationTimer" type="Timer" parent="CanvasLayer/Pausable/UpgradeScreen" unique_id=411291968]
 
-[node name="ClickSound" type="AudioStreamPlayer2D" parent="Pausable/UpgradeScreen" unique_id=542694547]
+[node name="ClickSound" type="AudioStreamPlayer2D" parent="CanvasLayer/Pausable/UpgradeScreen" unique_id=542694547]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamWAV_m131j")
 
-[node name="SteamSound" type="AudioStreamPlayer2D" parent="Pausable/UpgradeScreen" unique_id=1861285990]
+[node name="SteamSound" type="AudioStreamPlayer2D" parent="CanvasLayer/Pausable/UpgradeScreen" unique_id=1861285990]
 unique_name_in_owner = true
 stream = ExtResource("14_5tteu")
 
-[node name="BattleBtn" type="TextureButton" parent="Pausable/UpgradeScreen" unique_id=1122038097]
+[node name="BattleBtn" type="TextureButton" parent="CanvasLayer/Pausable/UpgradeScreen" unique_id=1122038097]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -373,78 +272,14 @@ texture_normal = SubResource("AtlasTexture_kfqsw")
 texture_pressed = SubResource("AtlasTexture_kvhjj")
 texture_hover = SubResource("AtlasTexture_iyn56")
 
-[node name="BattleScreen" parent="Pausable" unique_id=1695514153 instance=ExtResource("17_kfqsw")]
-unique_name_in_owner = true
-layout_mode = 1
-
-[node name="EndLevelPopUp" type="CanvasLayer" parent="Pausable/BattleScreen" unique_id=1427651393]
-unique_name_in_owner = true
-visible = false
-
-[node name="Panel" type="PanelContainer" parent="Pausable/BattleScreen/EndLevelPopUp" unique_id=672778341]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -104.0
-offset_top = -55.0
-offset_right = 114.0
-offset_bottom = 44.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ds7rc")
-
-[node name="MarginContainer" type="MarginContainer" parent="Pausable/BattleScreen/EndLevelPopUp/Panel" unique_id=1650945195]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_right = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Pausable/BattleScreen/EndLevelPopUp/Panel/MarginContainer" unique_id=505626344]
-layout_mode = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="Pausable/BattleScreen/EndLevelPopUp/Panel/MarginContainer/VBoxContainer" unique_id=1576175098]
-layout_mode = 2
-text = "Level Complete"
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Pausable/BattleScreen/EndLevelPopUp/Panel/MarginContainer/VBoxContainer" unique_id=173631164]
-layout_mode = 2
-
-[node name="ReturnToLabBtn" type="Button" parent="Pausable/BattleScreen/EndLevelPopUp/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=74757962]
-layout_mode = 2
-text = "Return to Lab"
-
-[node name="NextLevelBtn" type="Button" parent="Pausable/BattleScreen/EndLevelPopUp/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1252566486]
-layout_mode = 2
-text = "Next Level"
-
-[node name="HudUI" parent="Pausable" unique_id=1756770991 instance=ExtResource("12_q6p6e")]
-visible = false
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 64.0
-offset_bottom = 112.0
-grow_vertical = 1
-
-[node name="HPProgressBar" parent="Pausable/HudUI/MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer/HBoxContainer" parent_id_path=PackedInt32Array(1756770991, 784338819) index="1" unique_id=1635345270 node_paths=PackedStringArray("player", "animation_player")]
-player = NodePath("../../../../../../../UpgradeScreen/Player")
-animation_player = NodePath("../../../../../../../UpgradeScreen/AnimationPlayer")
-
-[node name="ExpProgressBar" parent="Pausable/HudUI/MarginContainer/StatsResourceDisplay/ExpDisplay/VBoxContainer/HBoxContainer" parent_id_path=PackedInt32Array(1756770991, 1037389090) index="1" unique_id=2081183563 node_paths=PackedStringArray("player")]
-player = NodePath("../../../../../../../UpgradeScreen/Player")
-
-[node name="LabBGM" type="Node" parent="Pausable" unique_id=185395556]
+[node name="LabBGM" type="Node" parent="CanvasLayer/Pausable" unique_id=185395556]
 script = ExtResource("13_m131j")
 QueuedSongs = Array[ExtResource("14_ds7rc")]([ExtResource("15_kfqsw")])
 Volume = -10.0
 Bus = &"Music"
 metadata/_custom_type_script = "uid://txbrbq2y72mm"
 
-[node name="PauseBtn" type="TextureButton" parent="Pausable" unique_id=660265438]
+[node name="PauseBtn" type="TextureButton" parent="CanvasLayer/Pausable" unique_id=660265438]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -458,81 +293,15 @@ texture_normal = SubResource("AtlasTexture_kxeyc")
 texture_pressed = SubResource("AtlasTexture_jie0k")
 texture_hover = SubResource("AtlasTexture_ffhs6")
 
-[node name="PauseMenu" type="Control" parent="." unique_id=380289479]
+[node name="PauseMenu" parent="CanvasLayer" unique_id=1716673666 instance=ExtResource("17_ijdgx")]
+process_mode = 2
 visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="PauseMenu" unique_id=1601712315]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.14, 0.14, 0.14, 0.7490196)
-
-[node name="CenterContainer" type="CenterContainer" parent="PauseMenu" unique_id=388700029]
-layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -27.5
-offset_right = 27.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="PauseMenu/CenterContainer" unique_id=156242184]
-layout_mode = 2
-theme_override_constants/margin_top = 50
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/CenterContainer/MarginContainer" unique_id=1609694270]
-layout_mode = 2
-size_flags_vertical = 8
-theme_override_constants/separation = 15
-
-[node name="ResumeBtn" parent="PauseMenu/CenterContainer/MarginContainer/VBoxContainer" unique_id=1002760254 instance=ExtResource("16_ds7rc")]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 6
-text = "Resume"
-
-[node name="OptionsBtn" parent="PauseMenu/CenterContainer/MarginContainer/VBoxContainer" unique_id=2101920089 instance=ExtResource("16_ds7rc")]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 6
-text = "Options"
-
-[node name="QuitBtn" parent="PauseMenu/CenterContainer/MarginContainer/VBoxContainer" unique_id=1565174003 instance=ExtResource("16_ds7rc")]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 6
-text = "Exit To Title Screen"
-
-[node name="SettingsMenu" parent="." unique_id=1195811390 instance=ExtResource("17_eavsi")]
+[node name="SettingsMenu" parent="CanvasLayer" unique_id=1195811390 instance=ExtResource("17_eavsi")]
+process_mode = 2
 visible = false
-layout_mode = 1
 
-[connection signal="battle_scene_start" from="." to="Pausable/UpgradeScreen/Player" method="_on_lab_battle_scene_start"]
-[connection signal="battle_scene_start" from="." to="Pausable/BattleScreen/BattlePlayer" method="_on_lab_battle_scene_start"]
-[connection signal="uprgrade_scene_start" from="." to="Pausable/UpgradeScreen/Player" method="_on_lab_uprgrade_scene_start"]
-[connection signal="uprgrade_scene_start" from="." to="Pausable/BattleScreen/BattlePlayer" method="_on_lab_uprgrade_scene_start"]
-[connection signal="pressed" from="Pausable/UpgradeScreen/Clicker" to="Pausable/UpgradeScreen/Clicker" method="_on_pressed"]
-[connection signal="finished" from="Pausable/UpgradeScreen/ClickSound" to="Pausable/UpgradeScreen/Clicker" method="_on_click_sound_finished"]
-[connection signal="pressed" from="Pausable/UpgradeScreen/BattleBtn" to="." method="_on_battle_btn_pressed"]
-[connection signal="pressed" from="Pausable/BattleScreen/EndLevelPopUp/Panel/MarginContainer/VBoxContainer/HBoxContainer/ReturnToLabBtn" to="." method="_on_return_to_lab_btn_pressed"]
-[connection signal="pressed" from="Pausable/PauseBtn" to="." method="_on_pause_btn_pressed"]
-[connection signal="pressed" from="PauseMenu/CenterContainer/MarginContainer/VBoxContainer/ResumeBtn" to="." method="_on_resume_btn_pressed"]
-[connection signal="pressed" from="PauseMenu/CenterContainer/MarginContainer/VBoxContainer/OptionsBtn" to="." method="_on_options_btn_pressed"]
-[connection signal="pressed" from="PauseMenu/CenterContainer/MarginContainer/VBoxContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]
-
-[editable path="Pausable/BattleScreen"]
-[editable path="Pausable/HudUI"]
-[editable path="Pausable/HudUI/MarginContainer/StatsResourceDisplay/HBoxContainer2/StatsTile2"]
-[editable path="Pausable/HudUI/MarginContainer/StatsResourceDisplay/HBoxContainer3/StatsTile"]
-[editable path="Pausable/HudUI/MarginContainer/StatsResourceDisplay/HBoxContainer3/StatsTile2"]
+[connection signal="pressed" from="CanvasLayer/Pausable/UpgradeScreen/Props/UpgradesBtn" to="." method="_on_upgrades_btn_pressed"]
+[connection signal="finished" from="CanvasLayer/Pausable/UpgradeScreen/ClickSound" to="CanvasLayer/Pausable/UpgradeScreen/Clicker" method="_on_click_sound_finished"]
+[connection signal="pressed" from="CanvasLayer/Pausable/UpgradeScreen/BattleBtn" to="." method="_on_battle_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/Pausable/PauseBtn" to="." method="_on_pause_btn_pressed"]
