@@ -1,5 +1,5 @@
-extends Base_Currency
 class_name Canister
+extends Base_Loot
 
 
 # Called when the node enters the scene tree for the first time.

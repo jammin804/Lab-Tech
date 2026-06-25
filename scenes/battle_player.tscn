@@ -129,7 +129,7 @@ shape = SubResource("CapsuleShape2D_aqsb2")
 [node name="ShootCooldownTimer" type="Timer" parent="." unique_id=926354550]
 one_shot = true
 
-[node name="NoClickCooldownTimer" type="Timer" parent="." unique_id=1867444841]
+[node name="ChargeTimer" type="Timer" parent="." unique_id=1867444841]
 one_shot = true
 
 [node name="HitFlashAnim" type="AnimationPlayer" parent="." unique_id=795432850]

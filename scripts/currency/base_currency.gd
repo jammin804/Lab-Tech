@@ -1,5 +1,5 @@
 extends Area2D
-class_name Base_Currency
+class_name Base_Loot
 
 var player_reference: Player = null
 

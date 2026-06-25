@@ -3,26 +3,26 @@ extends Player
 
 @export var current_weapon: WeaponData
 @export var camera : Camera2D
+@export var drain_amount: int = 10
 
+var mouse_is_on_player: bool = false
+var is_auto_shoot: bool = false
+var is_charging: bool = false
+var time_held : float = 0.0
 
 #Firing Gun
 @onready var marker_2d: Marker2D = %Marker2D
 @onready var spark: Node2D = $Spark
 @onready var fire: AudioStreamPlayer2D = $Fire
-
 @onready var shoot_cooldown_timer: Timer = $ShootCooldownTimer
-
 @onready var hit_flash_anim: AnimationPlayer = $HitFlashAnim
 
-var is_auto_shoot: bool
-var mouse_is_on_player: bool = false
-@export var drain_amount: int = 10
 
 
 
 func _ready() -> void:
 	super()
-	var stats = PlayerManager.current_stats
+	#var stats = PlayerManager.current_stats
 	PlayerManager.active_player = self
 	PlayerManager.load_player_state(self)
 	
@@ -37,7 +37,17 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_select"):
 		add_to_max_health(100)
 		
-
+	if Input.is_action_pressed("left_click") and mouse_is_on_player:
+		time_held += delta
+		#TODO Charging should only activate if player has charging skill active
+		if time_held > 2.0:
+			is_charging = true
+		
+	if Input.is_action_just_released("left_click") and is_charging == true:
+		time_held = 0.0
+		shoot()
+		is_charging = false
+		
 	if Input.is_action_just_pressed("left_click") and mouse_is_on_player and shoot_cooldown_timer.is_stopped():
 		shoot()
 	else:
@@ -62,14 +72,21 @@ func shoot() -> void:
 	
 	if final_element == current_weapon.Element.DEFAULT:
 		final_element = current_weapon.base_element
-		
-	
-		
-	new_bullet.damage = final_damage
+	if not is_charging:
+		new_bullet.damage = final_damage
+	else:
+		new_bullet.damage = final_damage * player_stats.damage_multipler
 	new_bullet.current_element = final_element
 	
 	new_bullet.global_transform = marker_2d.global_transform
 	
+	if is_charging == true:
+		new_bullet.scale = Vector2(2, 2)
+		
+	else:
+		new_bullet.scale = Vector2.ONE
+		
+		
 	get_tree().current_scene.add_child(new_bullet)
 	damage_player(drain_amount)
 
@@ -92,7 +109,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 
 func _on_area_2d_mouse_entered() -> void:
-	print("here")
 	mouse_is_on_player = true
 
 

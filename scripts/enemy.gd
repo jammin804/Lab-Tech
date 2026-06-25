@@ -13,8 +13,9 @@ signal died
 @export var stats: Resource
 @export var is_in_battle_scene : bool = false
 
-@export_category("Dependency")
-@export var canister : PackedScene
+@export_category("Item Drop") #TODO Make this into a resource so i can just add to enemy 
+@export var loot_drop_type : PackedScene
+@export_range(0, 100, 1.0, "suffix:%") var drop_rate
 
 var current_enemy_health : float
 var current_data: Resource
@@ -36,10 +37,12 @@ func _ready() -> void:
 	#Change health based on level
 	current_enemy_health = current_data.health 
 	current_enemy_health = floor( (current_enemy_health + 10) * Globals.level * randf_range(1.0, 1.5) )
+	print("Current Health",current_enemy_health)
 
 func _process(delta: float) -> void:
 	if not is_dead:
 		move_enemy(delta)
+
 	
 func take_damage(hitbox_data : HitBoxData) -> void:
 	if is_dead:
@@ -87,27 +90,29 @@ func destroy():
 	destroy_anim.play("default")
 	hit_flash_anim.play("death")
 
-
-
 func move_enemy(delta):
 	if is_in_battle_scene or is_in_debug_mode:
 		position.x += current_data.move_speed * delta * -1
 		enemy_sprite.play()
 
+func _drop_item() -> void:
+	pass
 
 func _on_hit_flash_anim_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "death":
-		if canister:
-			var new_gear = canister.instantiate()
-			new_gear.global_transform = spawner.global_transform 
-			get_tree().current_scene.add_child(new_gear)
+	
+		if loot_drop_type:
+			var rng = randf() * 100
+			print(rng)
+			if rng <= drop_rate:
+				var loot = loot_drop_type.instantiate()
+				loot.global_transform = spawner.global_transform 
+				get_tree().current_scene.add_child(loot)
 			
 		self.queue_free()
-		
-		
+
 func _on_lab_battle_scene_start() -> void:
 	is_in_battle_scene = true
-
 
 func _on_lab_uprgrade_scene_start() -> void:
 	is_in_battle_scene = false

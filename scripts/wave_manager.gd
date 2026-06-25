@@ -13,6 +13,7 @@ extends Node
 
 var current_wave_index: int = 0
 var enemies_alive: int = 0
+var enemies_in_wave: int = 0
 var level_multipler: float = 1.0
 
 func start_wave():
@@ -22,12 +23,16 @@ func start_wave():
 		
 	var current_wave = waves[current_wave_index]
 	
+	if current_wave_index <= current_wave.spawns.size():
+		enemies_in_wave = current_wave.spawns[current_wave_index].enemy_count #FIXME E 0:00:17:891   Wave_Manager.start_wave: Invalid access of index '1' on a base object of type: 'Array[SpawnInfo]'.
+	
 	if current_wave.is_boss_wave:
 		_spawn_boss(current_wave)
 	else:
 		_spawn_enemies(current_wave)
 	
 func _spawn_enemies(wave: WaveData):
+	#TODO JUICE: Call an animation signal to tell the wave to start
 	for spawn_group in wave.spawns:
 		var valid_points
 		if spawn_group.zone == SpawnInfo.SpawnZone.GROUND:	
@@ -52,6 +57,7 @@ func _spawn_enemies(wave: WaveData):
 				add_child(enemy)
 			
 			enemies_alive += 1
+			print("Number of enemies in this wave: " + str(enemies_in_wave))
 			
 			if spawn_group.spawn_delay > 0:
 				await get_tree().create_timer(spawn_group.spawn_delay).timeout
@@ -69,8 +75,9 @@ func _spawn_boss(wave: WaveData):
 	
 func _on_enemy_died():
 	enemies_alive -= 1
+	enemies_in_wave -= 1
 	
-	if enemies_alive <= 0:
+	if enemies_alive <= 0 and enemies_in_wave <= 0:
 		_complete_wave()
 	
 func _complete_wave():
