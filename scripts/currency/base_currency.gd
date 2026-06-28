@@ -1,5 +1,5 @@
-extends Area2D
 class_name Base_Loot
+extends Area2D
 
 var player_reference: Player = null
 

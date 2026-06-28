@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://c3j8bdc87ysqc"]
+
+[ext_resource type="Script" uid="uid://c3wukkpq6fo6t" path="res://scripts/currency/pickups_mike.gd" id="1_fjgk1"]
+[ext_resource type="Texture2D" uid="uid://btt7iex4c0cf0" path="res://assets/props/currency.png" id="2_blfsk"]
+[ext_resource type="Resource" uid="uid://cqjnab30m833y" path="res://resources/CurrencyData/money.tres" id="2_m4pjf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ouy44"]
+atlas = ExtResource("2_blfsk")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1tmx"]
+atlas = ExtResource("2_blfsk")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c3q8q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ouy44")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v1tmx")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_goy34"]
+radius = 6.0
+
+[node name="Pickups" type="Area2D" unique_id=1694982520]
+script = ExtResource("1_fjgk1")
+type = ExtResource("2_m4pjf")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=942734185]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_c3q8q")
+autoplay = "default"
+frame_progress = 0.45781946
+speed_scale = 0.1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=418574200]
+shape = SubResource("CircleShape2D_goy34")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

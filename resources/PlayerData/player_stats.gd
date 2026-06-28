@@ -10,8 +10,8 @@ enum Form {DEFAULT, COMBINED, AVATAR}
 @export var elemental_resistance_amount : int #need to figure out how to set up resistance
 
 #Multiplers
-@export var damage_multipler: float = 1.0
-@export var fire_rate_multipler: float = 1.0
+@export var damage_multipler: float 
+@export var fire_rate_multipler: float
 @export var element_override: WeaponData.Element = WeaponData.Element.DEFAULT
 
 @export var current_weapon : WeaponData = null

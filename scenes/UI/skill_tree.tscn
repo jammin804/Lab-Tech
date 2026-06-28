@@ -10,13 +10,20 @@
 [ext_resource type="Texture2D" uid="uid://6rai0s8thhwg" path="res://assets/ui/skill_tree/power.png" id="7_hcl88"]
 [ext_resource type="Texture2D" uid="uid://cao1bbbw2ekum" path="res://assets/ui/skill_tree/rapid.png" id="8_hcl88"]
 [ext_resource type="Texture2D" uid="uid://nust27da1vec" path="res://assets/ui/skill_tree/Scifi weapons and items.png" id="9_uqing"]
+[ext_resource type="Script" uid="uid://bft2yqp8qk03c" path="res://scripts/ui/skill_back.gd" id="11_vmcmc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qti4y"]
 bg_color = Color(0.039215688, 0.02745098, 0.14901961, 0.9882353)
 
 [sub_resource type="Resource" id="Resource_uqing"]
 script = ExtResource("3_tbyh4")
+battery_tanks = 0
+battery_tank_points = 0
 auto_fire = true
+power = 0
+rapid = 0.0
+charge_rate = 0.0
+charge_damage_multipler = 0.0
 metadata/_custom_type_script = "uid://d332ldvfmgnhy"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s5m6i"]
@@ -33,8 +40,10 @@ metadata/_custom_type_script = "uid://fa5x46oa8uta"
 
 [sub_resource type="Resource" id="Resource_hyse7"]
 script = ExtResource("3_tbyh4")
-battery_tanks = 2
-rapid = 0.45
+battery_tanks = 0
+battery_tank_points = 0
+power = 0
+rapid = 0.3
 metadata/_custom_type_script = "uid://d332ldvfmgnhy"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uqing"]
@@ -51,7 +60,11 @@ metadata/_custom_type_script = "uid://fa5x46oa8uta"
 
 [sub_resource type="Resource" id="Resource_tbyh4"]
 script = ExtResource("3_tbyh4")
-charge_damage_multipler = 0.2
+battery_tanks = 0
+battery_tank_points = 0
+power = 0
+charge_rate = 60.0
+charge_damage_multipler = 4.0
 metadata/_custom_type_script = "uid://d332ldvfmgnhy"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vmcmc"]
@@ -68,8 +81,12 @@ metadata/_custom_type_script = "uid://fa5x46oa8uta"
 
 [sub_resource type="Resource" id="Resource_tltv1"]
 script = ExtResource("3_tbyh4")
-can_charge = false
-charge_damage_multipler = 0.0
+battery_tanks = 0
+battery_tank_points = 0
+power = 0
+rapid = 0.0
+charge_rate = 80.0
+charge_damage_multipler = 6.0
 metadata/_custom_type_script = "uid://d332ldvfmgnhy"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_utb3r"]
@@ -415,3 +432,15 @@ offset_bottom = 31.0
 grow_horizontal = 0
 horizontal_alignment = 2
 script = ExtResource("6_tltv1")
+
+[node name="Back" type="Button" parent="." unique_id=1965007149]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 31.0
+offset_bottom = 28.0
+theme_override_font_sizes/font_size = 8
+text = "Back"
+script = ExtResource("11_vmcmc")
+
+[connection signal="pressed" from="Back" to="Back" method="_on_pressed"]

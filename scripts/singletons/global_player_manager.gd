@@ -9,6 +9,8 @@ var should_restore_player: bool = false
 var active_player : Node2D
 var player_position : Vector2
 
+
+
 func _ready() -> void:
 	current_stats = load(starting_stats_ref_path).duplicate()
 

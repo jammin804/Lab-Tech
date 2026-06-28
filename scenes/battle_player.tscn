@@ -4,7 +4,9 @@
 [ext_resource type="Script" uid="uid://mngtaamw8hpp" path="res://scripts/battle_player.gd" id="1_hugls"]
 [ext_resource type="Texture2D" uid="uid://b3ntyiv7oq1hh" path="res://assets/character/player.png" id="3_r6oyp"]
 [ext_resource type="Resource" uid="uid://ctgyx0laiurs3" path="res://resources/Weapons/Blaster.tres" id="4_yi774"]
+[ext_resource type="PackedScene" uid="uid://b3gf3rdu50uej" path="res://scenes/UI/battery_hud.tscn" id="5_goy34"]
 [ext_resource type="PackedScene" uid="uid://d37hr5i350lqv" path="res://scenes/spark.tscn" id="5_r6oyp"]
+[ext_resource type="Texture2D" uid="uid://6rai0s8thhwg" path="res://assets/ui/skill_tree/power.png" id="5_yi774"]
 [ext_resource type="AudioStream" uid="uid://dhhi0c4g00jnp" path="res://assets/music/sfx/shot2.wav" id="6_2tcgp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r6oyp"]
@@ -67,6 +69,10 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_qti4y"]
+atlas = ExtResource("5_yi774")
+region = Rect2(349, 28, 22, 23)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aqsb2"]
 radius = 13.0
 height = 36.0
@@ -109,6 +115,9 @@ _data = {
 &"RESET": SubResource("Animation_yi774")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qti4y"]
+radius = 100.0
+
 [node name="BattlePlayer" type="AnimatedSprite2D" unique_id=166741663 groups=["player"]]
 material = SubResource("ShaderMaterial_r6oyp")
 scale = Vector2(0.5, 0.5)
@@ -116,6 +125,68 @@ sprite_frames = SubResource("SpriteFrames_ikkpg")
 animation = &"Idle"
 script = ExtResource("1_hugls")
 current_weapon = ExtResource("4_yi774")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1143428043]
+
+[node name="Battery" parent="UI" unique_id=1694848608 instance=ExtResource("5_goy34")]
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 16.0
+offset_bottom = 24.0
+
+[node name="Debug" type="VBoxContainer" parent="UI" unique_id=1611184953]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 106.0
+offset_top = -89.0
+offset_right = 121.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Power" type="Label" parent="UI/Debug" unique_id=1639148393]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "P : 1"
+
+[node name="Rapid" type="Label" parent="UI/Debug" unique_id=1896894484]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "R : 1"
+
+[node name="Battery" type="Label" parent="UI/Debug" unique_id=1753115256]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "B : 1"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI" unique_id=193485110]
+offset_left = 16.0
+offset_top = 24.0
+offset_right = 59.0
+offset_bottom = 40.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="UI/HBoxContainer" unique_id=1125286511]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_qti4y")
+expand_mode = 1
+
+[node name="Money" type="Label" parent="UI/HBoxContainer" unique_id=167066560]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "0"
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=978875492]
 unique_name_in_owner = true
@@ -144,6 +215,13 @@ libraries/ = SubResource("AnimationLibrary_goy34")
 stream = ExtResource("6_2tcgp")
 bus = &"SFX"
 
+[node name="Magnet" type="Area2D" parent="." unique_id=40829289]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Magnet" unique_id=971187640]
+position = Vector2(6, 0)
+shape = SubResource("CircleShape2D_qti4y")
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="area_entered" from="Magnet" to="." method="_on_magnet_area_entered"]

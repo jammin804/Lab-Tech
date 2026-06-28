@@ -1,7 +1,7 @@
 extends Node
 
 @export var enemy_scene: PackedScene = preload("res://scenes/enemy.tscn")
-@export var canister_collectable_scene: PackedScene = preload("res://scenes/Currency/canister.tscn")
+@export var canister_collectable_scene: PackedScene = preload("res://scenes/Currency/pickups.tscn")
 
 @onready var player : Player = $Player
 

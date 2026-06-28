@@ -29,3 +29,4 @@ func _on_pressed() -> void:
 		enabled = true
 		SaveData.set_and_save()
 		get_parent().get_parent().set_skill_tree()
+		get_parent().get_parent().get_total_stats()

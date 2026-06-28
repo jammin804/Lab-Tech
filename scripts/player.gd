@@ -16,7 +16,6 @@ signal health_changed()
 @export var regen_cap = max_health/3
 
 #Stats
-
 @export_category("Experience Data")
 @export var current_exp: float = 20.0
 @export var max_exp: float = 100.0

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Money" format=3 uid="uid://cqjnab30m833y"]
+
+[ext_resource type="Texture2D" uid="uid://btt7iex4c0cf0" path="res://assets/props/currency.png" id="1_b4i2t"]
+[ext_resource type="Script" uid="uid://bbvv5j22bh1rk" path="res://resources/CurrencyData/money.gd" id="2_87g8t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m3npq"]
+atlas = ExtResource("1_b4i2t")
+region = Rect2(41, 9, 14, 14)
+
+[resource]
+script = ExtResource("2_87g8t")
+money = 10
+title = "Orbs"
+icon = SubResource("AtlasTexture_m3npq")
+description = "Currency to upgrade items"
+metadata/_custom_type_script = "uid://bbvv5j22bh1rk"

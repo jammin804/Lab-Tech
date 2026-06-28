@@ -11,6 +11,26 @@ var time_held : float = 0.0
 var current_charge_percent : float
 var max_charge_percent : float = 100.0
 
+var power : int = 1:
+	set(value):
+		power = value
+		%Power.text = "P : " + str(value)
+
+var rapid : float = 0:
+	set(value):
+		rapid = value
+		%Rapid.text = "R : " + str(value)
+		
+var battery_level : int = 1:
+	set(value):
+		battery_level = value
+		%Battery.text = "B : " + str(value)
+
+var money : int = 0:
+	set(value):
+		money = value
+		%Money.text = str(value)
+		
 #Firing Gun
 @onready var marker_2d: Marker2D = %Marker2D
 @onready var spark: Node2D = $Spark
@@ -22,6 +42,16 @@ func _ready() -> void:
 	super()
 	PlayerManager.active_player = self
 	PlayerManager.load_player_state(self)
+	
+	Persistence.gain_bonus_stats()
+	
+	var stats = PlayerManager.current_stats
+	power = stats.power
+	rapid = stats.rapid
+	battery_level = stats.battery_tanks
+	money = SaveData.money
+	
+	Events.increase_currency.connect(gain_money)
 
 func _input(event) -> void:
 	if event is InputEventKey:
@@ -114,6 +144,10 @@ func shoot(charge_percentage : float) -> void:
 
 	print("Current shoot damage : " + str(new_bullet.damage))
 
+func gain_money(item_name:String, amount:int):
+	print(str(item_name) + " dropped and you gained " + str(amount))
+	money += amount
+	
 func _on_lab_battle_scene_start() -> void:
 	is_in_battle_scene = true
 
@@ -138,3 +172,9 @@ func _on_area_2d_mouse_entered() -> void:
 
 func _on_area_2d_mouse_exited() -> void:
 	mouse_is_on_player = false
+
+
+func _on_magnet_area_entered(area: Area2D) -> void:
+	print(area)
+	if area.has_method("follow"):
+		area.follow(self)
