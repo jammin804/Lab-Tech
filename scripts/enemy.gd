@@ -66,8 +66,8 @@ func take_damage(hitbox_data : HitBoxData) -> void:
 	
 	hit_flash_anim.play("hit")
 	#TODO Spawn floating damage numbers here using 'final damage'
-	
-	Events.screen_shake_requested.emit(2.0, 0.5)
+	if Globals.can_screenshake == true:
+		Events.screen_shake_requested.emit(2.0, 0.5)
 	
 	gpu_particles_2d.restart()
 	gpu_particles_2d.emitting = true

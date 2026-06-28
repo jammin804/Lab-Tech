@@ -34,11 +34,12 @@ region = Rect2(26, 42, 16, 16)
 atlas = ExtResource("10_ikkpg")
 region = Rect2(26, 21, 16, 16)
 
-[node name="BattleScreen" type="Node" unique_id=1489670400 node_paths=PackedStringArray("pause_menu", "settings_menu")]
+[node name="BattleScreen" type="Node" unique_id=1489670400 node_paths=PackedStringArray("pause_menu", "settings_menu", "player_spawn")]
 process_mode = 3
 script = ExtResource("1_p5bt8")
 pause_menu = NodePath("PauseMenu")
 settings_menu = NodePath("SettingsMenu")
+player_spawn = NodePath("Pausable/PlayerSpawnPoint")
 
 [node name="Background" type="TextureRect" parent="." unique_id=62776617]
 texture_filter = 1
@@ -63,13 +64,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Battery" parent="Pausable" unique_id=1694848608 node_paths=PackedStringArray("player") instance=ExtResource("4_20e4q")]
+[node name="Battery" parent="Pausable" unique_id=1694848608 instance=ExtResource("4_20e4q")]
 layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 40.0
 offset_bottom = 40.0
-player = NodePath("")
 
 [node name="InBetweenWaves" type="Timer" parent="Pausable" unique_id=182636926]
 unique_name_in_owner = true

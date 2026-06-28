@@ -29,6 +29,7 @@ Events="*uid://dey05byvojpap"
 PlayerManager="*uid://dnt7gojkk7ir0"
 Globals="*uid://cy6wbaxf4mmiy"
 LevelTransition="*uid://b8umcoij18id8"
+SaveData="*uid://cc3gym1ejkqkf"
 
 [display]
 

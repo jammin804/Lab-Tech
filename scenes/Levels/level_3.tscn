@@ -1,0 +1,151 @@
+[gd_scene format=3 uid="uid://cir7vusp7dx7a"]
+
+[ext_resource type="Script" uid="uid://dh6lnjuwjknxq" path="res://scripts/levels/level_3.gd" id="1_46g8q"]
+[ext_resource type="Texture2D" uid="uid://hw3yy7aoqac3" path="res://assets/backgrounds/bg-1.png" id="2_cu6c6"]
+[ext_resource type="PackedScene" uid="uid://blqe7ke2t7a3n" path="res://scenes/UI/custom_mouse.tscn" id="3_lt4p7"]
+[ext_resource type="PackedScene" uid="uid://b3gf3rdu50uej" path="res://scenes/UI/battery_hud.tscn" id="4_3o2ls"]
+[ext_resource type="PackedScene" uid="uid://cooeppa7wcj7x" path="res://scenes/camera.tscn" id="5_pqvqn"]
+[ext_resource type="PackedScene" uid="uid://83rd1mmscj3k" path="res://scenes/Playground Scenes/wave_manager.tscn" id="6_2q2jy"]
+[ext_resource type="Script" uid="uid://bta3my2bfuxdr" path="res://resources/WaveData/wave_data.gd" id="7_y6nao"]
+[ext_resource type="Resource" uid="uid://b53godrykoobg" path="res://resources/WaveData/level1_waves/wave_01.tres" id="8_m0526"]
+[ext_resource type="Resource" uid="uid://8yrefwd8f06d" path="res://resources/WaveData/level1_waves/wave_02.tres" id="9_xgqp6"]
+[ext_resource type="Resource" uid="uid://bd605r2uk7n3t" path="res://resources/WaveData/level1_waves/wave_03.tres" id="10_dd5ry"]
+[ext_resource type="Texture2D" uid="uid://b8h7y5diislmb" path="res://assets/ui/hud/Settigns.png" id="11_jxm41"]
+[ext_resource type="Script" uid="uid://txbrbq2y72mm" path="res://plugin/OvaniPlugin/OvaniPlayer.gd" id="12_w0vv7"]
+[ext_resource type="Script" uid="uid://m1bfaxshhh8l" path="res://plugin/OvaniPlugin/OvaniSong.gd" id="13_jrxpu"]
+[ext_resource type="Resource" uid="uid://srv7ffo3rdex" path="res://resources/Ovani/EvilGrudge.tres" id="14_l68h6"]
+[ext_resource type="PackedScene" uid="uid://dg66c7f7p6iii" path="res://scenes/pause_menu.tscn" id="15_cvipc"]
+[ext_resource type="PackedScene" uid="uid://bd1e7fmt2sl4m" path="res://scenes/UI/settings_menu.tscn" id="16_lyywo"]
+[ext_resource type="PackedScene" uid="uid://lccgrpafmldk" path="res://scenes/debug/debug_text_overlay.tscn" id="17_3kw6q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkca0"]
+atlas = ExtResource("2_cu6c6")
+region = Rect2(0, 0, 288, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lskjy"]
+atlas = ExtResource("11_jxm41")
+region = Rect2(26, 2, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qm3lx"]
+atlas = ExtResource("11_jxm41")
+region = Rect2(26, 42, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5bt8"]
+atlas = ExtResource("11_jxm41")
+region = Rect2(26, 21, 16, 16)
+
+[node name="Level3" type="Node" unique_id=1489670400]
+process_mode = 3
+script = ExtResource("1_46g8q")
+
+[node name="Background" type="TextureRect" parent="." unique_id=62776617]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_jkca0")
+expand_mode = 2
+
+[node name="CustomMouse" parent="." unique_id=289937816 instance=ExtResource("3_lt4p7")]
+layer = 128
+
+[node name="Pausable" type="Control" parent="." unique_id=604897688]
+process_mode = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Battery" parent="Pausable" unique_id=1694848608 instance=ExtResource("4_3o2ls")]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="InBetweenWaves" type="Timer" parent="Pausable" unique_id=182636926]
+unique_name_in_owner = true
+one_shot = true
+autostart = true
+
+[node name="Camera" parent="Pausable" unique_id=263792174 instance=ExtResource("5_pqvqn")]
+position = Vector2(160, 90)
+
+[node name="EnemySpawnPoint" type="Marker2D" parent="Pausable" unique_id=195233964 groups=["ground_spawns"]]
+unique_name_in_owner = true
+position = Vector2(314, 157)
+
+[node name="EnemySpawnPoint2" type="Marker2D" parent="Pausable" unique_id=1077596327 groups=["ground_spawns"]]
+unique_name_in_owner = true
+position = Vector2(314, 107)
+
+[node name="Enemies" type="Node2D" parent="Pausable" unique_id=374635073]
+
+[node name="WaveManager" parent="Pausable" unique_id=1472363141 node_paths=PackedStringArray("ground_spawn_point", "air_spawn_point", "enemy_container") instance=ExtResource("6_2q2jy")]
+waves = Array[ExtResource("7_y6nao")]([ExtResource("8_m0526"), ExtResource("9_xgqp6"), ExtResource("10_dd5ry")])
+ground_spawn_point = NodePath("../EnemySpawnPoint")
+air_spawn_point = NodePath("../EnemySpawnPoint2")
+enemy_container = NodePath("../Enemies")
+
+[node name="PauseBtn" type="TextureButton" parent="Pausable" unique_id=1050029617]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -27.0
+offset_top = 7.0
+offset_right = -11.0
+offset_bottom = 23.0
+grow_horizontal = 0
+texture_normal = SubResource("AtlasTexture_lskjy")
+texture_pressed = SubResource("AtlasTexture_qm3lx")
+texture_hover = SubResource("AtlasTexture_p5bt8")
+
+[node name="LabBGM" type="Node" parent="Pausable" unique_id=34785919]
+script = ExtResource("12_w0vv7")
+QueuedSongs = Array[ExtResource("13_jrxpu")]([ExtResource("14_l68h6")])
+Volume = -10.0
+Intensity = 1.0
+Bus = &"Music"
+metadata/_custom_type_script = "uid://txbrbq2y72mm"
+
+[node name="PlayerSpawnPoint" type="Marker2D" parent="Pausable" unique_id=282894702]
+unique_name_in_owner = true
+position = Vector2(38, 154)
+
+[node name="PauseMenu" parent="." unique_id=1716673666 instance=ExtResource("15_cvipc")]
+process_mode = 2
+visible = false
+
+[node name="SettingsMenu" parent="." unique_id=1195811390 instance=ExtResource("16_lyywo")]
+process_mode = 2
+visible = false
+
+[node name="DebugLayer" type="CanvasLayer" parent="." unique_id=389921551]
+process_mode = 3
+layer = 128
+visible = false
+
+[node name="DebugRoot" type="Control" parent="DebugLayer" unique_id=1584273552]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+mouse_filter = 2
+mouse_behavior_recursive = 1
+
+[node name="DebugTextOverlay" parent="DebugLayer/DebugRoot" unique_id=1309649993 instance=ExtResource("17_3kw6q")]
+layout_mode = 1
+offset_top = -46.0
+offset_bottom = -46.0
+
+[connection signal="timeout" from="Pausable/InBetweenWaves" to="Pausable/WaveManager" method="_on_in_between_waves_timeout"]
+[connection signal="pressed" from="Pausable/PauseBtn" to="." method="_on_pause_btn_pressed"]

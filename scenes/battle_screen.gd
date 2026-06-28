@@ -5,6 +5,7 @@ extends Node
 @export var pause_menu: PauseMenu
 @export var settings_menu: Settings
 @export var player : PackedScene = preload("res://scenes/battle_player.tscn")
+@export var player_spawn : Marker2D
 
 var main_menu : String = "res://scenes/main_menu.tscn"
 var is_option_menu_open : bool = false

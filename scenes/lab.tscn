@@ -26,7 +26,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = false
-tracks/0/path = NodePath("Pausable/UpgradeScreen/Clicker:position")
+tracks/0/path = NodePath("Pausable/UpgradeScene/Clicker:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -51,7 +51,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Pausable/UpgradeScreen/Clicker:position")
+tracks/0/path = NodePath("Pausable/UpgradeScene/Clicker:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -103,7 +103,7 @@ process_mode = 3
 script = ExtResource("1_f1r8i")
 pause_menu = NodePath("CanvasLayer/PauseMenu")
 settings_menu = NodePath("CanvasLayer/SettingsMenu")
-levels = Array[String](["res://scenes/battle_screen.tscn"])
+levels = Array[String](["res://scenes/battle_screen.tscn", "res://scenes/Levels/level_2.tscn"])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1472098651]
 process_mode = 3
@@ -123,7 +123,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="UpgradeScreen" type="Control" parent="CanvasLayer/Pausable" unique_id=1309087774]
+[node name="UpgradeScene" type="Control" parent="CanvasLayer/Pausable" unique_id=1309087774]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -132,7 +132,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Background" type="TextureRect" parent="CanvasLayer/Pausable/UpgradeScreen" unique_id=1778385885]
+[node name="Background" type="TextureRect" parent="CanvasLayer/Pausable/UpgradeScene" unique_id=1778385885]
 z_index = -100
 texture_filter = 1
 layout_mode = 1
@@ -144,12 +144,12 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_hem3r")
 expand_mode = 2
 
-[node name="Player" parent="CanvasLayer/Pausable/UpgradeScreen" unique_id=2126503732 instance=ExtResource("11_xu7et")]
+[node name="Player" parent="CanvasLayer/Pausable/UpgradeScene" unique_id=2126503732 instance=ExtResource("11_xu7et")]
 unique_name_in_owner = true
 position = Vector2(250, 118)
 autoplay = "idle"
 
-[node name="Clicker" type="TextureButton" parent="CanvasLayer/Pausable/UpgradeScreen" unique_id=1143035170]
+[node name="Clicker" type="TextureButton" parent="CanvasLayer/Pausable/UpgradeScene" unique_id=1143035170]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -166,12 +166,12 @@ grow_vertical = 2
 texture_normal = ExtResource("2_hem3r")
 script = ExtResource("3_q4uld")
 
-[node name="Props" type="Control" parent="CanvasLayer/Pausable/UpgradeScreen" unique_id=1898880921]
+[node name="Props" type="Control" parent="CanvasLayer/Pausable/UpgradeScene" unique_id=1898880921]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="UpgradeLabel" type="Label" parent="CanvasLayer/Pausable/UpgradeScreen/Props" unique_id=1030032563]
+[node name="UpgradeLabel" type="Label" parent="CanvasLayer/Pausable/UpgradeScene/Props" unique_id=1030032563]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -190,7 +190,7 @@ theme_override_font_sizes/font_size = 10
 text = "Upgrades"
 horizontal_alignment = 1
 
-[node name="StatsLabel" type="Label" parent="CanvasLayer/Pausable/UpgradeScreen/Props" unique_id=2016514304]
+[node name="StatsLabel" type="Label" parent="CanvasLayer/Pausable/UpgradeScene/Props" unique_id=2016514304]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -209,7 +209,7 @@ theme_override_font_sizes/font_size = 10
 text = "Stats"
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Pausable/UpgradeScreen/Props" unique_id=133571857]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Pausable/UpgradeScene/Props" unique_id=133571857]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -224,7 +224,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_f680m")
 
-[node name="UpgradesBtn" type="TextureButton" parent="CanvasLayer/Pausable/UpgradeScreen/Props" unique_id=2104824135]
+[node name="UpgradesBtn" type="TextureButton" parent="CanvasLayer/Pausable/UpgradeScene/Props" unique_id=2104824135]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -239,23 +239,23 @@ grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("4_q4uld")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Pausable/UpgradeScreen" unique_id=855286506]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Pausable/UpgradeScene" unique_id=855286506]
 unique_name_in_owner = true
 root_node = NodePath("../../..")
 libraries/ = SubResource("AnimationLibrary_jy24p")
 autoplay = &"health_warning"
 
-[node name="AnimationTimer" type="Timer" parent="CanvasLayer/Pausable/UpgradeScreen" unique_id=411291968]
+[node name="AnimationTimer" type="Timer" parent="CanvasLayer/Pausable/UpgradeScene" unique_id=411291968]
 
-[node name="ClickSound" type="AudioStreamPlayer2D" parent="CanvasLayer/Pausable/UpgradeScreen" unique_id=542694547]
+[node name="ClickSound" type="AudioStreamPlayer2D" parent="CanvasLayer/Pausable/UpgradeScene" unique_id=542694547]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamWAV_m131j")
 
-[node name="SteamSound" type="AudioStreamPlayer2D" parent="CanvasLayer/Pausable/UpgradeScreen" unique_id=1861285990]
+[node name="SteamSound" type="AudioStreamPlayer2D" parent="CanvasLayer/Pausable/UpgradeScene" unique_id=1861285990]
 unique_name_in_owner = true
 stream = ExtResource("14_5tteu")
 
-[node name="BattleBtn" type="TextureButton" parent="CanvasLayer/Pausable/UpgradeScreen" unique_id=1122038097]
+[node name="BattleBtn" type="TextureButton" parent="CanvasLayer/Pausable/UpgradeScene" unique_id=1122038097]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -301,7 +301,7 @@ visible = false
 process_mode = 2
 visible = false
 
-[connection signal="pressed" from="CanvasLayer/Pausable/UpgradeScreen/Props/UpgradesBtn" to="." method="_on_upgrades_btn_pressed"]
-[connection signal="finished" from="CanvasLayer/Pausable/UpgradeScreen/ClickSound" to="CanvasLayer/Pausable/UpgradeScreen/Clicker" method="_on_click_sound_finished"]
-[connection signal="pressed" from="CanvasLayer/Pausable/UpgradeScreen/BattleBtn" to="." method="_on_battle_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/Pausable/UpgradeScene/Props/UpgradesBtn" to="." method="_on_upgrades_btn_pressed"]
+[connection signal="finished" from="CanvasLayer/Pausable/UpgradeScene/ClickSound" to="CanvasLayer/Pausable/UpgradeScene/Clicker" method="_on_click_sound_finished"]
+[connection signal="pressed" from="CanvasLayer/Pausable/UpgradeScene/BattleBtn" to="." method="_on_battle_btn_pressed"]
 [connection signal="pressed" from="CanvasLayer/Pausable/PauseBtn" to="." method="_on_pause_btn_pressed"]

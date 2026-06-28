@@ -4,6 +4,7 @@ extends Control
 #FIXME The large asset error that appears when I save this scene
 @onready var settings_menu: Control = $SettingsMenu
 var lab_scene: String = "res://scenes/lab.tscn"
+var level_1: String = "res://scenes/Levels/battle_screen.tscn"
 
 func _ready() -> void:
 	var tree = get_tree()
@@ -12,7 +13,7 @@ func _ready() -> void:
 	%StartBtn.pressed.connect(play)
 	
 func play():
-	LevelTransition.change_scene_to(lab_scene)
+	LevelTransition.change_scene_to(level_1)
 	
 
 func _on_quit_btn_pressed() -> void:

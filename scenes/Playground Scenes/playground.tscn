@@ -205,7 +205,10 @@ position = Vector2(160, 91)
 
 [node name="EnemySpawnPoint" type="Marker2D" parent="." unique_id=1559572353 groups=["ground_spawns"]]
 unique_name_in_owner = true
-position = Vector2(320, 107)
+position = Vector2(320, 114)
+
+[node name="PlayerSpawnPoint" type="Marker2D" parent="." unique_id=880092861]
+position = Vector2(38, 116)
 
 [node name="EnemySpawnPoint2" type="Marker2D" parent="." unique_id=1747823709 groups=["sky_spawns"]]
 unique_name_in_owner = true
@@ -219,13 +222,11 @@ autostart = true
 y_sort_enabled = true
 
 [node name="WaveManager" parent="." unique_id=1472363141 node_paths=PackedStringArray("ground_spawn_point", "air_spawn_point", "enemy_container") instance=ExtResource("8_f40nx")]
+position = Vector2(0, 7)
 waves = Array[ExtResource("10_h2rem")]([ExtResource("11_jb0l0")])
 ground_spawn_point = NodePath("../EnemySpawnPoint")
 air_spawn_point = NodePath("../EnemySpawnPoint2")
 enemy_container = NodePath("../EnemyContainer")
-
-[node name="PlayerSpawnPoint" type="Marker2D" parent="." unique_id=880092861]
-position = Vector2(38, 102)
 
 [connection signal="timeout" from="InBetweenWaves" to="WaveManager" method="_on_in_between_waves_timeout"]
 

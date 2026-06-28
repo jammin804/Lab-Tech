@@ -6,7 +6,6 @@
 [resource]
 script = ExtResource("2_nocth")
 title = "SFR Blaster"
-can_charge = true
 base_stagger_damage = 0.0
 base_burn_chance = 0.0
 base_burn_damage = 0.0

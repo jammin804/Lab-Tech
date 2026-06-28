@@ -1,0 +1,417 @@
+[gd_scene format=3 uid="uid://btwv4xs5rbw63"]
+
+[ext_resource type="Texture2D" uid="uid://bp4n4b1ar2gak" path="res://assets/ui/skill_tree/charge.png" id="1_lxcpa"]
+[ext_resource type="Script" uid="uid://cfn1v5pt1ukab" path="res://scripts/ui/skill_tree.gd" id="1_m53af"]
+[ext_resource type="PackedScene" uid="uid://cylekjpm2np0q" path="res://scenes/UI/upgrade.tscn" id="1_pe2t5"]
+[ext_resource type="Script" uid="uid://fa5x46oa8uta" path="res://resources/SkillTree/skill.gd" id="2_hyse7"]
+[ext_resource type="Script" uid="uid://d332ldvfmgnhy" path="res://resources/PlayerData/player_stats.gd" id="3_tbyh4"]
+[ext_resource type="Texture2D" uid="uid://dx62vu0q0honp" path="res://assets/props/container-small-gray.png" id="6_bwmi7"]
+[ext_resource type="Script" uid="uid://cbi5k4xaq4w7p" path="res://scripts/ui/ui_money.gd" id="6_tltv1"]
+[ext_resource type="Texture2D" uid="uid://6rai0s8thhwg" path="res://assets/ui/skill_tree/power.png" id="7_hcl88"]
+[ext_resource type="Texture2D" uid="uid://cao1bbbw2ekum" path="res://assets/ui/skill_tree/rapid.png" id="8_hcl88"]
+[ext_resource type="Texture2D" uid="uid://nust27da1vec" path="res://assets/ui/skill_tree/Scifi weapons and items.png" id="9_uqing"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qti4y"]
+bg_color = Color(0.039215688, 0.02745098, 0.14901961, 0.9882353)
+
+[sub_resource type="Resource" id="Resource_uqing"]
+script = ExtResource("3_tbyh4")
+auto_fire = true
+metadata/_custom_type_script = "uid://d332ldvfmgnhy"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5m6i"]
+atlas = ExtResource("9_uqing")
+region = Rect2(32, 353, 32, 28)
+
+[sub_resource type="Resource" id="Resource_qti4y"]
+script = ExtResource("2_hyse7")
+name = "Auto Fire"
+texture = SubResource("AtlasTexture_s5m6i")
+cost = 20
+stats = SubResource("Resource_uqing")
+metadata/_custom_type_script = "uid://fa5x46oa8uta"
+
+[sub_resource type="Resource" id="Resource_hyse7"]
+script = ExtResource("3_tbyh4")
+battery_tanks = 2
+rapid = 0.45
+metadata/_custom_type_script = "uid://d332ldvfmgnhy"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqing"]
+atlas = ExtResource("1_lxcpa")
+region = Rect2(17, 2, 30, 27)
+
+[sub_resource type="Resource" id="Resource_6nr3g"]
+script = ExtResource("2_hyse7")
+name = "Charge I"
+texture = SubResource("AtlasTexture_uqing")
+cost = 10
+stats = SubResource("Resource_hyse7")
+metadata/_custom_type_script = "uid://fa5x46oa8uta"
+
+[sub_resource type="Resource" id="Resource_tbyh4"]
+script = ExtResource("3_tbyh4")
+charge_damage_multipler = 0.2
+metadata/_custom_type_script = "uid://d332ldvfmgnhy"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmcmc"]
+atlas = ExtResource("1_lxcpa")
+region = Rect2(17, 2, 30, 27)
+
+[sub_resource type="Resource" id="Resource_m53af"]
+script = ExtResource("2_hyse7")
+name = "Charge II"
+texture = SubResource("AtlasTexture_vmcmc")
+cost = 100
+stats = SubResource("Resource_tbyh4")
+metadata/_custom_type_script = "uid://fa5x46oa8uta"
+
+[sub_resource type="Resource" id="Resource_tltv1"]
+script = ExtResource("3_tbyh4")
+can_charge = false
+charge_damage_multipler = 0.0
+metadata/_custom_type_script = "uid://d332ldvfmgnhy"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_utb3r"]
+atlas = ExtResource("1_lxcpa")
+region = Rect2(17, 2, 30, 27)
+
+[sub_resource type="Resource" id="Resource_hcl88"]
+script = ExtResource("2_hyse7")
+name = "Charge III"
+texture = SubResource("AtlasTexture_utb3r")
+cost = 500
+stats = SubResource("Resource_tltv1")
+metadata/_custom_type_script = "uid://fa5x46oa8uta"
+
+[sub_resource type="Resource" id="Resource_xjuf2"]
+script = ExtResource("2_hyse7")
+name = "Battery I"
+texture = ExtResource("6_bwmi7")
+cost = 100
+stats = SubResource("Resource_hyse7")
+metadata/_custom_type_script = "uid://fa5x46oa8uta"
+
+[sub_resource type="Resource" id="Resource_qlden"]
+script = ExtResource("3_tbyh4")
+rapid = 0.15
+metadata/_custom_type_script = "uid://d332ldvfmgnhy"
+
+[sub_resource type="Resource" id="Resource_imi8e"]
+script = ExtResource("2_hyse7")
+name = "Battery II"
+texture = ExtResource("6_bwmi7")
+cost = 500
+stats = SubResource("Resource_qlden")
+metadata/_custom_type_script = "uid://fa5x46oa8uta"
+
+[sub_resource type="Resource" id="Resource_4pw3m"]
+script = ExtResource("3_tbyh4")
+battery_tanks = 4
+metadata/_custom_type_script = "uid://d332ldvfmgnhy"
+
+[sub_resource type="Resource" id="Resource_rdjq7"]
+script = ExtResource("2_hyse7")
+name = "Battery III"
+texture = ExtResource("6_bwmi7")
+cost = 1000
+stats = SubResource("Resource_4pw3m")
+metadata/_custom_type_script = "uid://fa5x46oa8uta"
+
+[sub_resource type="Resource" id="Resource_xlljd"]
+script = ExtResource("3_tbyh4")
+damage_multipler = 1.25
+power = 4
+metadata/_custom_type_script = "uid://d332ldvfmgnhy"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebwn2"]
+atlas = ExtResource("7_hcl88")
+region = Rect2(570, 10, 59, 63)
+
+[sub_resource type="Resource" id="Resource_5kmnm"]
+script = ExtResource("2_hyse7")
+name = "Power I"
+texture = SubResource("AtlasTexture_ebwn2")
+cost = 10
+stats = SubResource("Resource_xlljd")
+metadata/_custom_type_script = "uid://fa5x46oa8uta"
+
+[sub_resource type="Resource" id="Resource_fs4j8"]
+script = ExtResource("3_tbyh4")
+damage_multipler = 2.0
+power = 8
+metadata/_custom_type_script = "uid://d332ldvfmgnhy"
+
+[sub_resource type="Resource" id="Resource_x8prj"]
+script = ExtResource("2_hyse7")
+name = "Power II"
+texture = SubResource("AtlasTexture_ebwn2")
+cost = 100
+stats = SubResource("Resource_fs4j8")
+metadata/_custom_type_script = "uid://fa5x46oa8uta"
+
+[sub_resource type="Resource" id="Resource_k5nmo"]
+script = ExtResource("3_tbyh4")
+damage_multipler = 3.0
+power = 16
+metadata/_custom_type_script = "uid://d332ldvfmgnhy"
+
+[sub_resource type="Resource" id="Resource_1rky4"]
+script = ExtResource("2_hyse7")
+name = "Power III"
+texture = SubResource("AtlasTexture_ebwn2")
+cost = 1000
+stats = SubResource("Resource_k5nmo")
+metadata/_custom_type_script = "uid://fa5x46oa8uta"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjuf2"]
+atlas = ExtResource("8_hcl88")
+region = Rect2(669, 28, 28, 30)
+
+[sub_resource type="Resource" id="Resource_pmtru"]
+script = ExtResource("2_hyse7")
+name = "Rapid I"
+texture = SubResource("AtlasTexture_xjuf2")
+cost = 200
+stats = SubResource("Resource_hyse7")
+metadata/_custom_type_script = "uid://fa5x46oa8uta"
+
+[sub_resource type="Resource" id="Resource_21sot"]
+script = ExtResource("2_hyse7")
+name = "Rapid II"
+texture = SubResource("AtlasTexture_xjuf2")
+cost = 500
+stats = SubResource("Resource_qlden")
+metadata/_custom_type_script = "uid://fa5x46oa8uta"
+
+[node name="SkillTree" type="Panel" unique_id=1207228438]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qti4y")
+script = ExtResource("1_m53af")
+
+[node name="AutoFire" type="Control" parent="." unique_id=1654472621]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Upgrade" parent="AutoFire" unique_id=416127191 instance=ExtResource("1_pe2t5")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = 6.0
+offset_right = 8.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+skill = SubResource("Resource_qti4y")
+
+[node name="Charge" type="Control" parent="." unique_id=1052877702]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Upgrade" parent="Charge" unique_id=1815042689 instance=ExtResource("1_pe2t5")]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 96.0
+offset_top = -2.0
+offset_right = 120.0
+offset_bottom = 22.0
+grow_vertical = 2
+skill = SubResource("Resource_6nr3g")
+
+[node name="Upgrade2" parent="Charge" unique_id=538210549 instance=ExtResource("1_pe2t5")]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 56.0
+offset_top = -2.0
+offset_right = 80.0
+offset_bottom = 22.0
+grow_vertical = 2
+skill = SubResource("Resource_m53af")
+
+[node name="Upgrade3" parent="Charge" unique_id=1854395458 instance=ExtResource("1_pe2t5")]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = -2.0
+offset_bottom = 22.0
+grow_vertical = 2
+skill = SubResource("Resource_hcl88")
+
+[node name="Battery" type="Control" parent="." unique_id=824738165]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Upgrade" parent="Battery" unique_id=1873413568 instance=ExtResource("1_pe2t5")]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -2.0
+offset_right = -96.0
+offset_bottom = 22.0
+grow_horizontal = 0
+grow_vertical = 2
+skill = SubResource("Resource_xjuf2")
+
+[node name="Upgrade2" parent="Battery" unique_id=1899166574 instance=ExtResource("1_pe2t5")]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -2.0
+offset_right = -56.0
+offset_bottom = 22.0
+grow_horizontal = 0
+grow_vertical = 2
+skill = SubResource("Resource_imi8e")
+
+[node name="Upgrade3" parent="Battery" unique_id=1041204042 instance=ExtResource("1_pe2t5")]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -2.0
+offset_right = -16.0
+offset_bottom = 22.0
+grow_horizontal = 0
+grow_vertical = 2
+skill = SubResource("Resource_rdjq7")
+
+[node name="Power" type="Control" parent="." unique_id=926757035]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Upgrade" parent="Power" unique_id=1076823308 instance=ExtResource("1_pe2t5")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -16.0
+offset_top = 64.0
+offset_right = 8.0
+offset_bottom = 88.0
+grow_horizontal = 2
+skill = SubResource("Resource_5kmnm")
+
+[node name="Upgrade2" parent="Power" unique_id=609483975 instance=ExtResource("1_pe2t5")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -16.0
+offset_top = 32.0
+offset_right = 8.0
+offset_bottom = 56.0
+grow_horizontal = 2
+skill = SubResource("Resource_x8prj")
+
+[node name="Upgrade3" parent="Power" unique_id=1215208546 instance=ExtResource("1_pe2t5")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -16.0
+offset_right = 8.0
+offset_bottom = 24.0
+grow_horizontal = 2
+skill = SubResource("Resource_1rky4")
+
+[node name="Rapid" type="Control" parent="." unique_id=1100876458]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Upgrade" parent="Rapid" unique_id=2115519949 instance=ExtResource("1_pe2t5")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -60.0
+offset_right = 8.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+skill = SubResource("Resource_pmtru")
+
+[node name="Upgrade2" parent="Rapid" unique_id=2140672482 instance=ExtResource("1_pe2t5")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -28.0
+offset_right = 8.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+skill = SubResource("Resource_21sot")
+
+[node name="Money" type="Label" parent="." unique_id=1316589612]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -56.0
+offset_top = 8.0
+offset_right = -16.0
+offset_bottom = 31.0
+grow_horizontal = 0
+horizontal_alignment = 2
+script = ExtResource("6_tltv1")
