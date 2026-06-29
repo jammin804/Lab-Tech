@@ -1,8 +1,6 @@
 class_name Pickup
 extends Area2D
 
-#signal increase_currency(item_name : String)
-
 var direction : Vector2
 var speed : float = 175.0
 
@@ -30,6 +28,11 @@ func _on_body_entered(body: Node2D) -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
+	var currency_name = type.resource_path.get_file().trim_suffix(".tres")
 	if area.name == "Magnet":
+		if currency_name == "money":
+			Events.increase_currency.emit(type.title, type.money)
+		elif currency_name == "scrap":
+			Events.increase_currency.emit(type.title, type.scraps)
 		queue_free()
-		Events.increase_currency.emit(type.title, type.money)
+		print("Type is " + currency_name)

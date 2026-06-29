@@ -12,11 +12,14 @@ var life_steal : int = 5
 
 var current_element : WeaponData.Element = WeaponData.Element.DEFAULT
 
-
+func _ready() -> void:
+	#print("From projectile" + str(damage))
+	pass
 
 func _physics_process(delta: float) -> void:
 	if not has_collided:
 		position += direction * speed * delta
+		#damage = PlayerManager.po
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
@@ -29,13 +32,9 @@ func _on_body_entered(body: Node2D) -> void:
 	
 	if body.has_method("take_damage"):
 		Events.enemy_hit_by_projectile.emit(life_steal)
+		print(damage)
 		
-		var hit_data = HitBoxData.new()
-		hit_data.base_damage = damage
-		hit_data.element = current_element
-		hit_data.source_node = self
-		
-		body.take_damage(hit_data)
+		body.take_damage(damage, WeaponData.Element.DEFAULT)
 	
 	has_collided = true
 	bullet.hide()

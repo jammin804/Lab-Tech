@@ -52,6 +52,11 @@ func _ready() -> void:
 	money = SaveData.money
 	
 	Events.increase_currency.connect(gain_money)
+	
+	print("Battle Player Stats: Power: " + str(power))
+	print("Battle Player Stats: Rapid: " + str(rapid))
+	print("Battle Player Stats: Battery Level: " + str(battery_level))
+	
 
 func _input(event) -> void:
 	if event is InputEventKey:
@@ -63,12 +68,8 @@ func _process(delta: float) -> void:
 	var stats = PlayerManager.current_stats
 	var percentage = (current_charge_percent / max_charge_percent) * 100
 	
-	if Input.is_action_just_pressed("ui_select"):
-		add_to_max_health(100)
-	
 	if stats.can_charge:
 		if Input.is_action_pressed("left_click"):
-			#time_held += delta
 		
 			current_charge_percent += delta * stats.charge_rate
 		
@@ -103,6 +104,7 @@ func shoot(charge_percentage : float) -> void:
 	shoot_cooldown_timer.start()
 	
 	var final_damage = player_stats.power * player_stats.damage_multipler
+	
 	var final_element = current_weapon.current_element
 	
 	if final_element == current_weapon.Element.DEFAULT:
@@ -131,21 +133,19 @@ func shoot(charge_percentage : float) -> void:
 		new_bullet.scale = Vector2.ONE
 	
 	new_bullet.damage = final_damage * damage_multiper
+	
 	new_bullet.current_element = final_element
 
 	
 	new_bullet.global_position = marker_2d.global_position
 	
-	
-		
-		
+
 	get_tree().current_scene.add_child(new_bullet)
 	damage_player(drain_amount)
 
-	print("Current shoot damage : " + str(new_bullet.damage))
 
 func gain_money(item_name:String, amount:int):
-	print(str(item_name) + " dropped and you gained " + str(amount))
+	#print(str(item_name) + " dropped and you gained " + str(amount))
 	money += amount
 	
 func _on_lab_battle_scene_start() -> void:
@@ -175,6 +175,5 @@ func _on_area_2d_mouse_exited() -> void:
 
 
 func _on_magnet_area_entered(area: Area2D) -> void:
-	print(area)
 	if area.has_method("follow"):
 		area.follow(self)

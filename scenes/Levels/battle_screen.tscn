@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://bdpj78s126rdu"]
 
-[ext_resource type="Texture2D" uid="uid://hw3yy7aoqac3" path="res://assets/backgrounds/bg-1.png" id="1_441kk"]
 [ext_resource type="PackedScene" uid="uid://blqe7ke2t7a3n" path="res://scenes/UI/custom_mouse.tscn" id="1_h607l"]
 [ext_resource type="Script" uid="uid://084flrltlmjn" path="res://scenes/battle_screen.gd" id="1_p5bt8"]
+[ext_resource type="Texture2D" uid="uid://cvjej43nsn7ha" path="res://assets/backgrounds/level_3.png" id="2_6gkuo"]
 [ext_resource type="PackedScene" uid="uid://cooeppa7wcj7x" path="res://scenes/camera.tscn" id="4_6lb5u"]
-[ext_resource type="PackedScene" uid="uid://b3gf3rdu50uej" path="res://scenes/UI/battery_hud.tscn" id="4_20e4q"]
 [ext_resource type="PackedScene" uid="uid://83rd1mmscj3k" path="res://scenes/Playground Scenes/wave_manager.tscn" id="4_jwmpd"]
 [ext_resource type="Script" uid="uid://bta3my2bfuxdr" path="res://resources/WaveData/wave_data.gd" id="5_aqsb2"]
 [ext_resource type="Resource" uid="uid://b53godrykoobg" path="res://resources/WaveData/level1_waves/wave_01.tres" id="6_h607l"]
@@ -19,7 +18,7 @@
 [ext_resource type="Resource" uid="uid://srv7ffo3rdex" path="res://resources/Ovani/EvilGrudge.tres" id="15_c5bog"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jkca0"]
-atlas = ExtResource("1_441kk")
+atlas = ExtResource("2_6gkuo")
 region = Rect2(0, 0, 288, 208)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lskjy"]
@@ -37,8 +36,8 @@ region = Rect2(26, 21, 16, 16)
 [node name="BattleScreen" type="Node" unique_id=1489670400 node_paths=PackedStringArray("pause_menu", "settings_menu", "player_spawn")]
 process_mode = 3
 script = ExtResource("1_p5bt8")
-pause_menu = NodePath("PauseMenu")
-settings_menu = NodePath("SettingsMenu")
+pause_menu = NodePath("PauseLayer/PauseMenu")
+settings_menu = NodePath("PauseLayer/SettingsMenu")
 player_spawn = NodePath("Pausable/PlayerSpawnPoint")
 
 [node name="Background" type="TextureRect" parent="." unique_id=62776617]
@@ -64,13 +63,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Battery" parent="Pausable" unique_id=1694848608 instance=ExtResource("4_20e4q")]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="InBetweenWaves" type="Timer" parent="Pausable" unique_id=182636926]
 unique_name_in_owner = true
 one_shot = true
@@ -81,11 +73,11 @@ position = Vector2(160, 90)
 
 [node name="EnemySpawnPoint" type="Marker2D" parent="Pausable" unique_id=195233964 groups=["ground_spawns"]]
 unique_name_in_owner = true
-position = Vector2(314, 157)
+position = Vector2(312, 128)
 
 [node name="EnemySpawnPoint2" type="Marker2D" parent="Pausable" unique_id=1077596327 groups=["ground_spawns"]]
 unique_name_in_owner = true
-position = Vector2(314, 107)
+position = Vector2(312, 96)
 
 [node name="Enemies" type="Node2D" parent="Pausable" unique_id=374635073]
 
@@ -119,15 +111,7 @@ metadata/_custom_type_script = "uid://txbrbq2y72mm"
 
 [node name="PlayerSpawnPoint" type="Marker2D" parent="Pausable" unique_id=282894702]
 unique_name_in_owner = true
-position = Vector2(38, 154)
-
-[node name="PauseMenu" parent="." unique_id=1716673666 instance=ExtResource("11_qm3lx")]
-process_mode = 2
-visible = false
-
-[node name="SettingsMenu" parent="." unique_id=1195811390 instance=ExtResource("12_p5bt8")]
-process_mode = 2
-visible = false
+position = Vector2(32, 128)
 
 [node name="DebugLayer" type="CanvasLayer" parent="." unique_id=389921551]
 process_mode = 3
@@ -149,6 +133,17 @@ mouse_behavior_recursive = 1
 layout_mode = 1
 offset_top = -46.0
 offset_bottom = -46.0
+
+[node name="PauseLayer" type="CanvasLayer" parent="." unique_id=1812816143]
+layer = 300
+
+[node name="SettingsMenu" parent="PauseLayer" unique_id=1195811390 instance=ExtResource("12_p5bt8")]
+process_mode = 2
+visible = false
+
+[node name="PauseMenu" parent="PauseLayer" unique_id=1716673666 instance=ExtResource("11_qm3lx")]
+process_mode = 2
+visible = false
 
 [connection signal="timeout" from="Pausable/InBetweenWaves" to="Pausable/WaveManager" method="_on_in_between_waves_timeout"]
 [connection signal="pressed" from="Pausable/PauseBtn" to="." method="_on_pause_btn_pressed"]

@@ -34,24 +34,25 @@ func _ready() -> void:
 	destroy_anim.hide()
 	if stats:
 		current_data = stats.duplicate()
+		
 	#Change health based on level
 	current_enemy_health = current_data.health 
 	current_enemy_health = floor( (current_enemy_health + 10) * Globals.level * randf_range(1.0, 1.5) )
-	print("Current Health",current_enemy_health)
+	print("From Enemy.gd Current Health of this enemy is: ",current_enemy_health)
 
 func _process(delta: float) -> void:
 	if not is_dead:
 		move_enemy(delta)
 
 	
-func take_damage(hitbox_data : HitBoxData) -> void:
+func take_damage(incoming_damage: float, incoming_element:WeaponData.Element) -> void:
 	if is_dead:
 		return
-	#TODO Get help understanding hitbox using the refcount 
-	var final_damage = hitbox_data.base_damage
-	match hitbox_data.element:
+		
+	var final_damage = incoming_damage
+	match incoming_element:
 		WeaponData.Element.WATER:
-			#Apply wet status
+			##Apply wet status
 			status_component.apply_status(WeaponData.Element.WATER, 5.0)
 		WeaponData.Element.LIGHTING:
 			if status_component.has_status(WeaponData.Element.WATER):
@@ -63,6 +64,7 @@ func take_damage(hitbox_data : HitBoxData) -> void:
 			status_component.apply_status(WeaponData.Element.FIRE, 3.0)
 			
 	current_enemy_health -= final_damage
+	print("Current Enemy Health: " + str(current_enemy_health))
 	
 	hit_flash_anim.play("hit")
 	#TODO Spawn floating damage numbers here using 'final damage'
