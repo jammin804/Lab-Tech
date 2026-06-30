@@ -1,6 +1,6 @@
 extends Node2D
 
-var money = 10000
+var money = 1000
 var skill_tree = []
 
 const PATH = "user://player_data.cfg"
@@ -24,5 +24,5 @@ func load_data():
 	if config.load(PATH) != OK:
 		set_and_save()
 		
-	money = config.get_value("Player", "money", 10000)
+	money = config.get_value("Player", "money", 1000)
 	skill_tree = config.get_value("Player", "skill_tree", [])

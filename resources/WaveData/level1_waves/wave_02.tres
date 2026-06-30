@@ -2,9 +2,222 @@
 
 [ext_resource type="Script" uid="uid://bta3my2bfuxdr" path="res://resources/WaveData/wave_data.gd" id="1_vx6sc"]
 [ext_resource type="Script" uid="uid://dl60evs3evp8i" path="res://resources/WaveData/spawn_info.gd" id="2_ry8iu"]
-[ext_resource type="Resource" uid="uid://dp1iphj31u35i" path="res://resources/WaveData/spawn_info/level1/spawn_ground_bots.tres" id="3_ry8iu"]
+[ext_resource type="Script" uid="uid://b850wre5f8oip" path="res://scripts/enemy.gd" id="3_yv7j8"]
+[ext_resource type="Resource" uid="uid://c6lgcvy8xml40" path="res://resources/EnemyData/BasicBot.tres" id="4_o03ld"]
+[ext_resource type="PackedScene" uid="uid://c3j8bdc87ysqc" path="res://scenes/Currency/pickups.tscn" id="5_2ppj2"]
+[ext_resource type="PackedScene" uid="uid://cluqesxih2vx0" path="res://scenes/enemy_sprite.tscn" id="6_7f0xk"]
+[ext_resource type="Shader" uid="uid://cht2qws53baj7" path="res://shaders/hitflash.gdshader" id="7_4ntcj"]
+[ext_resource type="Texture2D" uid="uid://dcstwgwvdksfg" path="res://assets/enemy/explosions/explode9.png" id="8_effuk"]
+[ext_resource type="Script" uid="uid://bmfxk2cb1ujol" path="res://scripts/component/status_component.gd" id="9_pdjyx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nenq2"]
+resource_local_to_scene = true
+shader = ExtResource("7_4ntcj")
+shader_parameter/hit_flash_color = Color(1, 1, 1, 1)
+shader_parameter/hit_flash_on = false
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bsing"]
+radius = 17.0
+height = 42.0
+
+[sub_resource type="Animation" id="Animation_xsfyf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("enemy:material:shader_parameter/hit_flash_on")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("enemy:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_c4w8v"]
+resource_name = "death"
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("enemy:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.20000845, 0.4000169, 0.5930483, 0.79538244, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, true]
+}
+
+[sub_resource type="Animation" id="Animation_h8ps3"]
+resource_name = "hit"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("enemy:material:shader_parameter/hit_flash_on")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ebxvl"]
+_data = {
+&"RESET": SubResource("Animation_xsfyf"),
+&"death": SubResource("Animation_c4w8v"),
+&"hit": SubResource("Animation_h8ps3")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d4cuo"]
+radius = 23.021729
+
+[sub_resource type="Gradient" id="Gradient_71rcx"]
+offsets = PackedFloat32Array(0, 0.98578197)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xsfyf"]
+gradient = SubResource("Gradient_71rcx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h8ps3"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 25.0
+direction = Vector3(0.5, -0.5, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 400.0
+gravity = Vector3(0, 700, 0)
+damping_min = 100.00001
+damping_max = 800.00006
+scale_max = 3.0
+color_ramp = SubResource("GradientTexture1D_xsfyf")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4w8v"]
+atlas = ExtResource("8_effuk")
+region = Rect2(0, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwavj"]
+atlas = ExtResource("8_effuk")
+region = Rect2(80, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nenq2"]
+atlas = ExtResource("8_effuk")
+region = Rect2(160, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_md484"]
+atlas = ExtResource("8_effuk")
+region = Rect2(240, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipns3"]
+atlas = ExtResource("8_effuk")
+region = Rect2(320, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qclf"]
+atlas = ExtResource("8_effuk")
+region = Rect2(400, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8i8w"]
+atlas = ExtResource("8_effuk")
+region = Rect2(480, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otmr2"]
+atlas = ExtResource("8_effuk")
+region = Rect2(560, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtq4b"]
+atlas = ExtResource("8_effuk")
+region = Rect2(640, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0cyh"]
+atlas = ExtResource("8_effuk")
+region = Rect2(720, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0wcc"]
+atlas = ExtResource("8_effuk")
+region = Rect2(800, 0, 80, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s1ycm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4w8v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xwavj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nenq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_md484")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ipns3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8qclf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8i8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otmr2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wtq4b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j0cyh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0wcc")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 13.0
+}]
+
+[sub_resource type="PackedScene" id="PackedScene_tu1se"]
+_bundled = {
+"conn_count": 1,
+"conns": PackedInt32Array(1073741835, 1073741834, 51, 50, 2, 0, 0),
+"editable_instances": [],
+"id_paths": [PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array()],
+"names": PackedStringArray("Enemy", "CharacterBody2D", "enemy", "scale", "script", "stats", "is_in_battle_scene", "loot_drop_type", "drop_rate", "enemy", "material", "rotation", "scale", "frame", "frame_progress", "CollisionShape2D", "CollisionShape2D", "visible", "position", "shape", "DamageNumberOrigin", "Node2D", "position", "HitFlashAnim", "AnimationPlayer", "libraries/", "PlayerDetectionArea", "Area2D", "enemy", "CollisionShape2D", "CollisionShape2D", "shape", "GPUParticles2D", "GPUParticles2D", "emitting", "amount", "lifetime", "one_shot", "explosiveness", "process_material", "DestroyAnim", "AnimatedSprite2D", "visible", "sprite_frames", "Spawner", "Marker2D", "position", "StatusComponent", "Node2D", "script", "_on_hit_flash_anim_animation_finished", "animation_finished"),
+"node_count": 11,
+"node_ids": PackedInt32Array(1965764076, 1601589879, 570825910, 560720877, 1013581890, 1832158773, 1494460161, 1566758503, 147869462, 1707807662, 1350344235),
+"node_paths": [NodePath("."), NodePath("."), NodePath("."), NodePath("."), NodePath("."), NodePath("./PlayerDetectionArea"), NodePath("."), NodePath("."), NodePath("."), NodePath("."), NodePath("."), NodePath("HitFlashAnim")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 6, 3, 0, 4, 1, 5, 2, 6, 3, 7, 4, 8, 5, 1, 2, 1073741824, 0, 2147483647, 9, 6, 5, 10, 7, 11, 8, 12, 9, 13, 10, 14, 11, 0, 1073741825, 0, 16, 15, -1, 3, 17, 12, 18, 13, 19, 14, 0, 1073741826, 0, 21, 20, -1, 1, 22, 15, 0, 1073741827, 0, 24, 23, -1, 1, 25, 16, 0, 1073741828, 0, 27, 26, -1, 0, 1, 28, 1073741829, 0, 30, 29, -1, 1, 31, 17, 0, 1073741830, 0, 33, 32, -1, 6, 34, 18, 35, 19, 36, 20, 37, 21, 38, 22, 39, 23, 0, 1073741831, 0, 41, 40, -1, 2, 42, 24, 43, 25, 0, 1073741832, 0, 45, 44, -1, 1, 46, 26, 0, 1073741833, 0, 48, 47, -1, 1, 49, 27, 0),
+"variants": [Vector2(0.5, 0.5), ExtResource("3_yv7j8"), ExtResource("4_o03ld"), true, ExtResource("5_2ppj2"), 100.0, ExtResource("6_7f0xk"), SubResource("ShaderMaterial_nenq2"), -3.1415927, Vector2(1, -1), 5, 0.46939105, false, Vector2(-1, -3), SubResource("CapsuleShape2D_bsing"), Vector2(1, -25), SubResource("AnimationLibrary_ebxvl"), SubResource("CircleShape2D_d4cuo"), false, 20, 0.8, true, 1.0, SubResource("ParticleProcessMaterial_h8ps3"), false, SubResource("SpriteFrames_s1ycm"), Vector2(0, 12), ExtResource("9_pdjyx")],
+"version": 3
+}
+
+[sub_resource type="Resource" id="Resource_vmuhb"]
+script = ExtResource("2_ry8iu")
+enemy_scene = SubResource("PackedScene_tu1se")
+enemy_count = 6
+metadata/_custom_type_script = "uid://dl60evs3evp8i"
 
 [resource]
 script = ExtResource("1_vx6sc")
-spawns = Array[ExtResource("2_ry8iu")]([ExtResource("3_ry8iu")])
+spawns = Array[ExtResource("2_ry8iu")]([SubResource("Resource_vmuhb")])
 metadata/_custom_type_script = "uid://bta3my2bfuxdr"

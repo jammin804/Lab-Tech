@@ -4,12 +4,14 @@
 [ext_resource type="Script" uid="uid://62af6pey5nu4" path="res://scripts/lab.gd" id="1_f1r8i"]
 [ext_resource type="Texture2D" uid="uid://4ice6uiioh1a" path="res://assets/props/capsule2.png" id="2_hem3r"]
 [ext_resource type="Texture2D" uid="uid://mhmvngsgg13v" path="res://assets/props/lab-table.png" id="3_f680m"]
-[ext_resource type="Script" uid="uid://5tgjvbweswvp" path="res://scripts/clicker.gd" id="3_q4uld"]
 [ext_resource type="Texture2D" uid="uid://dxyc6i7d1knac" path="res://assets/props/console.png" id="4_q4uld"]
+[ext_resource type="Texture2D" uid="uid://dwfn7p11er8rd" path="res://assets/props/lab-table_hover.png" id="8_ijdgx"]
+[ext_resource type="Texture2D" uid="uid://qj56axi37uo" path="res://assets/props/console_hover.png" id="9_eavsi"]
 [ext_resource type="PackedScene" uid="uid://dbxsfllyrb1yt" path="res://scenes/player.tscn" id="11_xu7et"]
 [ext_resource type="Script" uid="uid://txbrbq2y72mm" path="res://plugin/OvaniPlugin/OvaniPlayer.gd" id="13_m131j"]
 [ext_resource type="AudioStream" uid="uid://c6pwf33mn2agb" path="res://assets/music/sfx/steam_hiss.wav" id="14_5tteu"]
 [ext_resource type="Script" uid="uid://m1bfaxshhh8l" path="res://plugin/OvaniPlugin/OvaniSong.gd" id="14_ds7rc"]
+[ext_resource type="PackedScene" uid="uid://btwv4xs5rbw63" path="res://scenes/UI/skill_tree.tscn" id="15_eavsi"]
 [ext_resource type="Resource" uid="uid://srv7ffo3rdex" path="res://resources/Ovani/EvilGrudge.tres" id="15_kfqsw"]
 [ext_resource type="PackedScene" uid="uid://bd1e7fmt2sl4m" path="res://scenes/UI/settings_menu.tscn" id="17_eavsi"]
 [ext_resource type="Texture2D" uid="uid://b8h7y5diislmb" path="res://assets/ui/hud/Settigns.png" id="17_ftxkm"]
@@ -20,6 +22,14 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_hem3r"]
 atlas = ExtResource("1_bb6uc")
 region = Rect2(0, 0, 288, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qti4y"]
+atlas = ExtResource("8_ijdgx")
+region = Rect2(7, 4, 42, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eavsi"]
+atlas = ExtResource("9_eavsi")
+region = Rect2(12, 7, 57, 52)
 
 [sub_resource type="Animation" id="Animation_4kvtl"]
 length = 0.001
@@ -164,7 +174,6 @@ offset_bottom = 51.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("2_hem3r")
-script = ExtResource("3_q4uld")
 
 [node name="Props" type="Control" parent="CanvasLayer/Pausable/UpgradeScene" unique_id=1898880921]
 anchors_preset = 0
@@ -209,7 +218,7 @@ theme_override_font_sizes/font_size = 10
 text = "Stats"
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Pausable/UpgradeScene/Props" unique_id=133571857]
+[node name="TextureRect" type="TextureButton" parent="CanvasLayer/Pausable/UpgradeScene/Props" unique_id=1434800351]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -222,7 +231,8 @@ offset_right = 203.0
 offset_bottom = 119.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_f680m")
+texture_normal = ExtResource("3_f680m")
+texture_hover = SubResource("AtlasTexture_qti4y")
 
 [node name="UpgradesBtn" type="TextureButton" parent="CanvasLayer/Pausable/UpgradeScene/Props" unique_id=2104824135]
 layout_mode = 1
@@ -238,6 +248,7 @@ offset_bottom = 118.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("4_q4uld")
+texture_hover = SubResource("AtlasTexture_eavsi")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Pausable/UpgradeScene" unique_id=855286506]
 unique_name_in_owner = true
@@ -271,6 +282,12 @@ grow_vertical = 0
 texture_normal = SubResource("AtlasTexture_kfqsw")
 texture_pressed = SubResource("AtlasTexture_kvhjj")
 texture_hover = SubResource("AtlasTexture_iyn56")
+
+[node name="SkillTree" parent="CanvasLayer/Pausable/UpgradeScene" unique_id=688541759 instance=ExtResource("15_eavsi")]
+unique_name_in_owner = true
+visible = false
+z_index = 1
+layout_mode = 1
 
 [node name="LabBGM" type="Node" parent="CanvasLayer/Pausable" unique_id=185395556]
 script = ExtResource("13_m131j")

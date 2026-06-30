@@ -2,6 +2,10 @@ class_name UpgradeButton
 extends TextureButton
 
 @export var skill: Skill
+
+@onready var tooltip = $Tooltip
+@onready var description = $Tooltip/RichTextLabel
+
 var enabled : bool = false:
 	set(value):
 		enabled = value
@@ -10,6 +14,10 @@ var enabled : bool = false:
 func _ready() -> void:
 	if skill:
 		texture_normal = skill.texture
+	mouse_entered.connect(on_mouse_entered)
+	mouse_exited.connect(on_mouse_exited)
+	
+	
 		
 func is_upgradable() -> bool:
 	if get_index() == 0:
@@ -28,5 +36,17 @@ func _on_pressed() -> void:
 		SaveData.money -= skill.cost
 		enabled = true
 		SaveData.set_and_save()
-		get_parent().get_parent().set_skill_tree()
-		get_parent().get_parent().get_total_stats()
+		get_parent().get_parent().get_parent().set_skill_tree()
+		get_parent().get_parent().get_parent().get_total_stats()
+
+func on_mouse_entered() -> void:
+	
+	tooltip.toggle(true)
+	description.text = "[b]{name}[/b] - cost: [color=yellow]{cost}[/color]".format({
+		"name": skill.name,
+		"cost": skill.cost,
+	})
+	
+	
+func on_mouse_exited() -> void:
+	tooltip.toggle(false)

@@ -34,6 +34,7 @@ func _ready() -> void:
 	var stats = PlayerManager.current_stats #FIXME The autoload wouldn't allow me to name is GlobalPlayerManager
 	recalculate_max_health()
 	current_health = max_health
+	print(PlayerManager.current_stats.auto_fire)
 	
 	match stats.current_form:
 		PlayerStats.Form.DEFAULT:
@@ -54,7 +55,11 @@ func recalculate_max_health():
 func damage_player(damage_amount: int) -> void:
 	current_health -= damage_amount
 	current_health = clampf(current_health, 0.0, max_health)
-
+	
+	if current_health <= 0:
+		print("Return to Lab")
+		Engine.time_scale = 0.5
+		LevelTransition.change_scene_to("res://scenes/lab.tscn")
 	health_changed.emit()
 
 func regen_health() -> void: #This should only be for in battle otherwise fill health to 100%

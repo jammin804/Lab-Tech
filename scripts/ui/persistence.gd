@@ -5,7 +5,6 @@ extends Node2D
 func gain_bonus_stats() -> void:
 	var player_stats = PlayerManager.current_stats
 	
-	print(player_stats)
 	player_stats.auto_fire = player_stats.auto_fire or bonus_stats.auto_fire
 	player_stats.can_charge = player_stats.can_charge or bonus_stats.can_charge
 	

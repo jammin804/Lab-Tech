@@ -44,6 +44,7 @@ func _ready() -> void:
 	PlayerManager.load_player_state(self)
 	
 	Persistence.gain_bonus_stats()
+	print(Persistence.bonus_stats.auto_fire)
 	
 	var stats = PlayerManager.current_stats
 	power = stats.power
@@ -66,25 +67,9 @@ func _input(event) -> void:
 	
 func _process(delta: float) -> void:
 	var stats = PlayerManager.current_stats
-	var percentage = (current_charge_percent / max_charge_percent) * 100
+	#var percentage = (current_charge_percent / max_charge_percent) * 100
+	check_if_can_charge(stats, delta)
 	
-	if stats.can_charge:
-		if Input.is_action_pressed("left_click"):
-		
-			current_charge_percent += delta * stats.charge_rate
-		
-			current_charge_percent = clampf(current_charge_percent, 0.0, max_charge_percent)
-			
-			print("Charging my laser " + str(percentage))
-
-		elif Input.is_action_just_released("left_click"):
-			if shoot_cooldown_timer.is_stopped():
-				shoot(current_charge_percent)
-
-			current_charge_percent = 0.0
-	else:
-		if Input.is_action_just_pressed("left_click") and shoot_cooldown_timer.is_stopped():
-			shoot(0.0)
 	
 	if not Input.is_action_just_pressed("left_click"):
 		play("Idle")
@@ -143,10 +128,29 @@ func shoot(charge_percentage : float) -> void:
 	get_tree().current_scene.add_child(new_bullet)
 	damage_player(drain_amount)
 
+func check_if_can_charge(stats: PlayerStats, delta) -> void:
+	if stats.can_charge:
+		if Input.is_action_pressed("left_click"):
+		
+			current_charge_percent += delta * stats.charge_rate
+		
+			current_charge_percent = clampf(current_charge_percent, 0.0, max_charge_percent)
+			
+			#print("Charging my laser " + str(percentage))
 
-func gain_money(item_name:String, amount:int):
-	#print(str(item_name) + " dropped and you gained " + str(amount))
+		elif Input.is_action_just_released("left_click"):
+			if shoot_cooldown_timer.is_stopped():
+				shoot(current_charge_percent)
+
+			current_charge_percent = 0.0
+	else:
+		if Input.is_action_just_pressed("left_click") and shoot_cooldown_timer.is_stopped():
+			shoot(0.0)
+			
+func gain_money(amount:int, item_name:String = "money",):
+	print(str(item_name) + " dropped and you gained " + str(amount))
 	money += amount
+	SaveData.money += amount
 	
 func _on_lab_battle_scene_start() -> void:
 	is_in_battle_scene = true

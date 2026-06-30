@@ -7,13 +7,11 @@
 [ext_resource type="Script" uid="uid://d332ldvfmgnhy" path="res://resources/PlayerData/player_stats.gd" id="3_tbyh4"]
 [ext_resource type="Texture2D" uid="uid://dx62vu0q0honp" path="res://assets/props/container-small-gray.png" id="6_bwmi7"]
 [ext_resource type="Script" uid="uid://cbi5k4xaq4w7p" path="res://scripts/ui/ui_money.gd" id="6_tltv1"]
+[ext_resource type="PackedScene" uid="uid://c286uo55rxlc2" path="res://scenes/UI/tooltip.tscn" id="6_xjuf2"]
 [ext_resource type="Texture2D" uid="uid://6rai0s8thhwg" path="res://assets/ui/skill_tree/power.png" id="7_hcl88"]
 [ext_resource type="Texture2D" uid="uid://cao1bbbw2ekum" path="res://assets/ui/skill_tree/rapid.png" id="8_hcl88"]
 [ext_resource type="Texture2D" uid="uid://nust27da1vec" path="res://assets/ui/skill_tree/Scifi weapons and items.png" id="9_uqing"]
 [ext_resource type="Script" uid="uid://bft2yqp8qk03c" path="res://scripts/ui/skill_back.gd" id="11_vmcmc"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qti4y"]
-bg_color = Color(0.039215688, 0.02745098, 0.14901961, 0.9882353)
 
 [sub_resource type="Resource" id="Resource_uqing"]
 script = ExtResource("3_tbyh4")
@@ -44,6 +42,7 @@ battery_tanks = 0
 battery_tank_points = 0
 power = 0
 rapid = 0.3
+can_charge = true
 metadata/_custom_type_script = "uid://d332ldvfmgnhy"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uqing"]
@@ -201,30 +200,37 @@ cost = 500
 stats = SubResource("Resource_qlden")
 metadata/_custom_type_script = "uid://fa5x46oa8uta"
 
-[node name="SkillTree" type="Panel" unique_id=1207228438]
+[node name="SkillTree" type="Control" unique_id=688541759]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_qti4y")
 script = ExtResource("1_m53af")
 
-[node name="AutoFire" type="Control" parent="." unique_id=1654472621]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1632840826]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.039215688, 0.02745098, 0.14901961, 0.9882353)
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1231895467]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Upgrade" parent="AutoFire" unique_id=416127191 instance=ExtResource("1_pe2t5")]
+[node name="AutoFire" type="Control" parent="PanelContainer" unique_id=1654472621]
+layout_mode = 2
+
+[node name="AutoFire_Upgrade" parent="PanelContainer/AutoFire" unique_id=416127191 instance=ExtResource("1_pe2t5")]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -239,16 +245,17 @@ grow_horizontal = 2
 grow_vertical = 2
 skill = SubResource("Resource_qti4y")
 
-[node name="Charge" type="Control" parent="." unique_id=1052877702]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Tooltip" parent="PanelContainer/AutoFire/AutoFire_Upgrade" unique_id=1930704416 instance=ExtResource("6_xjuf2")]
+layout_mode = 0
+offset_top = 0.0
+offset_bottom = 24.0
+
+[node name="Charge" type="Control" parent="PanelContainer" unique_id=1052877702]
+layout_mode = 2
 mouse_filter = 2
 
-[node name="Upgrade" parent="Charge" unique_id=1815042689 instance=ExtResource("1_pe2t5")]
+[node name="Charge_Upgrade" parent="PanelContainer/Charge" unique_id=1815042689 instance=ExtResource("1_pe2t5")]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -260,7 +267,13 @@ offset_bottom = 22.0
 grow_vertical = 2
 skill = SubResource("Resource_6nr3g")
 
-[node name="Upgrade2" parent="Charge" unique_id=538210549 instance=ExtResource("1_pe2t5")]
+[node name="Tooltip" parent="PanelContainer/Charge/Charge_Upgrade" unique_id=110819098 instance=ExtResource("6_xjuf2")]
+layout_mode = 0
+offset_top = 0.0
+offset_bottom = 24.0
+
+[node name="Charge_Upgrade2" parent="PanelContainer/Charge" unique_id=538210549 instance=ExtResource("1_pe2t5")]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -272,7 +285,13 @@ offset_bottom = 22.0
 grow_vertical = 2
 skill = SubResource("Resource_m53af")
 
-[node name="Upgrade3" parent="Charge" unique_id=1854395458 instance=ExtResource("1_pe2t5")]
+[node name="Tooltip" parent="PanelContainer/Charge/Charge_Upgrade2" unique_id=1396783866 instance=ExtResource("6_xjuf2")]
+layout_mode = 0
+offset_top = 0.0
+offset_bottom = 24.0
+
+[node name="Charge_Upgrade3" parent="PanelContainer/Charge" unique_id=1854395458 instance=ExtResource("1_pe2t5")]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -283,16 +302,17 @@ offset_bottom = 22.0
 grow_vertical = 2
 skill = SubResource("Resource_hcl88")
 
-[node name="Battery" type="Control" parent="." unique_id=824738165]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Tooltip" parent="PanelContainer/Charge/Charge_Upgrade3" unique_id=948915237 instance=ExtResource("6_xjuf2")]
+layout_mode = 0
+offset_top = 0.0
+offset_bottom = 24.0
+
+[node name="Battery" type="Control" parent="PanelContainer" unique_id=824738165]
+layout_mode = 2
 mouse_filter = 2
 
-[node name="Upgrade" parent="Battery" unique_id=1873413568 instance=ExtResource("1_pe2t5")]
+[node name="Battery_Upgrade" parent="PanelContainer/Battery" unique_id=1873413568 instance=ExtResource("1_pe2t5")]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -307,7 +327,13 @@ grow_horizontal = 0
 grow_vertical = 2
 skill = SubResource("Resource_xjuf2")
 
-[node name="Upgrade2" parent="Battery" unique_id=1899166574 instance=ExtResource("1_pe2t5")]
+[node name="Tooltip" parent="PanelContainer/Battery/Battery_Upgrade" unique_id=1586076482 instance=ExtResource("6_xjuf2")]
+layout_mode = 0
+offset_top = 0.0
+offset_bottom = 24.0
+
+[node name="Battery_Upgrade2" parent="PanelContainer/Battery" unique_id=1899166574 instance=ExtResource("1_pe2t5")]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -322,7 +348,13 @@ grow_horizontal = 0
 grow_vertical = 2
 skill = SubResource("Resource_imi8e")
 
-[node name="Upgrade3" parent="Battery" unique_id=1041204042 instance=ExtResource("1_pe2t5")]
+[node name="Tooltip" parent="PanelContainer/Battery/Battery_Upgrade2" unique_id=1509884796 instance=ExtResource("6_xjuf2")]
+layout_mode = 0
+offset_top = 0.0
+offset_bottom = 24.0
+
+[node name="Battery_Upgrade3" parent="PanelContainer/Battery" unique_id=1041204042 instance=ExtResource("1_pe2t5")]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -337,16 +369,17 @@ grow_horizontal = 0
 grow_vertical = 2
 skill = SubResource("Resource_rdjq7")
 
-[node name="Power" type="Control" parent="." unique_id=926757035]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Tooltip" parent="PanelContainer/Battery/Battery_Upgrade3" unique_id=1054704190 instance=ExtResource("6_xjuf2")]
+layout_mode = 0
+offset_top = 0.0
+offset_bottom = 24.0
+
+[node name="Power" type="Control" parent="PanelContainer" unique_id=926757035]
+layout_mode = 2
 mouse_filter = 2
 
-[node name="Upgrade" parent="Power" unique_id=1076823308 instance=ExtResource("1_pe2t5")]
+[node name="Power_Upgrade" parent="PanelContainer/Power" unique_id=1076823308 instance=ExtResource("1_pe2t5")]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -358,7 +391,13 @@ offset_bottom = 88.0
 grow_horizontal = 2
 skill = SubResource("Resource_5kmnm")
 
-[node name="Upgrade2" parent="Power" unique_id=609483975 instance=ExtResource("1_pe2t5")]
+[node name="Tooltip" parent="PanelContainer/Power/Power_Upgrade" unique_id=565471670 instance=ExtResource("6_xjuf2")]
+layout_mode = 0
+offset_top = 0.0
+offset_bottom = 24.0
+
+[node name="Power_Upgrade2" parent="PanelContainer/Power" unique_id=609483975 instance=ExtResource("1_pe2t5")]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -370,7 +409,13 @@ offset_bottom = 56.0
 grow_horizontal = 2
 skill = SubResource("Resource_x8prj")
 
-[node name="Upgrade3" parent="Power" unique_id=1215208546 instance=ExtResource("1_pe2t5")]
+[node name="Tooltip" parent="PanelContainer/Power/Power_Upgrade2" unique_id=1493297729 instance=ExtResource("6_xjuf2")]
+layout_mode = 0
+offset_top = 0.0
+offset_bottom = 24.0
+
+[node name="Power_Upgrade3" parent="PanelContainer/Power" unique_id=1215208546 instance=ExtResource("1_pe2t5")]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -381,16 +426,17 @@ offset_bottom = 24.0
 grow_horizontal = 2
 skill = SubResource("Resource_1rky4")
 
-[node name="Rapid" type="Control" parent="." unique_id=1100876458]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Tooltip" parent="PanelContainer/Power/Power_Upgrade3" unique_id=894610347 instance=ExtResource("6_xjuf2")]
+layout_mode = 0
+offset_top = 0.0
+offset_bottom = 24.0
+
+[node name="Rapid" type="Control" parent="PanelContainer" unique_id=1100876458]
+layout_mode = 2
 mouse_filter = 2
 
-[node name="Upgrade" parent="Rapid" unique_id=2115519949 instance=ExtResource("1_pe2t5")]
+[node name="Rapid_Upgrade" parent="PanelContainer/Rapid" unique_id=2115519949 instance=ExtResource("1_pe2t5")]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -405,7 +451,13 @@ grow_horizontal = 2
 grow_vertical = 0
 skill = SubResource("Resource_pmtru")
 
-[node name="Upgrade2" parent="Rapid" unique_id=2140672482 instance=ExtResource("1_pe2t5")]
+[node name="Tooltip" parent="PanelContainer/Rapid/Rapid_Upgrade" unique_id=1702839073 instance=ExtResource("6_xjuf2")]
+layout_mode = 0
+offset_top = 0.0
+offset_bottom = 24.0
+
+[node name="Rapid_Upgrade2" parent="PanelContainer/Rapid" unique_id=2140672482 instance=ExtResource("1_pe2t5")]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -419,6 +471,55 @@ offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 0
 skill = SubResource("Resource_21sot")
+
+[node name="Tooltip" parent="PanelContainer/Rapid/Rapid_Upgrade2" unique_id=1110233973 instance=ExtResource("6_xjuf2")]
+layout_mode = 0
+offset_top = 0.0
+offset_bottom = 24.0
+
+[node name="AutoFire_Label" type="Label" parent="." unique_id=506224185]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = 22.0
+offset_right = 9.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 6
+text = "AutoFire"
+
+[node name="Charge_Label" type="Label" parent="." unique_id=958674637]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 112.0
+offset_right = 120.0
+offset_bottom = 121.0
+theme_override_font_sizes/font_size = 6
+text = "Charge I"
+
+[node name="Charge_Label2" type="Label" parent="." unique_id=1373220688]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 112.0
+offset_right = 82.0
+offset_bottom = 121.0
+theme_override_font_sizes/font_size = 6
+text = "Charge II"
+
+[node name="Charge_Label3" type="Label" parent="." unique_id=1847327291]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 112.0
+offset_right = 44.0
+offset_bottom = 121.0
+theme_override_font_sizes/font_size = 6
+text = "Charge III"
+horizontal_alignment = 1
 
 [node name="Money" type="Label" parent="." unique_id=1316589612]
 layout_mode = 1
@@ -437,10 +538,14 @@ script = ExtResource("6_tltv1")
 layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
-offset_right = 31.0
+offset_right = 35.0
 offset_bottom = 28.0
 theme_override_font_sizes/font_size = 8
 text = "Back"
 script = ExtResource("11_vmcmc")
 
+[connection signal="pressed" from="PanelContainer/AutoFire/AutoFire_Upgrade" to="." method="_on_auto_fire_upgrade_pressed"]
+[connection signal="pressed" from="PanelContainer/Charge/Charge_Upgrade" to="." method="_on_charge_upgrade_pressed"]
+[connection signal="pressed" from="PanelContainer/Charge/Charge_Upgrade2" to="." method="_on_charge_upgrade_2_pressed"]
+[connection signal="pressed" from="PanelContainer/Charge/Charge_Upgrade3" to="." method="_on_charge_upgrade_3_pressed"]
 [connection signal="pressed" from="Back" to="Back" method="_on_pressed"]
