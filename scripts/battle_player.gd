@@ -32,7 +32,7 @@ var money : int = 0:
 		%Money.text = str(value)
 		
 #Firing Gun
-@onready var marker_2d: Marker2D = %Marker2D
+@onready var muzzle: Marker2D = %Muzzle
 @onready var spark: Node2D = $Spark
 @onready var fire: AudioStreamPlayer2D = $Fire
 @onready var shoot_cooldown_timer: Timer = $ShootCooldownTimer
@@ -122,7 +122,7 @@ func shoot(charge_percentage : float) -> void:
 	new_bullet.current_element = final_element
 
 	
-	new_bullet.global_position = marker_2d.global_position
+	new_bullet.global_position = muzzle.global_position
 	
 
 	get_tree().current_scene.add_child(new_bullet)
