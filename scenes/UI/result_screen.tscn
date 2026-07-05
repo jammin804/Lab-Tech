@@ -1,0 +1,167 @@
+[gd_scene format=3 uid="uid://ck75rgmytou2t"]
+
+[ext_resource type="Texture2D" uid="uid://dmmfui3sn6xj5" path="res://assets/ui/hud/Premade_Containers.png" id="1_ip6xr"]
+[ext_resource type="Script" uid="uid://ck4awebvd5fvv" path="res://scripts/ui/result_screen.gd" id="1_wn60h"]
+[ext_resource type="Texture2D" uid="uid://bmgd5bh11073r" path="res://assets/ui/hud/coins-chests-etc-2-0.png" id="2_86eji"]
+[ext_resource type="Texture2D" uid="uid://nust27da1vec" path="res://assets/ui/skill_tree/Scifi weapons and items.png" id="3_86eji"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5m6i"]
+atlas = ExtResource("1_ip6xr")
+region = Rect2(336, 432, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wn60h"]
+atlas = ExtResource("2_86eji")
+region = Rect2(193, 50, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g18rp"]
+atlas = ExtResource("3_86eji")
+region = Rect2(101, 323, 22, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qti4y"]
+atlas = ExtResource("2_86eji")
+region = Rect2(193, 193, 14, 14)
+
+[node name="ResultScreen" type="Control" unique_id=1112778916]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wn60h")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=224078853]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=423533649]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -116.0
+offset_top = -76.0
+offset_right = 116.0
+offset_bottom = 76.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_s5m6i")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect" unique_id=829902740]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 19
+theme_override_constants/margin_right = 22
+theme_override_constants/margin_bottom = 14
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer" unique_id=297750326]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="MoneyContainer" type="HBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer" unique_id=1634654656]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/MarginContainer/VBoxContainer/MoneyContainer" unique_id=1445257818]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("AtlasTexture_wn60h")
+expand_mode = 1
+
+[node name="MoneyLabel" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/MoneyContainer" unique_id=1719244367]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "MONEY"
+
+[node name="Score" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/MoneyContainer" unique_id=696403491]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "0/40"
+
+[node name="ScrapContainer" type="HBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer" unique_id=307729547]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/MarginContainer/VBoxContainer/ScrapContainer" unique_id=1959466882]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("AtlasTexture_g18rp")
+expand_mode = 1
+
+[node name="ScrapLabel" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/ScrapContainer" unique_id=1227441439]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "SCRAP"
+
+[node name="Score" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/ScrapContainer" unique_id=1913411746]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "0/40"
+
+[node name="StarContainer" type="HBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer" unique_id=1145570164]
+layout_mode = 2
+
+[node name="StarRect1" type="TextureRect" parent="TextureRect/MarginContainer/VBoxContainer/StarContainer" unique_id=308257528]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+size_flags_horizontal = 6
+texture = SubResource("AtlasTexture_qti4y")
+expand_mode = 1
+
+[node name="StarRect2" type="TextureRect" parent="TextureRect/MarginContainer/VBoxContainer/StarContainer" unique_id=609517142]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+size_flags_horizontal = 6
+texture = SubResource("AtlasTexture_qti4y")
+expand_mode = 1
+
+[node name="StarRect3" type="TextureRect" parent="TextureRect/MarginContainer/VBoxContainer/StarContainer" unique_id=529165028]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+size_flags_horizontal = 6
+texture = SubResource("AtlasTexture_qti4y")
+expand_mode = 1
+
+[node name="HSeparator" type="HSeparator" parent="TextureRect/MarginContainer/VBoxContainer" unique_id=253300718]
+layout_mode = 2
+
+[node name="TotalScoreCotnainer" type="HBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer" unique_id=2087501464]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/TotalScoreCotnainer" unique_id=1531311142]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "TOTAL SCORE"
+
+[node name="Score" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/TotalScoreCotnainer" unique_id=349271409]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "0%"

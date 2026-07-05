@@ -1,3 +1,4 @@
+class_name Enemy_Spawner
 extends Node2D
 
 const ENEMY = preload("uid://cqueta70ubjqr")
