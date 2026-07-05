@@ -1,203 +1,38 @@
 [gd_scene format=3 uid="uid://btwv4xs5rbw63"]
 
-[ext_resource type="Texture2D" uid="uid://bp4n4b1ar2gak" path="res://assets/ui/skill_tree/charge.png" id="1_lxcpa"]
 [ext_resource type="Script" uid="uid://cfn1v5pt1ukab" path="res://scripts/ui/skill_tree.gd" id="1_m53af"]
 [ext_resource type="PackedScene" uid="uid://cylekjpm2np0q" path="res://scenes/UI/upgrade.tscn" id="1_pe2t5"]
-[ext_resource type="Script" uid="uid://fa5x46oa8uta" path="res://resources/SkillTree/skill.gd" id="2_hyse7"]
-[ext_resource type="Script" uid="uid://d332ldvfmgnhy" path="res://resources/PlayerData/player_stats.gd" id="3_tbyh4"]
-[ext_resource type="Texture2D" uid="uid://dx62vu0q0honp" path="res://assets/props/container-small-gray.png" id="6_bwmi7"]
+[ext_resource type="Script" uid="uid://fa5x46oa8uta" path="res://resources/SkillTree/skill.gd" id="3_1rky4"]
+[ext_resource type="Resource" uid="uid://dtd63xmb5xo3n" path="res://resources/SkillTree/AutoFire.tres" id="3_5kmnm"]
+[ext_resource type="Script" uid="uid://d332ldvfmgnhy" path="res://resources/PlayerData/player_stats.gd" id="4_pmtru"]
+[ext_resource type="Resource" uid="uid://bc57wmg0lfui2" path="res://resources/SkillTree/ChargeI.tres" id="5_x8prj"]
+[ext_resource type="Resource" uid="uid://e3ppupbw8mfb" path="res://resources/SkillTree/ChargeII.tres" id="6_k5nmo"]
 [ext_resource type="Script" uid="uid://cbi5k4xaq4w7p" path="res://scripts/ui/ui_money.gd" id="6_tltv1"]
 [ext_resource type="PackedScene" uid="uid://c286uo55rxlc2" path="res://scenes/UI/tooltip.tscn" id="6_xjuf2"]
-[ext_resource type="Texture2D" uid="uid://6rai0s8thhwg" path="res://assets/ui/skill_tree/power.png" id="7_hcl88"]
-[ext_resource type="Texture2D" uid="uid://cao1bbbw2ekum" path="res://assets/ui/skill_tree/rapid.png" id="8_hcl88"]
-[ext_resource type="Texture2D" uid="uid://nust27da1vec" path="res://assets/ui/skill_tree/Scifi weapons and items.png" id="9_uqing"]
+[ext_resource type="Resource" uid="uid://lo3g53vb58yq" path="res://resources/SkillTree/ChargeIII.tres" id="7_1rky4"]
+[ext_resource type="Resource" uid="uid://clauc5vq7wxn2" path="res://resources/SkillTree/Battery I.tres" id="8_pmtru"]
+[ext_resource type="Resource" uid="uid://2bevpe375rvh" path="res://resources/SkillTree/Battery II.tres" id="9_21sot"]
+[ext_resource type="Resource" uid="uid://drvgqfr7rht7h" path="res://resources/SkillTree/Battery III.tres" id="10_anhfi"]
 [ext_resource type="Script" uid="uid://bft2yqp8qk03c" path="res://scripts/ui/skill_back.gd" id="11_vmcmc"]
-
-[sub_resource type="Resource" id="Resource_uqing"]
-script = ExtResource("3_tbyh4")
-battery_tanks = 0
-battery_tank_points = 0
-auto_fire = true
-power = 0
-rapid = 0.0
-charge_rate = 0.0
-charge_damage_multipler = 0.0
-metadata/_custom_type_script = "uid://d332ldvfmgnhy"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s5m6i"]
-atlas = ExtResource("9_uqing")
-region = Rect2(32, 353, 32, 28)
-
-[sub_resource type="Resource" id="Resource_qti4y"]
-script = ExtResource("2_hyse7")
-name = "Auto Fire"
-texture = SubResource("AtlasTexture_s5m6i")
-cost = 20
-stats = SubResource("Resource_uqing")
-metadata/_custom_type_script = "uid://fa5x46oa8uta"
-
-[sub_resource type="Resource" id="Resource_hyse7"]
-script = ExtResource("3_tbyh4")
-battery_tanks = 0
-battery_tank_points = 0
-power = 0
-rapid = 0.3
-can_charge = true
-metadata/_custom_type_script = "uid://d332ldvfmgnhy"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uqing"]
-atlas = ExtResource("1_lxcpa")
-region = Rect2(17, 2, 30, 27)
-
-[sub_resource type="Resource" id="Resource_6nr3g"]
-script = ExtResource("2_hyse7")
-name = "Charge I"
-texture = SubResource("AtlasTexture_uqing")
-cost = 10
-stats = SubResource("Resource_hyse7")
-metadata/_custom_type_script = "uid://fa5x46oa8uta"
-
-[sub_resource type="Resource" id="Resource_tbyh4"]
-script = ExtResource("3_tbyh4")
-battery_tanks = 0
-battery_tank_points = 0
-power = 0
-charge_rate = 60.0
-charge_damage_multipler = 4.0
-metadata/_custom_type_script = "uid://d332ldvfmgnhy"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vmcmc"]
-atlas = ExtResource("1_lxcpa")
-region = Rect2(17, 2, 30, 27)
-
-[sub_resource type="Resource" id="Resource_m53af"]
-script = ExtResource("2_hyse7")
-name = "Charge II"
-texture = SubResource("AtlasTexture_vmcmc")
-cost = 100
-stats = SubResource("Resource_tbyh4")
-metadata/_custom_type_script = "uid://fa5x46oa8uta"
-
-[sub_resource type="Resource" id="Resource_tltv1"]
-script = ExtResource("3_tbyh4")
-battery_tanks = 0
-battery_tank_points = 0
-power = 0
-rapid = 0.0
-charge_rate = 80.0
-charge_damage_multipler = 6.0
-metadata/_custom_type_script = "uid://d332ldvfmgnhy"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_utb3r"]
-atlas = ExtResource("1_lxcpa")
-region = Rect2(17, 2, 30, 27)
-
-[sub_resource type="Resource" id="Resource_hcl88"]
-script = ExtResource("2_hyse7")
-name = "Charge III"
-texture = SubResource("AtlasTexture_utb3r")
-cost = 500
-stats = SubResource("Resource_tltv1")
-metadata/_custom_type_script = "uid://fa5x46oa8uta"
-
-[sub_resource type="Resource" id="Resource_xjuf2"]
-script = ExtResource("2_hyse7")
-name = "Battery I"
-texture = ExtResource("6_bwmi7")
-cost = 100
-stats = SubResource("Resource_hyse7")
-metadata/_custom_type_script = "uid://fa5x46oa8uta"
-
-[sub_resource type="Resource" id="Resource_qlden"]
-script = ExtResource("3_tbyh4")
-rapid = 0.15
-metadata/_custom_type_script = "uid://d332ldvfmgnhy"
-
-[sub_resource type="Resource" id="Resource_imi8e"]
-script = ExtResource("2_hyse7")
-name = "Battery II"
-texture = ExtResource("6_bwmi7")
-cost = 500
-stats = SubResource("Resource_qlden")
-metadata/_custom_type_script = "uid://fa5x46oa8uta"
-
-[sub_resource type="Resource" id="Resource_4pw3m"]
-script = ExtResource("3_tbyh4")
-battery_tanks = 4
-metadata/_custom_type_script = "uid://d332ldvfmgnhy"
-
-[sub_resource type="Resource" id="Resource_rdjq7"]
-script = ExtResource("2_hyse7")
-name = "Battery III"
-texture = ExtResource("6_bwmi7")
-cost = 1000
-stats = SubResource("Resource_4pw3m")
-metadata/_custom_type_script = "uid://fa5x46oa8uta"
-
-[sub_resource type="Resource" id="Resource_xlljd"]
-script = ExtResource("3_tbyh4")
-damage_multipler = 1.25
-power = 4
-metadata/_custom_type_script = "uid://d332ldvfmgnhy"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ebwn2"]
-atlas = ExtResource("7_hcl88")
-region = Rect2(570, 10, 59, 63)
-
-[sub_resource type="Resource" id="Resource_5kmnm"]
-script = ExtResource("2_hyse7")
-name = "Power I"
-texture = SubResource("AtlasTexture_ebwn2")
-cost = 10
-stats = SubResource("Resource_xlljd")
-metadata/_custom_type_script = "uid://fa5x46oa8uta"
-
-[sub_resource type="Resource" id="Resource_fs4j8"]
-script = ExtResource("3_tbyh4")
-damage_multipler = 2.0
-power = 8
-metadata/_custom_type_script = "uid://d332ldvfmgnhy"
-
-[sub_resource type="Resource" id="Resource_x8prj"]
-script = ExtResource("2_hyse7")
-name = "Power II"
-texture = SubResource("AtlasTexture_ebwn2")
-cost = 100
-stats = SubResource("Resource_fs4j8")
-metadata/_custom_type_script = "uid://fa5x46oa8uta"
+[ext_resource type="Resource" uid="uid://ch8ckn7frlfvw" path="res://resources/SkillTree/Power I.tres" id="11_whjul"]
+[ext_resource type="Resource" uid="uid://dqpvu0ygrjpk3" path="res://resources/SkillTree/Power II.tres" id="12_ah4kr"]
+[ext_resource type="Resource" uid="uid://b1mhy0mxprrp8" path="res://resources/SkillTree/Power III.tres" id="13_boirn"]
+[ext_resource type="Resource" uid="uid://cjxtf57hj1o1k" path="res://resources/SkillTree/Rapid I.tres" id="14_g65eo"]
+[ext_resource type="Resource" uid="uid://bilmi2yo481su" path="res://resources/SkillTree/Rapid II.tres" id="15_kjvfy"]
 
 [sub_resource type="Resource" id="Resource_k5nmo"]
-script = ExtResource("3_tbyh4")
-damage_multipler = 3.0
-power = 16
+script = ExtResource("4_pmtru")
 metadata/_custom_type_script = "uid://d332ldvfmgnhy"
 
-[sub_resource type="Resource" id="Resource_1rky4"]
-script = ExtResource("2_hyse7")
-name = "Power III"
-texture = SubResource("AtlasTexture_ebwn2")
-cost = 1000
-stats = SubResource("Resource_k5nmo")
-metadata/_custom_type_script = "uid://fa5x46oa8uta"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xjuf2"]
-atlas = ExtResource("8_hcl88")
-region = Rect2(669, 28, 28, 30)
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1rky4"]
+load_path = "res://.godot/imported/shot3.png-dd58f8ceed7a5ac9eb6489b45e01567d.ctex"
 
 [sub_resource type="Resource" id="Resource_pmtru"]
-script = ExtResource("2_hyse7")
-name = "Rapid I"
-texture = SubResource("AtlasTexture_xjuf2")
-cost = 200
-stats = SubResource("Resource_hyse7")
-metadata/_custom_type_script = "uid://fa5x46oa8uta"
-
-[sub_resource type="Resource" id="Resource_21sot"]
-script = ExtResource("2_hyse7")
-name = "Rapid II"
-texture = SubResource("AtlasTexture_xjuf2")
-cost = 500
-stats = SubResource("Resource_qlden")
+script = ExtResource("3_1rky4")
+name = "Super Click"
+texture = SubResource("CompressedTexture2D_1rky4")
+cost = 5
+stats = SubResource("Resource_k5nmo")
 metadata/_custom_type_script = "uid://fa5x46oa8uta"
 
 [node name="SkillTree" type="Control" unique_id=688541759]
@@ -226,8 +61,27 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="SuperClick" type="Control" parent="PanelContainer" unique_id=286553861]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="SuperClick_Upgrade" parent="PanelContainer/SuperClick" unique_id=1815042689 instance=ExtResource("1_pe2t5")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 96.0
+offset_top = 48.0
+offset_right = 120.0
+offset_bottom = 72.0
+skill = SubResource("Resource_pmtru")
+
+[node name="Tooltip" parent="PanelContainer/SuperClick/SuperClick_Upgrade" unique_id=1930704416 instance=ExtResource("6_xjuf2")]
+layout_mode = 0
+offset_top = 0.0
+offset_bottom = 24.0
+
 [node name="AutoFire" type="Control" parent="PanelContainer" unique_id=1654472621]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="AutoFire_Upgrade" parent="PanelContainer/AutoFire" unique_id=416127191 instance=ExtResource("1_pe2t5")]
 unique_name_in_owner = true
@@ -243,9 +97,9 @@ offset_right = 8.0
 offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 2
-skill = SubResource("Resource_qti4y")
+skill = ExtResource("3_5kmnm")
 
-[node name="Tooltip" parent="PanelContainer/AutoFire/AutoFire_Upgrade" unique_id=1930704416 instance=ExtResource("6_xjuf2")]
+[node name="Tooltip" parent="PanelContainer/AutoFire/AutoFire_Upgrade" unique_id=865511062 instance=ExtResource("6_xjuf2")]
 layout_mode = 0
 offset_top = 0.0
 offset_bottom = 24.0
@@ -254,7 +108,7 @@ offset_bottom = 24.0
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Charge_Upgrade" parent="PanelContainer/Charge" unique_id=1815042689 instance=ExtResource("1_pe2t5")]
+[node name="Charge_Upgrade" parent="PanelContainer/Charge" unique_id=1236353532 instance=ExtResource("1_pe2t5")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
@@ -265,7 +119,7 @@ offset_top = -2.0
 offset_right = 120.0
 offset_bottom = 22.0
 grow_vertical = 2
-skill = SubResource("Resource_6nr3g")
+skill = ExtResource("5_x8prj")
 
 [node name="Tooltip" parent="PanelContainer/Charge/Charge_Upgrade" unique_id=110819098 instance=ExtResource("6_xjuf2")]
 layout_mode = 0
@@ -283,7 +137,7 @@ offset_top = -2.0
 offset_right = 80.0
 offset_bottom = 22.0
 grow_vertical = 2
-skill = SubResource("Resource_m53af")
+skill = ExtResource("6_k5nmo")
 
 [node name="Tooltip" parent="PanelContainer/Charge/Charge_Upgrade2" unique_id=1396783866 instance=ExtResource("6_xjuf2")]
 layout_mode = 0
@@ -300,7 +154,7 @@ offset_left = 16.0
 offset_top = -2.0
 offset_bottom = 22.0
 grow_vertical = 2
-skill = SubResource("Resource_hcl88")
+skill = ExtResource("7_1rky4")
 
 [node name="Tooltip" parent="PanelContainer/Charge/Charge_Upgrade3" unique_id=948915237 instance=ExtResource("6_xjuf2")]
 layout_mode = 0
@@ -325,7 +179,7 @@ offset_right = -96.0
 offset_bottom = 22.0
 grow_horizontal = 0
 grow_vertical = 2
-skill = SubResource("Resource_xjuf2")
+skill = ExtResource("8_pmtru")
 
 [node name="Tooltip" parent="PanelContainer/Battery/Battery_Upgrade" unique_id=1586076482 instance=ExtResource("6_xjuf2")]
 layout_mode = 0
@@ -346,7 +200,7 @@ offset_right = -56.0
 offset_bottom = 22.0
 grow_horizontal = 0
 grow_vertical = 2
-skill = SubResource("Resource_imi8e")
+skill = ExtResource("9_21sot")
 
 [node name="Tooltip" parent="PanelContainer/Battery/Battery_Upgrade2" unique_id=1509884796 instance=ExtResource("6_xjuf2")]
 layout_mode = 0
@@ -367,7 +221,7 @@ offset_right = -16.0
 offset_bottom = 22.0
 grow_horizontal = 0
 grow_vertical = 2
-skill = SubResource("Resource_rdjq7")
+skill = ExtResource("10_anhfi")
 
 [node name="Tooltip" parent="PanelContainer/Battery/Battery_Upgrade3" unique_id=1054704190 instance=ExtResource("6_xjuf2")]
 layout_mode = 0
@@ -389,7 +243,7 @@ offset_top = 64.0
 offset_right = 8.0
 offset_bottom = 88.0
 grow_horizontal = 2
-skill = SubResource("Resource_5kmnm")
+skill = ExtResource("11_whjul")
 
 [node name="Tooltip" parent="PanelContainer/Power/Power_Upgrade" unique_id=565471670 instance=ExtResource("6_xjuf2")]
 layout_mode = 0
@@ -407,7 +261,7 @@ offset_top = 32.0
 offset_right = 8.0
 offset_bottom = 56.0
 grow_horizontal = 2
-skill = SubResource("Resource_x8prj")
+skill = ExtResource("12_ah4kr")
 
 [node name="Tooltip" parent="PanelContainer/Power/Power_Upgrade2" unique_id=1493297729 instance=ExtResource("6_xjuf2")]
 layout_mode = 0
@@ -424,7 +278,7 @@ offset_left = -16.0
 offset_right = 8.0
 offset_bottom = 24.0
 grow_horizontal = 2
-skill = SubResource("Resource_1rky4")
+skill = ExtResource("13_boirn")
 
 [node name="Tooltip" parent="PanelContainer/Power/Power_Upgrade3" unique_id=894610347 instance=ExtResource("6_xjuf2")]
 layout_mode = 0
@@ -449,7 +303,7 @@ offset_right = 8.0
 offset_bottom = -36.0
 grow_horizontal = 2
 grow_vertical = 0
-skill = SubResource("Resource_pmtru")
+skill = ExtResource("14_g65eo")
 
 [node name="Tooltip" parent="PanelContainer/Rapid/Rapid_Upgrade" unique_id=1702839073 instance=ExtResource("6_xjuf2")]
 layout_mode = 0
@@ -470,7 +324,7 @@ offset_right = 8.0
 offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 0
-skill = SubResource("Resource_21sot")
+skill = ExtResource("15_kjvfy")
 
 [node name="Tooltip" parent="PanelContainer/Rapid/Rapid_Upgrade2" unique_id=1110233973 instance=ExtResource("6_xjuf2")]
 layout_mode = 0
@@ -521,6 +375,114 @@ theme_override_font_sizes/font_size = 6
 text = "Charge III"
 horizontal_alignment = 1
 
+[node name="Battery_Label" type="Label" parent="." unique_id=718337859]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 112.0
+offset_right = 224.0
+offset_bottom = 121.0
+theme_override_font_sizes/font_size = 6
+text = "Battery I"
+
+[node name="Battery_Label2" type="Label" parent="." unique_id=1138016395]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 112.0
+offset_right = 266.0
+offset_bottom = 121.0
+theme_override_font_sizes/font_size = 6
+text = "Battery II"
+
+[node name="Battery_Label3" type="Label" parent="." unique_id=2142682621]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 112.0
+offset_right = 308.0
+offset_bottom = 121.0
+theme_override_font_sizes/font_size = 6
+text = "Battery III"
+horizontal_alignment = 1
+
+[node name="Rapid_Label" type="Label" parent="." unique_id=926681042]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = 46.0
+offset_right = 41.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 6
+text = "Rapid I"
+
+[node name="Rapid_Label2" type="Label" parent="." unique_id=750891617]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = 70.0
+offset_right = 41.0
+offset_bottom = 79.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 6
+text = "Rapid II"
+
+[node name="Power_Label3" type="Label" parent="." unique_id=1854426685]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = -82.0
+offset_right = 41.0
+offset_bottom = -73.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 6
+text = "Power III"
+
+[node name="Power_Label2" type="Label" parent="." unique_id=783403027]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = -50.0
+offset_right = 41.0
+offset_bottom = -41.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 6
+text = "Power II"
+
+[node name="Power_Label" type="Label" parent="." unique_id=332240964]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = -18.0
+offset_right = 41.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 6
+text = "Power I"
+
 [node name="Money" type="Label" parent="." unique_id=1316589612]
 layout_mode = 1
 anchors_preset = 1
@@ -544,8 +506,14 @@ theme_override_font_sizes/font_size = 8
 text = "Back"
 script = ExtResource("11_vmcmc")
 
-[connection signal="pressed" from="PanelContainer/AutoFire/AutoFire_Upgrade" to="." method="_on_auto_fire_upgrade_pressed"]
-[connection signal="pressed" from="PanelContainer/Charge/Charge_Upgrade" to="." method="_on_charge_upgrade_pressed"]
 [connection signal="pressed" from="PanelContainer/Charge/Charge_Upgrade2" to="." method="_on_charge_upgrade_2_pressed"]
 [connection signal="pressed" from="PanelContainer/Charge/Charge_Upgrade3" to="." method="_on_charge_upgrade_3_pressed"]
+[connection signal="pressed" from="PanelContainer/Battery/Battery_Upgrade" to="." method="_on_battery_upgrade_pressed"]
+[connection signal="pressed" from="PanelContainer/Battery/Battery_Upgrade2" to="." method="_on_battery_upgrade_2_pressed"]
+[connection signal="pressed" from="PanelContainer/Battery/Battery_Upgrade3" to="." method="_on_battery_upgrade_3_pressed"]
+[connection signal="pressed" from="PanelContainer/Power/Power_Upgrade" to="." method="_on_power_upgrade_pressed"]
+[connection signal="pressed" from="PanelContainer/Power/Power_Upgrade2" to="." method="_on_power_upgrade_2_pressed"]
+[connection signal="pressed" from="PanelContainer/Power/Power_Upgrade3" to="." method="_on_power_upgrade_3_pressed"]
+[connection signal="pressed" from="PanelContainer/Rapid/Rapid_Upgrade" to="." method="_on_rapid_upgrade_pressed"]
+[connection signal="pressed" from="PanelContainer/Rapid/Rapid_Upgrade2" to="." method="_on_rapid_upgrade_2_pressed"]
 [connection signal="pressed" from="Back" to="Back" method="_on_pressed"]

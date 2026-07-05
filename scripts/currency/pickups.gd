@@ -29,10 +29,11 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	var currency_name = type.resource_path.get_file().trim_suffix(".tres")
+	
 	if area.name == "Magnet":
 		if currency_name == "money":
-			Events.increase_currency.emit(type.title, type.money)
+			Events.increase_currency.emit(type.money, type.title)
 		elif currency_name == "scrap":
-			Events.increase_currency.emit(type.title, type.scraps)
+			Events.increase_currency.emit(type.scraps, type.title)
 		queue_free()
 		print("Type is " + currency_name)

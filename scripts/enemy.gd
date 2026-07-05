@@ -1,7 +1,7 @@
 class_name Enemy
 extends CharacterBody2D
 
-signal died
+#signal died
 
 #region DEBUG OPTIONS
 @export_category("DEBUG OPTIONS")
@@ -79,7 +79,7 @@ func take_damage(incoming_damage: float, incoming_element:WeaponData.Element) ->
 
 func destroy():
 	is_dead = true
-	died.emit()
+	Events.enemy_died.emit()
 	
 	enemy_sprite.stop()
 	enemy_sprite.hide()

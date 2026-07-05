@@ -1,9 +1,11 @@
+class_name Skill_Tree
 extends Control
 
 
 var skill_tree
 var total_stat : PlayerStats
 
+@onready var super_click_upgrade: UpgradeButton = %SuperClick_Upgrade
 @onready var auto_fire_upgrade: UpgradeButton = %AutoFire_Upgrade
 
 @onready var charge_upgrade: UpgradeButton = %Charge_Upgrade
@@ -23,21 +25,26 @@ var total_stat : PlayerStats
 
 func _ready():
 	load_skill_tree()
-
-func _process(delta: float) -> void:
-	pass
 	
 func set_skill_tree():
 	skill_tree = []
+	var dynamic_names = []
+	
 	for each_branch in get_child(1).get_children():
+		var clean_name = each_branch.name.to_snake_case()
+		dynamic_names.append(clean_name)
+		
 		var branch = []
-		print(each_branch)
 		for upgrade in each_branch.get_children():
 			branch.append(upgrade.enabled)
+			print(branch)
 		skill_tree.append(branch)
-		
+	
+	SaveData.branch_names = dynamic_names
 	SaveData.skill_tree = skill_tree
 	SaveData.set_and_save()
+	
+	SkillManager.calculate_unlocked_stats()
 
 func load_skill_tree():
 	if SaveData.skill_tree == []:
@@ -47,47 +54,85 @@ func load_skill_tree():
 	for branch in get_child(1).get_children():
 		for upgrade in branch.get_children():
 			upgrade.enabled = skill_tree[branch.get_index()][upgrade.get_index()]
-	get_total_stats()
 
-func add_stats(stat):
-	total_stat.auto_fire = total_stat.auto_fire or stat.auto_fire
-	total_stat.can_charge = total_stat.can_charge or stat.can_charge
-	total_stat.charge_damage_multipler += stat.charge_damage_multipler
-	
-	total_stat.charge_rate += stat.charge_rate
-	total_stat.battery_tanks += stat.battery_tanks
-	total_stat.power += stat.power
-	total_stat.damage_multipler += stat.damage_multipler
-	total_stat.rapid += stat.rapid
 
-func get_total_stats():
-	total_stat = PlayerStats.new()
+func on_upgrade_purchased() -> void:
+	set_skill_tree()
+
+func is_upgrade_unlocked(target_branch_name: String, tier_index: int) -> bool:
 	for branch in get_child(1).get_children():
-		for upgrade in branch.get_children():
-			if upgrade.enabled:
-				add_stats(upgrade.skill.stats)
-	Persistence.bonus_stats = total_stat
-				
+		if branch.name.to_snake_case() == target_branch_name:
+			if tier_index < branch.get_child_count():
+				return branch.get_child(tier_index).enabled
+	return false
 
-
-func _on_auto_fire_upgrade_pressed() -> void:
-	if auto_fire_upgrade.enabled == true:
-		print(auto_fire_upgrade.skill.stats.auto_fire)
-		PlayerManager.current_stats.auto_fire = auto_fire_upgrade.skill.stats.auto_fire
-		print(PlayerManager.current_stats.auto_fire)
-
-
-func _on_charge_upgrade_pressed() -> void:
-	if charge_upgrade.enabled == true:
-		print(charge_upgrade.skill.stats.can_charge)
-		PlayerManager.current_stats.can_charge = charge_upgrade.skill.stats.auto_fire
-		print(PlayerManager.current_stats.can_charge)
-		PlayerManager.current_stats.charge_damage_multipler = charge_upgrade.skill.stats.charge_damage_multipler
-
-
-func _on_charge_upgrade_2_pressed() -> void:
-	pass # Replace with function body.
-
-
-func _on_charge_upgrade_3_pressed() -> void:
-	pass # Replace with function body.
+#func _on_auto_fire_upgrade_pressed() -> void:
+	#if not auto_fire_upgrade.enabled:
+		#auto_fire_upgrade.enabled = true
+		#set_skill_tree()
+#
+#
+#func _on_charge_upgrade_pressed() -> void:
+	#if not charge_upgrade.enabled :
+		#charge_upgrade.enabled = true
+		#set_skill_tree()
+#
+#
+#func _on_charge_upgrade_2_pressed() -> void:
+	#if not charge_upgrade_2.enabled :
+		#charge_upgrade_2.enabled = true
+		#set_skill_tree()
+#
+#
+#func _on_charge_upgrade_3_pressed() -> void:
+	#if not charge_upgrade_3.enabled :
+		#charge_upgrade_3.enabled = true
+		#set_skill_tree()
+#
+#
+#func _on_battery_upgrade_pressed() -> void:
+	#if not battery_upgrade.enabled :
+		#battery_upgrade.enabled = true
+		#set_skill_tree()
+#
+#
+#func _on_battery_upgrade_2_pressed() -> void:
+	#if not battery_upgrade_2.enabled :
+		#battery_upgrade_2.enabled = true
+		#set_skill_tree()
+#
+#
+#func _on_battery_upgrade_3_pressed() -> void:
+	#if not battery_upgrade_3.enabled :
+		#battery_upgrade_3.enabled = true
+		#set_skill_tree()
+#
+#
+#func _on_power_upgrade_pressed() -> void:
+	#if not power_upgrade.enabled :
+		#power_upgrade.enabled = true
+		#set_skill_tree()
+#
+#
+#func _on_power_upgrade_2_pressed() -> void:
+	#if not power_upgrade_2.enabled :
+		#power_upgrade_2.enabled = true
+		#set_skill_tree()
+#
+#
+#func _on_power_upgrade_3_pressed() -> void:
+	#if not power_upgrade_3.enabled :
+		#power_upgrade_3.enabled = true
+		#set_skill_tree()
+#
+#
+#func _on_rapid_upgrade_pressed() -> void:
+	#if not rapid_upgrade.enabled :
+		#rapid_upgrade.enabled = true
+		#set_skill_tree()
+#
+#
+#func _on_rapid_upgrade_2_pressed() -> void:
+	#if not rapid_upgrade_2.enabled :
+		#rapid_upgrade_2.enabled = true
+		#set_skill_tree()

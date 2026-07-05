@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://gq0fafo0ca7h"]
+
+[ext_resource type="Script" uid="uid://dg67fnhu63b80" path="res://scripts/singletons/skill_manager.gd" id="1_dtd8c"]
+[ext_resource type="Resource" uid="uid://dtd63xmb5xo3n" path="res://resources/SkillTree/AutoFire.tres" id="2_ao8am"]
+[ext_resource type="Resource" uid="uid://ccyacd2ui5tuc" path="res://resources/SkillTree/SuperClick.tres" id="2_j2lnx"]
+[ext_resource type="Resource" uid="uid://bc57wmg0lfui2" path="res://resources/SkillTree/ChargeI.tres" id="3_j2lnx"]
+[ext_resource type="Resource" uid="uid://e3ppupbw8mfb" path="res://resources/SkillTree/ChargeII.tres" id="4_m80v1"]
+[ext_resource type="Resource" uid="uid://lo3g53vb58yq" path="res://resources/SkillTree/ChargeIII.tres" id="5_8248q"]
+[ext_resource type="Resource" uid="uid://clauc5vq7wxn2" path="res://resources/SkillTree/Battery I.tres" id="6_shuo2"]
+[ext_resource type="Resource" uid="uid://2bevpe375rvh" path="res://resources/SkillTree/Battery II.tres" id="7_bt4se"]
+[ext_resource type="Resource" uid="uid://drvgqfr7rht7h" path="res://resources/SkillTree/Battery III.tres" id="8_quu2m"]
+[ext_resource type="Resource" uid="uid://ch8ckn7frlfvw" path="res://resources/SkillTree/Power I.tres" id="9_fo3q3"]
+[ext_resource type="Resource" uid="uid://dqpvu0ygrjpk3" path="res://resources/SkillTree/Power II.tres" id="10_tkdar"]
+[ext_resource type="Resource" uid="uid://b1mhy0mxprrp8" path="res://resources/SkillTree/Power III.tres" id="11_0upr3"]
+[ext_resource type="Resource" uid="uid://cjxtf57hj1o1k" path="res://resources/SkillTree/Rapid I.tres" id="12_3clxw"]
+[ext_resource type="Resource" uid="uid://bilmi2yo481su" path="res://resources/SkillTree/Rapid II.tres" id="13_d3u6l"]
+
+[node name="SkillManager" type="Node" unique_id=78852316]
+script = ExtResource("1_dtd8c")
+super_click_branch = Array[Resource]([ExtResource("2_j2lnx")])
+auto_fire_branch = Array[Resource]([ExtResource("2_ao8am")])
+charge_branch = Array[Resource]([ExtResource("3_j2lnx"), ExtResource("4_m80v1"), ExtResource("5_8248q")])
+battery_branch = Array[Resource]([ExtResource("6_shuo2"), ExtResource("7_bt4se"), ExtResource("8_quu2m")])
+power_branch = Array[Resource]([ExtResource("9_fo3q3"), ExtResource("10_tkdar"), ExtResource("11_0upr3")])
+rapid_branch = Array[Resource]([ExtResource("12_3clxw"), ExtResource("13_d3u6l")])

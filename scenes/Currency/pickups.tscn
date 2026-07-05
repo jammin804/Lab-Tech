@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c3j8bdc87ysqc"]
 
-[ext_resource type="Script" uid="uid://c3wukkpq6fo6t" path="res://scripts/currency/pickups_mike.gd" id="1_fjgk1"]
+[ext_resource type="Script" uid="uid://c3wukkpq6fo6t" path="res://scripts/currency/pickups.gd" id="1_fjgk1"]
 [ext_resource type="Texture2D" uid="uid://btt7iex4c0cf0" path="res://assets/props/currency.png" id="2_blfsk"]
 [ext_resource type="Resource" uid="uid://cqjnab30m833y" path="res://resources/CurrencyData/money.tres" id="2_m4pjf"]
 

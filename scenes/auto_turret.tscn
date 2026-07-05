@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dg3lep2meldxf"]
+
+[ext_resource type="Script" uid="uid://do2plgnt0vvej" path="res://scripts/auto_turret.gd" id="1_cyour"]
+[ext_resource type="PackedScene" uid="uid://w1niwwnqbb4y" path="res://scenes/projectile.tscn" id="2_pxjf2"]
+[ext_resource type="Texture2D" uid="uid://nust27da1vec" path="res://assets/ui/skill_tree/Scifi weapons and items.png" id="3_miqkr"]
+[ext_resource type="AudioStream" uid="uid://c5cxtkpwwqqar" path="res://assets/music/sfx/shot.wav" id="4_b0xjf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5m6i"]
+atlas = ExtResource("3_miqkr")
+region = Rect2(98, 39, 29, 18)
+
+[node name="AutoTurrent" type="Node2D" unique_id=1640220059]
+script = ExtResource("1_cyour")
+projectile = ExtResource("2_pxjf2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=856372470]
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_s5m6i")
+
+[node name="TurretMuzzle" type="Marker2D" parent="." unique_id=469003466]
+position = Vector2(7, 0)
+
+[node name="ShotSpeedTimer" type="Timer" parent="." unique_id=207050431]
+one_shot = true
+
+[node name="TurretFire" type="AudioStreamPlayer2D" parent="." unique_id=112919225]
+stream = ExtResource("4_b0xjf")
+bus = &"SFX"
+
+[connection signal="timeout" from="ShotSpeedTimer" to="." method="_on_shot_speed_timer_timeout"]

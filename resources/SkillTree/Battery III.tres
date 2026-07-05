@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://drvgqfr7rht7h"]
+
+[ext_resource type="Script" uid="uid://fa5x46oa8uta" path="res://resources/SkillTree/skill.gd" id="1_32hg6"]
+[ext_resource type="Script" uid="uid://d332ldvfmgnhy" path="res://resources/PlayerData/player_stats.gd" id="2_rnfeg"]
+[ext_resource type="Texture2D" uid="uid://dx62vu0q0honp" path="res://assets/props/container-small-gray.png" id="3_cuoai"]
+
+[sub_resource type="Resource" id="Resource_4pw3m"]
+script = ExtResource("2_rnfeg")
+battery_tanks = 4
+metadata/_custom_type_script = "uid://d332ldvfmgnhy"
+
+[resource]
+script = ExtResource("1_32hg6")
+name = "Battery III"
+texture = ExtResource("3_cuoai")
+cost = 1000
+stats = SubResource("Resource_4pw3m")
+metadata/_custom_type_script = "uid://fa5x46oa8uta"

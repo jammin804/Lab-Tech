@@ -34,7 +34,6 @@ func _ready() -> void:
 	var stats = PlayerManager.current_stats #FIXME The autoload wouldn't allow me to name is GlobalPlayerManager
 	recalculate_max_health()
 	current_health = max_health
-	print(PlayerManager.current_stats.auto_fire)
 	
 	match stats.current_form:
 		PlayerStats.Form.DEFAULT:

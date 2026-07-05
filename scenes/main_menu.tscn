@@ -2718,7 +2718,7 @@ offset_left = 8.0
 offset_right = 280.0
 offset_bottom = 45.0
 theme_override_font_sizes/font_size = 32
-text = "MegaIncremental"
+text = "MegaCremental"
 
 [node name="Options Container" type="PanelContainer" parent="." unique_id=1838281311]
 layout_mode = 1

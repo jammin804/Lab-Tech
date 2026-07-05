@@ -8,13 +8,13 @@ const MIN_DB = -60.0
 const MAX_DB = 0.0
 
 func _ready() -> void:
-	_sync_sliders()
+	#_sync_sliders()
 	
 	master_slider.value_changed.connect(_on_master_volume_changed)
 	music_slider.value_changed.connect(_on_music_volume_changed)
 	sfx_slider.value_changed.connect(_on_sfx_volume_changed)
 	
-func _sync_sliders():
+func _sync_sliders(): #TODO: Need to remove in the future. Currently scared it will break the game
 	master_slider.value = _db_to_slider(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
 	music_slider.value = _db_to_slider(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music")))
 	sfx_slider.value  = _db_to_slider(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX")))

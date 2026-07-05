@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://ccyacd2ui5tuc"]
+
+[ext_resource type="Script" uid="uid://fa5x46oa8uta" path="res://resources/SkillTree/skill.gd" id="1_gdr40"]
+[ext_resource type="Script" uid="uid://d332ldvfmgnhy" path="res://resources/PlayerData/player_stats.gd" id="2_f54wl"]
+[ext_resource type="Texture2D" uid="uid://c54gpgq8xl02p" path="res://assets/character/shot3.png" id="3_ck8ob"]
+
+[sub_resource type="Resource" id="Resource_anhfi"]
+script = ExtResource("2_f54wl")
+super_click = true
+metadata/_custom_type_script = "uid://d332ldvfmgnhy"
+
+[resource]
+script = ExtResource("1_gdr40")
+name = "Super Click"
+texture = ExtResource("3_ck8ob")
+cost = 5
+stats = SubResource("Resource_anhfi")
+metadata/_custom_type_script = "uid://fa5x46oa8uta"

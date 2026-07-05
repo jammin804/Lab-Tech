@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://b1mhy0mxprrp8"]
+
+[ext_resource type="Script" uid="uid://fa5x46oa8uta" path="res://resources/SkillTree/skill.gd" id="1_j8cax"]
+[ext_resource type="Script" uid="uid://d332ldvfmgnhy" path="res://resources/PlayerData/player_stats.gd" id="2_4mcyx"]
+[ext_resource type="Texture2D" uid="uid://6rai0s8thhwg" path="res://assets/ui/skill_tree/power.png" id="3_3f677"]
+
+[sub_resource type="Resource" id="Resource_k5nmo"]
+script = ExtResource("2_4mcyx")
+damage_multipler = 3.0
+power = 16
+metadata/_custom_type_script = "uid://d332ldvfmgnhy"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebwn2"]
+atlas = ExtResource("3_3f677")
+region = Rect2(570, 10, 59, 63)
+
+[resource]
+script = ExtResource("1_j8cax")
+name = "Power III"
+texture = SubResource("AtlasTexture_ebwn2")
+cost = 1000
+stats = SubResource("Resource_k5nmo")
+metadata/_custom_type_script = "uid://fa5x46oa8uta"

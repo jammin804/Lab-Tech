@@ -3,7 +3,7 @@ extends GridContainer
 @export var resolution_option: OptionButton
 @export var fullscreen_check: CheckBox
 @export var borderless_check: CheckBox
-@export var vysnc_check: CheckBox
+@export var vsync_check: CheckBox
 
 func _ready() -> void:
 	var resolutions = [
@@ -16,18 +16,18 @@ func _ready() -> void:
 	for res in resolutions:
 		resolution_option.add_item("%dx%d" % [res.x, res.y] )
 	
-	load_current_settings()
+	#load_current_settings()
 	
 	resolution_option.item_selected.connect(_on_resolution_select)
 	fullscreen_check.toggled.connect(_on_fullscreen_toggled)
 	borderless_check.toggled.connect(_on_borderless_toggled)
-	vysnc_check.toggled.connect(_on_vsync_toggled)
+	vsync_check.toggled.connect(_on_vsync_toggled)
 	
-func load_current_settings() -> void:
+func load_current_settings() -> void: #TODO: Need to remove in the future. Currently scared it will break the game
 	var mode = DisplayServer.window_get_mode()
 	fullscreen_check.button_pressed = mode == DisplayServer.WINDOW_MODE_FULLSCREEN
 	borderless_check.button_pressed = DisplayServer.window_get_flag(DisplayServer.WINDOW_FLAG_BORDERLESS)
-	vysnc_check.button_pressed = DisplayServer.window_get_vsync_mode() == DisplayServer.VSYNC_ENABLED
+	vsync_check.button_pressed = DisplayServer.window_get_vsync_mode() == DisplayServer.VSYNC_ENABLED
 	
 	var window_size = DisplayServer.window_get_size()
 	for i in range(resolution_option.item_count):

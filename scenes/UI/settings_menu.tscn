@@ -190,7 +190,7 @@ offset_top = 72.0
 offset_right = 285.5
 offset_bottom = 176.0
 
-[node name="VideoSettings" type="GridContainer" parent="SettingsContainer" unique_id=1943710598 node_paths=PackedStringArray("resolution_option", "fullscreen_check", "borderless_check", "vysnc_check")]
+[node name="VideoSettings" type="GridContainer" parent="SettingsContainer" unique_id=1943710598 node_paths=PackedStringArray("resolution_option", "fullscreen_check", "borderless_check", "vsync_check")]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/v_separation = 0
@@ -199,7 +199,7 @@ script = ExtResource("6_jl7gk")
 resolution_option = NodePath("Resolution")
 fullscreen_check = NodePath("Fullscreen")
 borderless_check = NodePath("Borderless")
-vysnc_check = NodePath("Vysnc")
+vsync_check = NodePath("Vsync")
 
 [node name="Label" type="Label" parent="SettingsContainer/VideoSettings" unique_id=759306528]
 layout_mode = 2
@@ -233,7 +233,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "VSync"
 
-[node name="Vysnc" type="CheckBox" parent="SettingsContainer/VideoSettings" unique_id=2006964494]
+[node name="Vsync" type="CheckBox" parent="SettingsContainer/VideoSettings" unique_id=2006964494]
 layout_mode = 2
 size_flags_horizontal = 8
 
@@ -253,6 +253,7 @@ layout_mode = 2
 text = "Master"
 
 [node name="Master" type="HSlider" parent="SettingsContainer/AudioSettings" unique_id=1943989369]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -261,6 +262,7 @@ layout_mode = 2
 text = "Music"
 
 [node name="Music" type="HSlider" parent="SettingsContainer/AudioSettings" unique_id=26500595]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -269,6 +271,7 @@ layout_mode = 2
 text = "SFX"
 
 [node name="SFX" type="HSlider" parent="SettingsContainer/AudioSettings" unique_id=1274314055]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -320,5 +323,12 @@ bus = &"SFX"
 [connection signal="pressed" from="SettingsMenuButtons/HBoxContainer/AudioBtn" to="." method="_on_audio_btn_pressed"]
 [connection signal="mouse_entered" from="SettingsMenuButtons/HBoxContainer/LangBtn" to="." method="_on_lang_btn_mouse_entered"]
 [connection signal="pressed" from="SettingsMenuButtons/HBoxContainer/LangBtn" to="." method="_on_lang_btn_pressed"]
+[connection signal="item_selected" from="SettingsContainer/VideoSettings/Resolution" to="." method="_on_resolution_item_selected"]
+[connection signal="toggled" from="SettingsContainer/VideoSettings/Fullscreen" to="." method="_on_fullscreen_toggled"]
+[connection signal="toggled" from="SettingsContainer/VideoSettings/Borderless" to="." method="_on_borderless_toggled"]
+[connection signal="toggled" from="SettingsContainer/VideoSettings/Vsync" to="." method="_on_vsync_toggled"]
+[connection signal="drag_ended" from="SettingsContainer/AudioSettings/Master" to="." method="_on_master_drag_ended"]
+[connection signal="drag_ended" from="SettingsContainer/AudioSettings/Music" to="." method="_on_music_drag_ended"]
+[connection signal="drag_ended" from="SettingsContainer/AudioSettings/SFX" to="." method="_on_sfx_drag_ended"]
 [connection signal="mouse_entered" from="BackBtn" to="." method="_on_back_btn_mouse_entered"]
 [connection signal="pressed" from="BackBtn" to="." method="_on_back_btn_pressed"]

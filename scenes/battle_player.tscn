@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d37hr5i350lqv" path="res://scenes/spark.tscn" id="5_r6oyp"]
 [ext_resource type="Texture2D" uid="uid://6rai0s8thhwg" path="res://assets/ui/skill_tree/power.png" id="5_yi774"]
 [ext_resource type="AudioStream" uid="uid://dhhi0c4g00jnp" path="res://assets/music/sfx/shot2.wav" id="6_2tcgp"]
-[ext_resource type="Texture2D" uid="uid://nust27da1vec" path="res://assets/ui/skill_tree/Scifi weapons and items.png" id="9_y8qda"]
+[ext_resource type="PackedScene" uid="uid://dg3lep2meldxf" path="res://scenes/auto_turret.tscn" id="9_y8qda"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r6oyp"]
 shader = ExtResource("1_g11ij")
@@ -74,6 +74,27 @@ animations = [{
 atlas = ExtResource("5_yi774")
 region = Rect2(349, 28, 22, 23)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y8qda"]
+load_path = "res://.godot/imported/ReturnButton.png-ead0500fcf292cd8cfeedf582424a9bc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3638"]
+atlas = SubResource("CompressedTexture2D_y8qda")
+region = Rect2(32, 20, 32, 16)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_50grm"]
+load_path = "res://.godot/imported/ReturnButton.png-ead0500fcf292cd8cfeedf582424a9bc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_escd6"]
+atlas = SubResource("CompressedTexture2D_50grm")
+region = Rect2(32, 50, 32, 16)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h4hwa"]
+load_path = "res://.godot/imported/ReturnButton.png-ead0500fcf292cd8cfeedf582424a9bc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ht4sr"]
+atlas = SubResource("CompressedTexture2D_h4hwa")
+region = Rect2(32, 75, 32, 16)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aqsb2"]
 radius = 13.0
 height = 36.0
@@ -119,10 +140,6 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_qti4y"]
 radius = 100.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s5m6i"]
-atlas = ExtResource("9_y8qda")
-region = Rect2(98, 39, 29, 18)
-
 [node name="BattlePlayer" type="AnimatedSprite2D" unique_id=166741663 groups=["player"]]
 material = SubResource("ShaderMaterial_r6oyp")
 scale = Vector2(0.5, 0.5)
@@ -130,6 +147,7 @@ sprite_frames = SubResource("SpriteFrames_ikkpg")
 animation = &"Idle"
 script = ExtResource("1_hugls")
 current_weapon = ExtResource("4_yi774")
+turret = ExtResource("9_y8qda")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1143428043]
 
@@ -193,6 +211,19 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "0"
 
+[node name="ReturnBtn" type="TextureButton" parent="UI" unique_id=1393770987]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -28.0
+offset_right = 48.0
+offset_bottom = -12.0
+grow_vertical = 0
+texture_normal = SubResource("AtlasTexture_i3638")
+texture_pressed = SubResource("AtlasTexture_escd6")
+texture_hover = SubResource("AtlasTexture_ht4sr")
+
 [node name="Muzzle" type="Marker2D" parent="." unique_id=978875492]
 unique_name_in_owner = true
 position = Vector2(20, -1)
@@ -229,15 +260,7 @@ shape = SubResource("CircleShape2D_qti4y")
 [node name="Attachment" type="Marker2D" parent="." unique_id=611173487]
 position = Vector2(25, 12)
 
-[node name="AutoTurrent" type="Node2D" parent="Attachment" unique_id=1980468528]
-
-[node name="Sprite2D" type="Sprite2D" parent="Attachment/AutoTurrent" unique_id=649086915]
-scale = Vector2(0.5, 0.5)
-texture = SubResource("AtlasTexture_s5m6i")
-
-[node name="Muzzle" type="Marker2D" parent="Attachment/AutoTurrent" unique_id=1945700232]
-position = Vector2(7, 0)
-
+[connection signal="pressed" from="UI/ReturnBtn" to="." method="_on_return_btn_pressed"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

@@ -6,10 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cooeppa7wcj7x" path="res://scenes/camera.tscn" id="4_c4o2e"]
 [ext_resource type="PackedScene" uid="uid://b3gf3rdu50uej" path="res://scenes/UI/battery_hud.tscn" id="7_84lju"]
 [ext_resource type="PackedScene" uid="uid://dooqlpvnyl0ah" path="res://scenes/Systems/spawner.tscn" id="7_f40nx"]
-[ext_resource type="PackedScene" uid="uid://83rd1mmscj3k" path="res://scenes/Playground Scenes/wave_manager.tscn" id="8_f40nx"]
-[ext_resource type="PackedScene" uid="uid://cmjh6j164ltci" path="res://scenes/Playground Scenes/enemy_container.tscn" id="8_wntqn"]
-[ext_resource type="Script" uid="uid://bta3my2bfuxdr" path="res://resources/WaveData/wave_data.gd" id="10_h2rem"]
-[ext_resource type="Resource" uid="uid://b53godrykoobg" path="res://resources/WaveData/level1_waves/wave_01.tres" id="11_jb0l0"]
+[ext_resource type="PackedScene" uid="uid://bktpyu7vhq0km" path="res://scenes/Systems/enemySpawner.tscn" id="7_wntqn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c4o2e"]
 texture = ExtResource("1_vnxpm")
@@ -208,6 +205,7 @@ offset_bottom = 22.0
 
 [node name="EnemySpawnPoint" type="Marker2D" parent="." unique_id=1559572353 groups=["ground_spawns"]]
 unique_name_in_owner = true
+visible = false
 position = Vector2(320, 114)
 
 [node name="PlayerSpawnPoint" type="Marker2D" parent="." unique_id=880092861]
@@ -215,22 +213,14 @@ position = Vector2(38, 116)
 
 [node name="EnemySpawnPoint2" type="Marker2D" parent="." unique_id=1747823709 groups=["sky_spawns"]]
 unique_name_in_owner = true
+visible = false
 position = Vector2(329, 71)
 
 [node name="InBetweenWaves" type="Timer" parent="." unique_id=1405347825]
 one_shot = true
 autostart = true
 
-[node name="EnemyContainer" parent="." unique_id=1128214486 instance=ExtResource("8_wntqn")]
-y_sort_enabled = true
-
-[node name="WaveManager" parent="." unique_id=1472363141 node_paths=PackedStringArray("ground_spawn_point", "air_spawn_point", "enemy_container") instance=ExtResource("8_f40nx")]
-position = Vector2(0, 7)
-waves = Array[ExtResource("10_h2rem")]([ExtResource("11_jb0l0")])
-ground_spawn_point = NodePath("../EnemySpawnPoint")
-air_spawn_point = NodePath("../EnemySpawnPoint2")
-enemy_container = NodePath("../EnemyContainer")
-
-[connection signal="timeout" from="InBetweenWaves" to="WaveManager" method="_on_in_between_waves_timeout"]
+[node name="EnemySpawner" parent="." unique_id=1886090633 instance=ExtResource("7_wntqn")]
+position = Vector2(319, 114)
 
 [editable path="Battery"]

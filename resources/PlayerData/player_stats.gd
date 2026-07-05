@@ -19,9 +19,10 @@ enum Form {DEFAULT, COMBINED, AVATAR}
 @export var current_form: Form = Form.DEFAULT
 
 #Attributes
+@export var super_click : bool = false
 @export var auto_fire : bool = false
 @export var power : int = 2
-@export var range : int
+@export var range : int = 2
 @export var rapid : float = 0.5
 @export var can_charge : bool = false
 @export var charge_rate : float = 40.0

@@ -11,5 +11,4 @@ func _on_pressed() -> void:
 	click.play() 
 
 func _on_mouse_entered() -> void:
-	#print("hovered")
 	hover.play()

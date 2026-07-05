@@ -286,7 +286,6 @@ texture_hover = SubResource("AtlasTexture_iyn56")
 [node name="SkillTree" parent="CanvasLayer/Pausable/UpgradeScene" unique_id=688541759 instance=ExtResource("15_eavsi")]
 unique_name_in_owner = true
 visible = false
-z_index = 1
 layout_mode = 1
 
 [node name="LabBGM" type="Node" parent="CanvasLayer/Pausable" unique_id=185395556]
@@ -297,6 +296,7 @@ Bus = &"Music"
 metadata/_custom_type_script = "uid://txbrbq2y72mm"
 
 [node name="PauseBtn" type="TextureButton" parent="CanvasLayer/Pausable" unique_id=660265438]
+z_index = -1
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0

@@ -63,7 +63,7 @@ texture = SubResource("AtlasTexture_jkca0")
 expand_mode = 2
 
 [node name="CustomMouse" parent="." unique_id=289937816 instance=ExtResource("1_h607l")]
-layer = 128
+layer = 400
 
 [node name="Pausable" type="Control" parent="." unique_id=604897688]
 process_mode = 1

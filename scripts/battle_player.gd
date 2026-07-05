@@ -3,6 +3,7 @@ extends Player
 
 @export var current_weapon: WeaponData
 @export var drain_amount: int = 10
+@export var turret: PackedScene
 
 var mouse_is_on_player: bool = false
 var is_auto_shoot: bool = false
@@ -10,6 +11,8 @@ var is_charging: bool = false
 var time_held : float = 0.0
 var current_charge_percent : float
 var max_charge_percent : float = 100.0
+var active_turret : Node2D = null
+var final_stats : PlayerStats
 
 var power : int = 1:
 	set(value):
@@ -41,23 +44,30 @@ var money : int = 0:
 func _ready() -> void:
 	super()
 	PlayerManager.active_player = self
-	PlayerManager.load_player_state(self)
 	
-	Persistence.gain_bonus_stats()
-	print(Persistence.bonus_stats.auto_fire)
+	SkillManager.calculate_unlocked_stats()
+	final_stats = SkillManager.active_stats
+	#PlayerManager.load_player_state(self)
 	
-	var stats = PlayerManager.current_stats
-	power = stats.power
-	rapid = stats.rapid
-	battery_level = stats.battery_tanks
+	#SkillManager.calculate_unlocked_stats()
+	
+	#var base_stats = PlayerManager.current_stats
+	#var bonus_stats = Persistence.bonus_stats
+	power = final_stats.power
+	rapid = final_stats.rapid
+	battery_level = final_stats.battery_tanks
+	
+	#base_stats.can_charge = base_stats.can_charge or bonus_stats.can_charge
+	#base_stats.auto_fire = base_stats.auto_fire or bonus_stats.auto_fire
+	#base_stats.super_click = base_stats.super_click or bonus_stats.super_click
+	
 	money = SaveData.money
-	
 	Events.increase_currency.connect(gain_money)
 	
-	print("Battle Player Stats: Power: " + str(power))
-	print("Battle Player Stats: Rapid: " + str(rapid))
-	print("Battle Player Stats: Battery Level: " + str(battery_level))
+	print("Battle Player Ready! Super Click: ", final_stats.super_click, " | Auto Fire: ", final_stats.auto_fire)
 	
+	
+	hit_flash_anim.play("RESET")
 
 func _input(event) -> void:
 	if event is InputEventKey:
@@ -68,7 +78,26 @@ func _input(event) -> void:
 func _process(delta: float) -> void:
 	var stats = PlayerManager.current_stats
 	#var percentage = (current_charge_percent / max_charge_percent) * 100
-	check_if_can_charge(stats, delta)
+	
+	if final_stats.super_click:
+		if Input.is_action_just_pressed("left_click"):
+			shoot(0.0)
+	
+	elif final_stats.can_charge:
+		if Input.is_action_pressed("left_click"):
+			current_charge_percent += delta * stats.charge_rate
+			current_charge_percent = clampf(current_charge_percent, 0.0, max_charge_percent)
+			
+			#print("Charging my laser " + str(percentage))
+		elif Input.is_action_just_released("left_click"):
+			if shoot_cooldown_timer.is_stopped():
+				shoot(current_charge_percent)
+			current_charge_percent = 0.0
+	else:
+		if Input.is_action_just_pressed("left_click") and shoot_cooldown_timer.is_stopped():
+			shoot(0.0)
+	
+	can_auto_fire()
 	
 	
 	if not Input.is_action_just_pressed("left_click"):
@@ -128,30 +157,22 @@ func shoot(charge_percentage : float) -> void:
 	get_tree().current_scene.add_child(new_bullet)
 	damage_player(drain_amount)
 
-func check_if_can_charge(stats: PlayerStats, delta) -> void:
-	if stats.can_charge:
-		if Input.is_action_pressed("left_click"):
-		
-			current_charge_percent += delta * stats.charge_rate
-		
-			current_charge_percent = clampf(current_charge_percent, 0.0, max_charge_percent)
-			
-			#print("Charging my laser " + str(percentage))
-
-		elif Input.is_action_just_released("left_click"):
-			if shoot_cooldown_timer.is_stopped():
-				shoot(current_charge_percent)
-
-			current_charge_percent = 0.0
-	else:
-		if Input.is_action_just_pressed("left_click") and shoot_cooldown_timer.is_stopped():
-			shoot(0.0)
+#func check_if_can_charge(stats: PlayerStats, delta) -> void:
+	#pass
 			
 func gain_money(amount:int, item_name:String = "money",):
 	print(str(item_name) + " dropped and you gained " + str(amount))
 	money += amount
 	SaveData.money += amount
-	
+
+func can_auto_fire() -> void:
+	#var is_auto_fire : bool = PlayerManager.current_stats.auto_fire
+	#print("Can Player Auto Fire: " + str(is_auto_fire))
+	if final_stats.auto_fire and active_turret == null:
+		active_turret = turret.instantiate()
+		$Attachment.add_child(active_turret)
+		
+		
 func _on_lab_battle_scene_start() -> void:
 	is_in_battle_scene = true
 
@@ -168,16 +189,16 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		
 		hit_flash_anim.play("HitFlashAnim")
 
-
 func _on_area_2d_mouse_entered() -> void:
 	mouse_is_on_player = true
-
-
 
 func _on_area_2d_mouse_exited() -> void:
 	mouse_is_on_player = false
 
-
 func _on_magnet_area_entered(area: Area2D) -> void:
 	if area.has_method("follow"):
 		area.follow(self)
+
+
+func _on_return_btn_pressed() -> void:
+	LevelTransition.change_scene_to("res://scenes/lab.tscn")

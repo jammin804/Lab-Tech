@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://lo3g53vb58yq"]
+
+[ext_resource type="Script" uid="uid://fa5x46oa8uta" path="res://resources/SkillTree/skill.gd" id="1_g1es6"]
+[ext_resource type="Script" uid="uid://d332ldvfmgnhy" path="res://resources/PlayerData/player_stats.gd" id="2_bfjap"]
+[ext_resource type="Texture2D" uid="uid://bp4n4b1ar2gak" path="res://assets/ui/skill_tree/charge.png" id="3_7fb8i"]
+
+[sub_resource type="Resource" id="Resource_tltv1"]
+script = ExtResource("2_bfjap")
+battery_tanks = 0
+battery_tank_points = 0
+power = 0
+rapid = 0.0
+can_charge = true
+charge_rate = 80.0
+charge_damage_multipler = 6.0
+metadata/_custom_type_script = "uid://d332ldvfmgnhy"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_utb3r"]
+atlas = ExtResource("3_7fb8i")
+region = Rect2(17, 2, 30, 27)
+
+[resource]
+script = ExtResource("1_g1es6")
+name = "Charge III"
+texture = SubResource("AtlasTexture_utb3r")
+cost = 500
+stats = SubResource("Resource_tltv1")
+metadata/_custom_type_script = "uid://fa5x46oa8uta"
