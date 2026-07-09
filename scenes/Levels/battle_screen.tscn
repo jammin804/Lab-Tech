@@ -4,14 +4,9 @@
 [ext_resource type="Script" uid="uid://084flrltlmjn" path="res://scenes/battle_screen.gd" id="1_p5bt8"]
 [ext_resource type="Texture2D" uid="uid://cvjej43nsn7ha" path="res://assets/backgrounds/level_3.png" id="2_6gkuo"]
 [ext_resource type="PackedScene" uid="uid://cooeppa7wcj7x" path="res://scenes/camera.tscn" id="4_6lb5u"]
-[ext_resource type="PackedScene" uid="uid://83rd1mmscj3k" path="res://scenes/Playground Scenes/wave_manager.tscn" id="4_jwmpd"]
-[ext_resource type="Script" uid="uid://bta3my2bfuxdr" path="res://resources/WaveData/wave_data.gd" id="5_aqsb2"]
-[ext_resource type="Resource" uid="uid://b53godrykoobg" path="res://resources/WaveData/level1_waves/wave_01.tres" id="6_h607l"]
-[ext_resource type="Resource" uid="uid://8yrefwd8f06d" path="res://resources/WaveData/level1_waves/wave_02.tres" id="8_2nma8"]
-[ext_resource type="Script" uid="uid://dl60evs3evp8i" path="res://resources/WaveData/spawn_info.gd" id="9_llad0"]
-[ext_resource type="PackedScene" uid="uid://cqueta70ubjqr" path="res://scenes/enemy.tscn" id="10_iatiq"]
 [ext_resource type="Texture2D" uid="uid://b8h7y5diislmb" path="res://assets/ui/hud/Settigns.png" id="10_ikkpg"]
 [ext_resource type="PackedScene" uid="uid://dg66c7f7p6iii" path="res://scenes/pause_menu.tscn" id="11_qm3lx"]
+[ext_resource type="PackedScene" uid="uid://bktpyu7vhq0km" path="res://scenes/Systems/enemySpawner.tscn" id="12_5e8mb"]
 [ext_resource type="PackedScene" uid="uid://bd1e7fmt2sl4m" path="res://scenes/UI/settings_menu.tscn" id="12_p5bt8"]
 [ext_resource type="Script" uid="uid://txbrbq2y72mm" path="res://plugin/OvaniPlugin/OvaniPlayer.gd" id="13_88a0a"]
 [ext_resource type="PackedScene" uid="uid://lccgrpafmldk" path="res://scenes/debug/debug_text_overlay.tscn" id="14_81rp5"]
@@ -21,17 +16,6 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_jkca0"]
 atlas = ExtResource("2_6gkuo")
 region = Rect2(0, 0, 288, 208)
-
-[sub_resource type="Resource" id="Resource_7opc3"]
-script = ExtResource("9_llad0")
-enemy_scene = ExtResource("10_iatiq")
-enemy_count = 2
-metadata/_custom_type_script = "uid://dl60evs3evp8i"
-
-[sub_resource type="Resource" id="Resource_1np2h"]
-script = ExtResource("5_aqsb2")
-spawns = Array[ExtResource("9_llad0")]([SubResource("Resource_7opc3")])
-metadata/_custom_type_script = "uid://bta3my2bfuxdr"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lskjy"]
 atlas = ExtResource("10_ikkpg")
@@ -93,12 +77,6 @@ position = Vector2(312, 96)
 
 [node name="Enemies" type="Node2D" parent="Pausable" unique_id=374635073]
 
-[node name="WaveManager" parent="Pausable" unique_id=1472363141 node_paths=PackedStringArray("ground_spawn_point", "air_spawn_point", "enemy_container") instance=ExtResource("4_jwmpd")]
-waves = Array[ExtResource("5_aqsb2")]([ExtResource("6_h607l"), ExtResource("8_2nma8"), SubResource("Resource_1np2h")])
-ground_spawn_point = NodePath("../EnemySpawnPoint")
-air_spawn_point = NodePath("../EnemySpawnPoint2")
-enemy_container = NodePath("../Enemies")
-
 [node name="PauseBtn" type="TextureButton" parent="Pausable" unique_id=1050029617]
 layout_mode = 1
 anchors_preset = 1
@@ -157,5 +135,7 @@ visible = false
 process_mode = 2
 visible = false
 
-[connection signal="timeout" from="Pausable/InBetweenWaves" to="Pausable/WaveManager" method="_on_in_between_waves_timeout"]
+[node name="EnemySpawner" parent="." unique_id=1886090633 instance=ExtResource("12_5e8mb")]
+position = Vector2(312, 128)
+
 [connection signal="pressed" from="Pausable/PauseBtn" to="." method="_on_pause_btn_pressed"]

@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://ck4awebvd5fvv" path="res://scripts/ui/result_screen.gd" id="1_wn60h"]
 [ext_resource type="Texture2D" uid="uid://bmgd5bh11073r" path="res://assets/ui/hud/coins-chests-etc-2-0.png" id="2_86eji"]
 [ext_resource type="Texture2D" uid="uid://nust27da1vec" path="res://assets/ui/skill_tree/Scifi weapons and items.png" id="3_86eji"]
+[ext_resource type="Script" uid="uid://cuskg2byynr07" path="res://scripts/ui/juciy_button.gd" id="5_6ykoc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s5m6i"]
 atlas = ExtResource("1_ip6xr")
@@ -62,14 +63,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 22
-theme_override_constants/margin_top = 19
-theme_override_constants/margin_right = 22
-theme_override_constants/margin_bottom = 14
+theme_override_constants/margin_left = 26
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 26
+theme_override_constants/margin_bottom = 17
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer" unique_id=297750326]
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 6
 
 [node name="MoneyContainer" type="HBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer" unique_id=1634654656]
 layout_mode = 2
@@ -165,3 +166,27 @@ size_flags_horizontal = 10
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 8
 text = "0%"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer" unique_id=1664444429]
+layout_mode = 2
+
+[node name="LabButton" type="Button" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=514935510]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0, 0)
+theme_override_font_sizes/font_size = 8
+text = "Return To Lab"
+script = ExtResource("5_6ykoc")
+
+[node name="ContinueButton" type="Button" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=998791857]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0, 0)
+theme_override_font_sizes/font_size = 8
+text = "Next Level"
