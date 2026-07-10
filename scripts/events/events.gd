@@ -7,3 +7,6 @@ signal boss_health_changed(new_health: int, max_health: int)
 signal screen_shake_requested(intensity: float, duration: float)
 signal increase_currency(item_name : String, amount : int)
 signal enemy_died
+signal pause_auto_actions
+signal level_complete
+signal show_result_screen(money_gained: int, scrap_gained: int)

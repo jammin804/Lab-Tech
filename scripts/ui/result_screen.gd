@@ -9,6 +9,8 @@ extends Control
 @onready var continue_button: Button = $TextureRect/MarginContainer/VBoxContainer/HBoxContainer/ContinueButton
 @onready var lab_button: Button = $TextureRect/MarginContainer/VBoxContainer/HBoxContainer/LabButton
 
+var lab_scene: String = "res://scenes/lab.tscn"
+
 var money = 30
 var moneyMax = 40
 var scrap = 3
@@ -20,17 +22,23 @@ var starCount = len(stars.filter(
 ))
 var totalMaxScore = scrap * 10 + starsMax * 10 + moneyMax
 var totalScore = scrap * 10  + starCount * 10 + money
-var scorePercent = totalScore * 100 / totalMaxScore
+#var scorePercent = totalScore * 100 / totalMaxScore
 
 func _ready():
-	_set_result_screen()
+	#_set_result_screen()
+	Events.show_result_screen.connect(_set_result_screen)
+	Events.level_complete.connect(_update_level)
 	
-func _set_result_screen():
-	await _label_animation(money_label, money, moneyMax, 0.025)
-	await _label_animation(scrap_label, scrap, scrapMax, 0.2)
+func _set_result_screen(money_gained: int, scrap_gained: int):
+	print(money_gained)
+	if self.visible == false:
+		self.visible = true
+	
+	await _label_animation(money_label, money_gained, moneyMax, 0.025)
+	await _label_animation(scrap_label, scrap_gained, scrapMax, 0.2)
 	await _star_animation(stars)
 	
-	await _label_animation(total_score_label, scorePercent, -1, 0.025)
+	#await _label_animation(total_score_label, scorePercent, -1, 0.025)
 	await _button_animation(lab_button)
 	await _button_animation(continue_button)
 	
@@ -38,7 +46,7 @@ func _set_result_screen():
 func _label_animation(label: Label, count: int, maxAmount: int, duration: float) -> void:
 	for i in count + 1:
 		label.text = str(i)
-		if maxAmount >= 0: label.text += "/" + str(maxAmount)
+		if maxAmount >= 0: label.text
 		else: label.text += "%"
 		await get_tree().create_timer(duration).timeout
 
@@ -57,6 +65,14 @@ func _button_animation(button: Button) -> void:
 	tween.tween_property(button, "modulate:a", 1.0, .5).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	tween.parallel().tween_property(button, "offset_transform_scale", Vector2(1.0,1.0), .5).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	
-	#button.show()
-	print("Show Button")
 	await get_tree().create_timer(.8).timeout
+
+func _update_level(level: int) -> void:
+	print(level)
+
+func _on_lab_button_pressed() -> void:
+	LevelTransition.change_scene_to(lab_scene)
+
+
+func _on_continue_button_pressed() -> void:
+	LevelTransition._on_change_level()

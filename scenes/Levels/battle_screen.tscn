@@ -103,6 +103,9 @@ metadata/_custom_type_script = "uid://txbrbq2y72mm"
 unique_name_in_owner = true
 position = Vector2(32, 128)
 
+[node name="EnemySpawner" parent="Pausable" unique_id=1886090633 instance=ExtResource("12_5e8mb")]
+position = Vector2(312, 128)
+
 [node name="DebugLayer" type="CanvasLayer" parent="." unique_id=389921551]
 process_mode = 3
 layer = 128
@@ -134,8 +137,5 @@ visible = false
 [node name="PauseMenu" parent="PauseLayer" unique_id=1716673666 instance=ExtResource("11_qm3lx")]
 process_mode = 2
 visible = false
-
-[node name="EnemySpawner" parent="." unique_id=1886090633 instance=ExtResource("12_5e8mb")]
-position = Vector2(312, 128)
 
 [connection signal="pressed" from="Pausable/PauseBtn" to="." method="_on_pause_btn_pressed"]

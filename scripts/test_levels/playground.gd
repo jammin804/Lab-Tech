@@ -12,3 +12,8 @@ func _ready() -> void:
 	
 	#Plass the fresh node to the manager to restore its health state
 	PlayerManager.load_player_state(player_instance)
+	Events.level_complete.connect(_on_results)
+
+func _on_results():
+	#Events.show_result_screen.emit()
+	%Results.show()

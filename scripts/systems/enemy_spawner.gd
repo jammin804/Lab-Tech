@@ -3,7 +3,7 @@ extends Node2D
 
 const ENEMY = preload("uid://cqueta70ubjqr")
 
-@export var total_waves : int = 3
+@export var total_waves : int = 1
 @export var current_wave: int
 @export var current_number_of_enemies: int
 @export var number_enemies_in_wave: int
@@ -43,13 +43,13 @@ func check_wave_number() -> void:
 func _on_enemy_died() -> void:
 	
 	enemies_left -= 1
-
-	if enemies_left == 0 and current_wave <= total_waves:
+	if current_wave == total_waves and enemies_left == 0:
+		print(current_wave == total_waves)
+		_on_level_end()
+	elif enemies_left == 0 and current_wave <= total_waves:
 		current_wave += 1
 		check_wave_number()
-	elif current_wave == total_waves:
-		#TODO Emit signal for result scene to show
-		pass
+	
 		#Globals.level += 1
 		#LevelTransition.change_scene_to("res://scenes/lab.tscn")
 
@@ -67,3 +67,9 @@ func _on_spawn_timer_timeout() -> void:
 	else:
 		current_number_of_enemies = 0
 		spawn_timer.stop()
+
+func _on_level_end() -> void:
+	Events.pause_auto_actions.emit()
+	Globals.level += 1
+	Events.level_complete.emit(Globals.level)
+	print("Wave endend Show Result scene")

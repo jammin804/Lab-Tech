@@ -12,12 +12,9 @@ var turret_damage = 2
 
 
 func _ready() -> void:
+	Events.pause_auto_actions.connect(_stop_firining)
 	if shot_speed_timer.autostart == false:
 		shot_speed_timer.start()
-
-func _process(delta: float) -> void:
-	#print(shot_speed_timer.wait_time)
-	pass
 
 
 func _on_shot_speed_timer_timeout() -> void:
@@ -35,3 +32,6 @@ func fire() -> void:
 	shot_speed_timer.wait_time = attack_speed
 	shot_speed_timer.start()
 	print(shot_speed_timer.wait_time)
+
+func _stop_firining() -> void:
+	shot_speed_timer.stop()

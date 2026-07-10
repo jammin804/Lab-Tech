@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://b8umcoij18id8"]
 
 [ext_resource type="Script" uid="uid://fdtk4itejj6q" path="res://scripts/systems/stage_manager.gd" id="1_p0f2w"]
+[ext_resource type="PackedScene" uid="uid://bdpj78s126rdu" path="res://scenes/Levels/battle_screen.tscn" id="2_u8jav"]
+[ext_resource type="PackedScene" uid="uid://bsap60e55pre1" path="res://scenes/Levels/level_2.tscn" id="3_pde80"]
+[ext_resource type="PackedScene" uid="uid://cir7vusp7dx7a" path="res://scenes/Levels/level_3.tscn" id="4_shjyc"]
 
 [sub_resource type="Animation" id="Animation_iijxs"]
 length = 0.001
@@ -61,6 +64,7 @@ _data = {
 [node name="StageManager" type="CanvasLayer" unique_id=2021695030]
 process_mode = 3
 script = ExtResource("1_p0f2w")
+levels = Array[PackedScene]([ExtResource("2_u8jav"), ExtResource("3_pde80"), ExtResource("4_shjyc")])
 
 [node name="TransitionPlayer" type="AnimationPlayer" parent="." unique_id=844805769]
 process_mode = 3
