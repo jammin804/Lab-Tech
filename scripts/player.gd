@@ -2,6 +2,7 @@ class_name Player
 extends AnimatedSprite2D
 
 signal health_changed()
+signal battery_empty()
 
 @export_category("Debug")
 @export var debug_regen: bool = true
@@ -58,6 +59,11 @@ func damage_player(damage_amount: int) -> void:
 	if current_health <= 0:
 		print("Return to Lab")
 		Engine.time_scale = 0.5
+#		#Show Result Screen
+		#TODO Have Teleport Animation Like Megamnan
+		battery_empty.emit()
+		await get_tree().create_timer(1.0).timeout
+		
 		LevelTransition.change_scene_to("res://scenes/lab.tscn")
 	health_changed.emit()
 

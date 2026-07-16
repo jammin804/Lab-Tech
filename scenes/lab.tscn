@@ -12,7 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://c6pwf33mn2agb" path="res://assets/music/sfx/steam_hiss.wav" id="14_5tteu"]
 [ext_resource type="Script" uid="uid://m1bfaxshhh8l" path="res://plugin/OvaniPlugin/OvaniSong.gd" id="14_ds7rc"]
 [ext_resource type="PackedScene" uid="uid://btwv4xs5rbw63" path="res://scenes/UI/skill_tree.tscn" id="15_eavsi"]
-[ext_resource type="Resource" uid="uid://srv7ffo3rdex" path="res://resources/Ovani/EvilGrudge.tres" id="15_kfqsw"]
+[ext_resource type="Resource" uid="uid://8oofuwkj0u4f" path="res://resources/Ovani/Depressed.tres" id="15_ijdgx"]
 [ext_resource type="PackedScene" uid="uid://bd1e7fmt2sl4m" path="res://scenes/UI/settings_menu.tscn" id="17_eavsi"]
 [ext_resource type="Texture2D" uid="uid://b8h7y5diislmb" path="res://assets/ui/hud/Settigns.png" id="17_ftxkm"]
 [ext_resource type="PackedScene" uid="uid://dg66c7f7p6iii" path="res://scenes/pause_menu.tscn" id="17_ijdgx"]
@@ -200,6 +200,7 @@ text = "Upgrades"
 horizontal_alignment = 1
 
 [node name="StatsLabel" type="Label" parent="CanvasLayer/Pausable/UpgradeScene/Props" unique_id=2016514304]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -219,6 +220,7 @@ text = "Stats"
 horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureButton" parent="CanvasLayer/Pausable/UpgradeScene/Props" unique_id=1434800351]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -290,7 +292,7 @@ layout_mode = 1
 
 [node name="LabBGM" type="Node" parent="CanvasLayer/Pausable" unique_id=185395556]
 script = ExtResource("13_m131j")
-QueuedSongs = Array[ExtResource("14_ds7rc")]([ExtResource("15_kfqsw")])
+QueuedSongs = Array[ExtResource("14_ds7rc")]([ExtResource("15_ijdgx")])
 Volume = -10.0
 Bus = &"Music"
 metadata/_custom_type_script = "uid://txbrbq2y72mm"

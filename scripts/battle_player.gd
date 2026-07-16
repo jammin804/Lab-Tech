@@ -24,7 +24,7 @@ var rapid : float = 0:
 		rapid = value
 		%Rapid.text = "R : " + str(value)
 		
-var battery_level : int = 1:
+var battery_level : int = 0:
 	set(value):
 		battery_level = value
 		%Battery.text = "B : " + str(value)
@@ -38,15 +38,26 @@ var level_scraps : int = 0
 var level_money : int = 0
 
 var is_result_screen_on : bool = false
+var collected_all_currency: bool = false
 #Firing Gun
 @onready var muzzle: Marker2D = %Muzzle
 @onready var spark: Node2D = $Spark
 @onready var fire: AudioStreamPlayer2D = $Fire
 @onready var shoot_cooldown_timer: Timer = $ShootCooldownTimer
+
 @onready var hit_flash_anim: AnimationPlayer = $HitFlashAnim
+@onready var charge_anim: AnimationPlayer = $ChargeAnim
+
+@onready var out_of_battery_alert: Label = $UI/OutOfBatteryAlert
+@onready var charge_progress_bar: TextureProgressBar = %ChargeProgressBar
+@onready var full_charge_border: TextureProgressBar = %FullChargeBorder
+@onready var charge_progress_bar_container: HBoxContainer = $UI/ChargeProgressBarContainer
+@onready var charge_bar_location: Marker2D = $ChargeBarLocation
+
 
 func _ready() -> void:
 	super()
+	#charge_progress_bar_container.global_position = charge_bar_location.global_position
 	PlayerManager.active_player = self
 	
 	SkillManager.calculate_unlocked_stats()
@@ -58,9 +69,9 @@ func _ready() -> void:
 	
 	money = SaveData.money
 	Events.increase_currency.connect(gain_money)
-	Events.level_complete.connect(_pause_input)
-	
-	#print("Battle Player Ready! Super Click: ", final_stats.super_click, " | Auto Fire: ", final_stats.auto_fire)
+	Events.level_complete.connect(_on_result_screen_shown)
+	battery_empty.connect(_on_result_screen_shown)
+	print("Battle Player Ready! Super Click: ", final_stats.super_click, " | Auto Fire: ", final_stats.auto_fire, " | Charge: ", final_stats.can_charge)
 	
 	
 	hit_flash_anim.play("RESET")
@@ -73,23 +84,45 @@ func _input(event) -> void:
 			health_changed.emit()
 	
 	
+	
 func _process(delta: float) -> void:
 	var stats = PlayerManager.current_stats
-	#var percentage = (current_charge_percent / max_charge_percent) * 100
+	var percentage = (current_charge_percent / max_charge_percent) * 100
+	
 	if is_result_screen_on == false:
-		if final_stats.super_click:
-			if Input.is_action_just_pressed("left_click"):
-				shoot(0.0)
-		
-		elif final_stats.can_charge:
+		if final_stats.can_charge:
+			if final_stats.super_click:
+				if Input.is_action_just_pressed("left_click") and shoot_cooldown_timer.is_stopped():
+					shoot(0.0)
+			
 			if Input.is_action_pressed("left_click"):
 				current_charge_percent += delta * stats.charge_rate
 				current_charge_percent = clampf(current_charge_percent, 0.0, max_charge_percent)
+				time_held += 1
+				#print(time_held)
+				if time_held >= 20:
+					charge_progress_bar.call_deferred("show") #TODO Polish - make the transition smoother
+
+				charge_progress_bar.value = current_charge_percent
+				#When at 100% have the bar modulate with a yellow outline or tint
+				if charge_progress_bar.value <= 85 and charge_progress_bar.value >= 80:
+					full_charge_border.show()
+					charge_anim.play("charging")
+
+				print("Charging my laser " + str(percentage))
+					
 				
-				#print("Charging my laser " + str(percentage))
 			elif Input.is_action_just_released("left_click"):
-				if shoot_cooldown_timer.is_stopped():
+				charge_progress_bar.hide()
+				full_charge_border.hide()
+				charge_anim.play("RESET")
+				time_held = 0
+				
+				var charge_ratio = current_charge_percent / max_charge_percent
+				
+				if shoot_cooldown_timer.is_stopped() or charge_ratio >= .15:
 					shoot(current_charge_percent)
+					
 				current_charge_percent = 0.0
 		else:
 			if Input.is_action_just_pressed("left_click") and shoot_cooldown_timer.is_stopped():
@@ -116,7 +149,6 @@ func shoot(charge_percentage : float) -> void:
 	shoot_cooldown_timer.start()
 	
 	var final_damage = player_stats.power * player_stats.damage_multipler
-	
 	var final_element = current_weapon.current_element
 	
 	if final_element == current_weapon.Element.DEFAULT:
@@ -126,18 +158,21 @@ func shoot(charge_percentage : float) -> void:
 	var charge_ratio = charge_percentage / max_charge_percent
 	var damage_multiper = 1.0
 	
-	if player_stats.can_charge:
+	if final_stats.can_charge:
+
+		
 		if charge_ratio >= 1.0:
 			new_bullet.scale = Vector2(4.0, 4.0)
 			damage_multiper = player_stats.charge_damage_multipler
 			print("FULL CHARGE SHOT")
-		elif charge_ratio >= 0.15:
+		elif charge_ratio >= 0.35:
 			new_bullet.scale = Vector2(3.0, 3.0)
 			damage_multiper = player_stats.charge_damage_multipler * .75
 			print("MID CHARGE SHOT")
 		else:
 			new_bullet.scale = Vector2.ONE
 			damage_multiper = 1.0
+			
 			print("TAP SHOT")
 			
 			
@@ -145,17 +180,16 @@ func shoot(charge_percentage : float) -> void:
 		new_bullet.scale = Vector2.ONE
 	
 	new_bullet.damage = final_damage * damage_multiper
-	
 	new_bullet.current_element = final_element
-
 	new_bullet.global_position = muzzle.global_position
 
 	get_tree().current_scene.add_child(new_bullet)
 	damage_player(drain_amount)
 
 			
+@warning_ignore("unused_parameter")
 func gain_money(amount:int, item_name:String = "money",):
-	print(str(item_name) + " dropped and you gained " + str(amount))
+	#print(str(item_name) + " dropped and you gained " + str(amount))
 	money += amount
 	SaveData.money += amount
 	level_money += amount
@@ -165,13 +199,6 @@ func can_auto_fire() -> void:
 	if final_stats.auto_fire and active_turret == null:
 		active_turret = turret.instantiate()
 		$Attachment.add_child(active_turret)
-		
-		
-#func _on_lab_battle_scene_start() -> void:
-	#is_in_battle_scene = true
-#
-#func _on_lab_uprgrade_scene_start() -> void:
-	#is_in_battle_scene = false
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
@@ -190,10 +217,14 @@ func _on_magnet_area_entered(area: Area2D) -> void:
 func _on_return_btn_pressed() -> void:
 	LevelTransition.change_scene_to("res://scenes/lab.tscn")
 	
-func _pause_input() -> void:
+func _on_result_screen_shown() -> void:
 	is_result_screen_on = true
-	Events.show_result_screen.emit(level_money, level_scraps)
+	out_of_battery_alert.show()
+	#get_tree().create_timer(2).timeout
+	Events.pause_auto_actions.emit()
+	#Events.show_result_screen.emit(level_money, level_scraps)
 
 func _reset_state() -> void:
 	if is_result_screen_on == true:
 		is_result_screen_on = false
+		out_of_battery_alert.hide()

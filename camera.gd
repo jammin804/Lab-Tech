@@ -1,6 +1,7 @@
 class_name GameCamera
 extends Camera2D
 
+#Screen Shake script
 var shake_intensity: float = 0.0
 var active_shake_time: float = 0.0
 

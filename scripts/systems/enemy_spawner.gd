@@ -3,7 +3,7 @@ extends Node2D
 
 const ENEMY = preload("uid://cqueta70ubjqr")
 
-@export var total_waves : int = 1
+@export var total_waves : int = 5
 @export var current_wave: int
 @export var current_number_of_enemies: int
 @export var number_enemies_in_wave: int
@@ -21,23 +21,35 @@ func _ready() -> void:
 
 func check_wave_number() -> void:
 	#number_enemies_in_wave = 0
-	print("Current wave is ", current_wave)
+	#print("Current wave is ", current_wave)
 	if current_wave == 1:
 		#TODO Add animation or show panel when wave is starting. Emit a signal of the UI to listen for it
 		number_enemies_in_wave = 3
 		await get_tree().create_timer(2).timeout
 		spawn_timer.start()
-		print("Wave One Start")
+		#TODO Add a lable to indicate the current wave
+		#print("Wave One Start")
 	elif current_wave == 2:
 		number_enemies_in_wave = 6
 		await get_tree().create_timer(2).timeout
 		spawn_timer.start()
-		print("Wave Two Start")
+		#TODO Add a lable to indicate the current wave
+		#print("Wave Two Start")
 	elif current_wave == 3:
 		number_enemies_in_wave = 9
 		await get_tree().create_timer(2).timeout
 		spawn_timer.start()
-		
+		#TODO Add a lable to indicate the current wave
+	elif current_wave == 4:
+		number_enemies_in_wave = 12
+		await get_tree().create_timer(2).timeout
+		spawn_timer.start()
+		#TODO Add a lable to indicate the current wave
+	elif current_wave == 5:
+		number_enemies_in_wave = 15
+		await get_tree().create_timer(2).timeout
+		spawn_timer.start()
+		#TODO Add a lable to indicate the current wave
 
 
 func _on_enemy_died() -> void:
@@ -49,14 +61,10 @@ func _on_enemy_died() -> void:
 	elif enemies_left == 0 and current_wave <= total_waves:
 		current_wave += 1
 		check_wave_number()
-	
-		#Globals.level += 1
-		#LevelTransition.change_scene_to("res://scenes/lab.tscn")
 
 
 func _on_spawn_timer_timeout() -> void:
 	var new_enemey = ENEMY.instantiate()
-	#new_enemey.global_position = global_position
 	
 	if current_number_of_enemies < number_enemies_in_wave:
 		current_number_of_enemies += 1
@@ -71,5 +79,5 @@ func _on_spawn_timer_timeout() -> void:
 func _on_level_end() -> void:
 	Events.pause_auto_actions.emit()
 	Globals.level += 1
+	get_tree().create_timer(2.0).timeout
 	Events.level_complete.emit(Globals.level)
-	print("Wave endend Show Result scene")

@@ -57,14 +57,19 @@ func _on_pressed() -> void:
 
 func on_mouse_entered() -> void:
 	
-	tooltip.toggle(true)
-	description.text = "[b]{name}[/b] - cost: [color=yellow]{cost}[/color]".format({
-		"name": skill.name,
-		"cost": skill.cost,
-	})
-	
-	print(skill.name + " is being hovered")
-	
+	if enabled:
+		tooltip.toggle(false)
+	else:	
+		tooltip.toggle(true)
+		description.text = "[b]{name}[/b] - cost: [color=yellow]{cost}[/color]".format({
+			"name": skill.name,
+			"cost": skill.cost,
+		})
+		
+		print(skill.name + " is being hovered")
+		if is_upgradable() and not enabled and skill.cost <= SaveData.money:
+			description.text += "\n Can Purchase"
+			
 	
 func on_mouse_exited() -> void:
 	tooltip.toggle(false)

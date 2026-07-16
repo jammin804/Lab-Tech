@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://cd5t621s5krvm"]
+
+[ext_resource type="Script" uid="uid://borxuqrc0nx66" path="res://scripts/ui/Talent Tree/talent_icon.gd" id="2_h4gr8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g110x"]
+bg_color = Color(0.6, 0.6, 0.6, 0.5882353)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qti4y"]
+
+[node name="TalentIcon" type="PanelContainer" unique_id=2146772618]
+custom_minimum_size = Vector2(20, 20)
+theme_override_styles/panel = SubResource("StyleBoxFlat_g110x")
+script = ExtResource("2_h4gr8")
+unlockColorBorder = Color(0.9691369, 0.9691369, 0.9691368, 1)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=800134489]
+custom_minimum_size = Vector2(16, 18)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+expand_mode = 1
+
+[node name="Button" type="Button" parent="." unique_id=1275790508]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qti4y")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_qti4y")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_qti4y")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_qti4y")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_qti4y")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_qti4y")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_qti4y")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_qti4y")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_qti4y")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_qti4y")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qti4y")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

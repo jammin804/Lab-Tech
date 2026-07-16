@@ -33,11 +33,15 @@ func _ready() -> void:
 	var active_players = get_tree().get_nodes_in_group("player")
 	
 	if active_players.size() > 0:
-		print("UI found player via fallback group!")
+		#print("UI found player via fallback group!")
 		_on_player_spawned(active_players[0])
 		
 func update_hpbar_animated():
-	var tank_cap: float = PlayerManager.current_stats.battery_tank_points
+	var tank_cap: float = 100.0 #SkillManager.active_stats.battery_tank_points
+	var num_of_tank: int = SkillManager.active_stats.battery_tanks
+	if num_of_tank > 1:
+		print("More than one power tank")
+	print("Current Tank Size ", tank_cap)
 	if not player:
 		return
 		
@@ -76,11 +80,11 @@ func update_hpbar_animated():
 		if back_bar3: 
 			animate_back_bar3(back_bar3, health_tween3, bar_3_percent)
 			
-		print("From battery -> update_hpbar_animated for tier 3 batter: " + str(player.current_health))
+		#print("From battery -> update_hpbar_animated for tier 3 batter: " + str(player.current_health))
 
 func _on_player_spawned(player_ref: Player) -> void:
 	
-	print("SUCCESS: UI detected that " + player_ref.name + " has spawned!")
+	#print("SUCCESS: UI detected that " + player_ref.name + " has spawned!")
 	player = player_ref
 	#print("From Battyer -> _on_player_spawned" : str(player.max_health))
 	player.health_changed.connect(update_hpbar_animated)

@@ -9,6 +9,9 @@ extends Node
 
 var main_menu : String = "res://scenes/main_menu.tscn"
 var is_option_menu_open : bool = false
+var is_result_screen_open : bool = false
+
+@onready var result_screen: Result_Screen = $ResultScreen
 
 func _ready() -> void:
 	#Load player at spawn
@@ -24,9 +27,12 @@ func _ready() -> void:
 	pause_menu.open_options.connect(_on_options_btn_pressed)
 	pause_menu.exit_to_title.connect(_on_quit_btn_pressed)
 	settings_menu.back_button_pressed.connect(_on_back_btn_pressed)
+	Events.level_complete.connect(_on_result_screen_shown)
 
+	_reset_flags()
+	
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("pause"):
+	if event.is_action_pressed("pause"): #and is_result_screen_open == false:
 		if is_option_menu_open:
 			print("Close Option Menu")
 			settings_menu.visible = false
@@ -56,3 +62,11 @@ func _on_options_btn_pressed() -> void:
 	is_option_menu_open = true
 	settings_menu.visible = true
 	pause_menu.hide()
+
+func _on_result_screen_shown() -> void:
+	result_screen.show()
+	is_result_screen_open = true 
+
+func _reset_flags() -> void:
+	if is_result_screen_open == true:
+		is_result_screen_open = false

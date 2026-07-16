@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TalentResource" format=3 uid="uid://c5tshn8od6rlf"]
+
+[ext_resource type="Script" uid="uid://k8nyk4jleuq0" path="res://resources/TalentTree(New)/script/talent_resource.gd" id="1_x3qv3"]
+[ext_resource type="Texture2D" uid="uid://nust27da1vec" path="res://assets/ui/skill_tree/Scifi weapons and items.png" id="2_vt2uc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3qv3"]
+atlas = ExtResource("2_vt2uc")
+region = Rect2(34, 482, 28, 27)
+
+[resource]
+script = ExtResource("1_x3qv3")
+talentIcon = SubResource("AtlasTexture_x3qv3")
+talentName = "Weapon Up+"
+statValue = 100
+metadata/_custom_type_script = "uid://k8nyk4jleuq0"

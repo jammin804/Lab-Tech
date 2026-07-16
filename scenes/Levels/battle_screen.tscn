@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bktpyu7vhq0km" path="res://scenes/Systems/enemySpawner.tscn" id="12_5e8mb"]
 [ext_resource type="PackedScene" uid="uid://bd1e7fmt2sl4m" path="res://scenes/UI/settings_menu.tscn" id="12_p5bt8"]
 [ext_resource type="Script" uid="uid://txbrbq2y72mm" path="res://plugin/OvaniPlugin/OvaniPlayer.gd" id="13_88a0a"]
+[ext_resource type="PackedScene" uid="uid://ck75rgmytou2t" path="res://scenes/UI/result_screen.tscn" id="13_bw0wm"]
 [ext_resource type="PackedScene" uid="uid://lccgrpafmldk" path="res://scenes/debug/debug_text_overlay.tscn" id="14_81rp5"]
 [ext_resource type="Script" uid="uid://m1bfaxshhh8l" path="res://plugin/OvaniPlugin/OvaniSong.gd" id="14_lv2qw"]
 [ext_resource type="Resource" uid="uid://srv7ffo3rdex" path="res://resources/Ovani/EvilGrudge.tres" id="15_c5bog"]
@@ -91,7 +92,7 @@ texture_normal = SubResource("AtlasTexture_lskjy")
 texture_pressed = SubResource("AtlasTexture_qm3lx")
 texture_hover = SubResource("AtlasTexture_p5bt8")
 
-[node name="LabBGM" type="Node" parent="Pausable" unique_id=34785919]
+[node name="LevelBGM" type="Node" parent="Pausable" unique_id=34785919]
 script = ExtResource("13_88a0a")
 QueuedSongs = Array[ExtResource("14_lv2qw")]([ExtResource("15_c5bog")])
 Volume = -10.0
@@ -105,6 +106,7 @@ position = Vector2(32, 128)
 
 [node name="EnemySpawner" parent="Pausable" unique_id=1886090633 instance=ExtResource("12_5e8mb")]
 position = Vector2(312, 128)
+total_waves = 2
 
 [node name="DebugLayer" type="CanvasLayer" parent="." unique_id=389921551]
 process_mode = 3
@@ -137,5 +139,17 @@ visible = false
 [node name="PauseMenu" parent="PauseLayer" unique_id=1716673666 instance=ExtResource("11_qm3lx")]
 process_mode = 2
 visible = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=304703305]
+
+[node name="ResultScreen" parent="CanvasLayer" unique_id=1112778916 instance=ExtResource("13_bw0wm")]
+visible = false
+z_index = 4000
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=65889336]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="pressed" from="Pausable/PauseBtn" to="." method="_on_pause_btn_pressed"]

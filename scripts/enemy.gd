@@ -38,7 +38,7 @@ func _ready() -> void:
 	#Change health based on level
 	current_enemy_health = current_data.health 
 	current_enemy_health = floor( (current_enemy_health + 10) * Globals.level * randf_range(1.0, 1.5) )
-	print("From Enemy.gd Current Health of this enemy is: ",current_enemy_health)
+	#print("From Enemy.gd Current Health of this enemy is: ",current_enemy_health)
 
 func _process(delta: float) -> void:
 	if not is_dead:
@@ -57,14 +57,14 @@ func take_damage(incoming_damage: float, incoming_element:WeaponData.Element) ->
 		WeaponData.Element.LIGHTING:
 			if status_component.has_status(WeaponData.Element.WATER):
 				final_damage *= 2.0 #double the damage
-				print("SYNERGY: Wet + Lighting")
+				#print("SYNERGY: Wet + Lighting")
 				#TODO: Trigger chain-lighting visual or AOE here
 		WeaponData.Element.FIRE:
 			#Apply Burn Status
 			status_component.apply_status(WeaponData.Element.FIRE, 3.0)
 			
 	current_enemy_health -= final_damage
-	print("Current Enemy Health: " + str(current_enemy_health))
+	#print("Current Enemy Health: " + str(current_enemy_health))
 	
 	hit_flash_anim.play("hit")
 	#TODO Spawn floating damage numbers here using 'final damage'
@@ -105,7 +105,7 @@ func _on_hit_flash_anim_animation_finished(anim_name: StringName) -> void:
 	
 		if loot_drop_type:
 			var rng = randf() * 100
-			print(rng)
+			#print(rng)
 			if rng <= drop_rate:
 				var loot = loot_drop_type.instantiate()
 				loot.global_transform = spawner.global_transform 
@@ -118,3 +118,7 @@ func _on_lab_battle_scene_start() -> void:
 
 func _on_lab_uprgrade_scene_start() -> void:
 	is_in_battle_scene = false
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	destroy()

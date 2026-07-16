@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://bdmoxx66c3fja"]
 
-[ext_resource type="Texture2D" uid="uid://cpfdlcvph5yn1" path="res://assets/ui/progress_bar/BG.png" id="1_dh3a3"]
-[ext_resource type="Script" uid="uid://ddosnjtj6r58g" path="res://scripts/hp_progress_bar.gd" id="2_47rti"]
-[ext_resource type="Texture2D" uid="uid://b7yt3vc0aobm3" path="res://assets/ui/progress_bar/blue.png" id="3_kkiei"]
-[ext_resource type="Script" uid="uid://bmay8p0oh3t6s" path="res://scripts/exp_progress_bar.gd" id="4_n3kp7"]
-[ext_resource type="PackedScene" uid="uid://cqhfkor2q2blf" path="res://scenes/stats_tile.tscn" id="5_cq5av"]
-[ext_resource type="Texture2D" uid="uid://b8h7y5diislmb" path="res://assets/ui/hud/Settigns.png" id="6_47rti"]
+[ext_resource type="Texture2D" uid="uid://cpfdlcvph5yn1" path="res://assets/ui/progress_bar/BG.png" id="1_gtxi0"]
+[ext_resource type="Script" uid="uid://ddosnjtj6r58g" path="res://scripts/hp_progress_bar.gd" id="2_b6asq"]
+[ext_resource type="Texture2D" uid="uid://b7yt3vc0aobm3" path="res://assets/ui/progress_bar/blue.png" id="3_u77lm"]
+[ext_resource type="Script" uid="uid://bmay8p0oh3t6s" path="res://scripts/exp_progress_bar.gd" id="4_5xf0e"]
+[ext_resource type="PackedScene" uid="uid://cqhfkor2q2blf" path="res://scenes/stats_tile.tscn" id="5_lrknv"]
+[ext_resource type="Texture2D" uid="uid://b8h7y5diislmb" path="res://assets/ui/hud/Settigns.png" id="6_nlqki"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jy24p"]
-atlas = ExtResource("1_dh3a3")
+atlas = ExtResource("1_gtxi0")
 region = Rect2(131, 85, 41, 5)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_or42m"]
@@ -19,29 +19,28 @@ atlas = SubResource("CompressedTexture2D_or42m")
 region = Rect2(131, 85, 41, 5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f1r8i"]
-atlas = ExtResource("1_dh3a3")
+atlas = ExtResource("1_gtxi0")
 region = Rect2(131, 85, 41, 5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ds7rc"]
-atlas = ExtResource("3_kkiei")
+atlas = ExtResource("3_u77lm")
 region = Rect2(3, 1, 41, 5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kkiei"]
-atlas = ExtResource("6_47rti")
+atlas = ExtResource("6_nlqki")
 region = Rect2(26, 2, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n3kp7"]
-atlas = ExtResource("6_47rti")
+atlas = ExtResource("6_nlqki")
 region = Rect2(26, 42, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cq5av"]
-atlas = ExtResource("6_47rti")
+atlas = ExtResource("6_nlqki")
 region = Rect2(26, 21, 16, 16)
 
 [node name="HudUI" type="CanvasLayer" unique_id=1308777192]
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1737550446]
-visible = false
 offset_right = 64.0
 offset_bottom = 119.0
 theme_override_constants/margin_left = 5
@@ -95,7 +94,7 @@ size_flags_vertical = 4
 value = 10.0
 texture_under = SubResource("AtlasTexture_jy24p")
 texture_progress = SubResource("AtlasTexture_5tteu")
-script = ExtResource("2_47rti")
+script = ExtResource("2_b6asq")
 
 [node name="HpNumbers" type="Label" parent="MarginContainer/StatsResourceDisplay/HPDisplay/VBoxContainer" unique_id=244522330]
 unique_name_in_owner = true
@@ -137,7 +136,7 @@ step = 5.0
 value = 80.0
 texture_under = SubResource("AtlasTexture_f1r8i")
 texture_progress = SubResource("AtlasTexture_ds7rc")
-script = ExtResource("4_n3kp7")
+script = ExtResource("4_5xf0e")
 
 [node name="ExpNumbers" type="Label" parent="MarginContainer/StatsResourceDisplay/ExpDisplay/VBoxContainer" unique_id=1362622687]
 unique_name_in_owner = true
@@ -183,11 +182,11 @@ layout_mode = 2
 layout_mode = 2
 theme_override_constants/separation = 1
 
-[node name="StatsTile" parent="MarginContainer/StatsResourceDisplay/HBoxContainer2" unique_id=2066520154 instance=ExtResource("5_cq5av")]
+[node name="StatsTile" parent="MarginContainer/StatsResourceDisplay/HBoxContainer2" unique_id=2066520154 instance=ExtResource("5_lrknv")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="StatsTile2" parent="MarginContainer/StatsResourceDisplay/HBoxContainer2" unique_id=1469918215 instance=ExtResource("5_cq5av")]
+[node name="StatsTile2" parent="MarginContainer/StatsResourceDisplay/HBoxContainer2" unique_id=1469918215 instance=ExtResource("5_lrknv")]
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -198,14 +197,14 @@ text = "Charge"
 layout_mode = 2
 theme_override_constants/separation = 1
 
-[node name="StatsTile" parent="MarginContainer/StatsResourceDisplay/HBoxContainer3" unique_id=272125311 instance=ExtResource("5_cq5av")]
+[node name="StatsTile" parent="MarginContainer/StatsResourceDisplay/HBoxContainer3" unique_id=272125311 instance=ExtResource("5_lrknv")]
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="StatNameLabel" parent="MarginContainer/StatsResourceDisplay/HBoxContainer3/StatsTile/MarginContainer/PowerCard" parent_id_path=PackedInt32Array(272125311, 604588854) index="0" unique_id=561706339]
 text = "Range"
 
-[node name="StatsTile2" parent="MarginContainer/StatsResourceDisplay/HBoxContainer3" unique_id=1370532855 instance=ExtResource("5_cq5av")]
+[node name="StatsTile2" parent="MarginContainer/StatsResourceDisplay/HBoxContainer3" unique_id=1370532855 instance=ExtResource("5_lrknv")]
 layout_mode = 2
 size_flags_horizontal = 3
 

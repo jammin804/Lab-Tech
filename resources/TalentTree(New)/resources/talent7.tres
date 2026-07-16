@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TalentResource" format=3 uid="uid://h2vcix7xjfln"]
+
+[ext_resource type="Script" uid="uid://k8nyk4jleuq0" path="res://resources/TalentTree(New)/script/talent_resource.gd" id="1_jcodn"]
+[ext_resource type="Texture2D" uid="uid://docss7w5j8v0k" path="res://assets/particles/charge.png" id="2_5ffit"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcodn"]
+atlas = ExtResource("2_5ffit")
+region = Rect2(198, 7, 49, 35)
+
+[resource]
+script = ExtResource("1_jcodn")
+talentIcon = SubResource("AtlasTexture_jcodn")
+talentName = "Hyper Charge"
+talentDescription = "Allows Power Blaster to be charged to level 2"
+metadata/_custom_type_script = "uid://k8nyk4jleuq0"

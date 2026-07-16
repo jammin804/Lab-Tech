@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="TalentResource" format=3 uid="uid://bulw6hmdqgpav"]
+
+[ext_resource type="Script" uid="uid://k8nyk4jleuq0" path="res://resources/TalentTree(New)/script/talent_resource.gd" id="1_peav2"]
+[ext_resource type="Texture2D" uid="uid://nust27da1vec" path="res://assets/ui/skill_tree/Scifi weapons and items.png" id="2_b4g1m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gum0i"]
+atlas = ExtResource("2_b4g1m")
+region = Rect2(102, 258, 22, 28)
+
+[resource]
+script = ExtResource("1_peav2")
+talentIcon = SubResource("AtlasTexture_gum0i")
+talentName = "Health Up"
+talentDescription = " Increases the maximum battery capacity"
+statValue = 100
+metadata/_custom_type_script = "uid://k8nyk4jleuq0"

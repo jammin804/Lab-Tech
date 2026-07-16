@@ -15,10 +15,11 @@ func _ready() -> void:
 
 func calculate_unlocked_stats() -> void:
 	var bonus = Persistence.bonus_stats
-	
+	print(bonus.battery_tanks)
 	# Reset active_stats to match base_stats
 	active_stats.power = base_stats.power + bonus.power
 	active_stats.battery_tanks = base_stats.battery_tanks + bonus.battery_tanks
+	active_stats.battery_tank_points = base_stats.battery_tank_points + bonus.battery_tank_points
 	active_stats.rapid = base_stats.rapid + bonus.rapid
 	active_stats.charge_rate = base_stats.charge_rate + bonus.charge_rate
 	

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="TalentResource" format=3 uid="uid://coidr15rhs3vk"]
+
+[ext_resource type="Script" uid="uid://k8nyk4jleuq0" path="res://resources/TalentTree(New)/script/talent_resource.gd" id="1_8lraf"]
+[ext_resource type="Texture2D" uid="uid://6rai0s8thhwg" path="res://assets/ui/skill_tree/power.png" id="2_8lraf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8lraf"]
+atlas = ExtResource("2_8lraf")
+region = Rect2(570, 10, 62, 64)
+
+[resource]
+script = ExtResource("1_8lraf")
+talentIcon = SubResource("AtlasTexture_8lraf")
+talentName = "Shot Upgrade"
+talentDescription = "Increases the size and damage of the bullet"
+stat = 1
+statValue = 10
+metadata/_custom_type_script = "uid://k8nyk4jleuq0"

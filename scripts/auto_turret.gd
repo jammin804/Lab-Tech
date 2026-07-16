@@ -31,7 +31,7 @@ func fire() -> void:
 	get_tree().current_scene.add_child(new_bullet)
 	shot_speed_timer.wait_time = attack_speed
 	shot_speed_timer.start()
-	print(shot_speed_timer.wait_time)
+	#print(shot_speed_timer.wait_time)
 
 func _stop_firining() -> void:
 	shot_speed_timer.stop()

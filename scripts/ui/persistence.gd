@@ -10,8 +10,9 @@ func gain_bonus_stats() -> void:
 	player_stats.can_charge = player_stats.can_charge or bonus_stats.can_charge
 	
 	player_stats.charge_damage_multipler += bonus_stats.charge_damage_multipler
-	player_stats.charge_rate = bonus_stats.charge_rate
+	player_stats.charge_rate += bonus_stats.charge_rate
 	player_stats.battery_tanks += bonus_stats.battery_tanks
+	player_stats.battery_tank_points += bonus_stats.battery_tank_points
 	player_stats.power += bonus_stats.power
 	player_stats.damage_multipler += bonus_stats.damage_multipler
 	player_stats.rapid += bonus_stats.rapid

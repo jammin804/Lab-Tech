@@ -22,9 +22,10 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	print(body)
+	#print(body)
 	if body.has_method("gain_money"):
-		print("reached player")
+		#print("reached player")
+		pass
 
 
 func _on_area_entered(area: Area2D) -> void:
@@ -36,4 +37,4 @@ func _on_area_entered(area: Area2D) -> void:
 		elif currency_name == "scrap":
 			Events.increase_currency.emit(type.scraps, type.title)
 		queue_free()
-		print("Type is " + currency_name)
+		#print("Type is " + currency_name)

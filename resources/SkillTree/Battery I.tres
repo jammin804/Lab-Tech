@@ -7,7 +7,6 @@
 [sub_resource type="Resource" id="Resource_hyse7"]
 script = ExtResource("2_qo6cd")
 battery_tanks = 2
-battery_tank_points = 0
 power = 0
 rapid = 0.0
 metadata/_custom_type_script = "uid://d332ldvfmgnhy"

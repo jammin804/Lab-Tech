@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c4s1hjl635w5k"
+path="res://.godot/imported/Chiptune Vol2 Depressed Main.wav-c0900d046183e36d9da3391f05e459ec.sample"
+
+[deps]
+
+source_file="res://assets/music/bgm/Depressed (RT 1.875)/Chiptune Vol2 Depressed Main.wav"
+dest_files=["res://.godot/imported/Chiptune Vol2 Depressed Main.wav-c0900d046183e36d9da3391f05e459ec.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

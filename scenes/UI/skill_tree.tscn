@@ -68,10 +68,10 @@ mouse_filter = 2
 [node name="SuperClick_Upgrade" parent="PanelContainer/SuperClick" unique_id=1815042689 instance=ExtResource("1_pe2t5")]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 96.0
-offset_top = 48.0
-offset_right = 120.0
-offset_bottom = 72.0
+offset_left = 144.0
+offset_top = 96.0
+offset_right = 168.0
+offset_bottom = 120.0
 skill = SubResource("Resource_pmtru")
 
 [node name="Tooltip" parent="PanelContainer/SuperClick/SuperClick_Upgrade" unique_id=1930704416 instance=ExtResource("6_xjuf2")]
@@ -92,9 +92,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -16.0
-offset_top = 6.0
+offset_top = 46.0
 offset_right = 8.0
-offset_bottom = 24.0
+offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
 skill = ExtResource("3_5kmnm")
@@ -286,6 +286,7 @@ offset_top = 0.0
 offset_bottom = 24.0
 
 [node name="Rapid" type="Control" parent="PanelContainer" unique_id=1100876458]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 
@@ -331,6 +332,22 @@ layout_mode = 0
 offset_top = 0.0
 offset_bottom = 24.0
 
+[node name="SuperClick_Label" type="Label" parent="." unique_id=1636680352]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 30.0
+offset_right = 13.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 6
+text = "Super Click"
+
 [node name="AutoFire_Label" type="Label" parent="." unique_id=506224185]
 layout_mode = 1
 anchors_preset = 8
@@ -339,9 +356,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -16.0
-offset_top = 22.0
+offset_top = 62.0
 offset_right = 9.0
-offset_bottom = 31.0
+offset_bottom = 71.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 6
@@ -404,6 +421,7 @@ text = "Battery III"
 horizontal_alignment = 1
 
 [node name="Rapid_Label" type="Label" parent="." unique_id=926681042]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -420,6 +438,7 @@ theme_override_font_sizes/font_size = 6
 text = "Rapid I"
 
 [node name="Rapid_Label2" type="Label" parent="." unique_id=750891617]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

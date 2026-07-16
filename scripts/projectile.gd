@@ -32,7 +32,7 @@ func _on_body_entered(body: Node2D) -> void:
 	
 	if body.has_method("take_damage"):
 		Events.enemy_hit_by_projectile.emit(life_steal)
-		print(damage)
+		#print(damage)
 		
 		body.take_damage(damage, WeaponData.Element.DEFAULT)
 	
