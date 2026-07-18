@@ -2832,7 +2832,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_7b55j"]
 resource_name = "blink"
-length = 0.19999999999999998
+length = 0.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -2849,7 +2849,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_5pajh"]
 resource_name = "settings_blink"
-length = 0.19999999999999998
+length = 0.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false

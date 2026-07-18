@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TalentResource2" format=3 uid="uid://b62c15rpfg3b3"]
+
+[ext_resource type="Script" uid="uid://cebb35bfecrsp" path="res://resources/TalentTree/talent_resource2.gd" id="1_orkek"]
+
+[resource]
+script = ExtResource("1_orkek")
+talentName = "Fire"
+talentDescription = "FIRE FIRE EVERYWHERE"
+stat = 1
+metadata/_custom_type_script = "uid://cebb35bfecrsp"

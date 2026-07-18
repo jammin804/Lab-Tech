@@ -4,13 +4,13 @@ extends PanelContainer
 @export var talentResource : TalentResource:
 	set(newValue):
 		talentResource = newValue
-		
+
 		if not Engine.is_editor_hint(): return
-		
-		if newValue == null: 
+
+		if newValue == null:
 			add_theme_stylebox_override("panel", StyleBoxEmpty.new())
 			texture_rect.texture = null
-		else: 
+		else:
 			add_theme_stylebox_override("panel", TALENT_ICON_STYLEBOX)
 			texture_rect.texture = talentResource.talentIcon
 
@@ -19,31 +19,31 @@ extends PanelContainer
 
 @onready var texture_rect: TextureRect = $TextureRect
 
-const TALENT_ICON_STYLEBOX = preload("res://resources/TalentTree(New)/resources/talent_icon_style.tres")
+const TALENT_ICON_STYLEBOX = preload("res://resources/TalentTree(Old)/resources/talent_icon_style.tres")
 
-func _ready():	
+func _ready():
 	if not talentResource: return
-	
+
 	add_to_group("talents")
 	texture_rect.texture = talentResource.talentIcon
-	
+
 	add_theme_stylebox_override("panel", TALENT_ICON_STYLEBOX)
-	
+
 	_set_style()
-		
+
 func get_center():
 	return custom_minimum_size/2
 
 func _set_style():
 	var styleBox : StyleBoxFlat = get_theme_stylebox("panel").duplicate()
-	
+
 	if talentResource.is_unlocked:
 		styleBox.border_color = unlockColorBorder
 	else:
-		styleBox.border_color = lockColorBorder	
-	
+		styleBox.border_color = lockColorBorder
+
 	add_theme_stylebox_override("panel", styleBox)
-	
+
 func _unlock_talent():
 	talentResource.is_unlocked = true
 	_set_style()
@@ -51,5 +51,8 @@ func _unlock_talent():
 func _on_button_pressed() -> void:
 	if not talentResource:
 		return
-		
+
+	for prereq in talentResource.prerequisiteTalents:
+		print(prereq)
+	#print(talentResource.prerequisiteTalents[0].is_unlocked)
 	_unlock_talent()

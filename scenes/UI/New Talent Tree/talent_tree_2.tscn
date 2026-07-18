@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://ds2efap35m8d2"]
+
+[ext_resource type="PackedScene" uid="uid://cd5t621s5krvm" path="res://scenes/UI/New Talent Tree/talent_icon.tscn" id="1_3glmu"]
+[ext_resource type="Script" uid="uid://dntgfdcmywxgc" path="res://scripts/ui/Talent Tree/talent_tree_2.gd" id="1_vtkmw"]
+[ext_resource type="Texture2D" uid="uid://b7yt3vc0aobm3" path="res://assets/ui/progress_bar/blue.png" id="3_fggp6"]
+[ext_resource type="Resource" uid="uid://b62c15rpfg3b3" path="res://resources/TalentTree/skill1.tres" id="3_h1iur"]
+[ext_resource type="Resource" uid="uid://vrjifu2bc331" path="res://resources/TalentTree/func2.tres" id="5_h1iur"]
+[ext_resource type="Resource" uid="uid://bps7lgdts2c0m" path="res://resources/TalentTree/skill2.tres" id="6_l0tbs"]
+
+[node name="TalentTree2" type="Control" unique_id=2011149392]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vtkmw")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=987130948]
+visible = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 54.0
+offset_top = 70.0
+offset_right = -219.0
+offset_bottom = 78.0
+grow_horizontal = 2
+value = 29.0
+texture_over = ExtResource("3_fggp6")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=660722612]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+metadata/_edit_lock_ = true
+
+[node name="Tier1" type="VBoxContainer" parent="MarginContainer" unique_id=619719893]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 23
+
+[node name="Control" type="Control" parent="MarginContainer/Tier1" unique_id=1571911362]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="MarginContainer/Tier1" unique_id=2107776363]
+layout_mode = 2
+
+[node name="Control3" type="Control" parent="MarginContainer/Tier1" unique_id=1296452544]
+layout_mode = 2
+
+[node name="TalentIcon" parent="MarginContainer/Tier1" unique_id=2146772618 instance=ExtResource("1_3glmu")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+talent_resource = ExtResource("3_h1iur")
+talent_functionality = ExtResource("5_h1iur")
+
+[node name="TalentIcon2" parent="MarginContainer/Tier1" unique_id=641216337 instance=ExtResource("1_3glmu")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+talent_resource = ExtResource("6_l0tbs")
+talent_functionality = ExtResource("5_h1iur")

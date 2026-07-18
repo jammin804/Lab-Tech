@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TalentResource" format=3 uid="uid://cv0d8er5bjxtu"]
+
+[ext_resource type="Script" uid="uid://k8nyk4jleuq0" path="res://resources/TalentTree(Old)/resources/talent_resource.gd" id="1_rfrrt"]
+[ext_resource type="Texture2D" uid="uid://nust27da1vec" path="res://assets/ui/skill_tree/Scifi weapons and items.png" id="2_vd7tc"]
+[ext_resource type="Resource" uid="uid://brj6foyxes1l5" path="res://resources/TalentTree(Old)/resources/talent2.tres" id="3_yrx8c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g110x"]
+atlas = ExtResource("2_vd7tc")
+region = Rect2(0, 453, 31, 27)
+
+[resource]
+script = ExtResource("1_rfrrt")
+talentIcon = SubResource("AtlasTexture_g110x")
+unlockTalents = Array[ExtResource("1_rfrrt")]([ExtResource("3_yrx8c")])
+metadata/_custom_type_script = "uid://k8nyk4jleuq0"

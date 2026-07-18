@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cd5t621s5krvm"]
 
-[ext_resource type="Script" uid="uid://borxuqrc0nx66" path="res://scripts/ui/Talent Tree/talent_icon.gd" id="2_h4gr8"]
+[ext_resource type="Script" uid="uid://dwlhsswfvamkj" path="res://scripts/ui/Talent Tree/talentIcon2.gd" id="1_ri2s5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g110x"]
 bg_color = Color(0.6, 0.6, 0.6, 0.5882353)
@@ -10,8 +10,7 @@ bg_color = Color(0.6, 0.6, 0.6, 0.5882353)
 [node name="TalentIcon" type="PanelContainer" unique_id=2146772618]
 custom_minimum_size = Vector2(20, 20)
 theme_override_styles/panel = SubResource("StyleBoxFlat_g110x")
-script = ExtResource("2_h4gr8")
-unlockColorBorder = Color(0.9691369, 0.9691369, 0.9691368, 1)
+script = ExtResource("1_ri2s5")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=800134489]
 custom_minimum_size = Vector2(16, 18)
