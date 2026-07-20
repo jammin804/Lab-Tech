@@ -10,8 +10,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	fps_label.set_text("FPS: " + str(Engine.get_frames_per_second()))
-	
+
 func _add_version_to_label() -> void:
 	var version_str : String = ProjectSettings.get_setting(VERSION_SETTING)
 	version_info.text += version_str
-	

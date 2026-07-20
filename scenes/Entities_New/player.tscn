@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://drdlmsifm1unh"]
+
+[ext_resource type="Script" uid="uid://caphs0h78cho4" path="res://scripts/player_new.gd" id="1_nbenk"]
+[ext_resource type="Texture2D" uid="uid://b3ntyiv7oq1hh" path="res://assets/character/player.png" id="2_8mbqp"]
+[ext_resource type="Resource" uid="uid://de4hg033shlx6" path="res://resources/TalentTree/entities/player.tres" id="2_xvrsg"]
+[ext_resource type="PackedScene" uid="uid://ejl5hhaam80k" path="res://scenes/Playground Scenes/TestComponents/firing.tscn" id="4_xvrsg"]
+[ext_resource type="PackedScene" uid="uid://dbxsfllyrb1yt" path="res://scenes/player.tscn" id="5_yr7uu"]
+[ext_resource type="PackedScene" uid="uid://dyk04xec0djot" path="res://scenes/UI/charge_progress_bar_container.tscn" id="6_s81oc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vehr2"]
+atlas = ExtResource("2_8mbqp")
+region = Rect2(0, 480, 75, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nma8"]
+atlas = ExtResource("2_8mbqp")
+region = Rect2(75, 480, 75, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikkpg"]
+atlas = ExtResource("2_8mbqp")
+region = Rect2(0, 192, 75, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lskjy"]
+atlas = ExtResource("2_8mbqp")
+region = Rect2(75, 192, 75, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qm3lx"]
+atlas = ExtResource("2_8mbqp")
+region = Rect2(150, 192, 75, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5bt8"]
+atlas = ExtResource("2_8mbqp")
+region = Rect2(225, 192, 75, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xvrsg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vehr2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nma8")
+}],
+"loop": 1,
+"name": &"Fire",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ikkpg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lskjy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qm3lx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5bt8")
+}],
+"loop": 1,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qti4y"]
+radius = 14.0
+height = 38.0
+
+[node name="Player" type="CharacterBody2D" unique_id=98801044]
+script = ExtResource("1_nbenk")
+character_resource = ExtResource("2_xvrsg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1621476336]
+sprite_frames = SubResource("SpriteFrames_xvrsg")
+animation = &"Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1709502202]
+position = Vector2(-1, 6)
+shape = SubResource("CapsuleShape2D_qti4y")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1738467474]
+
+[node name="Firing" parent="." unique_id=92492742 node_paths=PackedStringArray("spawn_point") instance=ExtResource("4_xvrsg")]
+spawn_point = NodePath("../Muzzle")
+
+[node name="Muzzle" type="Marker2D" parent="." unique_id=495735376]
+position = Vector2(15, 1)
+
+[node name="Player_For_Battery" parent="." unique_id=2126503732 instance=ExtResource("5_yr7uu")]
+visible = false
+
+[node name="ChargeProgressBarContainer" parent="." unique_id=1763728426 instance=ExtResource("6_s81oc")]
+visible = false

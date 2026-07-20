@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="TurretUnlock" format=3 uid="uid://c8a5ybbctvqr7"]
+
+[ext_resource type="Script" uid="uid://qhstrw7wg23k" path="res://resources/TalentTree/scripts/func4.gd" id="1_knvdl"]
+
+[resource]
+script = ExtResource("1_knvdl")

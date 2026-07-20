@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func save_player_state(player: Player) -> void:
 	current_health_cache = player.current_health
-	
+
 func load_player_state(player: Player) -> void:
 	if should_restore_player or current_health_cache < 0:
 		# Full restore context (Upgrade Scene or first loade)

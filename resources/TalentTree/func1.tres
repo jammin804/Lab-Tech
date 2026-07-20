@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ChargeChange" format=3 uid="uid://c8jowgsk5odo0"]
 
-[ext_resource type="Script" uid="uid://hygldy02u28s" path="res://resources/TalentTree/func1.gd" id="1_dd4cs"]
+[ext_resource type="Script" uid="uid://hygldy02u28s" path="res://resources/TalentTree/scripts/func1.gd" id="1_dd4cs"]
 
 [resource]
 script = ExtResource("1_dd4cs")

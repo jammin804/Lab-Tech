@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="HealthChange" format=3 uid="uid://vrjifu2bc331"]
 
-[ext_resource type="Script" uid="uid://cv7mrgwtq7ym2" path="res://resources/TalentTree/func2.gd" id="1_v4s1d"]
+[ext_resource type="Script" uid="uid://cv7mrgwtq7ym2" path="res://resources/TalentTree/scripts/func2.gd" id="1_v4s1d"]
 
 [resource]
 script = ExtResource("1_v4s1d")

@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://dgacer11dg0jq"]
+
+[ext_resource type="Script" uid="uid://b01kah2wth2uk" path="res://scripts/debug/debug_skills.gd" id="1_cwddt"]
+
+[node name="DebugSkills" type="CanvasLayer" unique_id=550271367]
+script = ExtResource("1_cwddt")
+
+[node name="Skill" type="Control" parent="." unique_id=302236167]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Skill" unique_id=1027112844]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Skill/VBoxContainer" unique_id=590805487]
+layout_mode = 2
+text = "Skills"
+
+[node name="OptionButton" type="OptionButton" parent="Skill/VBoxContainer" unique_id=2097850919]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+selected = 0
+item_count = 4
+popup/item_0/text = "Remove Limiter"
+popup/item_0/id = 0
+popup/item_1/text = "Auto Turret"
+popup/item_1/id = 1
+popup/item_2/text = "Health Up"
+popup/item_2/id = 2
+popup/item_3/text = "Super Charge"
+popup/item_3/id = 3
+
+[node name="Stat" type="Control" parent="." unique_id=1152846116]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Stat" unique_id=2059049012]
+layout_mode = 0
+offset_left = -53.0
+offset_top = 1.0
+offset_right = 38.0
+offset_bottom = 48.0
+
+[node name="StatLabel" type="Label" parent="Stat/VBoxContainer2" unique_id=2040987504]
+layout_mode = 2
+text = "Player Stats"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Stat/VBoxContainer2" unique_id=800852768]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="BatteryTanks" type="Label" parent="Stat/VBoxContainer2/VBoxContainer" unique_id=899973061]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Battery Tanks:"
+
+[node name="BatteryPoints" type="Label" parent="Stat/VBoxContainer2/VBoxContainer" unique_id=331169819]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Battery Points:"
+
+[node name="Power" type="Label" parent="Stat/VBoxContainer2/VBoxContainer" unique_id=181076625]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Power:"
+
+[node name="Shots Per" type="Label" parent="Stat/VBoxContainer2/VBoxContainer" unique_id=1259579120]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Shots Per:"
+
+[node name="ChargeCheck" type="Label" parent="Stat/VBoxContainer2/VBoxContainer" unique_id=1726053570]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Can Charge:"
+
+[node name="LimiterCheck" type="Label" parent="Stat/VBoxContainer2/VBoxContainer" unique_id=2043671890]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Limiter:"
+
+[node name="TurretCheck" type="Label" parent="Stat/VBoxContainer2/VBoxContainer" unique_id=1100313790]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Turret:"

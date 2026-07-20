@@ -1,12 +1,12 @@
 class_name PlayerStats
 extends Resource
 
-#TODO Help creating skill tree and have the skill tree communicate with the player stats with passives 
+#TODO Help creating skill tree and have the skill tree communicate with the player stats with passives
 enum Form {DEFAULT, COMBINED, AVATAR}
 
 @export var battery_tanks : int = 1 #Player Max HP
 @export var battery_tank_points : int = 100 #how much health is in 1 tank
-#@export var fire_rate : float 
+#@export var fire_rate : float
 @export var elemental_resistance_amount : int #need to figure out how to set up resistance
 
 #Multiplers
@@ -23,7 +23,7 @@ enum Form {DEFAULT, COMBINED, AVATAR}
 @export var auto_fire : bool = false
 @export var power : int = 8
 @export var range : int = 2
-@export var rapid : float = 0.5
+@export var rapid : int = 1 #Bullets per shot
 @export var can_charge : bool = false
 @export var charge_rate : float = 40.0
 @export var charge_damage_multipler : float = 2.0

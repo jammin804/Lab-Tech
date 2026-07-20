@@ -1,6 +1,8 @@
 class_name Projectile
 extends Area2D
 
+#@export var
+
 var direction : Vector2 = Vector2.RIGHT
 var speed : float = 750.0
 var damage : float = 1.0
@@ -29,17 +31,17 @@ func _on_body_entered(body: Node2D) -> void:
 	# Ignore new collisions if we are already playing the hit animation
 	if has_collided:
 		return
-	
+
 	if body.has_method("take_damage"):
 		Events.enemy_hit_by_projectile.emit(life_steal)
 		#print(damage)
-		
+
 		body.take_damage(damage, WeaponData.Element.DEFAULT)
-	
+
 	has_collided = true
 	bullet.hide()
 	hit.show()
 	hit.play("hit")
-	
+
 	await hit.animation_finished
 	queue_free()

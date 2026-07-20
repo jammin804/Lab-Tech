@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dbs6io6fnaftp"]
+
+[ext_resource type="PackedScene" uid="uid://drdlmsifm1unh" path="res://scenes/Entities_New/player.tscn" id="1_2mt27"]
+[ext_resource type="PackedScene" uid="uid://dgacer11dg0jq" path="res://scenes/debug_skills.tscn" id="1_drcav"]
+
+[node name="SkillTestScene" type="Node2D" unique_id=1039676676]
+
+[node name="DebugSkills" parent="." unique_id=550271367 instance=ExtResource("1_drcav")]
+
+[node name="Player" parent="." unique_id=98801044 instance=ExtResource("1_2mt27")]
+position = Vector2(158, 85)

@@ -10,3 +10,4 @@ signal enemy_died
 signal pause_auto_actions
 signal level_complete
 signal show_result_screen(money_gained: int, scrap_gained: int)
+signal talent_icon_clicked

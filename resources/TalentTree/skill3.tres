@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="TalentResource2" format=3 uid="uid://doxltg15e0ph3"]
+
+[ext_resource type="Script" uid="uid://cebb35bfecrsp" path="res://resources/TalentTree/scripts/talent_resource2.gd" id="1_lan2b"]
+[ext_resource type="Texture2D" uid="uid://docss7w5j8v0k" path="res://assets/particles/charge.png" id="2_jyjhc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5m6i"]
+atlas = ExtResource("2_jyjhc")
+region = Rect2(81.66669, 0, 43.333344, 48)
+
+[resource]
+script = ExtResource("1_lan2b")
+talentIcon = SubResource("AtlasTexture_s5m6i")
+talentName = "Super Charge"
+talentDescription = "Enhances the second level charge shot of the Blaster"
+arms_stat = 2
+metadata/_custom_type_script = "uid://cebb35bfecrsp"

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://ejl5hhaam80k"]
+
+[ext_resource type="Script" uid="uid://bb0udo5laeb33" path="res://scripts/debug/Testing/firing.gd" id="1_mgxeh"]
+
+[node name="Firing" type="Node" unique_id=92492742]
+script = ExtResource("1_mgxeh")
+
+[node name="ShootCooldownTimer" type="Timer" parent="." unique_id=230040502]
+unique_name_in_owner = true
+one_shot = true

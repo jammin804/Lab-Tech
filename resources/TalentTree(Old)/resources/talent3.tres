@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="TalentResource" format=3 uid="uid://khoudq053bw3"]
 
-[ext_resource type="Script" uid="uid://k8nyk4jleuq0" path="res://resources/TalentTree(Old)/resources/talent_resource.gd" id="1_38xqs"]
+[ext_resource type="Script" uid="uid://k8nyk4jleuq0" path="res://resources/TalentTree(Old)/script/talent_resource.gd" id="1_38xqs"]
 [ext_resource type="Texture2D" uid="uid://docss7w5j8v0k" path="res://assets/particles/charge.png" id="2_4iank"]
 [ext_resource type="Resource" uid="uid://coidr15rhs3vk" path="res://resources/TalentTree(Old)/resources/talent6.tres" id="3_t2k4h"]
 

@@ -1,13 +1,15 @@
 [gd_resource type="Resource" script_class="TalentResource2" format=3 uid="uid://bps7lgdts2c0m"]
 
-[ext_resource type="Script" uid="uid://cebb35bfecrsp" path="res://resources/TalentTree/talent_resource2.gd" id="1_8yf41"]
+[ext_resource type="Script" uid="uid://cebb35bfecrsp" path="res://resources/TalentTree/scripts/talent_resource2.gd" id="1_8yf41"]
+[ext_resource type="Texture2D" uid="uid://nust27da1vec" path="res://assets/ui/skill_tree/Scifi weapons and items.png" id="2_3l87w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qti4y"]
+atlas = ExtResource("2_3l87w")
+region = Rect2(65.26062, 233.04213, 29.511963, 16.221207)
 
 [resource]
 script = ExtResource("1_8yf41")
-talentName = "Charge"
-talentDescription = "Enhances the second level charge shot of the Blaster
-"
-stat = 2
-statValue = 2
-is_activated = true
+talentIcon = SubResource("AtlasTexture_qti4y")
+talentName = "Auto-Turret"
+talentDescription = "Auto firing Turrent that fires bullets half your damage "
 metadata/_custom_type_script = "uid://cebb35bfecrsp"

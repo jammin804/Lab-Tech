@@ -7,11 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://b3gf3rdu50uej" path="res://scenes/UI/battery_hud.tscn" id="5_goy34"]
 [ext_resource type="PackedScene" uid="uid://d37hr5i350lqv" path="res://scenes/spark.tscn" id="5_r6oyp"]
 [ext_resource type="AudioStream" uid="uid://dhhi0c4g00jnp" path="res://assets/music/sfx/shot2.wav" id="6_2tcgp"]
+[ext_resource type="PackedScene" uid="uid://dyk04xec0djot" path="res://scenes/UI/charge_progress_bar_container.tscn" id="6_escd6"]
 [ext_resource type="Texture2D" uid="uid://bmgd5bh11073r" path="res://assets/ui/hud/coins-chests-etc-2-0.png" id="7_y8qda"]
-[ext_resource type="Texture2D" uid="uid://cpfdlcvph5yn1" path="res://assets/ui/progress_bar/BG.png" id="8_i3638"]
-[ext_resource type="Texture2D" uid="uid://b7yt3vc0aobm3" path="res://assets/ui/progress_bar/blue.png" id="9_escd6"]
 [ext_resource type="PackedScene" uid="uid://dg3lep2meldxf" path="res://scenes/auto_turret.tscn" id="9_y8qda"]
-[ext_resource type="Texture2D" uid="uid://b6o7stxhe4hcs" path="res://assets/ui/progress_bar/bluebar_border.png" id="10_escd6"]
 [ext_resource type="AudioStream" uid="uid://cqumsnxy7ag26" path="res://assets/music/sfx/charging-sfx_startup.wav" id="13_ht4sr"]
 [ext_resource type="AudioStream" uid="uid://y38wyloajjlb" path="res://assets/music/sfx/charging-sfx_repeat.wav" id="14_1rxll"]
 
@@ -74,18 +72,6 @@ animations = [{
 "name": &"Idle",
 "speed": 5.0
 }]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_h4hwa"]
-atlas = ExtResource("8_i3638")
-region = Rect2(131, 85, 41, 5)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1rxll"]
-atlas = ExtResource("9_escd6")
-region = Rect2(3, 1, 41, 5)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_g18rp"]
-atlas = ExtResource("10_escd6")
-region = Rect2(0, 9, 41, 5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qti4y"]
 atlas = ExtResource("7_y8qda")
@@ -227,32 +213,7 @@ script = ExtResource("1_hugls")
 current_weapon = ExtResource("4_yi774")
 turret = ExtResource("9_y8qda")
 
-[node name="ChargeProgressBarContainer" type="HBoxContainer" parent="." unique_id=416864122]
-offset_left = -32.0
-offset_top = 24.0
-offset_right = 22.0
-offset_bottom = 29.0
-
-[node name="ChargeProgressBar" type="TextureProgressBar" parent="ChargeProgressBarContainer" unique_id=1215276057]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_vertical = 4
-step = 5.0
-value = 75.0
-texture_under = SubResource("AtlasTexture_h4hwa")
-texture_progress = SubResource("AtlasTexture_1rxll")
-
-[node name="FullChargeBorder" type="TextureProgressBar" parent="ChargeProgressBarContainer/ChargeProgressBar" unique_id=2013597089]
-unique_name_in_owner = true
-visible = false
-layout_mode = 1
-offset_right = 41.0
-offset_bottom = 5.0
-size_flags_vertical = 4
-step = 5.0
-value = 75.0
-texture_over = SubResource("AtlasTexture_g18rp")
+[node name="ChargeProgressBarContainer" parent="." unique_id=1763728426 instance=ExtResource("6_escd6")]
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1143428043]
 

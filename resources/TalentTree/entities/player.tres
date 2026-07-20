@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CharacterResource" format=3 uid="uid://de4hg033shlx6"]
+
+[ext_resource type="Script" uid="uid://cj8lt2pfp6yqm" path="res://resources/TalentTree/scripts/character_resource.gd" id="1_47bq3"]
+[ext_resource type="Script" uid="uid://cebb35bfecrsp" path="res://resources/TalentTree/scripts/talent_resource2.gd" id="2_miy50"]
+[ext_resource type="Resource" uid="uid://b62c15rpfg3b3" path="res://resources/TalentTree/skill1.tres" id="3_fu2lh"]
+[ext_resource type="Resource" uid="uid://bps7lgdts2c0m" path="res://resources/TalentTree/skill2.tres" id="4_udklb"]
+
+[resource]
+script = ExtResource("1_47bq3")
+talents = Array[ExtResource("2_miy50")]([ExtResource("3_fu2lh"), ExtResource("4_udklb")])
+metadata/_custom_type_script = "uid://cj8lt2pfp6yqm"

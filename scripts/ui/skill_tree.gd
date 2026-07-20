@@ -25,31 +25,31 @@ var total_stat : PlayerStats
 
 func _ready():
 	load_skill_tree()
-	
+
 func set_skill_tree():
 	skill_tree = []
 	var dynamic_names = []
-	
+
 	for each_branch in get_child(1).get_children():
 		var clean_name = each_branch.name.to_snake_case()
 		dynamic_names.append(clean_name)
-		
+
 		var branch = []
 		for upgrade in each_branch.get_children():
 			branch.append(upgrade.enabled)
 			print(branch)
 		skill_tree.append(branch)
-	
+
 	SaveData.branch_names = dynamic_names
 	SaveData.skill_tree = skill_tree
 	SaveData.set_and_save()
-	
+
 	SkillManager.calculate_unlocked_stats()
 
 func load_skill_tree():
 	if SaveData.skill_tree == []:
 		set_skill_tree()
-	
+
 	skill_tree = SaveData.skill_tree
 	for branch in get_child(1).get_children():
 		for upgrade in branch.get_children():
