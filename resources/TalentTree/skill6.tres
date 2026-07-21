@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="TalentResource2" format=3 uid="uid://bnue7ecflmmhu"]
+
+[ext_resource type="Script" uid="uid://cebb35bfecrsp" path="res://resources/TalentTree/scripts/talent_resource2.gd" id="1_hgkgo"]
+[ext_resource type="Texture2D" uid="uid://b64r65c87lxaq" path="res://assets/ui/hud/rapid_4.png" id="2_s83nl"]
+
+[resource]
+script = ExtResource("1_hgkgo")
+talentIcon = ExtResource("2_s83nl")
+talentName = "Rapid Shot"
+talentDescription = "Allows up to 4  shots to be on-screen at once
+"
+arms_stat = 1
+stat_value = 2
+metadata/_custom_type_script = "uid://cebb35bfecrsp"

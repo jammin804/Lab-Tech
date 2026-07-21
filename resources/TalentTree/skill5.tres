@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="TalentResource2" format=3 uid="uid://v4q3d7tc5xxo"]
+
+[ext_resource type="Script" uid="uid://cebb35bfecrsp" path="res://resources/TalentTree/scripts/talent_resource2.gd" id="1_ue4g2"]
+[ext_resource type="Texture2D" uid="uid://nust27da1vec" path="res://assets/ui/skill_tree/Scifi weapons and items.png" id="2_7jvvs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s81oc"]
+atlas = ExtResource("2_7jvvs")
+region = Rect2(34.395683, 481.18112, 26.931503, 26.594116)
+
+[resource]
+script = ExtResource("1_ue4g2")
+talentIcon = SubResource("AtlasTexture_s81oc")
+talentName = "Shot Upgrade"
+talentDescription = "Increases the size and damage of the bullet"
+stat_value = 2
+metadata/_custom_type_script = "uid://cebb35bfecrsp"

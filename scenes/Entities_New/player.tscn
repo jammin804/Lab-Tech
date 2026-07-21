@@ -80,14 +80,23 @@ shape = SubResource("CapsuleShape2D_qti4y")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1738467474]
 
-[node name="Firing" parent="." unique_id=92492742 node_paths=PackedStringArray("spawn_point") instance=ExtResource("4_xvrsg")]
+[node name="FiringComponent" parent="." unique_id=92492742 node_paths=PackedStringArray("spawn_point", "charge_progress_bar_container") instance=ExtResource("4_xvrsg")]
 spawn_point = NodePath("../Muzzle")
+charge_progress_bar_container = NodePath("../ChargeProgressBarContainer")
+
+[node name="AttachmentComponent" type="Node" parent="." unique_id=1308471551]
 
 [node name="Muzzle" type="Marker2D" parent="." unique_id=495735376]
-position = Vector2(15, 1)
+position = Vector2(22, 1)
+
+[node name="Attachment" type="Marker2D" parent="." unique_id=715360608]
 
 [node name="Player_For_Battery" parent="." unique_id=2126503732 instance=ExtResource("5_yr7uu")]
 visible = false
 
 [node name="ChargeProgressBarContainer" parent="." unique_id=1763728426 instance=ExtResource("6_s81oc")]
 visible = false
+offset_left = -18.0
+offset_top = 26.0
+offset_right = 23.0
+offset_bottom = 31.0

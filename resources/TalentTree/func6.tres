@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="RapidChange" format=3 uid="uid://de38nb3gl4a2i"]
+
+[ext_resource type="Script" uid="uid://o7gqsyl8d43m" path="res://resources/TalentTree/scripts/func6.gd" id="1_ahvmm"]
+
+[resource]
+script = ExtResource("1_ahvmm")
+metadata/_custom_type_script = "uid://o7gqsyl8d43m"

@@ -10,6 +10,10 @@
 [ext_resource type="Resource" uid="uid://dqa1k4c5x0hxi" path="res://resources/TalentTree/func3.tres" id="6_spest"]
 [ext_resource type="Resource" uid="uid://c8a5ybbctvqr7" path="res://resources/TalentTree/func4.tres" id="8_w3p7k"]
 [ext_resource type="Resource" uid="uid://du7hcnodfc7mj" path="res://resources/TalentTree/skill4.tres" id="9_jqipk"]
+[ext_resource type="Resource" uid="uid://v4q3d7tc5xxo" path="res://resources/TalentTree/skill5.tres" id="11_pdpgr"]
+[ext_resource type="Resource" uid="uid://28xv0tanhghb" path="res://resources/TalentTree/func5.tres" id="12_grnvs"]
+[ext_resource type="Resource" uid="uid://bnue7ecflmmhu" path="res://resources/TalentTree/skill6.tres" id="13_2x64b"]
+[ext_resource type="Resource" uid="uid://de38nb3gl4a2i" path="res://resources/TalentTree/func6.tres" id="14_hfupw"]
 
 [node name="TalentTree2" type="Control" unique_id=2011149392]
 layout_mode = 3
@@ -65,6 +69,20 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 talent_resource = ExtResource("9_jqipk")
 talent_functionality = ExtResource("5_h1iur")
+
+[node name="DamageTalent" parent="MarginContainer/HBoxContainer2" unique_id=855016925 groups=["talents"] instance=ExtResource("1_3glmu")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+talent_resource = ExtResource("11_pdpgr")
+talent_functionality = ExtResource("12_grnvs")
+
+[node name="RapidShot" parent="MarginContainer/HBoxContainer2" unique_id=412150652 groups=["talents"] instance=ExtResource("1_3glmu")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+talent_resource = ExtResource("13_2x64b")
+talent_functionality = ExtResource("14_hfupw")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1792575847]
 visible = false

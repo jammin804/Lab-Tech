@@ -13,4 +13,5 @@ talentIcon = SubResource("AtlasTexture_s5m6i")
 talentName = "Super Charge"
 talentDescription = "Enhances the second level charge shot of the Blaster"
 arms_stat = 2
+stat_value = 2
 metadata/_custom_type_script = "uid://cebb35bfecrsp"

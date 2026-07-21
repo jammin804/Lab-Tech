@@ -12,5 +12,5 @@ script = ExtResource("1_y2gjx")
 talentIcon = SubResource("AtlasTexture_pdpgr")
 talentName = "Health Up"
 talentDescription = " Increases the maximum battery capacity"
-stat_value = 100
+stat_value = 200
 metadata/_custom_type_script = "uid://cebb35bfecrsp"

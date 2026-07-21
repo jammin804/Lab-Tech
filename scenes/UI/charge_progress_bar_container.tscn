@@ -17,14 +17,11 @@ atlas = ExtResource("3_yge0r")
 region = Rect2(0, 9, 41, 5)
 
 [node name="ChargeProgressBarContainer" type="HBoxContainer" unique_id=1763728426]
-offset_left = -32.0
-offset_top = 24.0
-offset_right = 22.0
-offset_bottom = 29.0
+offset_right = 41.0
+offset_bottom = 5.0
 
 [node name="ChargeProgressBar" type="TextureProgressBar" parent="." unique_id=1849310442]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_vertical = 4
 step = 5.0

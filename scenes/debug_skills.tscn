@@ -79,6 +79,11 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 6
 text = "Shots Per:"
 
+[node name="Charge Power" type="Label" parent="Stat/VBoxContainer2/VBoxContainer" unique_id=322720616]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Charge Power:"
+
 [node name="ChargeCheck" type="Label" parent="Stat/VBoxContainer2/VBoxContainer" unique_id=1726053570]
 layout_mode = 2
 theme_override_font_sizes/font_size = 6
