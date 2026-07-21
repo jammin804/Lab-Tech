@@ -21,7 +21,10 @@ func _process(delta: float) -> void:
 	_check_limiter_lock()
 	_check_charge_lock()
 	_check_number_of_bullets()
+	_handle_firing_inputs(delta)
 
+
+func _handle_firing_inputs(delta: float) -> void:
 #Regular Fire Code
 	if Input.is_action_just_pressed("left_click") and shoot_cooldown_timer.is_stopped():
 		_shoot(0.0)
@@ -29,28 +32,30 @@ func _process(delta: float) -> void:
 #Charge Fire Code
 	if can_charge == true:
 		if Input.is_action_pressed("left_click"):
-			is_charging = true
-			charge_percent += delta * 40
-			charge_percent = clampf(charge_percent, 0.0, 100.0)
+			_process_charging(delta)
 
-			charge_progress_bar_container.get_child(0).value = charge_percent
-
-			if charge_percent >= 15.0:
-				charge_progress_bar_container.show()
-
-			if charge_percent == 100.0:
-				pass
 
 		elif Input.is_action_just_released("left_click"):
-			if charge_percent >= 15.0:
-				_shoot(charge_percent)
+			_release_charging()
 
-			is_charging = false
-			charge_percent = 0.0
-			charge_scale = Vector2.ONE
-			charge_progress_bar_container.hide()
+func _process_charging(delta: float) -> void:
+		is_charging = true
+		charge_percent += delta * 40
+		charge_percent = clampf(charge_percent, 0.0, 100.0)
 
+		charge_progress_bar_container.get_child(0).value = charge_percent
 
+		if charge_percent >= 15.0:
+			charge_progress_bar_container.show()
+
+func _release_charging() -> void:
+	if charge_percent >= 15.0:
+		_shoot(charge_percent)
+
+	is_charging = false
+	charge_percent = 0.0
+	charge_scale = Vector2.ONE
+	charge_progress_bar_container.hide()
 
 func _shoot(charge_percentage : float):
 	if is_limit_unlocked == true:
@@ -71,14 +76,6 @@ func _shoot(charge_percentage : float):
 	for i in range(burst_count):
 		_create_bullet(i, burst_count)
 
-func _check_charge_lock():
-	can_charge = PlayerManager.current_stats.can_charge
-
-func _check_limiter_lock():
-	is_limit_unlocked = PlayerManager.current_stats.super_click
-
-func _check_number_of_bullets():
-	num_of_bullets = PlayerManager.current_stats.rapid
 
 func _create_bullet(bullet_index: int, total_bullets: int) -> void:
 	var bullet : Projectile = PROJECTILE_SCENE.instantiate()
@@ -91,3 +88,12 @@ func _create_bullet(bullet_index: int, total_bullets: int) -> void:
 
 	bullet.global_position = spawn_pos
 	get_tree().current_scene.add_child(bullet)
+
+func _check_charge_lock():
+	can_charge = PlayerManager.current_stats.can_charge
+
+func _check_limiter_lock():
+	is_limit_unlocked = PlayerManager.current_stats.super_click
+
+func _check_number_of_bullets():
+	num_of_bullets = PlayerManager.current_stats.rapid
