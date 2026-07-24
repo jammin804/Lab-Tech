@@ -1,0 +1,272 @@
+[gd_scene format=3 uid="uid://bogawab6ydtph"]
+
+[ext_resource type="Texture2D" uid="uid://dmmfui3sn6xj5" path="res://assets/ui/hud/Premade_Containers.png" id="1_dbxjp"]
+[ext_resource type="Script" uid="uid://cgh1oo7baa41" path="res://scripts/ui/UI Scenes/result_screen_new.gd" id="1_sc8fn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qti4y"]
+atlas = ExtResource("1_dbxjp")
+region = Rect2(319.93085, 608.01514, 112.05353, 112.23279)
+
+[node name="ResultScreenNew" type="Control" unique_id=908788247]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sc8fn")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=830378213]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -56.0
+offset_right = 75.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_qti4y")
+
+[node name="ColorRect" type="ColorRect" parent="TextureRect" unique_id=236288869]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 148.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0627451, 0.03137255, 0.03137255, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect" unique_id=925319255]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer" unique_id=1843779110]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer" unique_id=222553144]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Col1" type="VBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1122724697]
+layout_mode = 2
+theme_override_constants/separation = -1
+
+[node name="LevelLabel" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Col1" unique_id=1625026978]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Level 1"
+
+[node name="EnemyDestoryedLabel" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Col1" unique_id=1077264870]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Enemies"
+
+[node name="DamageDoneLabel" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Col1" unique_id=1769679892]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Damage Done"
+
+[node name="DamageTakenLabel" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Col1" unique_id=1485794844]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Damage Taken"
+
+[node name="MoneyCollectedLabel" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Col1" unique_id=2135635905]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Money"
+
+[node name="ScrapsCollectLabel" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Col1" unique_id=1872387178]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Scrap"
+
+[node name="CoresCollectedLabel" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Col1" unique_id=1903453102]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Cores"
+
+[node name="Control2" type="Control" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1015028653]
+layout_mode = 2
+
+[node name="Col2" type="VBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1079165489]
+layout_mode = 2
+theme_override_constants/separation = -1
+
+[node name="SuccessLabel" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Col2" unique_id=1464811661]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Success"
+horizontal_alignment = 2
+
+[node name="EnemyDestoryedLabel" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Col2" unique_id=2080291672]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "0"
+horizontal_alignment = 2
+
+[node name="DamageDoneLabel" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Col2" unique_id=2072777174]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "0"
+horizontal_alignment = 2
+
+[node name="DamageTakenLabel" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Col2" unique_id=913648971]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "0"
+horizontal_alignment = 2
+
+[node name="MoneyCollectedLabel" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Col2" unique_id=1483745522]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "0"
+horizontal_alignment = 2
+
+[node name="ScrapsCollectLabel" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Col2" unique_id=1068743289]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "0"
+horizontal_alignment = 2
+
+[node name="CoresLabel" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Col2" unique_id=1782415846]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "0"
+horizontal_alignment = 2
+
+[node name="Control" type="Control" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1299797499]
+layout_mode = 2
+
+[node name="Col3" type="VBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=381614709]
+layout_mode = 2
+theme_override_constants/separation = -1
+
+[node name="Bonus1Label" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Col3" unique_id=803455519]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "0"
+horizontal_alignment = 2
+
+[node name="Bonus2Label" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Col3" unique_id=378731710]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "0"
+horizontal_alignment = 2
+
+[node name="Bonus3Label" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Col3" unique_id=1042452784]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "0"
+horizontal_alignment = 2
+
+[node name="Bonus4Label" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Col3" unique_id=1083889878]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "0"
+horizontal_alignment = 2
+
+[node name="Bonus5Label" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Col3" unique_id=37237627]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "0"
+horizontal_alignment = 2
+
+[node name="Bonus6Label" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Col3" unique_id=1131552587]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "0"
+horizontal_alignment = 2
+
+[node name="Bonus7Label" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Col3" unique_id=387497546]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "0"
+horizontal_alignment = 2
+
+[node name="HSeparator" type="HSeparator" parent="TextureRect/MarginContainer/VBoxContainer" unique_id=2085403849]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer" unique_id=7924415]
+layout_mode = 2
+theme_override_constants/separation = -1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer/VBoxContainer" unique_id=921435422]
+layout_mode = 2
+alignment = 1
+
+[node name="TotalLabel" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2" unique_id=1101532705]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 6
+text = "Total"
+
+[node name="TotalNumberLabel" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2" unique_id=422305172]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 6
+text = "0"
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1298565750]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer" unique_id=581576844]
+layout_mode = 2
+
+[node name="LevelGradeLabel" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/HBoxContainer3" unique_id=1418644948]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 6
+text = "Level"
+
+[node name="LetterGradeLabel" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/HBoxContainer3" unique_id=2029820737]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 6
+text = "A"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1813186686]
+layout_mode = 2
+theme_override_constants/separation = 28
+alignment = 1
+
+[node name="ReturnBtn" type="Button" parent="TextureRect/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3" unique_id=1175631162]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 6
+text = "Return To Lab"
+
+[node name="ContinueBtn" type="Button" parent="TextureRect/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3" unique_id=1396167226]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 6
+text = "Next Level"

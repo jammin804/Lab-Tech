@@ -214,6 +214,7 @@ current_weapon = ExtResource("4_yi774")
 turret = ExtResource("9_y8qda")
 
 [node name="ChargeProgressBarContainer" parent="." unique_id=1763728426 instance=ExtResource("6_escd6")]
+visible = false
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1143428043]
 

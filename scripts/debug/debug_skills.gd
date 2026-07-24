@@ -29,3 +29,8 @@ func _update_labels() -> void:
 	charge_check.text = "Charge Check: " + str(PlayerManager.current_stats.can_charge)
 	limiter_check.text = "Limiter Check: " + str(PlayerManager.current_stats.super_click)
 	turret_check.text = "Auto Turret Check: " + str(PlayerManager.current_stats.auto_fire)
+
+
+func _on_result_button_pressed() -> void:
+#	enemies_killed:int, damage_done:int, damage_taken:int, money_earned:int, scraps_earned:int, cores_earned:int
+	Events.show_result_screen.emit( 20, 18, 2, 20, 5, 1, "Failed", 3)

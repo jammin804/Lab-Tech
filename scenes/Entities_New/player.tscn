@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://caphs0h78cho4" path="res://scripts/player_new.gd" id="1_nbenk"]
 [ext_resource type="Texture2D" uid="uid://b3ntyiv7oq1hh" path="res://assets/character/player.png" id="2_8mbqp"]
 [ext_resource type="Resource" uid="uid://de4hg033shlx6" path="res://resources/TalentTree/entities/player.tres" id="2_xvrsg"]
-[ext_resource type="PackedScene" uid="uid://ejl5hhaam80k" path="res://scenes/Playground Scenes/TestComponents/firing.tscn" id="4_xvrsg"]
+[ext_resource type="PackedScene" uid="uid://ejl5hhaam80k" path="res://scenes/Components/firing.tscn" id="4_xvrsg"]
+[ext_resource type="PackedScene" uid="uid://cnosuv70ino1f" path="res://scenes/Components/attachment_component.tscn" id="5_cnbk4"]
 [ext_resource type="PackedScene" uid="uid://dbxsfllyrb1yt" path="res://scenes/player.tscn" id="5_yr7uu"]
 [ext_resource type="PackedScene" uid="uid://dyk04xec0djot" path="res://scenes/UI/charge_progress_bar_container.tscn" id="6_s81oc"]
 
@@ -84,12 +85,14 @@ shape = SubResource("CapsuleShape2D_qti4y")
 spawn_point = NodePath("../Muzzle")
 charge_progress_bar_container = NodePath("../ChargeProgressBarContainer")
 
-[node name="AttachmentComponent" type="Node" parent="." unique_id=1308471551]
+[node name="AttachmentComponent" parent="." unique_id=1882574464 node_paths=PackedStringArray("spawn_point") instance=ExtResource("5_cnbk4")]
+spawn_point = NodePath("../Attachment")
 
 [node name="Muzzle" type="Marker2D" parent="." unique_id=495735376]
 position = Vector2(22, 1)
 
 [node name="Attachment" type="Marker2D" parent="." unique_id=715360608]
+position = Vector2(22, 17)
 
 [node name="Player_For_Battery" parent="." unique_id=2126503732 instance=ExtResource("5_yr7uu")]
 visible = false

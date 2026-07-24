@@ -12,7 +12,7 @@ var turret_damage = 2
 
 
 func _ready() -> void:
-	Events.pause_auto_actions.connect(_stop_firining)
+	Events.pause_auto_actions.connect(_stop_firing)
 	if shot_speed_timer.autostart == false:
 		shot_speed_timer.start()
 
@@ -22,7 +22,7 @@ func _on_shot_speed_timer_timeout() -> void:
 
 func fire() -> void:
 	turret_fire.play()
-	
+
 	var new_bullet = projectile.instantiate()
 	new_bullet.damage = turret_damage
 	new_bullet.scale = Vector2.ONE*.5
@@ -33,5 +33,5 @@ func fire() -> void:
 	shot_speed_timer.start()
 	#print(shot_speed_timer.wait_time)
 
-func _stop_firining() -> void:
+func _stop_firing() -> void:
 	shot_speed_timer.stop()

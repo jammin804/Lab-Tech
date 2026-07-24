@@ -33,6 +33,7 @@ SaveData="*uid://cc3gym1ejkqkf"
 Persistence="*uid://0wpro1sconl2"
 SkillManager="*uid://gq0fafo0ca7h"
 ConfigFileHeader="*uid://bbx5krn3qy2pc"
+UiManager="*uid://ctfler5fh52uh"
 
 [display]
 
@@ -45,7 +46,7 @@ window/stretch/scale_mode="integer"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/cheatsheet_viewer/plugin.cfg")
+enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/cheatsheet_viewer/plugin.cfg", "res://addons/gdscript_refactoring/plugin.cfg")
 
 [file_customization]
 

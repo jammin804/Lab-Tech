@@ -6,6 +6,11 @@
 [node name="SkillTestScene" type="Node2D" unique_id=1039676676]
 
 [node name="DebugSkills" parent="." unique_id=550271367 instance=ExtResource("1_drcav")]
+layer = 999
 
 [node name="Player" parent="." unique_id=98801044 instance=ExtResource("1_2mt27")]
-position = Vector2(158, 85)
+position = Vector2(-196, 85)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1060673465]
+position = Vector2(161, 89)
+zoom = Vector2(0.25, 0.25)

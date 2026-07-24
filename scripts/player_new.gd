@@ -7,6 +7,8 @@ extends CharacterBody2D
 const TALENT_TREE = preload("res://scenes/UI/New Talent Tree/talent_tree_2.tscn")
 
 var is_talent_tree_open = false
+var level_damage_taken : int = 0
+var level_damage_done : int = 0
 
 func _ready() -> void:
 	print(character_resource.get_character_stats())
