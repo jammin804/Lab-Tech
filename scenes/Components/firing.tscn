@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://ejl5hhaam80k"]
 
 [ext_resource type="Script" uid="uid://bb0udo5laeb33" path="res://scripts/debug/Testing/firing.gd" id="1_mgxeh"]
+[ext_resource type="AudioStream" uid="uid://dhhi0c4g00jnp" path="res://assets/music/sfx/shot2.wav" id="2_04wi7"]
+[ext_resource type="AudioStream" uid="uid://cqumsnxy7ag26" path="res://assets/music/sfx/charging-sfx_startup.wav" id="3_vcj3w"]
+[ext_resource type="AudioStream" uid="uid://y38wyloajjlb" path="res://assets/music/sfx/charging-sfx_repeat.wav" id="4_7pmj6"]
 
 [node name="FiringComponent" type="Node" unique_id=92492742]
 script = ExtResource("1_mgxeh")
@@ -8,3 +11,18 @@ script = ExtResource("1_mgxeh")
 [node name="ShootCooldownTimer" type="Timer" parent="." unique_id=230040502]
 unique_name_in_owner = true
 one_shot = true
+
+[node name="Fire" type="AudioStreamPlayer2D" parent="." unique_id=2130430413]
+stream = ExtResource("2_04wi7")
+bus = &"SFX"
+
+[node name="ChargingUp" type="AudioStreamPlayer2D" parent="." unique_id=1535480559]
+stream = ExtResource("3_vcj3w")
+pitch_scale = 1.5
+bus = &"SFX"
+
+[node name="ChargingRepeat" type="AudioStreamPlayer2D" parent="." unique_id=900176183]
+stream = ExtResource("4_7pmj6")
+bus = &"SFX"
+
+[connection signal="finished" from="ChargingUp" to="." method="_on_charging_up_finished"]

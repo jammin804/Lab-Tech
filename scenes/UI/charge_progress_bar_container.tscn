@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dyk04xec0djot"]
 
+[ext_resource type="Script" uid="uid://cgl8rhm72rwvc" path="res://scripts/component/charge_progress_bar_container.gd" id="1_54d25"]
 [ext_resource type="Texture2D" uid="uid://cpfdlcvph5yn1" path="res://assets/ui/progress_bar/BG.png" id="1_ddfmd"]
 [ext_resource type="Texture2D" uid="uid://b7yt3vc0aobm3" path="res://assets/ui/progress_bar/blue.png" id="2_54d25"]
 [ext_resource type="Texture2D" uid="uid://b6o7stxhe4hcs" path="res://assets/ui/progress_bar/bluebar_border.png" id="3_yge0r"]
@@ -16,9 +17,47 @@ region = Rect2(3, 1, 41, 5)
 atlas = ExtResource("3_yge0r")
 region = Rect2(0, 9, 41, 5)
 
+[sub_resource type="Animation" id="Animation_ddfmd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChargeProgressBar/FullChargeBorder:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_54d25"]
+resource_name = "charging"
+length = 1.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChargeProgressBar/FullChargeBorder:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.26666668, 0.43333334, 0.6333333, 0.8333334, 0.90000004, 0.9666667, 1.0333334, 1.5000001),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(18.892157, 18.892157, 0, 1), Color(1, 1, 1, 1), Color(18.892157, 18.892157, 0, 1), Color(1, 1, 1, 1), Color(18.892157, 18.892157, 0, 1), Color(1, 1, 1, 1), Color(18.892157, 18.892157, 0, 1), Color(18.892157, 18.892157, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yge0r"]
+_data = {
+&"RESET": SubResource("Animation_ddfmd"),
+&"charging": SubResource("Animation_54d25")
+}
+
 [node name="ChargeProgressBarContainer" type="HBoxContainer" unique_id=1763728426]
 offset_right = 41.0
 offset_bottom = 5.0
+script = ExtResource("1_54d25")
 
 [node name="ChargeProgressBar" type="TextureProgressBar" parent="." unique_id=1849310442]
 unique_name_in_owner = true
@@ -39,3 +78,6 @@ size_flags_vertical = 4
 step = 5.0
 value = 75.0
 texture_over = SubResource("AtlasTexture_g18rp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1356671809]
+libraries/ = SubResource("AnimationLibrary_yge0r")

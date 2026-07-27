@@ -13,7 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://cqumsnxy7ag26" path="res://assets/music/sfx/charging-sfx_startup.wav" id="13_ht4sr"]
 [ext_resource type="AudioStream" uid="uid://y38wyloajjlb" path="res://assets/music/sfx/charging-sfx_repeat.wav" id="14_1rxll"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_r6oyp"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_escd6"]
 shader = ExtResource("1_g11ij")
 shader_parameter/hit_flash_color = Color(1, 1, 1, 1)
 shader_parameter/hit_flash_on = false
@@ -205,7 +205,7 @@ _data = {
 }
 
 [node name="BattlePlayer" type="AnimatedSprite2D" unique_id=166741663 groups=["player"]]
-material = SubResource("ShaderMaterial_r6oyp")
+material = SubResource("ShaderMaterial_escd6")
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_ikkpg")
 animation = &"Idle"

@@ -32,5 +32,4 @@ func _update_labels() -> void:
 
 
 func _on_result_button_pressed() -> void:
-#	enemies_killed:int, damage_done:int, damage_taken:int, money_earned:int, scraps_earned:int, cores_earned:int
 	Events.show_result_screen.emit( 20, 18, 2, 20, 5, 1, "Failed", 3)

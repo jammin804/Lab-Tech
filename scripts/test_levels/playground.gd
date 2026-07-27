@@ -7,9 +7,9 @@ func _ready() -> void:
 	var player_instance : Player = player_scene.instantiate()
 	player_instance.global_position = player_spawn_point.global_position
 	add_child(player_instance)
-	
+
 	Globals.level = 1
-	
+
 	#Plass the fresh node to the manager to restore its health state
 	PlayerManager.load_player_state(player_instance)
 	Events.level_complete.connect(_on_results)

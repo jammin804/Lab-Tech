@@ -4,6 +4,8 @@ class_name HealthChange
 func action(talentIcon: TalentIcon):
 	var health = talentIcon.talent_resource.stat_value
 
-	PlayerManager.current_stats.battery_tank_points = health
-	print(PlayerManager.current_stats.battery_tank_points)
+	PlayerManager.current_stats.battery_tank_points += health
+	print("New MAX HP: ", PlayerManager.current_stats.battery_tank_points)
 	talentIcon.talent_resource.is_unlocked = true
+
+	Events.max_health_upgraded.emit(PlayerManager.current_stats.battery_tank_points)

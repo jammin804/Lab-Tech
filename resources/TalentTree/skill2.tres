@@ -9,6 +9,8 @@ region = Rect2(65.26062, 233.04213, 29.511963, 16.221207)
 
 [resource]
 script = ExtResource("1_8yf41")
+talent_id = "auto_turret"
+prerequisites = Array[String](["remove_limit"])
 talentIcon = SubResource("AtlasTexture_qti4y")
 talentName = "Auto-Turret"
 talentDescription = "Auto firing Turrent that fires bullets half your damage "

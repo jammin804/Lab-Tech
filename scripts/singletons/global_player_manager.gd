@@ -13,10 +13,10 @@ var player_position : Vector2
 func _ready() -> void:
 	current_stats = load(starting_stats_ref_path).duplicate()
 
-func save_player_state(player: Player) -> void:
+func save_player_state(player) -> void:
 	current_health_cache = player.current_health
 
-func load_player_state(player: Player) -> void:
+func load_player_state(player) -> void:
 	if should_restore_player or current_health_cache < 0:
 		# Full restore context (Upgrade Scene or first loade)
 		player.current_health = player.max_health

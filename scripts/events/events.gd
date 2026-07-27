@@ -11,3 +11,8 @@ signal pause_auto_actions
 signal level_complete
 signal show_result_screen(money_gained: int, scrap_gained: int)
 signal talent_icon_clicked
+signal bullet_fired
+signal blaster_fully_charged
+signal charge_released
+signal health_changed
+signal max_health_upgraded(new_max)

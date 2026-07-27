@@ -9,8 +9,10 @@ region = Rect2(101.98599, 258.83606, 22.204987, 27.072968)
 
 [resource]
 script = ExtResource("1_y2gjx")
+talent_id = "health_up_1"
+prerequisites = Array[String](["super_charge"])
 talentIcon = SubResource("AtlasTexture_pdpgr")
 talentName = "Health Up"
 talentDescription = " Increases the maximum battery capacity"
-stat_value = 200
+stat_value = 100
 metadata/_custom_type_script = "uid://cebb35bfecrsp"

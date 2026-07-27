@@ -9,6 +9,7 @@ region = Rect2(1.5791779, 451.65488, 29.74699, 24.87378)
 
 [resource]
 script = ExtResource("1_orkek")
+talent_id = "remove_limit"
 talentIcon = SubResource("AtlasTexture_orkek")
 talentName = "Remove Limiter"
 talentDescription = "Maxes out the click to fire limation for the Blaster"

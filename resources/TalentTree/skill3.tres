@@ -9,6 +9,8 @@ region = Rect2(81.66669, 0, 43.333344, 48)
 
 [resource]
 script = ExtResource("1_lan2b")
+talent_id = "super_charge"
+prerequisites = Array[String](["auto_turret"])
 talentIcon = SubResource("AtlasTexture_s5m6i")
 talentName = "Super Charge"
 talentDescription = "Enhances the second level charge shot of the Blaster"

@@ -5,6 +5,8 @@
 
 [resource]
 script = ExtResource("1_hgkgo")
+talent_id = "rapid_shot_1"
+prerequisites = Array[String](["auto_turret"])
 talentIcon = ExtResource("2_s83nl")
 talentName = "Rapid Shot"
 talentDescription = "Allows up to 4  shots to be on-screen at once

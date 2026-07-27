@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://blqe7ke2t7a3n" path="res://scenes/UI/custom_mouse.tscn" id="1_h607l"]
 [ext_resource type="Script" uid="uid://084flrltlmjn" path="res://scenes/battle_screen.gd" id="1_p5bt8"]
 [ext_resource type="Texture2D" uid="uid://cvjej43nsn7ha" path="res://assets/backgrounds/level_3.png" id="2_6gkuo"]
+[ext_resource type="PackedScene" uid="uid://drdlmsifm1unh" path="res://scenes/Entities_New/player.tscn" id="2_61ie4"]
 [ext_resource type="PackedScene" uid="uid://cooeppa7wcj7x" path="res://scenes/camera.tscn" id="4_6lb5u"]
 [ext_resource type="Texture2D" uid="uid://b8h7y5diislmb" path="res://assets/ui/hud/Settigns.png" id="10_ikkpg"]
 [ext_resource type="PackedScene" uid="uid://dg66c7f7p6iii" path="res://scenes/pause_menu.tscn" id="11_qm3lx"]
@@ -35,6 +36,7 @@ process_mode = 3
 script = ExtResource("1_p5bt8")
 pause_menu = NodePath("PauseLayer/PauseMenu")
 settings_menu = NodePath("PauseLayer/SettingsMenu")
+player = ExtResource("2_61ie4")
 player_spawn = NodePath("Pausable/PlayerSpawnPoint")
 
 [node name="Background" type="TextureRect" parent="." unique_id=62776617]

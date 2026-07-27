@@ -19,10 +19,10 @@ func _ready() -> void:
 	var player_inst = player.instantiate()
 	$Pausable.add_child(player_inst)
 	player_inst.global_position = %PlayerSpawnPoint.global_position
-	
+
 	#TODO Increment level on the global level so the lab/upgrade scene can see it
 	Globals.level = 1
-	
+
 	pause_menu.resume_game.connect(_on_resume_btn_pressed)
 	pause_menu.open_options.connect(_on_options_btn_pressed)
 	pause_menu.exit_to_title.connect(_on_quit_btn_pressed)
@@ -30,14 +30,14 @@ func _ready() -> void:
 	Events.level_complete.connect(_on_result_screen_shown)
 
 	_reset_flags()
-	
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"): #and is_result_screen_open == false:
 		if is_option_menu_open:
 			print("Close Option Menu")
 			settings_menu.visible = false
 			is_option_menu_open = false
-			
+
 		toggle_pause()
 
 func _on_pause_btn_pressed() -> void:
@@ -46,7 +46,7 @@ func _on_pause_btn_pressed() -> void:
 func _on_back_btn_pressed() -> void:
 	settings_menu.visible = false
 	pause_menu.show()
-	
+
 func toggle_pause() -> void:
 	var tree = get_tree()
 	tree.paused = !tree.paused
@@ -57,7 +57,7 @@ func _on_resume_btn_pressed() -> void:
 
 func _on_quit_btn_pressed() -> void:
 	LevelTransition.change_scene_to(main_menu)
-	
+
 func _on_options_btn_pressed() -> void:
 	is_option_menu_open = true
 	settings_menu.visible = true
@@ -65,7 +65,7 @@ func _on_options_btn_pressed() -> void:
 
 func _on_result_screen_shown() -> void:
 	result_screen.show()
-	is_result_screen_open = true 
+	is_result_screen_open = true
 
 func _reset_flags() -> void:
 	if is_result_screen_open == true:

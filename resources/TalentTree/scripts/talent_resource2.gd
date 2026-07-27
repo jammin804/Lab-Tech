@@ -1,6 +1,9 @@
 class_name TalentResource2
 extends Resource
 
+@export var talent_id: String
+@export var prerequisites: Array[String] = []
+
 @export var talentIcon: Texture2D
 @export var is_unlocked:= false
 
