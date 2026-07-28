@@ -3,16 +3,17 @@
 [ext_resource type="Script" uid="uid://cebb35bfecrsp" path="res://resources/TalentTree/scripts/talent_resource2.gd" id="1_y2gjx"]
 [ext_resource type="Texture2D" uid="uid://nust27da1vec" path="res://assets/ui/skill_tree/Scifi weapons and items.png" id="2_p351u"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pdpgr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyjhc"]
 atlas = ExtResource("2_p351u")
-region = Rect2(101.98599, 258.83606, 22.204987, 27.072968)
+region = Rect2(101.93032, 258.84808, 22.782341, 27.584503)
 
 [resource]
 script = ExtResource("1_y2gjx")
 talent_id = "health_up_1"
 prerequisites = Array[String](["super_charge"])
-talentIcon = SubResource("AtlasTexture_pdpgr")
+talent_icon = SubResource("AtlasTexture_jyjhc")
 talentName = "Health Up"
 talentDescription = " Increases the maximum battery capacity"
+cost = 200
 stat_value = 100
 metadata/_custom_type_script = "uid://cebb35bfecrsp"

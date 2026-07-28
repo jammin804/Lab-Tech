@@ -40,20 +40,25 @@ func set_skill_tree():
 			print(branch)
 		skill_tree.append(branch)
 
-	SaveData.branch_names = dynamic_names
-	SaveData.skill_tree = skill_tree
-	SaveData.set_and_save()
+	SaveData.save_data["branch_names"] = dynamic_names
+	SaveData.save_data["skill_tree"] = skill_tree
+	SaveData._save()
 
 	SkillManager.calculate_unlocked_stats()
 
 func load_skill_tree():
-	if SaveData.skill_tree == []:
+	if SaveData.save_data["skill_tree"].is_empty():
 		set_skill_tree()
 
-	skill_tree = SaveData.skill_tree
+	skill_tree = SaveData.save_data["skill_tree"]
+
+	if skill_tree.is_empty():
+		return
+
 	for branch in get_child(1).get_children():
 		for upgrade in branch.get_children():
-			upgrade.enabled = skill_tree[branch.get_index()][upgrade.get_index()]
+			if branch.get_index() < skill_tree.size() and upgrade.get_index() < skill_tree[branch.get_index()].size():
+				upgrade.enabled = skill_tree[branch.get_index()][upgrade.get_index()]
 
 
 func on_upgrade_purchased() -> void:

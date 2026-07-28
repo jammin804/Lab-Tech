@@ -1,28 +1,21 @@
-[gd_scene format=3 uid="uid://ds2efap35m8d2"]
+[gd_scene format=3 uid="uid://cx38wi2wd12d4"]
 
-[ext_resource type="PackedScene" uid="uid://cd5t621s5krvm" path="res://scenes/UI/New Talent Tree/talent_icon.tscn" id="1_3glmu"]
-[ext_resource type="Script" uid="uid://dntgfdcmywxgc" path="res://scripts/ui/Talent Tree/talent_tree_2.gd" id="1_vtkmw"]
-[ext_resource type="Resource" uid="uid://b62c15rpfg3b3" path="res://resources/TalentTree/skill1.tres" id="3_h1iur"]
-[ext_resource type="Resource" uid="uid://vrjifu2bc331" path="res://resources/TalentTree/func2.tres" id="5_h1iur"]
-[ext_resource type="Resource" uid="uid://c8jowgsk5odo0" path="res://resources/TalentTree/func1.tres" id="5_qwupu"]
-[ext_resource type="Resource" uid="uid://doxltg15e0ph3" path="res://resources/TalentTree/skill3.tres" id="5_spest"]
-[ext_resource type="Resource" uid="uid://bps7lgdts2c0m" path="res://resources/TalentTree/skill2.tres" id="6_l0tbs"]
-[ext_resource type="Resource" uid="uid://dqa1k4c5x0hxi" path="res://resources/TalentTree/func3.tres" id="6_spest"]
-[ext_resource type="Resource" uid="uid://c8a5ybbctvqr7" path="res://resources/TalentTree/func4.tres" id="8_w3p7k"]
-[ext_resource type="Resource" uid="uid://du7hcnodfc7mj" path="res://resources/TalentTree/skill4.tres" id="9_jqipk"]
-[ext_resource type="Resource" uid="uid://v4q3d7tc5xxo" path="res://resources/TalentTree/skill5.tres" id="11_pdpgr"]
-[ext_resource type="Resource" uid="uid://28xv0tanhghb" path="res://resources/TalentTree/func5.tres" id="12_grnvs"]
-[ext_resource type="Resource" uid="uid://bnue7ecflmmhu" path="res://resources/TalentTree/skill6.tres" id="13_2x64b"]
-[ext_resource type="Resource" uid="uid://de38nb3gl4a2i" path="res://resources/TalentTree/func6.tres" id="14_hfupw"]
-[ext_resource type="StyleBox" uid="uid://h4hbbqa8c1d3" path="res://themes/text_boxes.tres" id="15_4qkwr"]
-[ext_resource type="Texture2D" uid="uid://bmgd5bh11073r" path="res://assets/ui/hud/coins-chests-etc-2-0.png" id="16_ggf8e"]
-[ext_resource type="Texture2D" uid="uid://brvmjalwweco2" path="res://assets/ui/hud/Sprite-0001.png" id="17_6a0bt"]
+[ext_resource type="Script" uid="uid://dntgfdcmywxgc" path="res://scripts/ui/Talent Tree/talent_tree_2.gd" id="1_htokf"]
+[ext_resource type="StyleBox" uid="uid://h4hbbqa8c1d3" path="res://themes/text_boxes.tres" id="2_alpht"]
+[ext_resource type="Texture2D" uid="uid://bmgd5bh11073r" path="res://assets/ui/hud/coins-chests-etc-2-0.png" id="3_ff7hv"]
+[ext_resource type="Texture2D" uid="uid://brvmjalwweco2" path="res://assets/ui/hud/Sprite-0001.png" id="4_gfnu0"]
+[ext_resource type="PackedScene" uid="uid://cd5t621s5krvm" path="res://scenes/UI/New Talent Tree/talent_icon.tscn" id="5_50yuc"]
+[ext_resource type="Resource" uid="uid://b3i2vvmo6wtel" path="res://resources/TalentTree/BodyTree/skills/body_quick_charge.tres" id="6_jfnck"]
+[ext_resource type="Resource" uid="uid://dl5vqn7o1sbcj" path="res://resources/TalentTree/BodyTree/skills/body_lighting_rod.tres" id="6_yn5dh"]
+[ext_resource type="Resource" uid="uid://c8jowgsk5odo0" path="res://resources/TalentTree/func1.tres" id="7_2cr7h"]
+[ext_resource type="Resource" uid="uid://chrsya883mkfb" path="res://resources/TalentTree/BodyTree/skills/body_battery_life_steal.tres" id="8_07sy3"]
+[ext_resource type="Resource" uid="uid://lfrysf5jg0ie" path="res://resources/TalentTree/BodyTree/skills/body_barrier.tres" id="9_xfnpj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s5m6i"]
 bg_color = Color(0.32941177, 0.6627451, 0.5294118, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s5m6i"]
-atlas = ExtResource("17_6a0bt")
+atlas = ExtResource("4_gfnu0")
 region = Rect2(0.9977226, 112.08851, 12.112375, 16.503242)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qti4y"]
@@ -33,7 +26,7 @@ border_width_right = 2
 border_width_bottom = 2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g18rp"]
-atlas = ExtResource("17_6a0bt")
+atlas = ExtResource("4_gfnu0")
 region = Rect2(67.195816, 112.06311, 12.030907, 16.16101)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cw33r"]
@@ -54,10 +47,10 @@ border_width_right = 2
 border_width_bottom = 2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qti4y"]
-atlas = ExtResource("16_ggf8e")
+atlas = ExtResource("3_ff7hv")
 region = Rect2(209.21545, 18.05703, 13.842438, 14.251785)
 
-[node name="TalentTree2" type="Control" unique_id=2011149392 node_paths=PackedStringArray("current_money_label", "info_name_label", "info_desc_label", "info_cost_label")]
+[node name="TalentTreeBody" type="Control" unique_id=2011149392 node_paths=PackedStringArray("current_money_label", "info_name_label", "info_desc_label", "info_cost_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -65,8 +58,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_vtkmw")
-available_border_color = null
+script = ExtResource("1_htokf")
 current_money_label = NodePath("MoneyPanel/MarginContainer/HBoxContainer/AmountLabel")
 info_name_label = NodePath("InfoPanel/VBoxContainer/PanelContainer/NameLabel")
 info_desc_label = NodePath("InfoPanel/VBoxContainer/PanelContainer2/DescriptionLabel")
@@ -85,7 +77,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_s5m6i")
 
-[node name="TitleContainer" type="HBoxContainer" parent="." unique_id=193196420]
+[node name="TopBar" type="HBoxContainer" parent="." unique_id=193196420]
 visible = false
 layout_mode = 1
 anchors_preset = 5
@@ -98,34 +90,34 @@ offset_bottom = 18.0
 grow_horizontal = 2
 theme_override_constants/separation = 1
 
-[node name="TextureButton2" type="TextureButton" parent="TitleContainer" unique_id=409418439]
+[node name="LeftArrowBtn" type="TextureButton" parent="TopBar" unique_id=409418439]
 layout_mode = 2
 size_flags_horizontal = 0
 texture_normal = SubResource("AtlasTexture_s5m6i")
 
-[node name="Control2" type="Control" parent="TitleContainer" unique_id=2132117868]
+[node name="Control2" type="Control" parent="TopBar" unique_id=2132117868]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="TitleNameContainer" type="PanelContainer" parent="TitleContainer" unique_id=209267891]
+[node name="TitleNameContainer" type="PanelContainer" parent="TopBar" unique_id=209267891]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_qti4y")
 
-[node name="Label" type="Label" parent="TitleContainer/TitleNameContainer" unique_id=422849017]
+[node name="Label" type="Label" parent="TopBar/TitleNameContainer" unique_id=422849017]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.16862746, 0.9137255, 1, 1)
 theme_override_font_sizes/font_size = 8
-text = "Blaster"
+text = "Body"
 horizontal_alignment = 1
 uppercase = true
 
-[node name="Control" type="Control" parent="TitleContainer" unique_id=1088861151]
+[node name="Control" type="Control" parent="TopBar" unique_id=1088861151]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="TextureButton" type="TextureButton" parent="TitleContainer" unique_id=1290676919]
+[node name="RightArrowBtn" type="TextureButton" parent="TopBar" unique_id=1290676919]
 layout_mode = 2
 size_flags_horizontal = 8
 texture_normal = SubResource("AtlasTexture_g18rp")
@@ -165,7 +157,7 @@ offset_bottom = -8.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 3
-theme_override_styles/panel = ExtResource("15_4qkwr")
+theme_override_styles/panel = ExtResource("2_alpht")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="InfoPanel" unique_id=1000811966]
 layout_mode = 1
@@ -293,72 +285,54 @@ text = "999"
 
 [node name="TalentIconMarginContainer" type="MarginContainer" parent="." unique_id=660722612]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -66.0
-offset_top = -52.0
-offset_right = 94.0
-offset_bottom = 36.0
-grow_horizontal = 2
+offset_left = 36.0
+offset_top = -63.0
+offset_right = 155.0
+offset_bottom = 78.5
 grow_vertical = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="TalentIconMarginContainer" unique_id=1569289851]
+[node name="VBoxContainer" type="VBoxContainer" parent="TalentIconMarginContainer" unique_id=1873674666]
 layout_mode = 2
-theme_override_constants/separation = 25
+size_flags_horizontal = 4
+theme_override_constants/separation = 14
+alignment = 2
 
-[node name="RemoveLimitTalent" parent="TalentIconMarginContainer/HBoxContainer2" unique_id=2146772618 groups=["talents"] instance=ExtResource("1_3glmu")]
+[node name="HBoxContainer" type="HBoxContainer" parent="TalentIconMarginContainer/VBoxContainer" unique_id=1383332480]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="LightingRodTalent" parent="TalentIconMarginContainer/VBoxContainer/HBoxContainer" unique_id=2146772618 groups=["talents"] instance=ExtResource("5_50yuc")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-talent_resource = ExtResource("3_h1iur")
-talent_functionality = ExtResource("5_qwupu")
+talent_resource = ExtResource("6_yn5dh")
+talent_functionality = ExtResource("7_2cr7h")
 
-[node name="TurretTalent" parent="TalentIconMarginContainer/HBoxContainer2" unique_id=440145942 groups=["talents"] instance=ExtResource("1_3glmu")]
+[node name="QuickChargeTalent" parent="TalentIconMarginContainer/VBoxContainer/HBoxContainer" unique_id=49053617 groups=["talents"] instance=ExtResource("5_50yuc")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+talent_resource = ExtResource("6_jfnck")
+talent_functionality = ExtResource("7_2cr7h")
+
+[node name="BarrierTalent" parent="TalentIconMarginContainer/VBoxContainer/HBoxContainer" unique_id=612176563 groups=["talents"] instance=ExtResource("5_50yuc")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+talent_resource = ExtResource("9_xfnpj")
+talent_functionality = ExtResource("7_2cr7h")
+
+[node name="HybridChargeTalent" parent="TalentIconMarginContainer/VBoxContainer" unique_id=288160588 groups=["talents"] instance=ExtResource("5_50yuc")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-talent_resource = ExtResource("6_l0tbs")
-talent_functionality = ExtResource("8_w3p7k")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TalentIconMarginContainer/HBoxContainer2" unique_id=2054928271]
-layout_mode = 2
-theme_override_constants/separation = 9
-
-[node name="HBoxContainer" type="HBoxContainer" parent="TalentIconMarginContainer/HBoxContainer2/VBoxContainer" unique_id=1512974655]
-layout_mode = 2
-theme_override_constants/separation = 19
-
-[node name="ChargeTalent" parent="TalentIconMarginContainer/HBoxContainer2/VBoxContainer/HBoxContainer" unique_id=822119338 groups=["talents"] instance=ExtResource("1_3glmu")]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-talent_resource = ExtResource("5_spest")
-talent_functionality = ExtResource("6_spest")
-
-[node name="HealthTalent" parent="TalentIconMarginContainer/HBoxContainer2/VBoxContainer/HBoxContainer" unique_id=300042390 groups=["talents"] instance=ExtResource("1_3glmu")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-talent_resource = ExtResource("9_jqipk")
-talent_functionality = ExtResource("5_h1iur")
-
-[node name="RapidShot" parent="TalentIconMarginContainer/HBoxContainer2/VBoxContainer" unique_id=412150652 groups=["talents"] instance=ExtResource("1_3glmu")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-talent_resource = ExtResource("13_2x64b")
-talent_functionality = ExtResource("14_hfupw")
-
-[node name="DamageTalent" parent="TalentIconMarginContainer/HBoxContainer2/VBoxContainer" unique_id=855016925 groups=["talents"] instance=ExtResource("1_3glmu")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-talent_resource = ExtResource("11_pdpgr")
-talent_functionality = ExtResource("12_grnvs")
+talent_resource = ExtResource("8_07sy3")
+talent_functionality = ExtResource("7_2cr7h")

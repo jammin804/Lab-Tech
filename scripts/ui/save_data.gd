@@ -1,48 +1,45 @@
 extends Node2D
 
-var money = 1000
-var skill_tree = []
-var branch_names =[]
+const FILE_PATH = "user://SaveFileName.sav"
 
-const PATH = "user://player_data.cfg"
-@onready var config = ConfigFile.new()
-
+var save_data: Dictionary = {
+	"money" : 0,
+	"scrap" : 0,
+	"core" : 0,
+	"unlocked_talents" : [],
+	"skill_tree" : [],
+	"branch_names": []
+}
 
 func _ready() -> void:
-	load_data()
+	_load()
 
-func save_data():
-	config.save(PATH)
+func _save():
+	var file: FileAccess = FileAccess.open(FILE_PATH, FileAccess.WRITE)
+	file.store_var(save_data)
+	file.close()
 
-func set_data():
-	config.set_value("Player", "money", money)
-	for i in range(skill_tree.size()):
-		print("How large is the skill tree" + str(range(skill_tree.size())))
-		if i < branch_names.size():
-			config.set_value("Skill_Tree", branch_names[i], skill_tree[i])
+func _load():
+	if FileAccess.file_exists(FILE_PATH):
+		var file: FileAccess = FileAccess.open(FILE_PATH, FileAccess.READ)
+		var data: Dictionary = file.get_var()
+		if typeof(data) == TYPE_DICTIONARY:
+			for i in data:
+				if save_data.has(i):
+					save_data[i] = data[i]
+		file.close()
 
-func set_and_save():
-	set_data()
-	save_data()
+func has_save_file() -> bool:
+	return FileAccess.file_exists(FILE_PATH)
 
-func load_data():
-	if config.load(PATH) != OK:
-		set_and_save()
-		return
+func reset_save() -> void:
+	save_data = {
+		"money" : 0,
+		"scrap" : 0,
+		"core" : 0,
+		"unlocked_talents" : [],
+		"skill_tree" : [],
+		"branch_names": []
+	}
 
-	money = config.get_value("Player", "money", 1000)
-
-	skill_tree.clear()
-	branch_names.clear()
-
-	if config.has_section("Skill_Tree"):
-		for key in config.get_section_keys("Skill_Tree"):
-			branch_names.append(key)
-			skill_tree.append(config.get_value("Skill_Tree", key, []))
-
-	#for branch_name in BRANCH_NAMES:
-		#var default_branch = [false]
-		#var loaded_branch = config.get_value("Skill_Tree", branch_name, default_branch)
-		#skill_tree.append(loaded_branch)
-
-#		= config.get_value("Player", "skill_tree", [])
+	_save()

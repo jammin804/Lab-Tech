@@ -1,4 +1,5 @@
 extends Node
+# SkillManager.gd (Autoload)
 
 @export var super_click_branch: Array[Resource]
 @export var auto_fire_branch: Array[Resource]
@@ -31,46 +32,46 @@ func calculate_unlocked_stats() -> void:
 
 
 	var total_stat = PlayerStats.new()
-	var skill_tree = SaveData.skill_tree
-
-	if skill_tree.is_empty():
-		return
-
-	#Super Click
-	if skill_tree.size() > 0:
-		for i in range(skill_tree[0].size()):
-			if skill_tree[0][i] == true:
-				add_stats(total_stat, super_click_branch[i].stats)
-
-	#Auto Fire
-	if skill_tree.size() > 1:
-		for i in range(skill_tree[1].size()):
-			if skill_tree[1][i] == true:
-				add_stats(total_stat, auto_fire_branch[i].stats)
-
-	#Charge
-	if skill_tree.size() > 2:
-		for i in range(skill_tree[2].size()):
-			if skill_tree[2][i] == true:
-				add_stats(total_stat, charge_branch[i].stats)
-
-	#Battery
-	if skill_tree.size() > 3:
-		for i in range(skill_tree[3].size()):
-			if skill_tree[3][i] == true:
-				add_stats(total_stat, battery_branch[i].stats)
-
-	#Power
-	if skill_tree.size() > 4:
-		for i in range(skill_tree[4].size()):
-			if skill_tree[4][i] == true:
-				add_stats(total_stat, power_branch[i].stats)
-
-	#Rapid
-	if skill_tree.size() > 5:
-		for i in range(skill_tree[5].size()):
-			if skill_tree[5][i] == true:
-				add_stats(total_stat, rapid_branch[i].stats)
+	#var skill_tree = SaveData.skill_tree
+#
+	#if skill_tree.is_empty():
+		#return
+#
+	##Super Click
+	#if skill_tree.size() > 0:
+		#for i in range(skill_tree[0].size()):
+			#if skill_tree[0][i] == true:
+				#add_stats(total_stat, super_click_branch[i].stats)
+#
+	##Auto Fire
+	#if skill_tree.size() > 1:
+		#for i in range(skill_tree[1].size()):
+			#if skill_tree[1][i] == true:
+				#add_stats(total_stat, auto_fire_branch[i].stats)
+#
+	##Charge
+	#if skill_tree.size() > 2:
+		#for i in range(skill_tree[2].size()):
+			#if skill_tree[2][i] == true:
+				#add_stats(total_stat, charge_branch[i].stats)
+#
+	##Battery
+	#if skill_tree.size() > 3:
+		#for i in range(skill_tree[3].size()):
+			#if skill_tree[3][i] == true:
+				#add_stats(total_stat, battery_branch[i].stats)
+#
+	##Power
+	#if skill_tree.size() > 4:
+		#for i in range(skill_tree[4].size()):
+			#if skill_tree[4][i] == true:
+				#add_stats(total_stat, power_branch[i].stats)
+#
+	##Rapid
+	#if skill_tree.size() > 5:
+		#for i in range(skill_tree[5].size()):
+			#if skill_tree[5][i] == true:
+				#add_stats(total_stat, rapid_branch[i].stats)
 
 	Persistence.bonus_stats = total_stat
 	#print(total_stat.can_charge)

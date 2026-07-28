@@ -4,11 +4,13 @@ extends Resource
 @export var talent_id: String
 @export var prerequisites: Array[String] = []
 
-@export var talentIcon: Texture2D
+@export var talent_icon: Texture2D
 @export var is_unlocked:= false
 
 @export var talentName : String
 @export_multiline var talentDescription : String
+@export var cost : int
+@export_enum("Money", "Scrap", "Core") var currency_type: String = "Money"
 
 @export var body_stat : BodyStat
 @export var arms_stat : ArmStat

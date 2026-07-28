@@ -35,12 +35,11 @@ func _ready() -> void:
 
 
 
-#func _input(event: InputEvent) -> void:
-	##if event.is_action_pressed("interact") and not is_talent_tree_open:
-		##_open_talent_tree()
-	##elif event.is_action_pressed("interact") and is_talent_tree_open:
-		##_close_talent_tree()
-	#pass
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept"):
+		SaveData.save_data["money"] = 999
+		SaveData._save()
+		print("DEBUG: Game Saved!")
 
 #region Remove this and move it to upgrade scene
 func _open_talent_tree():

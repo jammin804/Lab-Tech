@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://sknra82q76tt"]
+
+[ext_resource type="Script" uid="uid://f8c8r7eu83n4" path="res://scripts/ui/Talent Tree/talent_menu_manager.gd" id="1_mqcdt"]
+[ext_resource type="Texture2D" uid="uid://brvmjalwweco2" path="res://assets/ui/hud/Sprite-0001.png" id="2_qp17x"]
+[ext_resource type="PackedScene" uid="uid://cx38wi2wd12d4" path="res://scenes/UI/New Talent Tree/talent_tree_body.tscn" id="3_xfbdc"]
+[ext_resource type="PackedScene" uid="uid://ds2efap35m8d2" path="res://scenes/UI/New Talent Tree/talent_tree_2.tscn" id="4_trys1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2lcoi"]
+bg_color = Color(0.32941177, 0.6627451, 0.5294118, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_poq56"]
+atlas = ExtResource("2_qp17x")
+region = Rect2(0.9977226, 112.08851, 12.112375, 16.503242)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ra08x"]
+bg_color = Color(0.0627451, 0.03137255, 0.03137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixi0a"]
+atlas = ExtResource("2_qp17x")
+region = Rect2(67.195816, 112.06311, 12.030907, 16.16101)
+
+[node name="TalentMenuManager" type="Control" unique_id=491223868 node_paths=PackedStringArray("title_label", "left_arrow_btn", "right_arrow_btn", "tree_panels")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mqcdt")
+title_label = NodePath("TopBar/TitleNameContainer/TitleLabel")
+left_arrow_btn = NodePath("TopBar/LeftArrowBtn")
+right_arrow_btn = NodePath("TopBar/RightArrowBtn")
+tree_panels = [NodePath("TreeContainer/TalentTreeBody"), NodePath("TreeContainer/TalentTree2")]
+tree_names = Array[String](["BODY", "BLASTER"])
+
+[node name="BGPanel" type="Panel" parent="." unique_id=168179249]
+z_index = -2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2lcoi")
+
+[node name="TreeContainer" type="Control" parent="." unique_id=1620996613]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TalentTreeBody" parent="TreeContainer" unique_id=2011149392 instance=ExtResource("3_xfbdc")]
+layout_mode = 1
+
+[node name="TalentTree2" parent="TreeContainer" unique_id=1223986564 instance=ExtResource("4_trys1")]
+layout_mode = 1
+available_border_color = Color(1, 0.84313726, 0, 1)
+
+[node name="TopBar" type="HBoxContainer" parent="." unique_id=1134962090]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -44.0
+offset_top = 2.0
+offset_right = 44.0
+offset_bottom = 18.0
+grow_horizontal = 2
+mouse_filter = 0
+theme_override_constants/separation = 1
+
+[node name="LeftArrowBtn" type="TextureButton" parent="TopBar" unique_id=2100076025]
+layout_mode = 2
+size_flags_horizontal = 0
+texture_normal = SubResource("AtlasTexture_poq56")
+
+[node name="Control2" type="Control" parent="TopBar" unique_id=930428194]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TitleNameContainer" type="PanelContainer" parent="TopBar" unique_id=1421642510]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_ra08x")
+
+[node name="TitleLabel" type="Label" parent="TopBar/TitleNameContainer" unique_id=242435518]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.16862746, 0.9137255, 1, 1)
+theme_override_font_sizes/font_size = 8
+text = "Body"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Control" type="Control" parent="TopBar" unique_id=1425501039]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="RightArrowBtn" type="TextureButton" parent="TopBar" unique_id=1907954782]
+layout_mode = 2
+size_flags_horizontal = 8
+texture_normal = SubResource("AtlasTexture_ixi0a")

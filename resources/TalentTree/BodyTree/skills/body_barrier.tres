@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="TalentResource2" format=3 uid="uid://lfrysf5jg0ie"]
+
+[ext_resource type="Script" uid="uid://cebb35bfecrsp" path="res://resources/TalentTree/scripts/talent_resource2.gd" id="1_lfxhf"]
+[ext_resource type="Texture2D" uid="uid://btt7iex4c0cf0" path="res://assets/props/currency.png" id="2_77ksj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oq8mm"]
+atlas = ExtResource("2_77ksj")
+region = Rect2(67.29956, 3.573412, 25.200798, 24.62147)
+
+[resource]
+script = ExtResource("1_lfxhf")
+talent_id = "barrier"
+prerequisites = Array[String](["hybrid_charge"])
+talent_icon = SubResource("AtlasTexture_oq8mm")
+talentName = "Barrier"
+talentDescription = "Creates a barrier that will take damage before it pops"
+metadata/_custom_type_script = "uid://cebb35bfecrsp"
