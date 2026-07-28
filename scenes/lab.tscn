@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://4ice6uiioh1a" path="res://assets/props/capsule2.png" id="2_hem3r"]
 [ext_resource type="Texture2D" uid="uid://mhmvngsgg13v" path="res://assets/props/lab-table.png" id="3_f680m"]
 [ext_resource type="Texture2D" uid="uid://dxyc6i7d1knac" path="res://assets/props/console.png" id="4_q4uld"]
+[ext_resource type="PackedScene" uid="uid://bbc5rwyvte2rm" path="res://scenes/UI/New Talent Tree/talent_selection_menu.tscn" id="6_ijdgx"]
 [ext_resource type="Texture2D" uid="uid://dwfn7p11er8rd" path="res://assets/props/lab-table_hover.png" id="8_ijdgx"]
 [ext_resource type="Texture2D" uid="uid://qj56axi37uo" path="res://assets/props/console_hover.png" id="9_eavsi"]
 [ext_resource type="PackedScene" uid="uid://dbxsfllyrb1yt" path="res://scenes/player.tscn" id="11_xu7et"]
@@ -174,6 +175,9 @@ offset_bottom = 51.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("2_hem3r")
+
+[node name="TalentSelectionMenu" parent="CanvasLayer/Pausable/UpgradeScene" unique_id=1680291744 instance=ExtResource("6_ijdgx")]
+layout_mode = 1
 
 [node name="Props" type="Control" parent="CanvasLayer/Pausable/UpgradeScene" unique_id=1898880921]
 anchors_preset = 0

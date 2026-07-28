@@ -115,7 +115,11 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_qti4y"]
 radius = 23.409399
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ghd54"]
+radius = 100.0
+
 [node name="Player" type="CharacterBody2D" unique_id=98801044 groups=["player"]]
+scale = Vector2(0.5, 0.5)
 script = ExtResource("1_nbenk")
 character_resource = ExtResource("2_xvrsg")
 
@@ -168,5 +172,12 @@ libraries/ = SubResource("AnimationLibrary_at3uw")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1936104452]
 shape = SubResource("CircleShape2D_qti4y")
 
+[node name="Magnet" type="Area2D" parent="." unique_id=25157887]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Magnet" unique_id=968443923]
+position = Vector2(6, 0)
+shape = SubResource("CircleShape2D_ghd54")
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="area_entered" from="Magnet" to="." method="_on_magnet_area_entered"]

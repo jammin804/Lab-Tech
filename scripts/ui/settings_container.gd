@@ -30,12 +30,12 @@ func _ready() -> void:
 	fullscreen.button_pressed = video_settings_data.fullscreen
 	borderless.button_pressed = video_settings_data.borderless
 	vsync.button_pressed = video_settings_data.vsync
-	
+
 	var audio_settings_data = ConfigFileHeader.load_audio_settings()
 	master.value = min(audio_settings_data.master_volume, 1.0) * 100
 	music.value = min(audio_settings_data.music_volume, 1.0) * 100
 	sfx.value = min(audio_settings_data.sfx_volume, 1.0) * 100
-	
+
 
 #region Video Setting Button Signal Code
 func _on_video_btn_pressed() -> void:

@@ -1,6 +1,9 @@
 class_name TalentMenuManager
 extends Control
 
+
+const LAB_SCENE = "res://scenes/lab.tscn"
+
 @export_category("Navigation UI")
 @export var title_label: Label
 @export var left_arrow_btn: TextureButton
@@ -51,3 +54,7 @@ func _update_tab_display() -> void:
 			tree_panels[i]._on_talent_unhovered()
 		else:
 			tree_panels[i].hide()
+
+
+func _on_back_to_lab_pressed() -> void:
+	LevelTransition.change_scene_to(LAB_SCENE)

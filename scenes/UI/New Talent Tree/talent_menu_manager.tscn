@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ds2efap35m8d2" path="res://scenes/UI/New Talent Tree/talent_tree_2.tscn" id="4_trys1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2lcoi"]
-bg_color = Color(0.32941177, 0.6627451, 0.5294118, 1)
+bg_color = Color(0.039215688, 0.02745098, 0.14901961, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_poq56"]
 atlas = ExtResource("2_qp17x")
@@ -22,6 +22,48 @@ border_width_bottom = 2
 [sub_resource type="AtlasTexture" id="AtlasTexture_ixi0a"]
 atlas = ExtResource("2_qp17x")
 region = Rect2(67.195816, 112.06311, 12.030907, 16.16101)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mqcdt"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+bg_color = Color(0.039215688, 0.02745098, 0.14901961, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.05882353, 0.27058825, 0.21176471, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qp17x"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+bg_color = Color(0.039215688, 0.02745098, 0.14901961, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.6784314, 0.81960785, 0.45882353, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xfbdc"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+bg_color = Color(0.039215688, 0.02745098, 0.14901961, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.6784314, 0.81960785, 0.45882353, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [node name="TalentMenuManager" type="Control" unique_id=491223868 node_paths=PackedStringArray("title_label", "left_arrow_btn", "right_arrow_btn", "tree_panels")]
 layout_mode = 3
@@ -60,7 +102,6 @@ layout_mode = 1
 
 [node name="TalentTree2" parent="TreeContainer" unique_id=1223986564 instance=ExtResource("4_trys1")]
 layout_mode = 1
-available_border_color = Color(1, 0.84313726, 0, 1)
 
 [node name="TopBar" type="HBoxContainer" parent="." unique_id=1134962090]
 layout_mode = 1
@@ -106,3 +147,18 @@ size_flags_horizontal = 4
 layout_mode = 2
 size_flags_horizontal = 8
 texture_normal = SubResource("AtlasTexture_ixi0a")
+
+[node name="BackToLab" type="Button" parent="." unique_id=732957033]
+layout_mode = 0
+offset_left = 3.0000005
+offset_top = 4.0
+offset_right = 71.0
+offset_bottom = 23.0
+scale = Vector2(0.75, 0.75)
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_mqcdt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qp17x")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xfbdc")
+text = "Back"
+
+[connection signal="pressed" from="BackToLab" to="." method="_on_back_to_lab_pressed"]

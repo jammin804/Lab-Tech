@@ -23,18 +23,20 @@ func _ready() -> void:
 		for talent_node in all_talent_nodes:
 			var resource = talent_node.talent_resource
 			var button = talent_node.get_child(1)
+			print("This is the button of " , button, " and resource is ", resource.talent_id)
 
 			if not resource or not button:
 				continue
 
 			button.focus_mode = Control.FOCUS_NONE
+			talent_node.focus_mode = Control.FOCUS_NONE
 
 			if SaveData.save_data["unlocked_talents"].has(resource.talent_id):
 				resource.is_unlocked = true
 
 			button.mouse_entered.connect(_on_talent_hovered.bind(talent_node.talent_resource))
 			button.mouse_exited.connect(_on_talent_unhovered)
-			button.pressed.connect(_attempt_purchase.bind(resource))
+			button.pressed.connect(_attempt_purchase.bind(talent_node))
 
 		_update_money_ui()
 		_refresh_tree_state()
@@ -158,6 +160,7 @@ func _attempt_purchase(talent_node: TalentIcon) -> void:
 	if SaveData.save_data["money"] >= resource.cost:
 
 		SaveData.save_data["money"] -= resource.cost
+		print(SaveData.save_data["money"])
 		resource.is_unlocked = true
 		SaveData.save_data["unlocked_talents"].append(resource.talent_id)
 		SaveData._save()

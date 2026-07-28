@@ -3,17 +3,17 @@
 [ext_resource type="Script" uid="uid://cebb35bfecrsp" path="res://resources/TalentTree/scripts/talent_resource2.gd" id="1_ue4g2"]
 [ext_resource type="Texture2D" uid="uid://nust27da1vec" path="res://assets/ui/skill_tree/Scifi weapons and items.png" id="2_7jvvs"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_p351u"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2gjx"]
 atlas = ExtResource("2_7jvvs")
-region = Rect2(34.300514, 481.45117, 27.64978, 27.123108)
+region = Rect2(34.855484, 482.502, 27.142258, 27.142242)
 
 [resource]
 script = ExtResource("1_ue4g2")
 talent_id = "shot_upgrade"
 prerequisites = Array[String](["auto_turret"])
-talent_icon = SubResource("AtlasTexture_p351u")
+talent_icon = SubResource("AtlasTexture_y2gjx")
 talentName = "Shot Upgrade"
 talentDescription = "Increases the size and damage of the bullet"
-cost = 500
+cost = 1000
 stat_value = 2
 metadata/_custom_type_script = "uid://cebb35bfecrsp"

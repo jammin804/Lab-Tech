@@ -108,6 +108,7 @@ func _create_bullet(bullet_index: int, total_bullets: int) -> void:
 		var center_offset = (total_bullets - 1)/2.0
 		spawn_pos.x += (bullet_index + center_offset) * spawn_offset
 
+	bullet.damage = PlayerManager.current_stats.power
 	bullet.global_position = spawn_pos
 	get_tree().current_scene.add_child(bullet)
 

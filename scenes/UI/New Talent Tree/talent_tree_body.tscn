@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://cd5t621s5krvm" path="res://scenes/UI/New Talent Tree/talent_icon.tscn" id="5_50yuc"]
 [ext_resource type="Resource" uid="uid://b3i2vvmo6wtel" path="res://resources/TalentTree/BodyTree/skills/body_quick_charge.tres" id="6_jfnck"]
 [ext_resource type="Resource" uid="uid://dl5vqn7o1sbcj" path="res://resources/TalentTree/BodyTree/skills/body_lighting_rod.tres" id="6_yn5dh"]
-[ext_resource type="Resource" uid="uid://c8jowgsk5odo0" path="res://resources/TalentTree/func1.tres" id="7_2cr7h"]
 [ext_resource type="Resource" uid="uid://chrsya883mkfb" path="res://resources/TalentTree/BodyTree/skills/body_battery_life_steal.tres" id="8_07sy3"]
 [ext_resource type="Resource" uid="uid://lfrysf5jg0ie" path="res://resources/TalentTree/BodyTree/skills/body_barrier.tres" id="9_xfnpj"]
 
@@ -314,25 +313,45 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 talent_resource = ExtResource("6_yn5dh")
-talent_functionality = ExtResource("7_2cr7h")
 
 [node name="QuickChargeTalent" parent="TalentIconMarginContainer/VBoxContainer/HBoxContainer" unique_id=49053617 groups=["talents"] instance=ExtResource("5_50yuc")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 talent_resource = ExtResource("6_jfnck")
-talent_functionality = ExtResource("7_2cr7h")
 
 [node name="BarrierTalent" parent="TalentIconMarginContainer/VBoxContainer/HBoxContainer" unique_id=612176563 groups=["talents"] instance=ExtResource("5_50yuc")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 talent_resource = ExtResource("9_xfnpj")
-talent_functionality = ExtResource("7_2cr7h")
 
 [node name="HybridChargeTalent" parent="TalentIconMarginContainer/VBoxContainer" unique_id=288160588 groups=["talents"] instance=ExtResource("5_50yuc")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 talent_resource = ExtResource("8_07sy3")
-talent_functionality = ExtResource("7_2cr7h")
+
+[node name="LockedScene" type="Panel" parent="." unique_id=831147695]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="." unique_id=1375926713]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.5
+offset_top = -11.5
+offset_right = 79.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.68235296)
+text = "Unavailable in Alpha"

@@ -87,9 +87,14 @@ func _die()-> void:
 	#battery_empty.emit()
 	await get_tree().create_timer(1.0).timeout
 
-	LevelTransition.change_scene_to("res://scenes/lab.tscn")
+	#LevelTransition.change_scene_to("res://scenes/lab.tscn")
 
 
 func _on_area_2d_mouse_entered() -> void:
 	if toggle_debug == true:
 		_damage_player(10)
+
+
+func _on_magnet_area_entered(area: Area2D) -> void:
+	if area.has_method("follow"):
+		area.follow(self)

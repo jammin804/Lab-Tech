@@ -3,14 +3,14 @@
 [ext_resource type="Script" uid="uid://cebb35bfecrsp" path="res://resources/TalentTree/scripts/talent_resource2.gd" id="1_orkek"]
 [ext_resource type="Texture2D" uid="uid://nust27da1vec" path="res://assets/ui/skill_tree/Scifi weapons and items.png" id="2_uhjj8"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_x85bs"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfxhf"]
 atlas = ExtResource("2_uhjj8")
-region = Rect2(2.0695953, 451.64767, 28.944664, 24.592072)
+region = Rect2(1.9646835, 452.24902, 29.75845, 23.872162)
 
 [resource]
 script = ExtResource("1_orkek")
 talent_id = "remove_limit"
-talent_icon = SubResource("AtlasTexture_x85bs")
+talent_icon = SubResource("AtlasTexture_lfxhf")
 talentName = "Remove Limiter"
 talentDescription = "Maxes out the click to fire limation for the Blaster"
 cost = 10
