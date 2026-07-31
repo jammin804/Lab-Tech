@@ -29,11 +29,12 @@ Events="*uid://dey05byvojpap"
 PlayerManager="*uid://dnt7gojkk7ir0"
 Globals="*uid://cy6wbaxf4mmiy"
 LevelTransition="*uid://b8umcoij18id8"
-SaveData="*uid://cc3gym1ejkqkf"
+SaveData="uid://cc3gym1ejkqkf"
 Persistence="*uid://0wpro1sconl2"
 SkillManager="*uid://gq0fafo0ca7h"
 ConfigFileHeader="*uid://bbx5krn3qy2pc"
 UiManager="*uid://ctfler5fh52uh"
+SaveLoad="*uid://bmedk2yn6givf"
 
 [display]
 

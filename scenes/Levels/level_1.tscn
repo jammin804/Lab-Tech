@@ -1,42 +1,42 @@
 [gd_scene format=3 uid="uid://bdpj78s126rdu"]
 
-[ext_resource type="PackedScene" uid="uid://blqe7ke2t7a3n" path="res://scenes/UI/custom_mouse.tscn" id="1_h607l"]
-[ext_resource type="Script" uid="uid://084flrltlmjn" path="res://scenes/battle_screen.gd" id="1_p5bt8"]
-[ext_resource type="Texture2D" uid="uid://cvjej43nsn7ha" path="res://assets/backgrounds/level_3.png" id="2_6gkuo"]
-[ext_resource type="PackedScene" uid="uid://drdlmsifm1unh" path="res://scenes/Entities_New/player.tscn" id="2_61ie4"]
-[ext_resource type="PackedScene" uid="uid://cooeppa7wcj7x" path="res://scenes/camera.tscn" id="4_6lb5u"]
-[ext_resource type="Texture2D" uid="uid://b8h7y5diislmb" path="res://assets/ui/hud/Settigns.png" id="10_ikkpg"]
-[ext_resource type="PackedScene" uid="uid://dg66c7f7p6iii" path="res://scenes/pause_menu.tscn" id="11_qm3lx"]
-[ext_resource type="PackedScene" uid="uid://bktpyu7vhq0km" path="res://scenes/Systems/enemySpawner.tscn" id="12_5e8mb"]
-[ext_resource type="PackedScene" uid="uid://bd1e7fmt2sl4m" path="res://scenes/UI/settings_menu.tscn" id="12_p5bt8"]
-[ext_resource type="Script" uid="uid://txbrbq2y72mm" path="res://plugin/OvaniPlugin/OvaniPlayer.gd" id="13_88a0a"]
-[ext_resource type="PackedScene" uid="uid://ck75rgmytou2t" path="res://scenes/UI/result_screen.tscn" id="13_bw0wm"]
-[ext_resource type="PackedScene" uid="uid://lccgrpafmldk" path="res://scenes/debug/debug_text_overlay.tscn" id="14_81rp5"]
-[ext_resource type="Script" uid="uid://m1bfaxshhh8l" path="res://plugin/OvaniPlugin/OvaniSong.gd" id="14_lv2qw"]
-[ext_resource type="Resource" uid="uid://srv7ffo3rdex" path="res://resources/Ovani/EvilGrudge.tres" id="15_c5bog"]
+[ext_resource type="Script" uid="uid://084flrltlmjn" path="res://scenes/battle_screen.gd" id="1_iiv34"]
+[ext_resource type="PackedScene" uid="uid://drdlmsifm1unh" path="res://scenes/Entities_New/player.tscn" id="2_vtd0g"]
+[ext_resource type="Texture2D" uid="uid://cvjej43nsn7ha" path="res://assets/backgrounds/level_3.png" id="3_hk2jt"]
+[ext_resource type="PackedScene" uid="uid://blqe7ke2t7a3n" path="res://scenes/UI/custom_mouse.tscn" id="4_5gowt"]
+[ext_resource type="PackedScene" uid="uid://cooeppa7wcj7x" path="res://scenes/camera.tscn" id="5_7u17y"]
+[ext_resource type="Texture2D" uid="uid://b8h7y5diislmb" path="res://assets/ui/hud/Settigns.png" id="6_a60bd"]
+[ext_resource type="Script" uid="uid://txbrbq2y72mm" path="res://plugin/OvaniPlugin/OvaniPlayer.gd" id="7_811s2"]
+[ext_resource type="Script" uid="uid://m1bfaxshhh8l" path="res://plugin/OvaniPlugin/OvaniSong.gd" id="8_4xsrm"]
+[ext_resource type="Resource" uid="uid://srv7ffo3rdex" path="res://resources/Ovani/EvilGrudge.tres" id="9_hc568"]
+[ext_resource type="PackedScene" uid="uid://bktpyu7vhq0km" path="res://scenes/Systems/enemySpawner.tscn" id="10_0r5j3"]
+[ext_resource type="PackedScene" uid="uid://lccgrpafmldk" path="res://scenes/debug/debug_text_overlay.tscn" id="11_d0wj5"]
+[ext_resource type="PackedScene" uid="uid://bd1e7fmt2sl4m" path="res://scenes/UI/settings_menu.tscn" id="12_1n1l4"]
+[ext_resource type="PackedScene" uid="uid://dg66c7f7p6iii" path="res://scenes/pause_menu.tscn" id="13_yhe24"]
+[ext_resource type="PackedScene" uid="uid://ck75rgmytou2t" path="res://scenes/UI/result_screen.tscn" id="14_x5rd6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jkca0"]
-atlas = ExtResource("2_6gkuo")
+atlas = ExtResource("3_hk2jt")
 region = Rect2(0, 0, 288, 208)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lskjy"]
-atlas = ExtResource("10_ikkpg")
+atlas = ExtResource("6_a60bd")
 region = Rect2(26, 2, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qm3lx"]
-atlas = ExtResource("10_ikkpg")
+atlas = ExtResource("6_a60bd")
 region = Rect2(26, 42, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p5bt8"]
-atlas = ExtResource("10_ikkpg")
+atlas = ExtResource("6_a60bd")
 region = Rect2(26, 21, 16, 16)
 
-[node name="BattleScreen" type="Node" unique_id=1489670400 node_paths=PackedStringArray("pause_menu", "settings_menu", "player_spawn")]
+[node name="Level1" type="Node" unique_id=1489670400 node_paths=PackedStringArray("pause_menu", "settings_menu", "player_spawn")]
 process_mode = 3
-script = ExtResource("1_p5bt8")
+script = ExtResource("1_iiv34")
 pause_menu = NodePath("PauseLayer/PauseMenu")
 settings_menu = NodePath("PauseLayer/SettingsMenu")
-player = ExtResource("2_61ie4")
+player = ExtResource("2_vtd0g")
 player_spawn = NodePath("Pausable/PlayerSpawnPoint")
 
 [node name="Background" type="TextureRect" parent="." unique_id=62776617]
@@ -49,7 +49,7 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_jkca0")
 expand_mode = 2
 
-[node name="CustomMouse" parent="." unique_id=289937816 instance=ExtResource("1_h607l")]
+[node name="CustomMouse" parent="." unique_id=289937816 instance=ExtResource("4_5gowt")]
 layer = 400
 
 [node name="Pausable" type="Control" parent="." unique_id=604897688]
@@ -67,7 +67,7 @@ unique_name_in_owner = true
 one_shot = true
 autostart = true
 
-[node name="Camera" parent="Pausable" unique_id=263792174 instance=ExtResource("4_6lb5u")]
+[node name="Camera" parent="Pausable" unique_id=263792174 instance=ExtResource("5_7u17y")]
 position = Vector2(160, 90)
 
 [node name="EnemySpawnPoint" type="Marker2D" parent="Pausable" unique_id=195233964 groups=["ground_spawns"]]
@@ -95,8 +95,8 @@ texture_pressed = SubResource("AtlasTexture_qm3lx")
 texture_hover = SubResource("AtlasTexture_p5bt8")
 
 [node name="LevelBGM" type="Node" parent="Pausable" unique_id=34785919]
-script = ExtResource("13_88a0a")
-QueuedSongs = Array[ExtResource("14_lv2qw")]([ExtResource("15_c5bog")])
+script = ExtResource("7_811s2")
+QueuedSongs = Array[ExtResource("8_4xsrm")]([ExtResource("9_hc568")])
 Volume = -10.0
 Intensity = 1.0
 Bus = &"Music"
@@ -106,9 +106,21 @@ metadata/_custom_type_script = "uid://txbrbq2y72mm"
 unique_name_in_owner = true
 position = Vector2(32, 128)
 
-[node name="EnemySpawner" parent="Pausable" unique_id=1886090633 instance=ExtResource("12_5e8mb")]
+[node name="EnemySpawner" parent="Pausable" unique_id=1886090633 instance=ExtResource("10_0r5j3")]
 position = Vector2(312, 128)
-total_waves = 2
+total_waves = 4
+
+[node name="WaveLabel" type="Label" parent="Pausable" unique_id=398613744]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -103.0
+offset_top = 6.0
+offset_right = -43.0
+offset_bottom = 29.0
+grow_horizontal = 0
+text = "Wave: 1"
 
 [node name="DebugLayer" type="CanvasLayer" parent="." unique_id=389921551]
 process_mode = 3
@@ -126,7 +138,7 @@ grow_vertical = 0
 mouse_filter = 2
 mouse_behavior_recursive = 1
 
-[node name="DebugTextOverlay" parent="DebugLayer/DebugRoot" unique_id=1309649993 instance=ExtResource("14_81rp5")]
+[node name="DebugTextOverlay" parent="DebugLayer/DebugRoot" unique_id=1309649993 instance=ExtResource("11_d0wj5")]
 layout_mode = 1
 offset_top = -46.0
 offset_bottom = -46.0
@@ -134,17 +146,17 @@ offset_bottom = -46.0
 [node name="PauseLayer" type="CanvasLayer" parent="." unique_id=1812816143]
 layer = 300
 
-[node name="SettingsMenu" parent="PauseLayer" unique_id=1195811390 instance=ExtResource("12_p5bt8")]
+[node name="SettingsMenu" parent="PauseLayer" unique_id=1195811390 instance=ExtResource("12_1n1l4")]
 process_mode = 2
 visible = false
 
-[node name="PauseMenu" parent="PauseLayer" unique_id=1716673666 instance=ExtResource("11_qm3lx")]
+[node name="PauseMenu" parent="PauseLayer" unique_id=1716673666 instance=ExtResource("13_yhe24")]
 process_mode = 2
 visible = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=304703305]
 
-[node name="ResultScreen" parent="CanvasLayer" unique_id=1112778916 instance=ExtResource("13_bw0wm")]
+[node name="ResultScreen" parent="CanvasLayer" unique_id=1112778916 instance=ExtResource("14_x5rd6")]
 visible = false
 z_index = 4000
 

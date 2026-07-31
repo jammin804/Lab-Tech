@@ -18,7 +18,7 @@ func _ready() -> void:
 	if tree.paused == true:
 		tree.paused = false
 
-	if SaveData.has_save_file():
+	if SaveLoad.has_save_file():
 		continue_btn.show()
 		continue_btn.pressed.connect(_on_continue_pressed)
 	else:
@@ -31,19 +31,12 @@ func _ready() -> void:
 
 func _on_continue_pressed() -> void:
 	continue_btn.release_focus()
-	#continue_btn.disabled = true
-	#start_btn.disabled = true
-
-	SaveData._load()
+	SaveLoad._load()
 	_play_transiiton(lab_scene, "continue_blink")
 
 func _on_start_new_game_pressed() -> void:
 	start_btn.release_focus()
-	#if continue_btn:
-		#continue_btn.disabled = true
-	#start_btn.disabled = true
-
-	SaveData.reset_save()
+	SaveLoad.reset_save()
 	_play_transiiton(level_1, "blink")
 
 

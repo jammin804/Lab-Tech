@@ -51,9 +51,10 @@ func check_wave_number() -> void:
 		spawn_timer.start()
 		#TODO Add a lable to indicate the current wave
 
+	Events.wave_completed.emit(current_wave)
 
 func _on_enemy_died() -> void:
-	
+
 	enemies_left -= 1
 	if current_wave == total_waves and enemies_left == 0:
 		print(current_wave == total_waves)
@@ -65,7 +66,7 @@ func _on_enemy_died() -> void:
 
 func _on_spawn_timer_timeout() -> void:
 	var new_enemey = ENEMY.instantiate()
-	
+
 	if current_number_of_enemies < number_enemies_in_wave:
 		current_number_of_enemies += 1
 		enemies_left += 1

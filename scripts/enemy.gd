@@ -35,10 +35,14 @@ func _ready() -> void:
 	if stats:
 		current_data = stats.duplicate()
 
+
 	#Change health based on level
 	current_enemy_health = current_data.health
 	current_enemy_health = floor( (current_enemy_health + 10) * Globals.level * randf_range(1.0, 1.5) )
 	#print("From Enemy.gd Current Health of this enemy is: ",current_enemy_health)
+	if is_in_debug_mode:
+		current_enemy_health = 1000
+		current_data.move_speed = 0
 
 func _process(delta: float) -> void:
 	if not is_dead:
@@ -76,6 +80,8 @@ func take_damage(incoming_damage: float, incoming_element:WeaponData.Element) ->
 
 	if current_enemy_health <= 0:
 		destroy()
+
+	Events.damage_dealt.emit(incoming_damage)
 
 func destroy():
 	is_dead = true

@@ -99,6 +99,25 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 6
 text = "Turret:"
 
+[node name="MoneyContainer" type="VBoxContainer" parent="Stat/VBoxContainer2" unique_id=1319494744]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Money" type="Label" parent="Stat/VBoxContainer2/MoneyContainer" unique_id=1748985440]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Money:"
+
+[node name="Scraps" type="Label" parent="Stat/VBoxContainer2/MoneyContainer" unique_id=1858041552]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Scraps:"
+
+[node name="Core" type="Label" parent="Stat/VBoxContainer2/MoneyContainer" unique_id=309793192]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Power:"
+
 [node name="Control" type="Control" parent="." unique_id=154605309]
 layout_mode = 3
 anchors_preset = 15
@@ -125,3 +144,4 @@ theme_override_font_sizes/font_size = 8
 text = "Death Scene"
 
 [connection signal="pressed" from="Control/VBoxContainer/ResultButton" to="." method="_on_result_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/DeathButton" to="." method="_on_death_button_pressed"]

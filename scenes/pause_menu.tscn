@@ -53,6 +53,13 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 6
 text = "Options"
 
+[node name="RetreatBtn" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=1752175586 instance=ExtResource("1_n87rw")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Retreat To Lab"
+
 [node name="QuitBtn" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=919113196 instance=ExtResource("1_n87rw")]
 unique_name_in_owner = true
 layout_mode = 2
@@ -61,4 +68,5 @@ text = "Exit To Title Screen"
 
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/ResumeBtn" to="." method="_on_resume_btn_pressed"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/OptionsBtn" to="." method="_on_options_btn_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/RetreatBtn" to="." method="_on_retreat_btn_pressed"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]

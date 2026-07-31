@@ -76,8 +76,8 @@ script = ExtResource("1_mqcdt")
 title_label = NodePath("TopBar/TitleNameContainer/TitleLabel")
 left_arrow_btn = NodePath("TopBar/LeftArrowBtn")
 right_arrow_btn = NodePath("TopBar/RightArrowBtn")
-tree_panels = [NodePath("TreeContainer/TalentTreeBody"), NodePath("TreeContainer/TalentTree2")]
-tree_names = Array[String](["BODY", "BLASTER"])
+tree_panels = [NodePath("TreeContainer/TalentTree2"), NodePath("TreeContainer/TalentTreeBody")]
+tree_names = Array[String](["BLASTER", "BODY"])
 
 [node name="BGPanel" type="Panel" parent="." unique_id=168179249]
 z_index = -2

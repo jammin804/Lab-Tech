@@ -16,5 +16,6 @@ signal blaster_fully_charged
 signal charge_released
 signal health_changed
 signal max_health_upgraded(new_max)
+signal damage_dealt(amount: int)
 
 var target_talent_tab : int = 0

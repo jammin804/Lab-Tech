@@ -2896,7 +2896,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_j7ex8"]
 resource_name = "continue_blink"
-length = 0.19999999999999998
+length = 0.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -3054,7 +3054,7 @@ text = "© Mike Harris 2026"
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 0.49803922)
 theme_override_font_sizes/font_size = 4
-text = "V.0.0.3"
+text = "V1.1.0-alpha"
 horizontal_alignment = 2
 
 [node name="Socials" type="HBoxContainer" parent="." unique_id=1096417369]

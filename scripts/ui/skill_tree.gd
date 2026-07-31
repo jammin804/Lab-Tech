@@ -40,17 +40,17 @@ func set_skill_tree():
 			print(branch)
 		skill_tree.append(branch)
 
-	SaveData.save_data["branch_names"] = dynamic_names
-	SaveData.save_data["skill_tree"] = skill_tree
-	SaveData._save()
+	SaveLoad.SaveFileData.save_data["branch_names"] = dynamic_names
+	SaveLoad.SaveFileData.save_data["skill_tree"] = skill_tree
+	SaveLoad.SaveFileData._save()
 
 	SkillManager.calculate_unlocked_stats()
 
 func load_skill_tree():
-	if SaveData.save_data["skill_tree"].is_empty():
+	if SaveLoad.SaveFileData.save_data["skill_tree"].is_empty():
 		set_skill_tree()
 
-	skill_tree = SaveData.save_data["skill_tree"]
+	skill_tree = SaveLoad.SaveFileData.save_data["skill_tree"]
 
 	if skill_tree.is_empty():
 		return

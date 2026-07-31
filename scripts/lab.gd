@@ -18,7 +18,7 @@ extends Node2D
 
 var is_option_menu_open : bool = false
 var main_menu: String = "res://scenes/main_menu.tscn"
-var level_1: String = "res://scenes/Levels/battle_screen.tscn"
+var level_1: String = "uid://bdpj78s126rdu"
 
 
 
@@ -32,6 +32,7 @@ var level_1: String = "res://scenes/Levels/battle_screen.tscn"
 #UI
 @onready var end_level_pop_up: CanvasLayer = %EndLevelPopUp
 @onready var skill_tree: Control = %SkillTree
+@onready var talent_menu_manager: TalentMenuManager = %TalentMenuManager
 
 
 @onready var resume_btn: UI_Button = %ResumeBtn
@@ -123,4 +124,4 @@ func _on_options_btn_pressed() -> void:
 
 
 func _on_upgrades_btn_pressed() -> void:
-	skill_tree.show()
+	talent_menu_manager.show()

@@ -132,9 +132,9 @@ animation = &"Idle"
 position = Vector2(-1, 6)
 shape = SubResource("CapsuleShape2D_qti4y")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1738467474]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1738467474]
 
-[node name="Battery" parent="CanvasLayer" unique_id=1694848608 node_paths=PackedStringArray("player") instance=ExtResource("9_ghd54")]
+[node name="Battery" parent="HUD" unique_id=1694848608 node_paths=PackedStringArray("player") instance=ExtResource("9_ghd54")]
 player = NodePath("../..")
 
 [node name="FiringComponent" parent="." unique_id=92492742 node_paths=PackedStringArray("player_anim", "spawn_point", "charge_progress_bar_container") instance=ExtResource("4_xvrsg")]

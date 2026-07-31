@@ -32,7 +32,7 @@ func calculate_unlocked_stats() -> void:
 
 
 	var total_stat = PlayerStats.new()
-	#var skill_tree = SaveData.skill_tree
+	#var skill_tree = SaveLoad.SaveFileData.skill_tree
 #
 	#if skill_tree.is_empty():
 		#return

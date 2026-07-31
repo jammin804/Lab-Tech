@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://drdlmsifm1unh" path="res://scenes/Entities_New/player.tscn" id="1_2mt27"]
 [ext_resource type="PackedScene" uid="uid://dgacer11dg0jq" path="res://scenes/debug_skills.tscn" id="1_drcav"]
+[ext_resource type="PackedScene" uid="uid://cqueta70ubjqr" path="res://scenes/enemy.tscn" id="3_ok8rp"]
 
 [node name="SkillTestScene" type="Node2D" unique_id=1039676676]
 
@@ -9,9 +10,11 @@
 layer = 999
 
 [node name="Player" parent="." unique_id=98801044 instance=ExtResource("1_2mt27")]
-position = Vector2(-196, 85)
-toggle_debug = true
+position = Vector2(45, 85)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1060673465]
 position = Vector2(161, 89)
-zoom = Vector2(0.25, 0.25)
+
+[node name="Enemy" parent="." unique_id=1965764076 instance=ExtResource("3_ok8rp")]
+position = Vector2(161, 88)
+is_in_debug_mode = true

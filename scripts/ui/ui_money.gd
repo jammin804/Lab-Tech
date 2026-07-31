@@ -2,4 +2,4 @@ extends Label
 
 
 func _process(delta: float) -> void:
-	text = "Money : " + str(SaveData.save_data["money"])
+	text = "Money : " + str(SaveLoad.SaveFileData.money)

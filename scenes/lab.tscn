@@ -5,14 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://4ice6uiioh1a" path="res://assets/props/capsule2.png" id="2_hem3r"]
 [ext_resource type="Texture2D" uid="uid://mhmvngsgg13v" path="res://assets/props/lab-table.png" id="3_f680m"]
 [ext_resource type="Texture2D" uid="uid://dxyc6i7d1knac" path="res://assets/props/console.png" id="4_q4uld"]
-[ext_resource type="PackedScene" uid="uid://bbc5rwyvte2rm" path="res://scenes/UI/New Talent Tree/talent_selection_menu.tscn" id="6_ijdgx"]
 [ext_resource type="Texture2D" uid="uid://dwfn7p11er8rd" path="res://assets/props/lab-table_hover.png" id="8_ijdgx"]
 [ext_resource type="Texture2D" uid="uid://qj56axi37uo" path="res://assets/props/console_hover.png" id="9_eavsi"]
 [ext_resource type="PackedScene" uid="uid://dbxsfllyrb1yt" path="res://scenes/player.tscn" id="11_xu7et"]
+[ext_resource type="PackedScene" uid="uid://sknra82q76tt" path="res://scenes/UI/New Talent Tree/talent_menu_manager.tscn" id="13_ijdgx"]
 [ext_resource type="Script" uid="uid://txbrbq2y72mm" path="res://plugin/OvaniPlugin/OvaniPlayer.gd" id="13_m131j"]
 [ext_resource type="AudioStream" uid="uid://c6pwf33mn2agb" path="res://assets/music/sfx/steam_hiss.wav" id="14_5tteu"]
 [ext_resource type="Script" uid="uid://m1bfaxshhh8l" path="res://plugin/OvaniPlugin/OvaniSong.gd" id="14_ds7rc"]
-[ext_resource type="PackedScene" uid="uid://btwv4xs5rbw63" path="res://scenes/UI/skill_tree.tscn" id="15_eavsi"]
 [ext_resource type="Resource" uid="uid://8oofuwkj0u4f" path="res://resources/Ovani/Depressed.tres" id="15_ijdgx"]
 [ext_resource type="PackedScene" uid="uid://bd1e7fmt2sl4m" path="res://scenes/UI/settings_menu.tscn" id="17_eavsi"]
 [ext_resource type="Texture2D" uid="uid://b8h7y5diislmb" path="res://assets/ui/hud/Settigns.png" id="17_ftxkm"]
@@ -176,9 +175,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("2_hem3r")
 
-[node name="TalentSelectionMenu" parent="CanvasLayer/Pausable/UpgradeScene" unique_id=1680291744 instance=ExtResource("6_ijdgx")]
-layout_mode = 1
-
 [node name="Props" type="Control" parent="CanvasLayer/Pausable/UpgradeScene" unique_id=1898880921]
 anchors_preset = 0
 offset_right = 40.0
@@ -289,9 +285,10 @@ texture_normal = SubResource("AtlasTexture_kfqsw")
 texture_pressed = SubResource("AtlasTexture_kvhjj")
 texture_hover = SubResource("AtlasTexture_iyn56")
 
-[node name="SkillTree" parent="CanvasLayer/Pausable/UpgradeScene" unique_id=688541759 instance=ExtResource("15_eavsi")]
+[node name="TalentMenuManager" parent="CanvasLayer/Pausable/UpgradeScene" unique_id=491223868 instance=ExtResource("13_ijdgx")]
 unique_name_in_owner = true
 visible = false
+z_index = 2
 layout_mode = 1
 
 [node name="LabBGM" type="Node" parent="CanvasLayer/Pausable" unique_id=185395556]
@@ -319,6 +316,7 @@ texture_hover = SubResource("AtlasTexture_ffhs6")
 [node name="PauseMenu" parent="CanvasLayer" unique_id=1716673666 instance=ExtResource("17_ijdgx")]
 process_mode = 2
 visible = false
+z_index = 3
 
 [node name="SettingsMenu" parent="CanvasLayer" unique_id=1195811390 instance=ExtResource("17_eavsi")]
 process_mode = 2

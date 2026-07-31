@@ -1,6 +1,6 @@
 extends Node2D
 
-const FILE_PATH = "user://SaveFileName.sav"
+const FILE_PATH = "user://SaveFileName.json"
 
 var save_data: Dictionary = {
 	"money" : 0,
@@ -16,18 +16,23 @@ func _ready() -> void:
 
 func _save():
 	var file: FileAccess = FileAccess.open(FILE_PATH, FileAccess.WRITE)
-	file.store_var(save_data)
-	file.close()
+	if file:
+		file.store_string(JSON.stringify(save_data, "\t"))
+		#file.store_var(save_data)
+		file.close()
 
 func _load():
 	if FileAccess.file_exists(FILE_PATH):
 		var file: FileAccess = FileAccess.open(FILE_PATH, FileAccess.READ)
-		var data: Dictionary = file.get_var()
+		var json_string: String = file.get_as_text()
+		file.close()
+
+		var data: Dictionary = JSON.parse_string(json_string)
 		if typeof(data) == TYPE_DICTIONARY:
 			for i in data:
 				if save_data.has(i):
 					save_data[i] = data[i]
-		file.close()
+		#file.close()
 
 func has_save_file() -> bool:
 	return FileAccess.file_exists(FILE_PATH)

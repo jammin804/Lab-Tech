@@ -15,7 +15,7 @@ var life_steal : int = 5
 var current_element : WeaponData.Element = WeaponData.Element.DEFAULT
 
 func _ready() -> void:
-	#print("From projectile" + str(damage))
+	print("From projectile" + str(damage))
 	pass
 
 func _physics_process(delta: float) -> void:
@@ -34,6 +34,7 @@ func _on_body_entered(body: Node2D) -> void:
 
 	if body.has_method("take_damage"):
 		Events.enemy_hit_by_projectile.emit(life_steal)
+
 		#print(damage)
 
 		body.take_damage(damage, WeaponData.Element.DEFAULT)

@@ -8,10 +8,12 @@ extends Node
 @export var player_spawn : Marker2D
 
 var main_menu : String = "res://scenes/main_menu.tscn"
+var lab : String = "uid://dmqv875jehqwm"
 var is_option_menu_open : bool = false
 var is_result_screen_open : bool = false
 
 @onready var result_screen: Result_Screen = $ResultScreen
+@onready var wave_label: Label = $Pausable/WaveLabel
 
 func _ready() -> void:
 	#Load player at spawn
@@ -25,9 +27,11 @@ func _ready() -> void:
 
 	pause_menu.resume_game.connect(_on_resume_btn_pressed)
 	pause_menu.open_options.connect(_on_options_btn_pressed)
+	pause_menu.retreat.connect(_on_retreat_button_pressed)
 	pause_menu.exit_to_title.connect(_on_quit_btn_pressed)
 	settings_menu.back_button_pressed.connect(_on_back_btn_pressed)
 	Events.level_complete.connect(_on_result_screen_shown)
+	Events.wave_completed.connect(_on_wave_change)
 
 	_reset_flags()
 
@@ -39,6 +43,9 @@ func _input(event: InputEvent) -> void:
 			is_option_menu_open = false
 
 		toggle_pause()
+
+func _on_wave_change(current_wave: int) -> void:
+	wave_label.text = "Wave :"+ str(current_wave)
 
 func _on_pause_btn_pressed() -> void:
 	toggle_pause()
@@ -57,6 +64,9 @@ func _on_resume_btn_pressed() -> void:
 
 func _on_quit_btn_pressed() -> void:
 	LevelTransition.change_scene_to(main_menu)
+
+func _on_retreat_button_pressed() -> void:
+	LevelTransition.change_scene_to(lab)
 
 func _on_options_btn_pressed() -> void:
 	is_option_menu_open = true

@@ -57,7 +57,6 @@ var collected_all_currency: bool = false
 
 func _ready() -> void:
 	super()
-	#charge_progress_bar_container.global_position = charge_bar_location.global_position
 	PlayerManager.active_player = self
 
 	SkillManager.calculate_unlocked_stats()
@@ -67,7 +66,7 @@ func _ready() -> void:
 	rapid = final_stats.rapid
 	battery_level = final_stats.battery_tanks
 
-	money = SaveData.money
+	#money = SaveLoad.SaveFileData
 	Events.increase_currency.connect(gain_money)
 	Events.level_complete.connect(_on_result_screen_shown)
 	battery_empty.connect(_on_result_screen_shown)
@@ -191,7 +190,7 @@ func shoot(charge_percentage : float) -> void:
 func gain_money(amount:int, item_name:String = "money",):
 	#print(str(item_name) + " dropped and you gained " + str(amount))
 	money += amount
-	SaveData.money += amount
+	SaveLoad.SaveFileData.money += amount
 	level_money += amount
 
 func can_auto_fire() -> void:

@@ -57,4 +57,4 @@ func _update_tab_display() -> void:
 
 
 func _on_back_to_lab_pressed() -> void:
-	LevelTransition.change_scene_to(LAB_SCENE)
+	hide()

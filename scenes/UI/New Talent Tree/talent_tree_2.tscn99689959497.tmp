@@ -363,7 +363,6 @@ talent_resource = ExtResource("11_pdpgr")
 talent_functionality = ExtResource("12_grnvs")
 
 [node name="TempLoadButton" type="Button" parent="." unique_id=1066708615]
-visible = false
 layout_mode = 0
 offset_left = 10.0
 offset_top = 28.0
@@ -372,7 +371,6 @@ offset_bottom = 59.0
 text = "Load"
 
 [node name="TempSaveButton" type="Button" parent="." unique_id=1802294260]
-visible = false
 layout_mode = 0
 offset_left = 11.0
 offset_top = 64.0

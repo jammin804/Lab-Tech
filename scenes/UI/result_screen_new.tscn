@@ -65,6 +65,7 @@ layout_mode = 2
 theme_override_constants/separation = -1
 
 [node name="LevelLabel" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Col1" unique_id=1625026978]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 6
 text = "Level 1"
@@ -104,10 +105,12 @@ layout_mode = 2
 
 [node name="Col2" type="VBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1079165489]
 layout_mode = 2
+size_flags_horizontal = 10
 theme_override_constants/separation = -1
 
 [node name="SuccessLabel" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Col2" unique_id=1464811661]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 6
 text = "Success"
@@ -158,47 +161,48 @@ horizontal_alignment = 2
 [node name="Control" type="Control" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1299797499]
 layout_mode = 2
 
-[node name="Col3" type="VBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=381614709]
+[node name="BonusStatsCol3- In Progress" type="VBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=381614709]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = -1
 
-[node name="Bonus1Label" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Col3" unique_id=803455519]
+[node name="Bonus1Label" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/BonusStatsCol3- In Progress" unique_id=803455519]
 layout_mode = 2
 theme_override_font_sizes/font_size = 6
 text = "0"
 horizontal_alignment = 2
 
-[node name="Bonus2Label" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Col3" unique_id=378731710]
+[node name="Bonus2Label" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/BonusStatsCol3- In Progress" unique_id=378731710]
 layout_mode = 2
 theme_override_font_sizes/font_size = 6
 text = "0"
 horizontal_alignment = 2
 
-[node name="Bonus3Label" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Col3" unique_id=1042452784]
+[node name="Bonus3Label" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/BonusStatsCol3- In Progress" unique_id=1042452784]
 layout_mode = 2
 theme_override_font_sizes/font_size = 6
 text = "0"
 horizontal_alignment = 2
 
-[node name="Bonus4Label" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Col3" unique_id=1083889878]
+[node name="Bonus4Label" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/BonusStatsCol3- In Progress" unique_id=1083889878]
 layout_mode = 2
 theme_override_font_sizes/font_size = 6
 text = "0"
 horizontal_alignment = 2
 
-[node name="Bonus5Label" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Col3" unique_id=37237627]
+[node name="Bonus5Label" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/BonusStatsCol3- In Progress" unique_id=37237627]
 layout_mode = 2
 theme_override_font_sizes/font_size = 6
 text = "0"
 horizontal_alignment = 2
 
-[node name="Bonus6Label" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Col3" unique_id=1131552587]
+[node name="Bonus6Label" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/BonusStatsCol3- In Progress" unique_id=1131552587]
 layout_mode = 2
 theme_override_font_sizes/font_size = 6
 text = "0"
 horizontal_alignment = 2
 
-[node name="Bonus7Label" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/Col3" unique_id=387497546]
+[node name="Bonus7Label" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer/BonusStatsCol3- In Progress" unique_id=387497546]
 layout_mode = 2
 theme_override_font_sizes/font_size = 6
 text = "0"
@@ -209,27 +213,33 @@ layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer" unique_id=7924415]
 layout_mode = 2
-theme_override_constants/separation = -1
+theme_override_constants/separation = 10
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer/VBoxContainer" unique_id=921435422]
 layout_mode = 2
+theme_override_constants/separation = 27
 alignment = 1
 
 [node name="TotalLabel" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2" unique_id=1101532705]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
+size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 6
-text = "Total"
+text = "Total Resources"
+
+[node name="Control2" type="Control" parent="TextureRect/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2" unique_id=442170645]
+layout_mode = 2
 
 [node name="TotalNumberLabel" type="Label" parent="TextureRect/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2" unique_id=422305172]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.36078432, 0.61960787, 0.42352942, 1)
 theme_override_font_sizes/font_size = 6
 text = "0"
 
 [node name="MarginContainer" type="MarginContainer" parent="TextureRect/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1298565750]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 3
 theme_override_constants/margin_bottom = 3
@@ -270,3 +280,5 @@ layout_mode = 2
 size_flags_horizontal = 8
 theme_override_font_sizes/font_size = 6
 text = "Next Level"
+
+[connection signal="pressed" from="TextureRect/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3/ReturnBtn" to="." method="_on_return_btn_pressed"]

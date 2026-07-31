@@ -10,7 +10,12 @@ extends CanvasLayer
 @onready var limiter_check: Label = $Stat/VBoxContainer2/VBoxContainer/LimiterCheck
 @onready var turret_check: Label = $Stat/VBoxContainer2/VBoxContainer/TurretCheck
 
+@onready var money: Label = $Stat/VBoxContainer2/MoneyContainer/Money
+@onready var scraps: Label = $Stat/VBoxContainer2/MoneyContainer/Scraps
+@onready var core: Label = $Stat/VBoxContainer2/MoneyContainer/Core
+
 var player_stats : PlayerManager
+var player: PackedScene
 
 func _ready() -> void:
 	#player_stats = PlayerManager.duplicate()
@@ -30,6 +35,19 @@ func _update_labels() -> void:
 	limiter_check.text = "Limiter Check: " + str(PlayerManager.current_stats.super_click)
 	turret_check.text = "Auto Turret Check: " + str(PlayerManager.current_stats.auto_fire)
 
+	money.text = "Money " + str(SaveLoad.SaveFileData.money)
+	scraps.text = "Scrap " + str(SaveLoad.SaveFileData,scraps)
+	core.text = "Core " + str(SaveLoad.SaveFileData.core)
+
+
+
 
 func _on_result_button_pressed() -> void:
 	Events.show_result_screen.emit( 20, 18, 2, 20, 5, 1, "Failed", 3)
+
+
+func _on_death_button_pressed() -> void:
+	print("Call player die")
+	#get_node()
+	if player:
+		player._die()

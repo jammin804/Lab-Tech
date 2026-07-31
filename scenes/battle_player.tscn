@@ -77,25 +77,25 @@ animations = [{
 atlas = ExtResource("7_y8qda")
 region = Rect2(65, 18, 14, 14)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y8qda"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_escd6"]
 load_path = "res://.godot/imported/ReturnButton.png-ead0500fcf292cd8cfeedf582424a9bc.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i3638"]
-atlas = SubResource("CompressedTexture2D_y8qda")
+atlas = SubResource("CompressedTexture2D_escd6")
 region = Rect2(32, 20, 32, 16)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_50grm"]
-load_path = "res://.godot/imported/ReturnButton.png-ead0500fcf292cd8cfeedf582424a9bc.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_escd6"]
-atlas = SubResource("CompressedTexture2D_50grm")
-region = Rect2(32, 50, 32, 16)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h4hwa"]
 load_path = "res://.godot/imported/ReturnButton.png-ead0500fcf292cd8cfeedf582424a9bc.ctex"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ht4sr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_escd6"]
 atlas = SubResource("CompressedTexture2D_h4hwa")
+region = Rect2(32, 50, 32, 16)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ht4sr"]
+load_path = "res://.godot/imported/ReturnButton.png-ead0500fcf292cd8cfeedf582424a9bc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ht4sr"]
+atlas = SubResource("CompressedTexture2D_ht4sr")
 region = Rect2(32, 75, 32, 16)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aqsb2"]

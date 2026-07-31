@@ -11,6 +11,11 @@ const TALENT_TREE = preload("res://scenes/UI/New Talent Tree/talent_tree_2.tscn"
 var is_talent_tree_open = false
 var level_damage_taken : int = 0
 var level_damage_done : int = 0
+var level_enemies_killed : int = 0
+var level_money: int = 0
+var level_scraps : int = 0
+var level_cores : int = 0
+
 var max_health : float = 100.0
 var current_health: float = 100.0:
 	set(value):
@@ -33,13 +38,23 @@ func _ready() -> void:
 	Events.max_health_upgraded.connect(_on_max_health_upgraded)
 	Events.bullet_fired.connect(_on_bullet_fired)
 
+	Events.enemy_died.connect(func(): level_enemies_killed += 1)
+	Events.damage_dealt.connect(_on_damage_done)
+	Events.increase_currency.connect(_on_currency_gained)
+
 
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
-		SaveData.save_data["money"] = 999
-		SaveData._save()
+		SaveLoad.SaveFileData.money = 999
+		SaveLoad.SaveFileData._save()
 		print("DEBUG: Game Saved!")
+
+	if event.is_action_pressed("ui_right"):
+		if is_talent_tree_open == false:
+			_open_talent_tree()
+		else:
+			_close_talent_tree()
 
 #region Remove this and move it to upgrade scene
 func _open_talent_tree():
@@ -53,6 +68,25 @@ func _close_talent_tree():
 	canvas_layer.get_children()[0].queue_free()
 #endregion
 
+func _on_damage_done(amount: int) -> void:
+	level_damage_done += amount
+	print("Current level damage ", level_damage_done)
+
+func _on_currency_gained(amount: int, type: String="money") -> void:
+	if type == "money":
+		level_money += amount
+		SaveLoad.SaveFileData.money +=  amount
+
+	elif type == "scrap":
+		level_scraps += amount
+		SaveLoad.SaveFileData.scrap += amount
+
+	elif type == "core":
+		level_cores += amount
+		SaveLoad.SaveFileData.core += amount
+
+
+	SaveLoad._save()
 
 func _on_max_health_upgraded(new_max: float) -> void:
 	var health_difference = new_max - max_health
@@ -82,12 +116,13 @@ func _damage_player(damage_amount: int) -> void:
 
 func _die()-> void:
 	Engine.time_scale = 0.5
-	Events.show_result_screen.emit( 20, 18, 2, 20, 5, 1, "Failed", 3)
+	var status: String = "Failed"
+	var grade: int = 0
+
+	Events.show_result_screen.emit(level_enemies_killed, level_damage_done, level_damage_taken, level_money, level_scraps, level_cores, status, grade)
 	#TODO Have Teleport Animation Like Megamnan
 	#battery_empty.emit()
 	await get_tree().create_timer(1.0).timeout
-
-	#LevelTransition.change_scene_to("res://scenes/lab.tscn")
 
 
 func _on_area_2d_mouse_entered() -> void:

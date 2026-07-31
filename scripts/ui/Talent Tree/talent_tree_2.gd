@@ -14,14 +14,17 @@ class_name TalentTree2
 @export var info_desc_label: Label
 @export var info_cost_label: Label
 
+var money : int = 0
+
 func _ready() -> void:
+	money = SaveLoad.SaveFileData.money
+
 	if not Engine.is_editor_hint():
-		#Events.talent_icon_clicked.connect(_on_talent_purchased)
 		var all_talent_nodes = _get_local_talent_nodes()
 
 
 		for talent_node in all_talent_nodes:
-			var resource = talent_node.talent_resource
+			var resource : TalentResource2 = talent_node.talent_resource
 			var button = talent_node.get_child(1)
 			print("This is the button of " , button, " and resource is ", resource.talent_id)
 
@@ -31,12 +34,14 @@ func _ready() -> void:
 			button.focus_mode = Control.FOCUS_NONE
 			talent_node.focus_mode = Control.FOCUS_NONE
 
-			if SaveData.save_data["unlocked_talents"].has(resource.talent_id):
+			if SaveLoad.SaveFileData.unlocked_talents.has(resource.talent_id):
 				resource.is_unlocked = true
 
 			button.mouse_entered.connect(_on_talent_hovered.bind(talent_node.talent_resource))
 			button.mouse_exited.connect(_on_talent_unhovered)
 			button.pressed.connect(_attempt_purchase.bind(talent_node))
+
+
 
 		_update_money_ui()
 		_refresh_tree_state()
@@ -157,13 +162,14 @@ func _attempt_purchase(talent_node: TalentIcon) -> void:
 	var resource = talent_node.talent_resource
 	var functionality = talent_node.talent_functionality
 
-	if SaveData.save_data["money"] >= resource.cost:
+	if money >= resource.cost:
 
-		SaveData.save_data["money"] -= resource.cost
-		print(SaveData.save_data["money"])
+		money -= resource.cost
+
+		print(money)
 		resource.is_unlocked = true
-		SaveData.save_data["unlocked_talents"].append(resource.talent_id)
-		SaveData._save()
+		SaveLoad.SaveFileData.unlocked_talents.append(resource.talent_id)
+		SaveLoad._save()
 
 		if functionality != null:
 			functionality.action(talent_node)
@@ -171,11 +177,14 @@ func _attempt_purchase(talent_node: TalentIcon) -> void:
 		_update_money_ui()
 		_refresh_tree_state()
 	else:
-		print("Not enough money! Need: ", resource.cost, " Have: ", SaveData.save_data["money"])
+		print("Not enough money! Need: ", resource.cost, " Have: ", money)
 
 func _update_money_ui() -> void:
 	if current_money_label:
-		current_money_label.text = str(SaveData.save_data["money"])
+		current_money_label.text = str(money)
+
+	print("Money in Resource ", money)
+	print()
 
 func _get_local_talent_nodes() -> Array:
 	var local_nodes = []
@@ -186,3 +195,17 @@ func _get_local_talent_nodes() -> Array:
 			local_nodes.append(node)
 
 	return local_nodes
+
+
+func _on_temp_load_button_pressed() -> void:
+	money = SaveLoad.SaveFileData.money
+	print("Loaded Money ", money)
+	_update_money_ui()
+
+
+func _on_temp_save_button_pressed() -> void:
+	SaveLoad.SaveFileData.money = money
+	SaveLoad._save()
+	print("Saved Money ", money)
+
+	_update_money_ui()
