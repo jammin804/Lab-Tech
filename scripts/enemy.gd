@@ -111,7 +111,6 @@ func _on_hit_flash_anim_animation_finished(anim_name: StringName) -> void:
 
 		if loot_drop_type:
 			var rng = randf() * 100
-			#print(rng)
 			if rng <= drop_rate:
 				var loot = loot_drop_type.instantiate()
 				loot.global_transform = spawner.global_transform

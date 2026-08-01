@@ -93,10 +93,9 @@ func _on_battle_btn_pressed() -> void:
 	LevelTransition.change_scene_to(level_1)
 
 
-func _on_return_to_lab_btn_pressed() -> void:
-	end_level_pop_up.visible = false
-	emit_signal("uprgrade_scene_start")
-	#LevelTransition.change_scene_to(lab)
+#func _on_return_to_lab_btn_pressed() -> void: #Not being usied
+	#end_level_pop_up.visible = false
+	#emit_signal("uprgrade_scene_start")
 
 
 func _on_pause_btn_pressed() -> void:

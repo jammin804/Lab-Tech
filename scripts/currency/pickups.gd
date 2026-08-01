@@ -9,11 +9,11 @@ var collected: bool
 @export var type : Currency:
 	set(value):
 		type = value
-@export var player_reference : Player
+@export var player_reference : PlayerNew
 
 func _ready() -> void:
 	if not player_reference:
-		player_reference = get_tree().get_first_node_in_group("player") as Player
+		player_reference = get_tree().get_first_node_in_group("player") as PlayerNew
 
 
 func _process(delta: float) -> void:
@@ -33,9 +33,11 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_area_entered(area: Area2D) -> void:
 	var currency_name = type.resource_path.get_file().trim_suffix(".tres")
 
+	#print("Currency name ", currency_name)
 	if area.name == "Magnet":
 		if currency_name == "money":
 			Events.increase_currency.emit(type.money, type.title)
+			print("Money added")
 
 		elif currency_name == "scrap":
 			Events.increase_currency.emit(type.scraps, type.title)

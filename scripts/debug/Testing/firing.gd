@@ -1,10 +1,14 @@
 class_name Firing
 extends Node
 
+signal drain_battery(amount)
+
 @export var player_anim : AnimatedSprite2D = null
 @export var spawn_point : Marker2D
 @export var charge_progress_bar_container: HBoxContainer
 @export var spawn_offset : float = 30.0
+@export var drain_amount: int = 10
+
 
 var PROJECTILE_SCENE = preload("res://scenes/projectile.tscn")
 var num_of_bullets : int = 1
@@ -97,6 +101,8 @@ func _shoot(charge_percentage : float):
 	for i in range(burst_count):
 		_create_bullet(i, burst_count)
 
+	drain_battery.emit(drain_amount)
+	#Events.damage_dealt.emit(drain_amount)
 	Events.bullet_fired.emit()
 
 func _create_bullet(bullet_index: int, total_bullets: int) -> void:

@@ -16,7 +16,7 @@ func _load():
 		print("Save File Data", SaveFileData)
 
 func _reset_save_file():
-	SaveFileData = SaveLoad.SaveFileDataResource.new()
+	SaveFileData = SaveDataResource.new()
 	_save()
 
 func has_save_file() -> bool:

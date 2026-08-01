@@ -124,6 +124,7 @@ func _on_return_pressed ()-> void:
 
 
 func _on_return_btn_pressed() -> void:
+	print("clicking return")
 	get_tree().paused = false
 	queue_free()
 	LevelTransition.change_scene_to("res://scenes/lab.tscn")

@@ -8,7 +8,7 @@ extends Control
 @onready var start_btn: UI_Button = %StartBtn
 
 var lab_scene: String = "res://scenes/lab.tscn"
-var level_1: String = "res://scenes/Levels/battle_screen.tscn"
+var level_1: String = "res://scenes/Levels/level_1.tscn"
 
 func _ready() -> void:
 	if $MainMenmBGM.Volume < -10.0:
@@ -36,7 +36,7 @@ func _on_continue_pressed() -> void:
 
 func _on_start_new_game_pressed() -> void:
 	start_btn.release_focus()
-	SaveLoad.reset_save()
+	SaveLoad._reset_save_file()
 	_play_transiiton(level_1, "blink")
 
 
@@ -70,3 +70,7 @@ func _on_itch_pressed() -> void:
 
 func _on_steam_pressed() -> void:
 	OS.shell_open("https://jammin804.itch.io/")
+
+
+func scenes() -> String:
+	return ""

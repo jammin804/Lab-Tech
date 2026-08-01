@@ -178,6 +178,7 @@ shape = SubResource("CircleShape2D_qti4y")
 position = Vector2(6, 0)
 shape = SubResource("CircleShape2D_ghd54")
 
+[connection signal="drain_battery" from="FiringComponent" to="." method="_on_firing_component_drain_battery"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="area_entered" from="Magnet" to="." method="_on_magnet_area_entered"]

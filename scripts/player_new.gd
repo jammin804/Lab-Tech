@@ -25,36 +25,39 @@ var current_health: float = 100.0:
 @onready var canvas_layer: CanvasLayer = $CanvasLayer
 @onready var spark: Node2D = $Spark
 @onready var hit_flash_anim: AnimationPlayer = $HitFlashAnim
+@onready var firing_component: Firing = $FiringComponent
 
 
 func _ready() -> void:
+	#_load_skills()
 	var stats = character_resource.get_character_stats()
 	max_health = stats["health"]
 
 	current_health = max_health
+
+	#Remove the toggle_debug
 	if toggle_debug == true:
 		_open_talent_tree()
 
 	Events.max_health_upgraded.connect(_on_max_health_upgraded)
 	Events.bullet_fired.connect(_on_bullet_fired)
-
 	Events.enemy_died.connect(func(): level_enemies_killed += 1)
 	Events.damage_dealt.connect(_on_damage_done)
 	Events.increase_currency.connect(_on_currency_gained)
 
 
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
-		SaveLoad.SaveFileData.money = 999
-		SaveLoad.SaveFileData._save()
-		print("DEBUG: Game Saved!")
-
-	if event.is_action_pressed("ui_right"):
-		if is_talent_tree_open == false:
-			_open_talent_tree()
-		else:
-			_close_talent_tree()
+#func _input(event: InputEvent) -> void:
+	#if event.is_action_pressed("ui_accept"):
+		#SaveLoad.SaveFileData.money = 999
+		#SaveLoad.SaveFileData._save()
+		#print("DEBUG: Game Saved!")
+#
+	#if event.is_action_pressed("ui_right"):
+		#if is_talent_tree_open == false:
+			#_open_talent_tree()
+		#else:
+			#_close_talent_tree()
 
 #region Remove this and move it to upgrade scene
 func _open_talent_tree():
@@ -72,16 +75,18 @@ func _on_damage_done(amount: int) -> void:
 	level_damage_done += amount
 	print("Current level damage ", level_damage_done)
 
-func _on_currency_gained(amount: int, type: String="money") -> void:
-	if type == "money":
+func _on_currency_gained(amount: int, type_title: String="money") -> void:
+	print(type_title)
+	if type_title == "Money":
 		level_money += amount
 		SaveLoad.SaveFileData.money +=  amount
+		print("Current Money ", level_money)
 
-	elif type == "scrap":
+	elif type_title == "Scrap":
 		level_scraps += amount
 		SaveLoad.SaveFileData.scrap += amount
 
-	elif type == "core":
+	elif type_title == "Core":
 		level_cores += amount
 		SaveLoad.SaveFileData.core += amount
 
@@ -110,7 +115,6 @@ func _damage_player(damage_amount: int) -> void:
 	current_health -= damage_amount
 	hit_flash_anim.play("HitFlashAnim")
 
-
 	if current_health <= 0:
 		_die()
 
@@ -123,13 +127,27 @@ func _die()-> void:
 	#TODO Have Teleport Animation Like Megamnan
 	#battery_empty.emit()
 	await get_tree().create_timer(1.0).timeout
+	#save when
 
 
 func _on_area_2d_mouse_entered() -> void:
-	if toggle_debug == true:
-		_damage_player(10)
+	#if toggle_debug == true:
+		#_damage_player(10)
+	pass
 
 
 func _on_magnet_area_entered(area: Area2D) -> void:
 	if area.has_method("follow"):
 		area.follow(self)
+
+
+
+func _load_skills():
+	#May remove
+	print("Load Skills")
+	#print("Current Skills to Load ", SaveLoad.SaveFileData.unlocked_talents)
+	for talent in SaveLoad.SaveFileData.unlocked_talents:
+		print("Talents that need be to loaded ", talent)
+
+func _on_firing_component_drain_battery(amount: Variant) -> void:
+	current_health -= amount

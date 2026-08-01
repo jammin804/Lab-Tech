@@ -8,6 +8,7 @@ atlas = ExtResource("1_dbxjp")
 region = Rect2(319.93085, 608.01514, 112.05353, 112.23279)
 
 [node name="ResultScreenNew" type="Control" unique_id=908788247]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

@@ -11,7 +11,7 @@ extends EditorPlugin
 # - I wanted the plugin to be somewhat user friendly (this is why I made a ui for the settings)
 #
 # Because I like you, here is a little "how it works"
-# 
+#
 # > Cheatsheets are just a directory with a png and a json
 # > the plugin loads these images as TextRect
 #
@@ -54,14 +54,14 @@ var shortcuts:Dictionary[Shortcut,int] = {}
 var toggle_last_pinned_shortcut:Shortcut
 
 func _enter_tree() -> void:
-	
+
 	var first_time_using_plugin := false
-	
+
 	# Handle paths
 	_update_persistent_plugin_path()
 	plugin_dir = self.get_script().resource_path.get_base_dir()
 	plugin_project_settings_dir = ProjectSettings.globalize_path(plugin_dir.path_join("/.local_settings"))
-	
+
 	if not DirAccess.dir_exists_absolute(persistent_plugin_path):
 		DirAccess.make_dir_recursive_absolute(persistent_plugin_path)
 		first_time_using_plugin = true
@@ -70,40 +70,40 @@ func _enter_tree() -> void:
 	create_local_project_settings()
 	create_default_editor_settings()
 	var editor_settings = EditorInterface.get_editor_settings()
-	
 
-	
+
+
 	# Create button container (needed for next steps)
 	buttons_container = HBoxContainer.new()
 	buttons_container.z_index = 20
-	
+
 	# create the "see more" button
 	if editor_settings.get_setting("plugin/cheatsheet_viewer/show_more_button"):
 		more_button = Button.new()
 		more_button.set_script(load(plugin_dir.path_join("/cheatsheet_viewer_category_button.gd")))
 		more_button.button_script_path = plugin_dir.path_join("/cheatsheet_viewer_button.gd")
 		more_button.setup()
-	
+
 	_add_control_in_bottom_panel_after_docks(buttons_container)
-	
+
 	var dir = DirAccess.open(persistent_plugin_path)
 	if dir:
 		for sub_dir_name in dir.get_directories():
 			var sub_dir = DirAccess.open(persistent_plugin_path.path_join(sub_dir_name))
 			if not sub_dir:continue
 			for file in sub_dir.get_files():
-			
+
 				if file.ends_with(".json"):
 					var json_path:=persistent_plugin_path.path_join("/"+sub_dir_name+"/"+file)
-					
+
 					detected_cheatsheet_json.append(json_path)
 					create_from_json(json_path)
 	if more_button:
 		buttons_container.add_child(more_button)
-		
+
 	_add_settings_button()
 
-	
+
 	# Reorder button OR fill the editor setting with the current button order in the bottom panel
 	var button_order = []
 	if editor_settings.has_setting("plugin/cheatsheet_viewer/button_order"):
@@ -125,10 +125,10 @@ func _enter_tree() -> void:
 			shortcuts[shortcut]=i
 			editor_settings.add_shortcut("cheatsheet_viewer/Toggle Cheatsheet #%s"%i,shortcut)
 			continue
-		
+
 		shortcut = Shortcut.new()
 		var input_event = InputEventKey.new()
-		
+
 		# NOTE: Kinda works, classic "It works on my pc" issue
 		# on mac it wasnt clear if it worked or not, but the setting displayed the correct shortcut
 		#input_event.keycode = OS.find_keycode_from_string(str(i))
@@ -138,7 +138,7 @@ func _enter_tree() -> void:
 		shortcut.events.append(input_event)
 		editor_settings.add_shortcut("cheatsheet_viewer/Toggle Cheatsheet #%s"%i,shortcut)
 		shortcuts[shortcut]=i
-	
+
 	toggle_last_pinned_shortcut = editor_settings.get_shortcut("cheatsheet_viewer/Toggle Last Cheatsheet Pinned")
 	if toggle_last_pinned_shortcut==null:
 		toggle_last_pinned_shortcut = Shortcut.new()
@@ -151,9 +151,9 @@ func _enter_tree() -> void:
 	# Turn Off/On the shortcut process based on settings
 	if editor_settings.has_setting("plugin/cheatsheet_viewer/enable_shortcuts"):
 		set_process_shortcut_input(editor_settings.get_setting("plugin/cheatsheet_viewer/enable_shortcuts"))
-	
+
 	await get_tree().process_frame # just for fun
-	
+
 	# make it easier for first time users
 	if first_time_using_plugin:
 		_make_and_show_settings_popup()
@@ -164,18 +164,18 @@ func _disable_plugin() -> void:
 func _exit_tree() -> void:
 	if is_instance_valid(buttons_container):
 		buttons_container.queue_free()
-		
+
 
 	if is_instance_valid(settings_popup):
 		settings_popup.queue_free()
-		
+
 	if is_instance_valid(settings_button):
 		settings_button.queue_free()
-		
+
 	for text_rect in textures.values():
 		if is_instance_valid(text_rect):
 			text_rect.cleanup()
-	
+
 	bottom_buttons.clear()
 	textures.clear()
 	shortcuts.clear()
@@ -183,20 +183,20 @@ func _exit_tree() -> void:
 	toggle_last_pinned_shortcut = null
 	last_cheatsheet_pinned = null
 	EditorInterface.get_command_palette().remove_command("cheatsheet_viewer/toggle_last_pinned")
-	
+
 # TODO: Texture rect are added as a child so it break the i index in shortcut
 func _shortcut_input(event: InputEvent) -> void:
 	if not event.is_pressed() or event.is_echo() : return
-	
+
 	if toggle_last_pinned_shortcut.matches_event(event):
 		if last_cheatsheet_pinned:
 			last_cheatsheet_pinned.toggle()
-	
+
 	for shortcut in shortcuts:
 		if shortcut.matches_event(event):
 			var i = shortcuts.get(shortcut)
-			
-			if i!=null and (sorted_bottom_buttons.size())>=i: 
+
+			if i!=null and (sorted_bottom_buttons.size())>=i:
 				sorted_bottom_buttons[i-1].text_rect.toggle()
 				print(i)
 				#buttons_container.get_child(i-1).pressed.emit()# = !buttons_container.get_child(i-1).button_pressed
@@ -216,10 +216,10 @@ func _add_control_in_bottom_panel_after_docks(control):
 	var bottom_panel:Control = EditorInterface.get_base_control().find_children("*","EditorBottomPanel",true,false)[0]
 	var hbox:HBoxContainer = bottom_panel.find_children("*","HBoxContainer",true,false)[0]
 	hbox.add_child(control)
-	
+
 	# move after the vseparator, just before the bell icon
 	hbox.move_child(control,2)
-	
+
 	# NOTE: this is a workaround that could fail i guess
 	# it forces the editor to resize the bottom panel
 	# otherwise buttons go out of the screen
@@ -245,7 +245,7 @@ func _add_settings_button() -> void:
 	if is_instance_valid(settings_button):
 		settings_button.queue_free()
 		#return
-	
+
 	settings_button = Button.new()
 	settings_button.set_script(load(plugin_dir.path_join("/cheatsheet_viewer_button.gd")))
 	settings_button.icon = EditorInterface.get_base_control().get_theme_icon("GDScript","EditorIcons")
@@ -277,7 +277,7 @@ func restart():
 func reorder_buttons(button_order:Array):
 	sorted_bottom_buttons.clear()
 	for folder_name in button_order:
-		
+
 		if folder_name=="":continue
 		var idx = bottom_buttons.find_custom(func(b):return b.text_rect!=null and b.text_rect.folder_name==folder_name)
 		if idx!=-1:
@@ -288,30 +288,30 @@ func reorder_buttons(button_order:Array):
 func get_and_validate_cheatsheet_image_path(json_path, image_path) -> String:
 	if not image_path:
 		push_warning("Cheatsheet Viewer: No valid image path for " + json_path)
-	
+
 	# Very basic support for different cheatsheets based on engine versions
 	elif image_path is Dictionary:
 		# if json contains different paths for different engine version, find the closest one
 		var version:String = "{major}.{minor}".format(Engine.get_version_info()) # 4.6
 		var index = image_path.keys().find(version)
-		
+
 		if index ==-1:
 			# Version not found, so use the version before the current one
 			index = image_path.keys().bsearch(version) - 1
-			
+
 			# If index wasnt a valid index, pick the one before
 			if image_path.keys().get(index) == null:
 				index-=1
-			
-			# Only newer versions are available 
+
+			# Only newer versions are available
 			if index<0:
 				push_warning("Cheatsheet Viewer: Cheatsheet made for newer engine versions (+%s) '%s')" % [image_path.keys()[0], json_path])
 				return ""
-		
+
 		image_path = image_path[image_path.keys()[index]]
-	
+
 	image_path = json_path.rsplit("/",false,1)[0].path_join(image_path) #path relative to json location
-	
+
 	if not FileAccess.file_exists(image_path):
 		push_error("Cheatsheet Viewer: Invalid image path '%s'" % image_path)
 		return ""
@@ -325,26 +325,26 @@ func create_from_json(path:String):
 	if not file:
 		push_error("Cheatsheet Viewer: Cant read file " + path)
 		return
-	
+
 	var data = JSON.parse_string(file.get_as_text())
 	var image_path := get_and_validate_cheatsheet_image_path(path, data.get("image_path",""))
-	
+
 	if image_path=="":
 		return # invalid image path
-	
+
 	var folder_name:String = path.rsplit("/")[-2]
 	var data_in_settings = get_cheatsheet_in_project_settings(folder_name)
-	
+
 	# Project settings wins over global settings, if neither -> defaults to true
 	var add_as_button:bool = data_in_settings.get("add_as_button",data.get("add_as_button", true))
 	var add_as_command:bool = data_in_settings.get("add_as_command",data.get("add_as_command", true))
-	
+
 	# no reason to load this cheatsheet
 	if not (add_as_button or add_as_command): return
-	
+
 	var text_rect = TextureRect.new()
 	text_rect.set_script(load(plugin_dir.path_join("/cheatsheet_viewer_floating_texture.gd")))
-	
+
 	text_rect.nice_name = data.get("nice_name", "Cool cheatsheet without a name")
 	text_rect.add_as_command = data.get("add_as_command", true)
 	text_rect.quick_view_placement = data.get("quick_view_placement","center")
@@ -354,7 +354,7 @@ func create_from_json(path:String):
 	text_rect.quick_view_resets_position = EditorInterface.get_editor_settings().get("plugin/cheatsheet_viewer/quick_view_resets_position")
 	text_rect.pinned.connect(func():last_cheatsheet_pinned=text_rect)
 	text_rect.setup(image_path)
-	
+
 
 	if add_as_button:
 		var button = Button.new()
@@ -378,7 +378,7 @@ func create_from_json(path:String):
 	text_rect.hide()
 
 
-	
+
 
 func create_default_editor_settings():
 	var settings = EditorInterface.get_editor_settings()
@@ -388,10 +388,10 @@ func create_default_editor_settings():
 
 	if not settings.has_setting("plugin/cheatsheet_viewer/quick_view_hover_delay"):
 		settings.set("plugin/cheatsheet_viewer/quick_view_hover_delay", 0.0)
-		
+
 	if not settings.has_setting("plugin/cheatsheet_viewer/auto_scale"):
 		settings.set("plugin/cheatsheet_viewer/auto_scale", true)
-		
+
 	if not settings.has_setting("plugin/cheatsheet_viewer/flat_buttons"):
 		settings.set("plugin/cheatsheet_viewer/flat_buttons", true)
 
@@ -407,16 +407,16 @@ func create_local_project_settings():
 	# File already exists so assume the whole dir is already made
 	if FileAccess.file_exists(plugin_project_settings_dir.path_join("/.gdignore")):
 		return
-	
+
 	# Create a directory that will not be visible in godot, and not tracked with GIT
 	# Because we want settings that are relative to local files (since cheatsheet are outside of the project)
 	# If Person A disables all cheatsheets for this project, but person B wants them, they cant share one synched file
-	
+
 	DirAccess.make_dir_absolute(plugin_project_settings_dir)
 	FileAccess.open(plugin_project_settings_dir.path_join("/.gdignore"), FileAccess.WRITE).close()
 	var git_ignore_file = FileAccess.open(plugin_project_settings_dir.path_join("/.gitignore"), FileAccess.WRITE)
 	git_ignore_file.store_string("*") # make git ignores the user settings directory for this addon
-	git_ignore_file.close() 
+	git_ignore_file.close()
 
 
 
@@ -427,8 +427,8 @@ func get_cheatsheet_in_project_settings(folder_name):
 		var file = FileAccess.open(json_path, FileAccess.READ)
 		data = JSON.parse_string(file.get_as_text())
 		file.close()
-	
+
 	if folder_name in data:
 		return data[folder_name]
-	
+
 	return {}

@@ -10,7 +10,7 @@ region = Rect2(41, 9, 14, 14)
 [resource]
 script = ExtResource("2_87g8t")
 money = 5
-title = "Orbs"
+title = "Money"
 icon = SubResource("AtlasTexture_m3npq")
 description = "Currency to upgrade items"
 metadata/_custom_type_script = "uid://bbvv5j22bh1rk"

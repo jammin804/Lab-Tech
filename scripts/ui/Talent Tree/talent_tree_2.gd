@@ -46,6 +46,7 @@ func _ready() -> void:
 		_update_money_ui()
 		_refresh_tree_state()
 		_on_talent_unhovered()
+		_checked_if_talents_are_unlocked()
 
 func _process(_delta) -> void:
 	if Engine.is_editor_hint():
@@ -166,7 +167,6 @@ func _attempt_purchase(talent_node: TalentIcon) -> void:
 
 		money -= resource.cost
 
-		print(money)
 		resource.is_unlocked = true
 		SaveLoad.SaveFileData.unlocked_talents.append(resource.talent_id)
 		SaveLoad._save()
@@ -209,3 +209,14 @@ func _on_temp_save_button_pressed() -> void:
 	print("Saved Money ", money)
 
 	_update_money_ui()
+
+
+func _checked_if_talents_are_unlocked():
+	var resources = get_tree().get_nodes_in_group("talents")
+
+	#Think about if i need to call this on load?
+	for talent in SaveLoad.SaveFileData.unlocked_talents: #Pull talent name from data
+		for resource : TalentIcon in resources:
+			if talent == resource.talent_resource.talent_id:
+				print(resource.talent_resource.talent_id)
+				resource.talent_functionality.action(resource)
