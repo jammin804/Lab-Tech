@@ -11,8 +11,8 @@ var lab_scene: String = "res://scenes/lab.tscn"
 var level_1: String = "res://scenes/Levels/level_1.tscn"
 
 func _ready() -> void:
-	if $MainMenmBGM.Volume < -10.0:
-		$MainMenmBGM.Volume = -10.0
+	#if $MainMenmBGM.Volume < -10.0:
+		#$MainMenmBGM.Volume = -10.0
 
 	var tree = get_tree()
 	if tree.paused == true:
@@ -42,8 +42,12 @@ func _on_start_new_game_pressed() -> void:
 
 func _play_transiiton(target_scene: String, anim_name: String) -> void:
 	animation_player.play(anim_name)
-	$MainMenmBGM.Volume = -80.0
+	$MainMenuBGM.volume_db = -80.0
+	#$MainMenmBGM.Volume = -80.0
 	await get_tree().create_timer(1.0).timeout
+	#if is_instance_valid($MainMenmBGM):
+		#$MainMenmBGM.queue_free()
+	#$MainMenmBGM.Volume
 	LevelTransition.change_scene_to(target_scene)
 
 
@@ -70,7 +74,3 @@ func _on_itch_pressed() -> void:
 
 func _on_steam_pressed() -> void:
 	OS.shell_open("https://jammin804.itch.io/")
-
-
-func scenes() -> String:
-	return ""

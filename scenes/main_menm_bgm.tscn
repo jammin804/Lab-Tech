@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://766dwb6ml7ss"]
+
+[ext_resource type="Script" uid="uid://txbrbq2y72mm" path="res://plugin/OvaniPlugin/OvaniPlayer.gd" id="1_4b20v"]
+[ext_resource type="Script" uid="uid://m1bfaxshhh8l" path="res://plugin/OvaniPlugin/OvaniSong.gd" id="2_1tbo1"]
+[ext_resource type="Resource" uid="uid://cmvrwwtuj7vp4" path="res://resources/Ovani/DoIt.tres" id="3_0a05a"]
+
+[node name="MainMenmBGM" type="Node" unique_id=998471951]
+script = ExtResource("1_4b20v")
+QueuedSongs = Array[ExtResource("2_1tbo1")]([ExtResource("3_0a05a")])
+Volume = -10.0
+Intensity = 1.0
+Bus = &"Music"
+LoopQueue = true
+metadata/_custom_type_script = "uid://txbrbq2y72mm"

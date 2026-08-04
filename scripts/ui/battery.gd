@@ -23,6 +23,7 @@ func _ready() -> void:
 
 	Events.player_spawned.connect(_on_player_spawned)
 	Events.enemy_hit_by_projectile.connect(_on_enemy_hit)
+	Events.health_changed.connect(update_hpbar_animated)
 
 	if front_bar2: front_bar2.hide()
 	if back_bar2: back_bar2.hide()
@@ -133,3 +134,7 @@ func animate_back_bar3(target_bar:TextureProgressBar, tween_ref: Tween, target_v
 	tween_ref = create_tween()
 	tween_ref.tween_interval(0.4)
 	tween_ref.tween_property(target_bar, "value", target_value, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+
+
+func _update_health_bar() -> void:
+	return

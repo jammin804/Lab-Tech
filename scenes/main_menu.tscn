@@ -4,9 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dkv5y2uqieykr" path="res://large_resources/main_menu_background.res" id="2_8ln24"]
 [ext_resource type="PackedScene" uid="uid://cbvkqygoialpb" path="res://scenes/button.tscn" id="2_bqqt6"]
 [ext_resource type="PackedScene" uid="uid://bd1e7fmt2sl4m" path="res://scenes/UI/settings_menu.tscn" id="10_rcqid"]
-[ext_resource type="Script" uid="uid://txbrbq2y72mm" path="res://plugin/OvaniPlugin/OvaniPlayer.gd" id="11_rcqid"]
-[ext_resource type="Script" uid="uid://m1bfaxshhh8l" path="res://plugin/OvaniPlugin/OvaniSong.gd" id="12_1ajci"]
-[ext_resource type="Resource" uid="uid://cmvrwwtuj7vp4" path="res://resources/Ovani/DoIt.tres" id="13_7b55j"]
+[ext_resource type="AudioStream" uid="uid://oyl65rapnofy" path="res://assets/music/bgm/Do It (RT 4.624)/Chiptune Vol7 Do It Main.wav" id="12_flqon"]
 [ext_resource type="PackedScene" uid="uid://blqe7ke2t7a3n" path="res://scenes/UI/custom_mouse.tscn" id="14_1ajci"]
 [ext_resource type="Texture2D" uid="uid://u6p8ccce46ry" path="res://assets/ui/socials/icons8-itch.io-48.png" id="14_5pajh"]
 [ext_resource type="Texture2D" uid="uid://0br7dpgtsw38" path="res://assets/ui/socials/icons8-itch-io-32.png" id="15_hstxw"]
@@ -3096,19 +3094,15 @@ stretch_mode = 0
 visible = false
 layout_mode = 1
 
-[node name="MainMenmBGM" type="Node" parent="." unique_id=738126537]
-script = ExtResource("11_rcqid")
-QueuedSongs = Array[ExtResource("12_1ajci")]([ExtResource("13_7b55j")])
-Volume = -10.0
-Intensity = 1.0
-Bus = &"Music"
-LoopQueue = true
-metadata/_custom_type_script = "uid://txbrbq2y72mm"
-
 [node name="CustomMouse" parent="." unique_id=289937816 instance=ExtResource("14_1ajci")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=32794331]
 libraries/ = SubResource("AnimationLibrary_5pajh")
+
+[node name="MainMenuBGM" type="AudioStreamPlayer2D" parent="." unique_id=2137175126]
+stream = ExtResource("12_flqon")
+autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="Options Container/MainButtons/SettingsBtn" to="." method="_on_settings_btn_pressed"]
 [connection signal="pressed" from="Options Container/MainButtons/QuitBtn" to="." method="_on_quit_btn_pressed"]

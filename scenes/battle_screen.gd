@@ -4,7 +4,7 @@ extends Node
 @export_category("Menu UI Components")
 @export var pause_menu: PauseMenu
 @export var settings_menu: Settings
-@export var player : PackedScene = preload("res://scenes/battle_player.tscn")
+@export var player : PackedScene = null
 @export var player_spawn : Marker2D
 
 var main_menu : String = "res://scenes/main_menu.tscn"
@@ -12,8 +12,21 @@ var lab : String = "uid://dmqv875jehqwm"
 var is_option_menu_open : bool = false
 var is_result_screen_open : bool = false
 
+var enemies_to_defeat: int = 0
+var enemies_defeated: int = 0
+var total_enemies_defeated : int = 0
+var total_damage_done : int = 0
+var total_player_damage_taken : int = 0
+var total_money_gained: int = 0
+var total_scraps_gained : int = 0
+var total_cores_gained : int = 0
+var status = ""
+var grade = ""
+
 @onready var result_screen: Result_Screen = $ResultScreen
 @onready var wave_label: Label = $Pausable/WaveLabel
+@onready var enemies_in_wave_label: Label = $Pausable/EnemiesInWaveLabel
+@onready var enemy_spawner: Enemy_Spawner = %EnemySpawner
 
 func _ready() -> void:
 	#Load player at spawn
@@ -32,6 +45,9 @@ func _ready() -> void:
 	settings_menu.back_button_pressed.connect(_on_back_btn_pressed)
 	Events.level_complete.connect(_on_result_screen_shown)
 	Events.wave_completed.connect(_on_wave_change)
+	Events.enemy_died.connect(_update_enemy_counter)
+	Events.damage_dealt.connect(_on_damage_done)
+	Events.damage_taken.connect(_on_player_damage_taken)
 
 	_reset_flags()
 
@@ -44,8 +60,21 @@ func _input(event: InputEvent) -> void:
 
 		toggle_pause()
 
-func _on_wave_change(current_wave: int) -> void:
-	wave_label.text = "Wave :"+ str(current_wave)
+func _on_wave_change(current_wave: int, number_defeated: int) -> void:
+
+
+	if current_wave == 2:
+		print("Run level complete script")
+		Events.show_result_screen.emit(total_enemies_defeated, total_damage_done, total_player_damage_taken, total_money_gained, total_scraps_gained, total_cores_gained, status, grade)
+
+
+	update_wave_counter(number_defeated)
+
+	wave_label.text = "Wave: "+ str(current_wave)
+
+	print("Check to go to next level")
+
+
 
 func _on_pause_btn_pressed() -> void:
 	toggle_pause()
@@ -80,3 +109,29 @@ func _on_result_screen_shown() -> void:
 func _reset_flags() -> void:
 	if is_result_screen_open == true:
 		is_result_screen_open = false
+
+
+func _update_enemy_counter() -> void:
+	enemies_defeated += 1
+	total_enemies_defeated += 1
+
+	enemies_in_wave_label.text = str(enemies_defeated) + "/" + str(enemies_to_defeat)
+
+
+func _on_damage_done() -> void:
+	total_damage_done += 1
+
+func _reset_level_stats() -> void:
+	total_enemies_defeated = 0
+	total_damage_done = 0
+	total_player_damage_taken = 0
+
+
+func _on_player_damage_taken(amount: int) -> void:
+	total_player_damage_taken += amount
+
+
+func update_wave_counter(number_defeated: int):
+	enemies_to_defeat = %EnemySpawner.number_enemies_in_wave
+
+	enemies_in_wave_label.text = str(number_defeated) + "/" + str(enemies_to_defeat)

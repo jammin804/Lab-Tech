@@ -47,8 +47,11 @@ func _ready() -> void:
 
 
 
-#func _input(event: InputEvent) -> void:
-	#if event.is_action_pressed("ui_accept"):
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept"):
+		max_health += 100
+		#print(PlayerManager.current_stats.battery_tank_points)
+		#Events.health_changed.emit()
 		#SaveLoad.SaveFileData.money = 999
 		#SaveLoad.SaveFileData._save()
 		#print("DEBUG: Game Saved!")
@@ -97,6 +100,7 @@ func _on_max_health_upgraded(new_max: float) -> void:
 	var health_difference = new_max - max_health
 	max_health = new_max
 	current_health += health_difference
+	$HUD/Battery.update_hpbar_animated()
 
 func _on_bullet_fired() -> void:
 	spark.get_child(0).play("electric")
@@ -117,6 +121,8 @@ func _damage_player(damage_amount: int) -> void:
 
 	if current_health <= 0:
 		_die()
+
+	Events.damage_taken.emit(damage_amount)
 
 func _die()-> void:
 	Engine.time_scale = 0.5
