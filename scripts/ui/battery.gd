@@ -41,11 +41,6 @@ func _ready() -> void:
 func update_hpbar_animated():
 	var tank_cap: float = 100.0
 
-	#var num_of_tank: int = SkillManager.active_stats.battery_tanks
-	#if num_of_tank > 1:
-		#print("More than one power tank")
-	#print("Current Tank Size ", tank_cap)
-
 	if not player:
 		return
 
@@ -70,6 +65,7 @@ func update_hpbar_animated():
 		if back_bar2:
 			animate_back_bar2(back_bar2, health_tween2, bar_2_percent)
 
+
 	 #--- TIER 3 MATH
 	if player.max_health > tank_cap * 2:
 		if front_bar3: front_bar3.show()
@@ -83,6 +79,7 @@ func update_hpbar_animated():
 			front_bar3.value = bar_3_percent
 		if back_bar3:
 			animate_back_bar3(back_bar3, health_tween3, bar_3_percent)
+
 
 
 func _on_player_spawned(player_ref: PlayerNew) -> void:
@@ -136,5 +133,6 @@ func animate_back_bar3(target_bar:TextureProgressBar, tween_ref: Tween, target_v
 	tween_ref.tween_property(target_bar, "value", target_value, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
 
-func _update_health_bar() -> void:
-	return
+func _full_heal_bar() -> void:
+	#player.current_health = player.max_health
+	pass

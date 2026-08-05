@@ -184,7 +184,6 @@ func _exit_tree() -> void:
 	last_cheatsheet_pinned = null
 	EditorInterface.get_command_palette().remove_command("cheatsheet_viewer/toggle_last_pinned")
 
-# TODO: Texture rect are added as a child so it break the i index in shortcut
 func _shortcut_input(event: InputEvent) -> void:
 	if not event.is_pressed() or event.is_echo() : return
 
