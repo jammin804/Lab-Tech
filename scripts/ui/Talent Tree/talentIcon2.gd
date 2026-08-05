@@ -18,7 +18,7 @@ func _ready() -> void:
 
 func _on_button_pressed() -> void:
 	if talent_resource.is_unlocked == false:
-		talent_functionality.action(self)
+		#talent_functionality.action(self)
 		Events.talent_icon_clicked.emit()
 		_set_style()
 

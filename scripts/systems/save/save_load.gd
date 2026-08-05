@@ -3,8 +3,12 @@ extends Node
 const save_location = "user://SaveFile.tres"
 
 var SaveFileData : SaveDataResource = SaveDataResource.new()
+var infinite_money: int = 999
+
 
 func _ready() -> void:
+	#Cheats
+	SaveFileData.money = infinite_money
 	_load()
 
 func _save():

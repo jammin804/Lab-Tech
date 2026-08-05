@@ -23,7 +23,7 @@ var button_order_bar: TabBar
 
 func setup() -> void:
 	var editor_settings = EditorInterface.get_editor_settings()
-	
+
 	# these used to be @onready but this ensures it only gets setup when the popup is openned
 	cheatsheet_creator_container = %CreateCheatsheetBoxContainer
 	create_cheatsheet_rundown = %CreateCheatsheetRundown
@@ -34,14 +34,14 @@ func setup() -> void:
 	create_cheatsheet_button = %CreateCheatsheetButton
 	apply_global_settings_button = %ApplyGlobalSettingsButton
 	button_order_bar = %ButtonOrderBar
-	
-	
+
+
 	# Make UI
 	make_ui_for_button_order()
 	make_ui_for_cheatsheet_creation()
 	make_ui_for_manage()
 	make_ui_for_manage_global()
-	
+
 	# Set values based on current settings
 	%QuickViewDelayBox.value = editor_settings.get_setting("plugin/cheatsheet_viewer/quick_view_hover_delay")
 	%EnableQuickViewButton.button_pressed = editor_settings.get_setting("plugin/cheatsheet_viewer/quick_view_enabled")
@@ -57,20 +57,20 @@ func setup() -> void:
 	%ManageTabContainer.tab_changed.connect(func(i):if i==0:make_ui_for_manage_global() else: make_ui_for_manage())
 	%GlobalCheatsheetLabel.text = %GlobalCheatsheetLabel.text.replace("DATA_DIRECTORY", plugin_instance.persistent_plugin_path)
 	%MadeByLabel.text = %MadeByLabel.text.replace("VERSION", plugin_instance.get_plugin_version())
-	
+
 	# User has no cheatsheet, so make the about tab pop first
 	if plugin_instance.detected_cheatsheet_json.is_empty():
 		$TabContainer.current_tab = 3
 	else:
 		$TabContainer.current_tab = 0
 
-		
+
 	# Show the project-wise managing cheatsheet tab if it's been used before
 	if editor_settings.has_setting(plugin_instance.PROJECT_SETTINGS_CHEATSHEET_KEY):
 		if FileAccess.file_exists(plugin_instance.plugin_project_settings_dir.path_join("/override.json")):
 			%Project.show()
-		
-	
+
+
 	# Ensures that the overriden font size matches the windows size
 	# Its an ugly way to do it, but that way no theme variation are added to the engine
 	var _editor_scale:float = max(1.0,EditorInterface.get_editor_scale())
@@ -78,7 +78,7 @@ func setup() -> void:
 		for node:Label in $TabContainer/AboutContainer.find_children("*","Label",true):
 			if node.has_theme_font_size_override("font_size"):
 				node.add_theme_font_size_override("font_size",node.get_theme_font_size("font_size") * _editor_scale)
-		
+
 		for node:RichTextLabel in $TabContainer/AboutContainer.find_children("*","RichTextLabel",true):
 			if node.has_theme_font_size_override("normal_font_size"):
 				node.add_theme_font_size_override("normal_font_size",node.get_theme_font_size("normal_font_size") * _editor_scale)
@@ -98,7 +98,7 @@ func make_ui_for_button_order():
 	var i := 0
 	var folder_name_to_remove_from_order = []
 	current_order.erase("")
-	
+
 	for folder_name in current_order:
 		if not DirAccess.dir_exists_absolute(plugin_instance.persistent_plugin_path.path_join("/"+folder_name)):
 			folder_name_to_remove_from_order.append(folder_name)
@@ -107,12 +107,12 @@ func make_ui_for_button_order():
 			continue
 		button_order_bar.add_tab(folder_name)
 		button_order_bar.set_tab_tooltip(i,folder_name)
-			
+
 		i+=1
 
 	for folder_name in folder_name_to_remove_from_order:
 		current_order.erase(folder_name)
-	
+
 	i=0
 	for json_path in plugin_instance.detected_cheatsheet_json:
 		var file = FileAccess.open(json_path, FileAccess.READ)
@@ -120,13 +120,13 @@ func make_ui_for_button_order():
 		if not file:
 			push_error("Cheatsheet Viewer: Cant read file " + json_path)
 			continue
-	
+
 		var folder_name = json_path.rsplit("/")[-2]
 		if folder_name=="":
 			file.close()
 			continue
 		var data = JSON.parse_string(file.get_as_text())
-		
+
 		if folder_name in current_order:
 			var folder_exists = false
 			for tab_i in button_order_bar.tab_count:
@@ -139,7 +139,7 @@ func make_ui_for_button_order():
 			print("no in current order ", folder_name)
 			button_order_bar.add_tab(data.get("button_label","(invalid)"))
 			button_order_bar.set_tab_tooltip(button_order_bar.tab_count-1,folder_name)
-			
+
 			if not plugin_instance.bottom_buttons.any(func(b):return b.folder_name==folder_name):
 				button_order_bar.set_tab_disabled(i,true)
 		#print(i, folder_name)
@@ -155,12 +155,12 @@ func apply_global_settings(restart:=false):
 	editor_settings.set_setting("plugin/cheatsheet_viewer/quick_view_resets_position", %QuickViewResetsPositions.button_pressed)
 	editor_settings.set_setting("plugin/cheatsheet_viewer/auto_scale", %AutoScaleButton.button_pressed)
 	editor_settings.set_setting("plugin/cheatsheet_viewer/flat_buttons",%UseFlatButton.button_pressed)
-	
+
 	if %ShowMoreCheckBox.button_pressed!=editor_settings.get_setting("plugin/cheatsheet_viewer/show_more_button"):
 		needs_restart = true
 
 	editor_settings.set_setting("plugin/cheatsheet_viewer/show_more_button",%ShowMoreCheckBox.button_pressed)
-	
+
 
 	for button in plugin_instance.bottom_buttons:
 		if button == plugin_instance.settings_button:continue
@@ -172,7 +172,7 @@ func apply_global_settings(restart:=false):
 		if is_instance_valid(text_rect):
 			text_rect.auto_scale = %AutoScaleButton.button_pressed
 			text_rect.quick_view_resets_position = %QuickViewResetsPositions.button_pressed
-	 
+
 	var button_order_as_folders = []
 	for i in button_order_bar.tab_count:
 		var folder_name = button_order_bar.get_tab_tooltip(i)
@@ -182,11 +182,11 @@ func apply_global_settings(restart:=false):
 
 	editor_settings.set("plugin/cheatsheet_viewer/button_order",button_order_as_folders)
 	plugin_instance.reorder_buttons(button_order_as_folders)
-	
+
 	editor_settings.set_setting("plugin/cheatsheet_viewer/enable_shortcuts", %EnableShortcutsCheckBox.button_pressed)
 	plugin_instance.set_process_shortcut_input(%EnableShortcutsCheckBox.button_pressed)
-	
-	
+
+
 	if restart or needs_restart:
 		await get_tree().process_frame
 		await get_tree().process_frame
@@ -203,14 +203,14 @@ func make_ui_for_manage():
 	for child in manage_container.get_children():
 		if is_instance_valid(child):
 			child.queue_free()
-	
+
 	for json_path in plugin_instance.detected_cheatsheet_json:
 		var file = FileAccess.open(json_path, FileAccess.READ)
 		var valid = true
 		if not file:
 			push_error("Cheatsheet Viewer: Cant read file " + json_path)
 			continue
-	
+
 		var data = JSON.parse_string(file.get_as_text())
 		var image_path = plugin_instance.get_and_validate_cheatsheet_image_path(json_path, data.get("image_path",""))
 		if image_path=="":
@@ -222,18 +222,18 @@ func make_ui_for_manage_global():
 	# no cheatsheet
 	if plugin_instance.detected_cheatsheet_json.is_empty():
 		return
-		
+
 	for child in manage_global_container.get_children():
 		if is_instance_valid(child):
 			child.queue_free()
-	
+
 	for json_path in plugin_instance.detected_cheatsheet_json:
 		var file = FileAccess.open(json_path, FileAccess.READ)
 		var valid = true
 		if not file:
 			push_error("Cheatsheet Viewer: Cant read file " + json_path)
 			continue
-	
+
 		var data = JSON.parse_string(file.get_as_text())
 		var image_path = plugin_instance.get_and_validate_cheatsheet_image_path(json_path, data.get("image_path",""))
 		if image_path=="":
@@ -243,20 +243,20 @@ func make_ui_for_manage_global():
 
 func cheatsheet_manage_option(data:Dictionary, folder_name:String, valid:=true, image_path:=""):
 	var layout = HBoxContainer.new()
-	
+
 	var label = Label.new()
 	label.text = data.get("nice_name","Cheatsheet without a nice name")
 	label.mouse_filter = Control.MOUSE_FILTER_STOP
 	label.custom_minimum_size.x = 220
 	label.custom_minimum_size.y = 30
 	label.tooltip_text = folder_name
-	
+
 	var button = CheckBox.new()
 	button.text = "override"
 
 	layout.add_child(button)
 	layout.add_child(label)
-	
+
 	var data_in_settings = plugin_instance.get_cheatsheet_in_project_settings(folder_name)
 
 	var check_controls = {}
@@ -286,7 +286,7 @@ func cheatsheet_manage_option(data:Dictionary, folder_name:String, valid:=true, 
 	else:
 		layout.mouse_filter = Control.MOUSE_FILTER_STOP
 		layout.modulate.a = 0.5
-		
+
 	button.toggled.connect(func(pressed): if not pressed:remove_from_project_settings(folder_name))
 	button.toggled.connect(func(pressed): if pressed:override_cheatsheet_for_project(check_controls["add_as_command"].button_pressed,check_controls["add_as_button"].button_pressed,folder_name))
 	button.pressed.connect(make_ui_for_manage)
@@ -296,7 +296,7 @@ func cheatsheet_manage_option(data:Dictionary, folder_name:String, valid:=true, 
 
 func cheatsheet_manage_global_option(data:Dictionary,folder_name:String, valid:=true, json_path=""):
 	var layout = HBoxContainer.new()
-	
+
 	var label = Label.new()
 	label.text = data.get("nice_name","Cheatsheet without a nice name")
 	label.mouse_filter = Control.MOUSE_FILTER_STOP
@@ -306,7 +306,7 @@ func cheatsheet_manage_global_option(data:Dictionary,folder_name:String, valid:=
 	if not valid:
 		label.modulate = Color.TOMATO
 		label.text+=" (invalid)"
-	
+
 	var button := Button.new()
 	button.text = ""
 	button.icon = EditorInterface.get_base_control().get_theme_icon("Folder","EditorIcons")
@@ -315,7 +315,7 @@ func cheatsheet_manage_global_option(data:Dictionary,folder_name:String, valid:=
 	#button.custom_minimum_size.x = 96/2
 	button.tooltip_text = "Open the directory that contains this cheatsheet\nYou can delete the directory or edit the json manually for full control"
 	button.pressed.connect(OS.shell_open.bind(json_path.rsplit("/",true,1)[-2]))
-	
+
 
 	var open_button:= Button.new()
 	open_button.text = ""
@@ -323,11 +323,11 @@ func cheatsheet_manage_global_option(data:Dictionary,folder_name:String, valid:=
 
 	open_button.tooltip_text = "Open the cheatsheet image in the os image viewer"
 	open_button.pressed.connect(OS.shell_open.bind(json_path.rsplit("/",true,1)[-2].path_join(data["image_path"])))
-	
+
 	layout.add_child(button)
 	layout.add_child(open_button)
 	layout.add_child(label)
-	
+
 	var check_controls = {}
 	var cheatsheet_visible := false
 	for k in ["add_as_button","add_as_command"]:
@@ -366,7 +366,7 @@ func override_cheatsheet_for_project(add_as_command, add_as_button, folder_name)
 
 ## Directly edits the global cheatsheet json
 func modify_cheatsheet_json(data, json_path):
-	
+
 	var json = JSON.new()
 	var save_file := FileAccess.open(json_path, FileAccess.WRITE)
 	save_file.store_string(json.stringify(data))
@@ -382,7 +382,7 @@ func modify_project_settings(value, cheatsheet_folder, key):
 		file.close()
 	data.get_or_add(cheatsheet_folder,{})
 	data[cheatsheet_folder][key] = value
-	
+
 	var json = JSON.new()
 	var save_file := FileAccess.open(json_path, FileAccess.WRITE)
 	save_file.store_string(json.stringify(data))
@@ -410,7 +410,7 @@ func remove_from_project_settings(folder_name):
 		var file = FileAccess.open(json_path, FileAccess.READ)
 		data = JSON.parse_string(file.get_as_text())
 		file.close()
-	
+
 	if folder_name in data:
 		data.erase(folder_name)
 		if data.is_empty():
@@ -430,9 +430,9 @@ func make_ui_for_cheatsheet_creation():
 		if is_instance_valid(child):
 			child.queue_free()
 	create_cheatsheet_labels.clear()
-	
+
 	cheatsheet_creator_container.add_child(create_string_option("Folder name","folder_name", "", "Name used for the folder (directory) that will be created in the plugin user_data (not in your project)\nThe name must be unique, with no special characters or spaces", "nice_example_uwu"))
-	cheatsheet_creator_container.add_child(create_path_option("Image Path","image_path", "", "Cheatsheet image path. The image will be copied and pasted near godot editor's settings")) # TODO: more info on the path	
+	cheatsheet_creator_container.add_child(create_path_option("Image Path","image_path", "", "Cheatsheet image path. The image will be copied and pasted near godot editor's settings"))
 	cheatsheet_creator_container.add_child(create_string_option("User-friendly name","nice_name", "", "Name shown in command palette and user interface","Nice Example"))
 	cheatsheet_creator_container.add_child(create_string_option("Button label","button_label", "", "Text/Emoji shown on bottom dock button. Shorter is better!", "🐸"))
 	cheatsheet_creator_container.add_child(create_enum_option("Quick View placement", "quick_view_placement",["tooltip","center"], "Where the cheatsheet is shown when toggled.\ntooltip: Near the button that toggled it. Good for tall or small cheatsheets\ncenter: In the middle of the editor, good for large cheatsheets"))
@@ -447,7 +447,7 @@ func create_string_option(field_name:String, field_var:String, default="", hint=
 	control.custom_minimum_size.x = 200
 	control.text_changed.connect(update_cheatsheet_creation_rundown.unbind(1))
 	return create_option(field_name, field_var, control, hint)
-	
+
 func create_enum_option(field_name:String, field_var:String, options:Array, hint=""):
 	var control = OptionButton.new()
 	for o in options:
@@ -456,7 +456,7 @@ func create_enum_option(field_name:String, field_var:String, options:Array, hint
 	control.custom_minimum_size.x = 200
 	control.item_selected.connect(update_cheatsheet_creation_rundown.unbind(1))
 	return create_option(field_name, field_var, control, hint)
-	
+
 func create_path_option(field_name:String, field_var:String, default="", hint=""):
 	var control = LineEdit.new()
 	control.custom_minimum_size.x = 150 -2
@@ -468,19 +468,19 @@ func create_path_option(field_name:String, field_var:String, default="", hint=""
 	button.custom_minimum_size.x = 50
 	layout.add_child(button)
 	button.pressed.connect(ask_for_image_path.bind((func(value):if value!="":control.text=value),control))
-	
+
 	return layout
-	
+
 func create_bool_option(field_name:String, field_var:String, default=false, hint=""):
 	var control = CheckBox.new()
 	control.set_pressed_no_signal(default)
 	control.pressed.connect(update_cheatsheet_creation_rundown)
 	#control.custom_minimum_size.x = 200
 	return create_option(field_name, field_var, control, hint)
-	
+
 func create_option(field_name:String, field_var:String, control:Control, hint=""):
 	var layout = HBoxContainer.new()
-	
+
 	var label = Label.new()
 	label.text = field_name
 	label.mouse_filter = Control.MOUSE_FILTER_STOP
@@ -494,7 +494,7 @@ func create_option(field_name:String, field_var:String, control:Control, hint=""
 	layout.add_child(control)
 	layout.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	control.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	
+
 	return layout
 
 func get_fields_values():
@@ -538,26 +538,26 @@ func update_cheatsheet_creation_rundown():
 	else:
 		text += "[color=tomato]Folder Name is invalid or already exists[/color]"
 		is_valid = false
-		
-	
+
+
 	text+="[br]By default, this cheatsheet will :"
 	if fields["reference_url"] != "":
 		text+="[ul]"
 		text+=("open [hint='{reference_url}']an url[/hint] when ctrl+clicked".format(fields))#.replace("[","[lb]"))
 		text+="[/ul]"
-	
+
 	if fields["add_as_command"]:
 		text+="[ul]"
 		text+=("be shown in the command palette as 'cheatsheets/toggle {nice_name}'".format(fields).replace("[","[lb]"))
 		text+="[/ul]"
 		can_be_used = true
-		
+
 	if fields["add_as_button"]:
 		text+= "[ul]"
 		text+= "be linked to a button named '{button_label}' in the bottom bar".format(fields).replace("[","[lb]")
 		text+= "[/ul]"
 		can_be_used = true
-		
+
 	if not can_be_used:
 		text+="[ul][color=ORANGE]be hidden unless user enables it as a command and or button in the settings[/color][/ul]"
 	create_cheatsheet_rundown.text = text.format(fields)
@@ -565,33 +565,33 @@ func update_cheatsheet_creation_rundown():
 	return is_valid
 
 func create_cheatsheet_from_fields():
-	if not update_cheatsheet_creation_rundown(): 
+	if not update_cheatsheet_creation_rundown():
 		return
-	
+
 	var fields:Dictionary = get_fields_values()
 	var folder_name = fields["folder_name"]
 	fields.erase("folder_name")
-	
-	
+
+
 	var original_image_path = fields["image_path"]
 	if not FileAccess.file_exists(original_image_path):
 		push_error("Cheatsheet Viewer: Invalid image path")
 		return
-		
+
 	var dir = plugin_instance.persistent_plugin_path.path_join("/"+folder_name)
 	DirAccess.make_dir_absolute(dir)
-	
+
 	var image_name = "%s_cheatsheet.%s" % [folder_name,original_image_path.rsplit(".")[-1]]
 	#print(image_name)
 	var copy_to_path = dir.path_join("/"+image_name)
 	DirAccess.copy_absolute(original_image_path, copy_to_path)
 	fields["image_path"] = image_name # also relative path for cheatsheet in json
-	
+
 	var json = JSON.new()
 	var save_file := FileAccess.open(dir.path_join("/"+folder_name+".json"), FileAccess.WRITE)
 	save_file.store_string(json.stringify(fields))
 	save_file.close()
-	
+
 	await get_tree().process_frame
 	create_cheatsheet_rundown.text = "[color=YELLOW_GREEN]Cheatsheet created!! You did it!![/color]"
 	plugin_instance.create_from_json(dir.path_join("/"+folder_name+".json"))
@@ -618,7 +618,7 @@ func ask_for_image_path(callable:Callable, text_control=null):
 		if FileAccess.file_exists(text_control.text):
 			dialog.current_path = text_control.text
 			dialog.current_file = text_control.text
-	
+
 	# handle cases where user quits without selecting anything
 	dialog.close_requested.connect(func(): dialog.file_selected.emit(""))
 	# call given callable, passing a path and free dialog after

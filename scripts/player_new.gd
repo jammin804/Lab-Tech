@@ -16,7 +16,10 @@ var level_money: int = 0
 var level_scraps : int = 0
 var level_cores : int = 0
 
-var max_health : float = 100.0
+var max_health : float = 100.0:
+	set(value):
+		max_health = clampf(value, 100.0, 300.0)
+		health_changed.emit()
 var current_health: float = 100.0:
 	set(value):
 		current_health = clampf(value, 0.0, max_health)
@@ -31,7 +34,8 @@ var current_health: float = 100.0:
 func _ready() -> void:
 	#_load_skills()
 	var stats = character_resource.get_character_stats()
-	max_health = stats["health"]
+	max_health = PlayerManager.current_stats.battery_tank_points
+	#max_health = stats["health"]
 
 	current_health = max_health
 
@@ -45,22 +49,6 @@ func _ready() -> void:
 	Events.damage_dealt.connect(_on_damage_done)
 	Events.increase_currency.connect(_on_currency_gained)
 
-
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
-		max_health += 100
-		#print(PlayerManager.current_stats.battery_tank_points)
-		#Events.health_changed.emit()
-		#SaveLoad.SaveFileData.money = 999
-		#SaveLoad.SaveFileData._save()
-		#print("DEBUG: Game Saved!")
-#
-	#if event.is_action_pressed("ui_right"):
-		#if is_talent_tree_open == false:
-			#_open_talent_tree()
-		#else:
-			#_close_talent_tree()
 
 #region Remove this and move it to upgrade scene
 func _open_talent_tree():
@@ -97,9 +85,8 @@ func _on_currency_gained(amount: int, type_title: String="money") -> void:
 	SaveLoad._save()
 
 func _on_max_health_upgraded(new_max: float) -> void:
-	var health_difference = new_max - max_health
 	max_health = new_max
-	current_health += health_difference
+	current_health = max_health
 	$HUD/Battery.update_hpbar_animated()
 
 func _on_bullet_fired() -> void:
