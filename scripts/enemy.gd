@@ -1,7 +1,7 @@
 class_name Enemy
 extends CharacterBody2D
 
-#signal died
+
 
 #region DEBUG OPTIONS
 @export_category("DEBUG OPTIONS")
@@ -28,7 +28,9 @@ var is_dead : bool = false
 @onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
 @onready var destroy_anim: AnimatedSprite2D = $DestroyAnim
 @onready var spawner: Marker2D = $Spawner
+@onready var damage_number_spawner: DamageNumberSpawner = $DamageNumberSpawner
 
+@onready var shaker := Shaker.new(enemy_sprite)
 
 func _ready() -> void:
 	destroy_anim.hide()
@@ -50,6 +52,8 @@ func _process(delta: float) -> void:
 
 
 func take_damage(incoming_damage: float, incoming_element:WeaponData.Element) -> void:
+
+
 	if is_dead:
 		return
 
@@ -68,12 +72,14 @@ func take_damage(incoming_damage: float, incoming_element:WeaponData.Element) ->
 			status_component.apply_status(WeaponData.Element.FIRE, 3.0)
 
 	current_enemy_health -= final_damage
-	#print("Current Enemy Health: " + str(current_enemy_health))
 
 	hit_flash_anim.play("hit")
+	damage_number_spawner.spawn_label(incoming_damage)
+	shaker.shake(4.0, 0.2)
+
 	#TODO Spawn floating damage numbers here using 'final damage'
 	if Globals.can_screenshake == true:
-		Events.screen_shake_requested.emit(2.0, 0.5)
+		Events.screen_shake_requested.emit(1.0, 0.5)
 
 	gpu_particles_2d.restart()
 	gpu_particles_2d.emitting = true
