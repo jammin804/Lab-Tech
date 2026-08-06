@@ -7,6 +7,8 @@
 [ext_resource type="Shader" uid="uid://cht2qws53baj7" path="res://shaders/hitflash.gdshader" id="3_c4w8v"]
 [ext_resource type="Texture2D" uid="uid://dcstwgwvdksfg" path="res://assets/enemy/explosions/explode9.png" id="4_5uy6h"]
 [ext_resource type="Script" uid="uid://bmfxk2cb1ujol" path="res://scripts/component/status_component.gd" id="7_nenq2"]
+[ext_resource type="Script" uid="uid://u5guoqvfjihu" path="res://scripts/ui/UI Scenes/damage_number_spawn.gd" id="8_ipns3"]
+[ext_resource type="LabelSettings" uid="uid://b16prvyeyp2wt" path="res://damage_label_basic.tres" id="9_8qclf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nenq2"]
 resource_local_to_scene = true
@@ -244,6 +246,12 @@ position = Vector2(0, 12)
 script = ExtResource("7_nenq2")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1295717044]
+
+[node name="DamageNumberSpawn" type="Node2D" parent="." unique_id=1613422695]
+position = Vector2(0, -29)
+script = ExtResource("8_ipns3")
+label_settings = ExtResource("9_8qclf")
+metadata/_custom_type_script = "uid://u5guoqvfjihu"
 
 [connection signal="animation_finished" from="HitFlashAnim" to="." method="_on_hit_flash_anim_animation_finished"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
