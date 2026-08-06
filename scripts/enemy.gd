@@ -1,9 +1,6 @@
 class_name Enemy
 extends CharacterBody2D
 
-#signal died
-#
-#const DAMAGE_LABEL = preload("res://scenes/damage_label.tscn")
 
 
 #region DEBUG OPTIONS
@@ -31,8 +28,9 @@ var is_dead : bool = false
 @onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
 @onready var destroy_anim: AnimatedSprite2D = $DestroyAnim
 @onready var spawner: Marker2D = $Spawner
-@onready var damage_number_spawn: DamageNumberSpawn = $DamageNumberSpawn
+@onready var damage_number_spawner: DamageNumberSpawner = $DamageNumberSpawner
 
+@onready var shaker := Shaker.new(enemy_sprite)
 
 func _ready() -> void:
 	destroy_anim.hide()
@@ -76,7 +74,8 @@ func take_damage(incoming_damage: float, incoming_element:WeaponData.Element) ->
 	current_enemy_health -= final_damage
 
 	hit_flash_anim.play("hit")
-	damage_number_spawn.spawn_label(incoming_damage)
+	damage_number_spawner.spawn_label(incoming_damage)
+	shaker.shake(4.0, 0.2)
 
 	#TODO Spawn floating damage numbers here using 'final damage'
 	if Globals.can_screenshake == true:

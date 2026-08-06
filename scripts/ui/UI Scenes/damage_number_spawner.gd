@@ -1,4 +1,4 @@
-class_name DamageNumberSpawn
+class_name DamageNumberSpawner
 extends Node2D
 
 @export var label_settings: LabelSettings

@@ -7,10 +7,10 @@
 [ext_resource type="Shader" uid="uid://cht2qws53baj7" path="res://shaders/hitflash.gdshader" id="3_c4w8v"]
 [ext_resource type="Texture2D" uid="uid://dcstwgwvdksfg" path="res://assets/enemy/explosions/explode9.png" id="4_5uy6h"]
 [ext_resource type="Script" uid="uid://bmfxk2cb1ujol" path="res://scripts/component/status_component.gd" id="7_nenq2"]
-[ext_resource type="Script" uid="uid://u5guoqvfjihu" path="res://scripts/ui/UI Scenes/damage_number_spawn.gd" id="8_ipns3"]
+[ext_resource type="Script" uid="uid://u5guoqvfjihu" path="res://scripts/ui/UI Scenes/damage_number_spawner.gd" id="8_ipns3"]
 [ext_resource type="LabelSettings" uid="uid://b16prvyeyp2wt" path="res://damage_label_basic.tres" id="9_8qclf"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nenq2"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ipns3"]
 resource_local_to_scene = true
 shader = ExtResource("3_c4w8v")
 shader_parameter/hit_flash_color = Color(1, 1, 1, 1)
@@ -205,7 +205,7 @@ loot_drop_type = ExtResource("2_c4w8v")
 drop_rate = 100.0
 
 [node name="enemy" parent="." unique_id=1601589879 instance=ExtResource("2_5uy6h")]
-material = SubResource("ShaderMaterial_nenq2")
+material = SubResource("ShaderMaterial_ipns3")
 rotation = -3.1415927
 scale = Vector2(1, -1)
 frame = 5
@@ -247,7 +247,7 @@ script = ExtResource("7_nenq2")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1295717044]
 
-[node name="DamageNumberSpawn" type="Node2D" parent="." unique_id=1613422695]
+[node name="DamageNumberSpawner" type="Node2D" parent="." unique_id=465246830]
 position = Vector2(0, -29)
 script = ExtResource("8_ipns3")
 label_settings = ExtResource("9_8qclf")
