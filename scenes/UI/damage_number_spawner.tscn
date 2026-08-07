@@ -1,3 +1,6 @@
 [gd_scene format=3 uid="uid://dfq7vuxtt7gve"]
 
+[ext_resource type="Script" uid="uid://u5guoqvfjihu" path="res://scripts/ui/UI Scenes/damage_number_spawner.gd" id="1_lggdk"]
+
 [node name="DamageNumberSpawner" type="Node2D" unique_id=549251904]
+script = ExtResource("1_lggdk")

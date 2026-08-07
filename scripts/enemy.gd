@@ -28,7 +28,7 @@ var is_dead : bool = false
 @onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
 @onready var destroy_anim: AnimatedSprite2D = $DestroyAnim
 @onready var spawner: Marker2D = $Spawner
-@onready var damage_number_spawner: DamageNumberSpawner = $DamageNumberSpawner
+@onready var damage_number_spawner: DamageNumberSpawner = $DamageNumberSpawner2
 
 @onready var shaker := Shaker.new(enemy_sprite)
 
@@ -80,7 +80,7 @@ func take_damage(incoming_damage: float, incoming_element:WeaponData.Element) ->
 	#TODO Spawn floating damage numbers here using 'final damage'
 	if Globals.can_screenshake == true:
 		Events.screen_shake_requested.emit(1.0, 0.5)
-		print("test")
+
 
 	gpu_particles_2d.restart()
 	gpu_particles_2d.emitting = true

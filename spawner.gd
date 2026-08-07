@@ -8,4 +8,4 @@ extends Node
 func spawn_canister() -> void:
 	var new_canister = canister_collectable_scene.instantiate()
 	new_canister.setup(player)
-	add_child(new_canister) 
+	add_child(new_canister)
