@@ -80,6 +80,7 @@ func take_damage(incoming_damage: float, incoming_element:WeaponData.Element) ->
 	#TODO Spawn floating damage numbers here using 'final damage'
 	if Globals.can_screenshake == true:
 		Events.screen_shake_requested.emit(1.0, 0.5)
+		print("test")
 
 
 	gpu_particles_2d.restart()
