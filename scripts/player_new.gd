@@ -32,10 +32,8 @@ var current_health: float = 100.0:
 
 
 func _ready() -> void:
-	#_load_skills()
 	var stats = character_resource.get_character_stats()
 	max_health = PlayerManager.current_stats.battery_tank_points
-	#max_health = stats["health"]
 
 	current_health = max_health
 

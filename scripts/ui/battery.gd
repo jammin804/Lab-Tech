@@ -131,8 +131,3 @@ func animate_back_bar3(target_bar:TextureProgressBar, tween_ref: Tween, target_v
 	tween_ref = create_tween()
 	tween_ref.tween_interval(0.4)
 	tween_ref.tween_property(target_bar, "value", target_value, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-
-
-func _full_heal_bar() -> void:
-	#player.current_health = player.max_health
-	pass
