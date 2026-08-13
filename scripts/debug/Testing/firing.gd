@@ -117,7 +117,6 @@ func _create_bullet(bullet_index: int, total_bullets: int) -> void:
 	bullet.damage = PlayerManager.current_stats.power
 	bullet.global_position = spawn_pos
 	get_tree().current_scene.find_child("Pausable").add_child(bullet)
-	#$Pausable.add_child(bullet)
 
 func _check_charge_lock():
 	can_charge = PlayerManager.current_stats.can_charge
