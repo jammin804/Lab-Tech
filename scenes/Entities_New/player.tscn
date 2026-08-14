@@ -133,6 +133,7 @@ position = Vector2(-1, 6)
 shape = SubResource("CapsuleShape2D_qti4y")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1738467474]
+layer = -10
 
 [node name="Battery" parent="HUD" unique_id=1694848608 node_paths=PackedStringArray("player") instance=ExtResource("9_ghd54")]
 player = NodePath("../..")

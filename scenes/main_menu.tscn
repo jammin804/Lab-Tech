@@ -3104,8 +3104,17 @@ stream = ExtResource("12_flqon")
 autoplay = true
 bus = &"Music"
 
+[node name="TestBtn" type="Button" parent="." unique_id=1697226949]
+visible = false
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "test"
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="Options Container/MainButtons/SettingsBtn" to="." method="_on_settings_btn_pressed"]
 [connection signal="pressed" from="Options Container/MainButtons/QuitBtn" to="." method="_on_quit_btn_pressed"]
 [connection signal="pressed" from="Socials/Itch" to="." method="_on_itch_pressed"]
 [connection signal="pressed" from="Socials/Steam" to="." method="_on_steam_pressed"]
 [connection signal="pressed" from="Socials/Discord" to="." method="_on_discord_pressed"]
+[connection signal="mouse_entered" from="TestBtn" to="." method="_on_test_btn_mouse_entered"]

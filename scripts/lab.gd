@@ -58,6 +58,7 @@ func _ready() -> void:
 	pause_menu.open_options.connect(_on_options_btn_pressed)
 	pause_menu.exit_to_title.connect(_on_quit_btn_pressed)
 	settings_menu.back_button_pressed.connect(_on_back_btn_pressed)
+	LevelTransition.scene_loading_finished.connect(_on_scene_loading_finished)
 
 
 func _process(delta: float) -> void:
@@ -124,3 +125,8 @@ func _on_options_btn_pressed() -> void:
 
 func _on_upgrades_btn_pressed() -> void:
 	talent_menu_manager.show()
+
+
+func _on_scene_loading_finished() -> void:
+	print("Start Music")
+	#TODO Think about if we should wait until the full load because game start. As of now wait

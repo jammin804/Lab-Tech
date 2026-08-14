@@ -74,3 +74,11 @@ func _on_itch_pressed() -> void:
 
 func _on_steam_pressed() -> void:
 	OS.shell_open("https://jammin804.itch.io/")
+
+
+func _on_mouse_entered() -> void:
+	print("Entered")
+
+
+func _on_test_btn_mouse_entered() -> void:
+	print("Entered")

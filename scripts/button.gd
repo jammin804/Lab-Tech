@@ -3,7 +3,7 @@ extends Button
 
 @export var click: AudioStreamPlayer
 @export var hover: AudioStreamPlayer
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+#@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
 	text = text.to_upper()
