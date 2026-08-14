@@ -32,14 +32,14 @@ var current_health: float = 100.0:
 
 
 func _ready() -> void:
-	var stats = character_resource.get_character_stats()
+	#var stats = character_resource.get_character_stats()
 	max_health = PlayerManager.current_stats.battery_tank_points
 
 	current_health = max_health
 
 	#Remove the toggle_debug
-	if toggle_debug == true:
-		_open_talent_tree()
+	#if toggle_debug == true:
+		#_open_talent_tree()
 
 	Events.max_health_upgraded.connect(_on_max_health_upgraded)
 	Events.bullet_fired.connect(_on_bullet_fired)
@@ -49,15 +49,15 @@ func _ready() -> void:
 
 
 #region Remove this and move it to upgrade scene
-func _open_talent_tree():
-	is_talent_tree_open = true
-	var talentTreeNode : TalentTree2 = TALENT_TREE.instantiate()
-	talentTreeNode.active_talents = character_resource.talents
-	canvas_layer.add_child(talentTreeNode)
-
-func _close_talent_tree():
-	is_talent_tree_open = false
-	canvas_layer.get_children()[0].queue_free()
+#func _open_talent_tree():
+	#is_talent_tree_open = true
+	#var talentTreeNode : TalentTree2 = TALENT_TREE.instantiate()
+	#talentTreeNode.active_talents = character_resource.talents
+	#canvas_layer.add_child(talentTreeNode)
+#
+#func _close_talent_tree():
+	#is_talent_tree_open = false
+	#canvas_layer.get_children()[0].queue_free()
 #endregion
 
 func _on_damage_done(amount: int) -> void:

@@ -12,6 +12,7 @@ signal drain_battery(amount)
 
 var PROJECTILE_SCENE = preload("res://scenes/projectile.tscn")
 var num_of_bullets : int = 1
+var bullet_strength: int = 0
 var is_limit_unlocked : bool = false
 var can_charge : bool = false
 var is_charging : bool = false
@@ -92,11 +93,15 @@ func _shoot(charge_percentage : float):
 
 	if charge_percentage >= 100.0:
 		charge_scale = Vector2(2.0, 2.0)
+		bullet_strength = int(PlayerManager.current_stats.power * PlayerManager.current_stats.charge_damage_multipler)
 	else:
 		charge_scale = Vector2.ONE
+		bullet_strength = PlayerManager.current_stats.power
+
 
 	shoot_cooldown_timer.start()
 
+	#For the rapid shot
 	var burst_count = clampi(num_of_bullets, 1, 4)
 	for i in range(burst_count):
 		_create_bullet(i, burst_count)
@@ -114,8 +119,10 @@ func _create_bullet(bullet_index: int, total_bullets: int) -> void:
 		var center_offset = (total_bullets - 1)/2.0
 		spawn_pos.x += (bullet_index + center_offset) * spawn_offset
 
-	bullet.damage = PlayerManager.current_stats.power
+
+	bullet.damage = bullet_strength
 	bullet.global_position = spawn_pos
+	print("Current Bullet Str: ", bullet.damage)
 	get_tree().current_scene.find_child("Pausable").add_child(bullet)
 
 func _check_charge_lock():
