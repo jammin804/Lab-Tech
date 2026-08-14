@@ -1,8 +1,15 @@
 extends TalentFunctionality
 class_name DamageUpgrade
 
-func action(talentIcon: TalentIcon):
-	var damage = talentIcon.talent_resource.stat_value
+var damage
+var is_damage_applied: bool = false
 
-	PlayerManager.current_stats.power = damage * PlayerManager.current_stats.power
+
+func action(talentIcon: TalentIcon):
+	damage = talentIcon.talent_resource.stat_value
+
+	if is_damage_applied == false:
+		PlayerManager.current_stats.power = damage * PlayerManager.current_stats.power
+		is_damage_applied = true
+
 	talentIcon.talent_resource.is_unlocked = true

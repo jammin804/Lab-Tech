@@ -62,9 +62,6 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	#if toggle_debug:
-		#if Input.is_action_just_pressed("ui_accept"):
-			#player.current_health -= 10
 	pass
 
 func update_energy() -> void:
@@ -92,12 +89,6 @@ func _on_battle_btn_pressed() -> void:
 	#TODO Have a function or a condition to check when level the player is currently on then send them to that level
 	print("Transitioning from Lab to Level 1")
 	LevelTransition.change_scene_to(level_1)
-
-
-#func _on_return_to_lab_btn_pressed() -> void: #Not being usied
-	#end_level_pop_up.visible = false
-	#emit_signal("uprgrade_scene_start")
-
 
 func _on_pause_btn_pressed() -> void:
 	toggle_pause()
