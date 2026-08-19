@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cnosuv70ino1f" path="res://scenes/Components/attachment_component.tscn" id="5_cnbk4"]
 [ext_resource type="PackedScene" uid="uid://dyk04xec0djot" path="res://scenes/UI/charge_progress_bar_container.tscn" id="6_s81oc"]
 [ext_resource type="PackedScene" uid="uid://d37hr5i350lqv" path="res://scenes/spark.tscn" id="8_db7qb"]
+[ext_resource type="PackedScene" uid="uid://dc6oenvkn8v04" path="res://scenes/Components/move_component.tscn" id="8_ee40u"]
 [ext_resource type="PackedScene" uid="uid://b3gf3rdu50uej" path="res://scenes/UI/battery_hud.tscn" id="9_ghd54"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ghd54"]
@@ -144,6 +145,9 @@ charge_progress_bar_container = NodePath("../ChargeProgressBarContainer")
 
 [node name="AttachmentComponent" parent="." unique_id=1882574464 node_paths=PackedStringArray("spawn_point") instance=ExtResource("5_cnbk4")]
 spawn_point = NodePath("../Attachment")
+
+[node name="MoveComponent" parent="." unique_id=539429408 node_paths=PackedStringArray("player") instance=ExtResource("8_ee40u")]
+player = NodePath("..")
 
 [node name="Muzzle" type="Marker2D" parent="." unique_id=495735376]
 position = Vector2(22, 1)
