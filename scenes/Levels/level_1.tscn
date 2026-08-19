@@ -1,9 +1,10 @@
-[gd_scene format=3 uid="uid://bdpj78s126rdu"]
+[gd_scene format=4 uid="uid://bdpj78s126rdu"]
 
 [ext_resource type="Script" uid="uid://084flrltlmjn" path="res://scenes/battle_screen.gd" id="1_iiv34"]
 [ext_resource type="PackedScene" uid="uid://drdlmsifm1unh" path="res://scenes/Entities_New/player.tscn" id="2_vtd0g"]
 [ext_resource type="Texture2D" uid="uid://cvjej43nsn7ha" path="res://assets/backgrounds/level_3.png" id="3_hk2jt"]
 [ext_resource type="PackedScene" uid="uid://blqe7ke2t7a3n" path="res://scenes/UI/custom_mouse.tscn" id="4_5gowt"]
+[ext_resource type="Texture2D" uid="uid://8aayan6npc78" path="res://assets/backgrounds/tileset.png" id="4_ngn3o"]
 [ext_resource type="PackedScene" uid="uid://cooeppa7wcj7x" path="res://scenes/camera.tscn" id="5_7u17y"]
 [ext_resource type="Texture2D" uid="uid://b8h7y5diislmb" path="res://assets/ui/hud/Settigns.png" id="6_a60bd"]
 [ext_resource type="AudioStream" uid="uid://bki6hpddo6sgq" path="res://assets/music/bgm/Evil Grudge (RT 1.875)/Chiptune Vol2 Evil Grudge Main.wav" id="8_14nfc"]
@@ -16,6 +17,33 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_jkca0"]
 atlas = ExtResource("3_hk2jt")
 region = Rect2(0, 0, 288, 208)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_iiv34"]
+tile_data = PackedInt32Array(0, 0, 5, 1, 65536, 5, 2, 131072, 5, 3, 0, 4, 4, 0, 4, 5, 131072, 5, 6, 65536, 4, 7, 0, 5, 8, 0, 4, 9, 0, 5, 10, 65536, 5, 11, 131072, 5, 12, 0, 4, 13, 0, 4, 14, 131072, 5, 15, 65536, 4, 16, 0, 5, 17, 0, 4, 18, 0, 5, 19, 65536, 5)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vtd0g"]
+texture = ExtResource("4_ngn3o")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_qti4y"]
+sources/0 = SubResource("TileSetAtlasSource_vtd0g")
+pattern_0 = SubResource("TileMapPattern_iiv34")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lskjy"]
 atlas = ExtResource("6_a60bd")
@@ -46,6 +74,10 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_jkca0")
 expand_mode = 2
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1317919358]
+tile_map_data = PackedByteArray("AAAAAAUAAAAAAAUAAAABAAUAAAABAAUAAAACAAUAAAACAAUAAAADAAUAAAAAAAQAAAAEAAUAAAAAAAQAAAAFAAUAAAACAAUAAAAGAAUAAAABAAQAAAAHAAUAAAAAAAUAAAAIAAUAAAAAAAQAAAAJAAUAAAAAAAUAAAAKAAUAAAABAAUAAAALAAUAAAACAAUAAAAMAAUAAAAAAAQAAAANAAUAAAAAAAQAAAAOAAUAAAACAAUAAAAPAAUAAAABAAQAAAAQAAUAAAAAAAUAAAARAAUAAAAAAAQAAAASAAUAAAAAAAUAAAATAAUAAAABAAUAAAA=")
+tile_set = SubResource("TileSet_qti4y")
 
 [node name="CustomMouse" parent="." unique_id=289937816 instance=ExtResource("4_5gowt")]
 layer = 400
