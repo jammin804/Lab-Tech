@@ -21,6 +21,10 @@ var current_enemy_health : float
 var current_data: Resource
 var explosion_damage_dealt : int = 40
 var is_dead : bool = false
+var type : EnemyType:
+	set(value):
+		type = value
+		$Sprite2D.texture = value.texture
 
 @onready var enemy_sprite: AnimatedSprite2D = $enemy
 @onready var status_component: Node = $StatusComponent

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyType" format=3 uid="uid://dq8ebglaje3ua"]
+
+[ext_resource type="Script" uid="uid://drlpfqoa23lar" path="res://resources/EnemyData/enemy_type.gd" id="1_ernmf"]
+[ext_resource type="Texture2D" uid="uid://ydkoppovhlqd" path="res://assets/enemy/fly/fly1.png" id="2_85ubr"]
+
+[resource]
+script = ExtResource("1_ernmf")
+title = "Fly"
+texture = ExtResource("2_85ubr")
+metadata/_custom_type_script = "uid://drlpfqoa23lar"

@@ -8,10 +8,24 @@ const ENEMY = preload("uid://cqueta70ubjqr")
 @export var current_number_of_enemies: int
 @export var number_enemies_in_wave: int
 @export var enemies_left: int
+@export var enemy_types : Array[EnemyType]
+
+var enemies_defeated : int
+var minute : int:
+	set(value):
+		minute = value
+		%Minute.text = str(value)
+
+var second : int:
+	set(value):
+		second = value
+		if second >= 10:
+			second -= 10
+			minute += 1
+		%Seconds.text = str(second).lpad(2, '0')
 
 @onready var spawn_timer: Timer = $SpawnTimer
 
-var enemies_defeated : int
 
 func _ready() -> void:
 	current_wave = Globals.current_wave
@@ -21,70 +35,70 @@ func _ready() -> void:
 func check_wave_number() -> void:
 	_reset_enemies_defeat()
 
-	#number_enemies_in_wave = 0
-	#print("Current wave is ", current_wave)
+	for wave in current_wave:
+		print()
+
 	if current_wave == 1:
 		#TODO Add animation or show panel when wave is starting. Emit a signal of the UI to listen for it
 		#Reset enemies to defeat
 		number_enemies_in_wave = 3
 		await get_tree().create_timer(2).timeout
 		spawn_timer.start()
-		#TODO Add a lable to indicate the current wave
+		#TODO Add a label to indicate the current wave
 		#print("Wave One Start")
 	elif current_wave == 2:
 		number_enemies_in_wave = 6
 		await get_tree().create_timer(2).timeout
 		spawn_timer.start()
-		#TODO Add a lable to indicate the current wave
+		#TODO Add a label to indicate the current wave
 		#print("Wave Two Start")
 	elif current_wave == 3:
 		number_enemies_in_wave = 9
 		await get_tree().create_timer(2).timeout
 		spawn_timer.start()
-		#TODO Add a lable to indicate the current wave
+		#TODO Add a label to indicate the current wave
 	elif current_wave == 4:
 		number_enemies_in_wave = 12
 		await get_tree().create_timer(2).timeout
 		spawn_timer.start()
-		#TODO Add a lable to indicate the current wave
+		#TODO Add a label to indicate the current wave
 	elif current_wave == 5:
 		number_enemies_in_wave = 15
 		await get_tree().create_timer(2).timeout
 		spawn_timer.start()
-		#TODO Add a lable to indicate the current wave
+		#TODO Add a label to indicate the current wave
 	elif current_wave == 6:
 		number_enemies_in_wave = 18
 		await get_tree().create_timer(2).timeout
 		spawn_timer.start()
-		#TODO Add a lable to indicate the current wave
+		#TODO Add a label to indicate the current wave
 		#print("Wave Two Start")
 	elif current_wave == 7:
 		number_enemies_in_wave = 21
 		await get_tree().create_timer(2).timeout
 		spawn_timer.start()
-		#TODO Add a lable to indicate the current wave
+		#TODO Add a label to indicate the current wave
 	elif current_wave == 8:
 		number_enemies_in_wave = 24
 		await get_tree().create_timer(2).timeout
 		spawn_timer.start()
-		#TODO Add a lable to indicate the current wave
+		#TODO Add a label to indicate the current wave
 	elif current_wave == 9:
 		number_enemies_in_wave = 27
 		await get_tree().create_timer(2).timeout
 		spawn_timer.start()
-		#TODO Add a lable to indicate the current wave
+		#TODO Add a label to indicate the current wave
 	elif current_wave == 10:
 		number_enemies_in_wave = 30
 		await get_tree().create_timer(2).timeout
 		spawn_timer.start()
-		#TODO Add a lable to indicate the current wave
+		#TODO Add a label to indicate the current wave
 
 
 
 	Events.wave_completed.emit(current_wave, enemies_defeated)
 
 func _on_enemy_died() -> void:
-
 	enemies_left -= 1
 	enemies_defeated += 1
 	if current_wave == total_waves and enemies_left == 0:
@@ -96,17 +110,8 @@ func _on_enemy_died() -> void:
 
 
 func _on_spawn_timer_timeout() -> void:
-	var new_enemey = ENEMY.instantiate()
-
-	if current_number_of_enemies < number_enemies_in_wave:
-		current_number_of_enemies += 1
-		enemies_left += 1
-		get_parent().add_child(new_enemey)
-		new_enemey.global_position = global_position
-		spawn_timer.start()
-	else:
-		current_number_of_enemies = 0
-		spawn_timer.stop()
+	second += 1
+	amount(second % 10)
 
 func _on_level_end() -> void:
 	Events.pause_auto_actions.emit()
@@ -117,3 +122,26 @@ func _on_level_end() -> void:
 
 func _reset_enemies_defeat():
 	enemies_defeated = 0
+
+
+func amount(number : int = 1):
+	for i in range(number):
+		spawn()
+
+func spawn() -> void:
+	var new_enemey : Enemy = ENEMY.instantiate()
+
+	new_enemey.type = enemy_types[min(minute, enemy_types.size()-1)]
+
+	get_parent().add_child(new_enemey)
+	new_enemey.global_position = global_position
+
+	#if current_number_of_enemies < number_enemies_in_wave:
+		#current_number_of_enemies += 1
+		#enemies_left += 1
+		#get_parent().add_child(new_enemey)
+		#new_enemey.global_position = global_position
+		#spawn_timer.start()
+	#else:
+		#current_number_of_enemies = 0
+		#spawn_timer.stop()

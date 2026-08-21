@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyType" format=3 uid="uid://dsa5cdvvcf5jb"]
+
+[ext_resource type="Script" uid="uid://drlpfqoa23lar" path="res://resources/EnemyData/enemy_type.gd" id="1_486vb"]
+[ext_resource type="Texture2D" uid="uid://cs6v64juus11m" path="res://assets/enemy/octopus/octopus1.png" id="2_imylb"]
+
+[resource]
+script = ExtResource("1_486vb")
+title = "Octopus"
+texture = ExtResource("2_imylb")
+metadata/_custom_type_script = "uid://drlpfqoa23lar"

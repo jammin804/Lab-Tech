@@ -1,11 +1,56 @@
 [gd_scene format=3 uid="uid://bktpyu7vhq0km"]
 
 [ext_resource type="Script" uid="uid://i7utif1j1x3" path="res://scripts/systems/enemy_spawner.gd" id="1_no5mm"]
+[ext_resource type="Script" uid="uid://drlpfqoa23lar" path="res://resources/EnemyData/enemy_type.gd" id="2_x6m0y"]
+[ext_resource type="Resource" uid="uid://bl6u11eo2qq7x" path="res://resources/EnemyData/Robot.tres" id="3_r75rw"]
+[ext_resource type="Resource" uid="uid://couju1vw8js6e" path="res://resources/EnemyData/Runner.tres" id="4_2ra7v"]
+[ext_resource type="Resource" uid="uid://dsa5cdvvcf5jb" path="res://resources/EnemyData/Octopus.tres" id="5_m7tp8"]
+[ext_resource type="Resource" uid="uid://dq8ebglaje3ua" path="res://resources/EnemyData/Fly.tres" id="6_w2oqk"]
 
 [node name="EnemySpawner" type="Node2D" unique_id=1886090633]
 script = ExtResource("1_no5mm")
+enemy_types = Array[ExtResource("2_x6m0y")]([ExtResource("3_r75rw"), ExtResource("4_2ra7v"), ExtResource("5_m7tp8"), ExtResource("6_w2oqk")])
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=1309119056]
-one_shot = true
+autostart = true
+
+[node name="PatternTimer" type="Timer" parent="." unique_id=611873535]
+wait_time = 10.0
+autostart = true
+
+[node name="EliteTimer" type="Timer" parent="." unique_id=1815784808]
+wait_time = 9.0
+autostart = true
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=891947108]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI" unique_id=1665775634]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -100.0
+offset_top = 9.0
+offset_right = -74.0
+offset_bottom = 21.0
+grow_horizontal = 0
+
+[node name="Minute" type="Label" parent="UI/HBoxContainer" unique_id=178396860]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "0"
+
+[node name="Label" type="Label" parent="UI/HBoxContainer" unique_id=1400906426]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = ":"
+
+[node name="Seconds" type="Label" parent="UI/HBoxContainer" unique_id=653704060]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "00"
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="PatternTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="EliteTimer" to="." method="_on_spawn_timer_timeout"]

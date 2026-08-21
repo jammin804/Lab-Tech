@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyType" format=3 uid="uid://couju1vw8js6e"]
+
+[ext_resource type="Script" uid="uid://drlpfqoa23lar" path="res://resources/EnemyData/enemy_type.gd" id="1_unyhs"]
+[ext_resource type="Texture2D" uid="uid://ct05ked03sgpr" path="res://assets/enemy/runner/rino-fish1.png" id="2_lvchu"]
+
+[resource]
+script = ExtResource("1_unyhs")
+title = "Runner"
+texture = ExtResource("2_lvchu")
+metadata/_custom_type_script = "uid://drlpfqoa23lar"
