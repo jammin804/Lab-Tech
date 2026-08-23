@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://8aayan6npc78" path="res://assets/backgrounds/tileset.png" id="4_ngn3o"]
 [ext_resource type="PackedScene" uid="uid://cooeppa7wcj7x" path="res://scenes/camera.tscn" id="5_7u17y"]
 [ext_resource type="Texture2D" uid="uid://b8h7y5diislmb" path="res://assets/ui/hud/Settigns.png" id="6_a60bd"]
+[ext_resource type="Theme" uid="uid://65aipdpydskv" path="res://resources/Theme/main_theme.tres" id="6_iiv34"]
 [ext_resource type="AudioStream" uid="uid://bki6hpddo6sgq" path="res://assets/music/bgm/Evil Grudge (RT 1.875)/Chiptune Vol2 Evil Grudge Main.wav" id="8_14nfc"]
 [ext_resource type="PackedScene" uid="uid://bktpyu7vhq0km" path="res://scenes/Systems/enemySpawner.tscn" id="10_0r5j3"]
 [ext_resource type="PackedScene" uid="uid://lccgrpafmldk" path="res://scenes/debug/debug_text_overlay.tscn" id="11_d0wj5"]
@@ -91,6 +92,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("6_iiv34")
 
 [node name="InBetweenWaves" type="Timer" parent="Pausable" unique_id=182636926]
 unique_name_in_owner = true

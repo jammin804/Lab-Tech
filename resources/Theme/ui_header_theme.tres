@@ -1,0 +1,8 @@
+[gd_resource type="Theme" format=3 uid="uid://craf2vtwiwm51"]
+
+[ext_resource type="FontFile" uid="uid://c2a35mxw7sbmh" path="res://font/PressStart2P.ttf" id="1_yo1db"]
+
+[resource]
+HeadlineLabel/font_sizes/font_size = 12
+HeadlineLabel/fonts/font_family = ExtResource("1_yo1db")
+Label/fonts/font = ExtResource("1_yo1db")

@@ -2,13 +2,16 @@
 
 [ext_resource type="Script" uid="uid://xhlq3ux3qxdg" path="res://scripts/ui/video_btn.gd" id="1_uxg4l"]
 [ext_resource type="AudioStream" uid="uid://l7486jyqi2hy" path="res://assets/music/sfx/settings_click.wav" id="2_1en5i"]
+[ext_resource type="Theme" uid="uid://craf2vtwiwm51" path="res://resources/Theme/ui_header_theme.tres" id="2_878o3"]
 [ext_resource type="AudioStream" uid="uid://dv65sbva8bpt0" path="res://assets/music/sfx/blinghover.wav" id="3_6jt7n"]
+[ext_resource type="Theme" uid="uid://b2yiqfrkj5dmr" path="res://resources/Theme/ui_theme.tres" id="3_878o3"]
 [ext_resource type="Script" uid="uid://ddjpa0fbdlvbd" path="res://scripts/ui/audio_btn.gd" id="4_878o3"]
 [ext_resource type="Script" uid="uid://de8cb71260pxg" path="res://scripts/ui/lang_btn.gd" id="5_3i1ia"]
 [ext_resource type="Script" uid="uid://bqem5s34cvuve" path="res://scripts/ui/settings_container.gd" id="6_1en5i"]
 [ext_resource type="Script" uid="uid://dnubu0lx4htl" path="res://scripts/ui/video_settings.gd" id="6_jl7gk"]
 [ext_resource type="Script" uid="uid://dg0yx0yjxtcel" path="res://scripts/ui/audio_settings.gd" id="7_ecjli"]
 [ext_resource type="Script" uid="uid://c1y88j5pwfyu8" path="res://scripts/button.gd" id="8_jfsmy"]
+[ext_resource type="FontFile" uid="uid://c2a35mxw7sbmh" path="res://font/PressStart2P.ttf" id="11_3i1ia"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqqt6"]
 content_margin_left = 20.0
@@ -93,32 +96,32 @@ offset_left = -31.0
 offset_right = 31.0
 offset_bottom = 23.0
 grow_horizontal = 2
+theme = ExtResource("2_878o3")
 text = "Settings"
+vertical_alignment = 1
 
 [node name="SettingsMenuButtons" type="VBoxContainer" parent="." unique_id=627617667]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -125.0
-offset_top = 39.0
-offset_right = 126.0
-offset_bottom = 79.0
+offset_left = -102.0
+offset_top = 27.0
+offset_right = 102.0
+offset_bottom = 67.0
 grow_horizontal = 2
+theme = ExtResource("3_878o3")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="SettingsMenuButtons" unique_id=1423601366]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 6
 
 [node name="VideoBtn" type="Button" parent="SettingsMenuButtons/HBoxContainer" unique_id=651002308 node_paths=PackedStringArray("click", "hover")]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(0.6784314, 0.81960785, 0.45882353, 1)
 theme_override_font_sizes/font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_rtw2f")
-theme_override_styles/hover = SubResource("StyleBoxFlat_rtw2f")
 toggle_mode = true
 text = "Video"
 script = ExtResource("1_uxg4l")
@@ -161,6 +164,7 @@ bus = &"SFX"
 
 [node name="LangBtn" type="Button" parent="SettingsMenuButtons/HBoxContainer" unique_id=606781604 node_paths=PackedStringArray("click", "hover")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(0.6784314, 0.81960785, 0.45882353, 1)
 theme_override_font_sizes/font_size = 12
@@ -185,10 +189,11 @@ bus = &"SFX"
 
 [node name="SettingsContainer" type="VBoxContainer" parent="." unique_id=1542557380]
 layout_mode = 0
-offset_left = 34.5
+offset_left = 12.0
 offset_top = 72.0
-offset_right = 285.5
-offset_bottom = 176.0
+offset_right = 308.0
+offset_bottom = 180.0
+theme = ExtResource("3_878o3")
 
 [node name="VideoSettings" type="GridContainer" parent="SettingsContainer" unique_id=1943710598 node_paths=PackedStringArray("resolution_option", "fullscreen_check", "borderless_check", "vsync_check")]
 unique_name_in_owner = true
@@ -297,7 +302,8 @@ offset_top = 5.0
 offset_right = 75.0
 offset_bottom = 24.0
 scale = Vector2(0.75, 0.75)
-theme_override_font_sizes/font_size = 12
+theme_override_fonts/font = ExtResource("11_3i1ia")
+theme_override_font_sizes/font_size = 8
 theme_override_styles/normal = SubResource("StyleBoxFlat_hstxw")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_8egab")
 theme_override_styles/hover = SubResource("StyleBoxFlat_rtw2f")
