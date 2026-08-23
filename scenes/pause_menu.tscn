@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://jknf7kxvaq51" path="res://scripts/ui/pause_menu.gd" id="1_myx47"]
 [ext_resource type="PackedScene" uid="uid://cbvkqygoialpb" path="res://scenes/button.tscn" id="1_n87rw"]
+[ext_resource type="FontFile" uid="uid://c2a35mxw7sbmh" path="res://font/PressStart2P.ttf" id="3_kukqi"]
 
 [node name="PauseMenu" type="Control" unique_id=1716673666]
 layout_mode = 3
@@ -44,12 +45,14 @@ theme_override_constants/separation = 15
 [node name="ResumeBtn" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=1002760254 instance=ExtResource("1_n87rw")]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_kukqi")
 theme_override_font_sizes/font_size = 6
 text = "Resume"
 
 [node name="OptionsBtn" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=13100885 instance=ExtResource("1_n87rw")]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_kukqi")
 theme_override_font_sizes/font_size = 6
 text = "Options"
 
@@ -57,12 +60,14 @@ text = "Options"
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_kukqi")
 theme_override_font_sizes/font_size = 6
 text = "Retreat To Lab"
 
 [node name="QuitBtn" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=919113196 instance=ExtResource("1_n87rw")]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_kukqi")
 theme_override_font_sizes/font_size = 6
 text = "Exit To Title Screen"
 
