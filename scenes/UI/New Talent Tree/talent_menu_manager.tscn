@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://sknra82q76tt"]
 
 [ext_resource type="Script" uid="uid://f8c8r7eu83n4" path="res://scripts/ui/Talent Tree/talent_menu_manager.gd" id="1_mqcdt"]
+[ext_resource type="Theme" uid="uid://br8j38ejqosgk" path="res://resources/Theme/skill_tree_theme.tres" id="1_qp17x"]
 [ext_resource type="Texture2D" uid="uid://brvmjalwweco2" path="res://assets/ui/hud/Sprite-0001.png" id="2_qp17x"]
 [ext_resource type="PackedScene" uid="uid://cx38wi2wd12d4" path="res://scenes/UI/New Talent Tree/talent_tree_body.tscn" id="3_xfbdc"]
 [ext_resource type="PackedScene" uid="uid://ds2efap35m8d2" path="res://scenes/UI/New Talent Tree/talent_tree_2.tscn" id="4_trys1"]
@@ -72,6 +73,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_qp17x")
 script = ExtResource("1_mqcdt")
 title_label = NodePath("TopBar/TitleNameContainer/TitleLabel")
 left_arrow_btn = NodePath("TopBar/LeftArrowBtn")
@@ -134,7 +136,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_ra08x")
 [node name="TitleLabel" type="Label" parent="TopBar/TitleNameContainer" unique_id=242435518]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.16862746, 0.9137255, 1, 1)
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 7
 text = "Body"
 horizontal_alignment = 1
 uppercase = true

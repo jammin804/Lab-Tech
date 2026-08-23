@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cd5t621s5krvm" path="res://scenes/UI/New Talent Tree/talent_icon.tscn" id="1_3glmu"]
 [ext_resource type="Script" uid="uid://dntgfdcmywxgc" path="res://scripts/ui/Talent Tree/talent_tree_2.gd" id="1_vtkmw"]
 [ext_resource type="Resource" uid="uid://b62c15rpfg3b3" path="res://resources/TalentTree/skill1.tres" id="3_h1iur"]
+[ext_resource type="FontFile" uid="uid://c2a35mxw7sbmh" path="res://font/PressStart2P.ttf" id="4_ggf8e"]
 [ext_resource type="Resource" uid="uid://vrjifu2bc331" path="res://resources/TalentTree/func2.tres" id="5_h1iur"]
 [ext_resource type="Resource" uid="uid://c8jowgsk5odo0" path="res://resources/TalentTree/func1.tres" id="5_qwupu"]
 [ext_resource type="Resource" uid="uid://doxltg15e0ph3" path="res://resources/TalentTree/skill3.tres" id="5_spest"]
@@ -26,6 +27,10 @@ atlas = ExtResource("17_6a0bt")
 region = Rect2(0.9977226, 112.08851, 12.112375, 16.503242)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qti4y"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
 bg_color = Color(0.0627451, 0.03137255, 0.03137255, 1)
 border_width_left = 2
 border_width_top = 2
@@ -43,8 +48,16 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 
-[sub_resource type="FontVariation" id="FontVariation_g18rp"]
-spacing_glyph = 1
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ggf8e"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.0627451, 0.03137255, 0.03137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b1g2q"]
 bg_color = Color(0.0627451, 0.03137255, 0.03137255, 1)
@@ -193,15 +206,14 @@ uppercase = true
 [node name="PanelContainer2" type="PanelContainer" parent="InfoPanel/VBoxContainer" unique_id=1084258246]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_qti4y")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ggf8e")
 
 [node name="DescriptionLabel" type="Label" parent="InfoPanel/VBoxContainer/PanelContainer2" unique_id=1546630465]
 custom_minimum_size = Vector2(157, 25)
 layout_mode = 2
-theme_override_constants/line_spacing = -2
 theme_override_constants/paragraph_spacing = 0
-theme_override_fonts/font = SubResource("FontVariation_g18rp")
-theme_override_font_sizes/font_size = 7
+theme_override_fonts/font = ExtResource("4_ggf8e")
+theme_override_font_sizes/font_size = 6
 text = "Upgrades Level 2 
 Charge Shot"
 autowrap_mode = 3
