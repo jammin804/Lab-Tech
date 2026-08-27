@@ -62,7 +62,6 @@ func _ready() -> void:
 
 func _on_damage_done(amount: int) -> void:
 	level_damage_done += amount
-	print("Current level damage ", level_damage_done)
 
 func _on_currency_gained(amount: int, type_title: String="money") -> void:
 	print(type_title)

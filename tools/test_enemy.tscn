@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bhclrwxvniywn"]
+
+[ext_resource type="Texture2D" uid="uid://3h3r3osm3i2w" path="res://icon.svg" id="1_yikbh"]
+[ext_resource type="Script" uid="uid://dxm0two7n01to" path="res://tools/test_enemy.gd" id="2_x4eh8"]
+
+[node name="TestEnemy" type="Sprite2D" unique_id=1483750411]
+texture = ExtResource("1_yikbh")
+script = ExtResource("2_x4eh8")
+
+[node name="Button" type="Button" parent="." unique_id=16876106]
+offset_left = -61.0
+offset_top = -65.0
+offset_right = 64.0
+offset_bottom = 62.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

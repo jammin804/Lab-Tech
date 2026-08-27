@@ -18,9 +18,14 @@ extends CharacterBody2D
 @export_range(0, 100, 1.0, "suffix:%") var drop_rate
 
 var current_enemy_health : float
-var current_data: Resource
+var current_data: EnemyStats
 var explosion_damage_dealt : int = 40
 var is_dead : bool = false
+
+var rng = RandomNumberGenerator.new()
+
+var loot_amount : Array = []
+var weights
 
 @onready var enemy_sprite: AnimatedSprite2D = $enemy
 @onready var status_component: Node = $StatusComponent
@@ -36,6 +41,18 @@ func _ready() -> void:
 	destroy_anim.hide()
 	if stats:
 		current_data = stats.duplicate()
+		loot_amount = [
+			randi_range(current_data.loot_tier_1_currency_min, current_data.loot_tier_1_currency_max),
+			randi_range(current_data.loot_tier_2_currency_min, current_data.loot_tier_2_currency_max),
+			randi_range(current_data.loot_tier_3_currency_min, current_data.loot_tier_3_currency_max)
+		]
+		weights = PackedFloat32Array(
+			[
+				current_data.loot_tier_1_drop_rate,
+				current_data.loot_tier_2_drop_rate,
+				current_data.loot_tier_3_drop_rate
+			])
+
 
 
 	#Change health based on level
@@ -80,7 +97,6 @@ func take_damage(incoming_damage: float, incoming_element:WeaponData.Element) ->
 	#TODO Spawn floating damage numbers here using 'final damage'
 	if Globals.can_screenshake == true:
 		Events.screen_shake_requested.emit(1.0, 0.5)
-		print("test")
 
 
 	gpu_particles_2d.restart()
@@ -116,13 +132,14 @@ func _drop_item() -> void:
 
 func _on_hit_flash_anim_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "death":
-
-		if loot_drop_type:
-			var rng = randf() * 100
-			if rng <= drop_rate:
-				var loot = loot_drop_type.instantiate()
-				loot.global_transform = spawner.global_transform
-				get_tree().current_scene.add_child(loot)
+		print("Enemy Dropped: ", loot_amount[rng.rand_weighted(weights)])
+		Events.increase_currency.emit(loot_amount[rng.rand_weighted(weights)])
+		#if loot_drop_type:
+			#var rng = randf() * 100
+			#if rng <= drop_rate:
+				#var loot = loot_drop_type.instantiate()
+				#loot.global_transform = spawner.global_transform
+				#get_tree().current_scene.add_child(loot)
 
 		self.queue_free()
 
