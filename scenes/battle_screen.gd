@@ -27,6 +27,7 @@ var grade = ""
 @onready var wave_label: Label = $Pausable/WaveLabel
 @onready var enemies_in_wave_label: Label = $Pausable/EnemiesInWaveLabel
 @onready var enemy_spawner: Enemy_Spawner = %EnemySpawner
+@onready var money_label: Label = %MoneyLabel
 
 func _ready() -> void:
 	#Load player at spawn
@@ -34,6 +35,7 @@ func _ready() -> void:
 	var player_inst = player.instantiate()
 	$Pausable.add_child(player_inst)
 	player_inst.global_position = %PlayerSpawnPoint.global_position
+	money_label.text = str("$",total_money_gained)
 
 	#TODO Increment level on the global level so the lab/upgrade scene can see it
 	Globals.level = 1
@@ -48,6 +50,7 @@ func _ready() -> void:
 	Events.enemy_died.connect(_update_enemy_counter)
 	Events.damage_dealt.connect(_on_damage_done)
 	Events.damage_taken.connect(_on_player_damage_taken)
+	Events.increase_currency.connect(_on_currency_gained)
 
 	_reset_flags()
 
@@ -135,3 +138,8 @@ func update_wave_counter(number_defeated: int):
 	enemies_to_defeat = %EnemySpawner.number_enemies_in_wave
 
 	enemies_in_wave_label.text = str(number_defeated) + "/" + str(enemies_to_defeat)
+
+
+func _on_currency_gained(amount: int) -> void:
+	total_money_gained += amount
+	money_label.text = str("$", total_money_gained)

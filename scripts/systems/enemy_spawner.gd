@@ -17,12 +17,12 @@ var enemies_defeated : int
 func _ready() -> void:
 	current_wave = Globals.current_wave
 	Events.enemy_died.connect(_on_enemy_died)
-	check_wave_number()
+	#check_wave_number()
 
 func check_wave_number() -> void:
 	_reset_enemies_defeat()
 
-	#check player level. If there level is increase by 2. +1 the amount of enemies spawned and at a certian level
+	#check player level. If the player is at a certain level spawn from a certain dictonary
 
 	#number_enemies_in_wave = 0
 	#print("Current wave is ", current_wave)
@@ -101,6 +101,10 @@ func _on_enemy_died() -> void:
 func _on_spawn_timer_timeout() -> void:
 	var new_enemey = ENEMY.instantiate()
 	#var random_location = spawn_locations.pick_random().global_position
+	print("Spawn")
+
+	get_parent().add_child(new_enemey)
+	new_enemey.global_position = spawn_locations.pick_random().global_position
 
 	if current_number_of_enemies < number_enemies_in_wave:
 		current_number_of_enemies += 1
@@ -108,10 +112,10 @@ func _on_spawn_timer_timeout() -> void:
 		get_parent().add_child(new_enemey)
 		new_enemey.global_position = spawn_locations.pick_random().global_position
 		print("Choosen Global Position ", new_enemey.global_position)
-		spawn_timer.start()
+		#spawn_timer.start()
 	else:
 		current_number_of_enemies = 0
-		spawn_timer.stop()
+		#spawn_timer.stop()
 
 func _on_level_end() -> void:
 	Events.pause_auto_actions.emit()
