@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://b2k5rhw8f45uu"]
+
+[ext_resource type="Script" uid="uid://cktn3xnxs2ojs" path="res://resources/EnemyData/enemy_stats.gd" id="1_lm0ct"]
+
+[resource]
+script = ExtResource("1_lm0ct")
+health = 10
+attack_power = 5
+move_speed = 15.0
+loot_tier_1_drop_rate = 63.0
+loot_tier_2_drop_rate = 33.0
+loot_tier_3_drop_rate = 3.0
+loot_tier_1_currency_min = 10
+loot_tier_1_currency_max = 12
+loot_tier_2_currency_min = 9
+loot_tier_2_currency_max = 22
+loot_tier_3_currency_min = 55
+loot_tier_3_currency_max = 122
+metadata/_custom_type_script = "uid://cktn3xnxs2ojs"

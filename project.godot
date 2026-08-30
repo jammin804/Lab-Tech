@@ -35,6 +35,7 @@ SkillManager="*uid://gq0fafo0ca7h"
 ConfigFileHeader="*uid://bbx5krn3qy2pc"
 UiManager="*uid://ctfler5fh52uh"
 SaveLoad="*uid://bmedk2yn6givf"
+TweenFX="*uid://d2n10rw2dnx8o"
 
 [display]
 
@@ -48,7 +49,7 @@ window/stretch/scale_mode="integer"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/cheatsheet_viewer/plugin.cfg", "res://addons/gdscript_refactoring/plugin.cfg", "res://addons/nhb_functions_on_the_fly/plugin.cfg")
+enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/TweenFX/plugin.cfg", "res://addons/cheatsheet_viewer/plugin.cfg", "res://addons/gdscript_refactoring/plugin.cfg", "res://addons/nhb_functions_on_the_fly/plugin.cfg")
 
 [file_customization]
 

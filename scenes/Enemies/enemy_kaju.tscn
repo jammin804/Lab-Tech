@@ -1,20 +1,42 @@
-[gd_scene format=3 uid="uid://cqueta70ubjqr"]
+[gd_scene format=3 uid="uid://djuh4frs5ltrc"]
 
-[ext_resource type="Script" uid="uid://b850wre5f8oip" path="res://scripts/enemy.gd" id="1_4ra3w"]
-[ext_resource type="PackedScene" uid="uid://cluqesxih2vx0" path="res://scenes/enemy_sprite.tscn" id="2_5uy6h"]
-[ext_resource type="PackedScene" uid="uid://c3j8bdc87ysqc" path="res://scenes/Currency/pickups.tscn" id="2_c4w8v"]
-[ext_resource type="Resource" uid="uid://c6lgcvy8xml40" path="res://resources/EnemyData/BasicBot.tres" id="2_xwavj"]
-[ext_resource type="Shader" uid="uid://cht2qws53baj7" path="res://shaders/hitflash.gdshader" id="3_c4w8v"]
-[ext_resource type="Texture2D" uid="uid://dcstwgwvdksfg" path="res://assets/enemy/explosions/explode9.png" id="4_5uy6h"]
-[ext_resource type="SpriteFrames" uid="uid://bqmihelqdobus" path="res://basic_bot_anim.tres" id="6_8qclf"]
-[ext_resource type="Script" uid="uid://bmfxk2cb1ujol" path="res://scripts/component/status_component.gd" id="7_nenq2"]
-[ext_resource type="FontFile" uid="uid://c2a35mxw7sbmh" path="res://font/PressStart2P.ttf" id="7_w8i8w"]
-[ext_resource type="LabelSettings" uid="uid://b16prvyeyp2wt" path="res://damage_label_basic.tres" id="9_8qclf"]
-[ext_resource type="PackedScene" uid="uid://dfq7vuxtt7gve" path="res://scenes/UI/damage_number_spawner.tscn" id="10_8qclf"]
+[ext_resource type="Script" uid="uid://b850wre5f8oip" path="res://scripts/enemy.gd" id="1_w0ojr"]
+[ext_resource type="PackedScene" uid="uid://c3j8bdc87ysqc" path="res://scenes/Currency/pickups.tscn" id="3_qv6qb"]
+[ext_resource type="Texture2D" uid="uid://ctklqo2kh5et3" path="res://assets/enemy/kaju/rino-fish1.png" id="4_fjf8t"]
+[ext_resource type="PackedScene" uid="uid://cluqesxih2vx0" path="res://scenes/enemy_sprite.tscn" id="4_goy13"]
+[ext_resource type="Texture2D" uid="uid://dfvb7i8ko7u0i" path="res://assets/enemy/kaju/rino-fish2.png" id="5_5ii61"]
+[ext_resource type="Shader" uid="uid://cht2qws53baj7" path="res://shaders/hitflash.gdshader" id="5_k8v0n"]
+[ext_resource type="Texture2D" uid="uid://cipwsl5gng4fe" path="res://assets/enemy/kaju/rino-fish3.png" id="6_2medb"]
+[ext_resource type="SpriteFrames" uid="uid://bqmihelqdobus" path="res://basic_bot_anim.tres" id="6_ef401"]
+[ext_resource type="Texture2D" uid="uid://b57f2l3y07yf0" path="res://assets/enemy/kaju/rino-fish4.png" id="7_71beo"]
+[ext_resource type="Script" uid="uid://bmfxk2cb1ujol" path="res://scripts/component/status_component.gd" id="7_hgioj"]
+[ext_resource type="Texture2D" uid="uid://dcstwgwvdksfg" path="res://assets/enemy/explosions/explode9.png" id="8_j0mgs"]
+[ext_resource type="PackedScene" uid="uid://dfq7vuxtt7gve" path="res://scenes/UI/damage_number_spawner.tscn" id="9_3akc1"]
+[ext_resource type="LabelSettings" uid="uid://b16prvyeyp2wt" path="res://damage_label_basic.tres" id="10_066og"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_w8i8w"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_qti4y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_fjf8t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_5ii61")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_2medb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_71beo")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8pg4g"]
 resource_local_to_scene = true
-shader = ExtResource("3_c4w8v")
+shader = ExtResource("5_k8v0n")
 shader_parameter/hit_flash_color = Color(1, 1, 1, 1)
 shader_parameter/hit_flash_on = false
 
@@ -114,47 +136,47 @@ scale_max = 3.0
 color_ramp = SubResource("GradientTexture1D_xsfyf")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c4w8v"]
-atlas = ExtResource("4_5uy6h")
+atlas = ExtResource("8_j0mgs")
 region = Rect2(0, 0, 80, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xwavj"]
-atlas = ExtResource("4_5uy6h")
+atlas = ExtResource("8_j0mgs")
 region = Rect2(80, 0, 80, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nenq2"]
-atlas = ExtResource("4_5uy6h")
+atlas = ExtResource("8_j0mgs")
 region = Rect2(160, 0, 80, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_md484"]
-atlas = ExtResource("4_5uy6h")
+atlas = ExtResource("8_j0mgs")
 region = Rect2(240, 0, 80, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ipns3"]
-atlas = ExtResource("4_5uy6h")
+atlas = ExtResource("8_j0mgs")
 region = Rect2(320, 0, 80, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8qclf"]
-atlas = ExtResource("4_5uy6h")
+atlas = ExtResource("8_j0mgs")
 region = Rect2(400, 0, 80, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w8i8w"]
-atlas = ExtResource("4_5uy6h")
+atlas = ExtResource("8_j0mgs")
 region = Rect2(480, 0, 80, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_otmr2"]
-atlas = ExtResource("4_5uy6h")
+atlas = ExtResource("8_j0mgs")
 region = Rect2(560, 0, 80, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wtq4b"]
-atlas = ExtResource("4_5uy6h")
+atlas = ExtResource("8_j0mgs")
 region = Rect2(640, 0, 80, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j0cyh"]
-atlas = ExtResource("4_5uy6h")
+atlas = ExtResource("8_j0mgs")
 region = Rect2(720, 0, 80, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g0wcc"]
-atlas = ExtResource("4_5uy6h")
+atlas = ExtResource("8_j0mgs")
 region = Rect2(800, 0, 80, 80)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s1ycm"]
@@ -198,19 +220,23 @@ animations = [{
 "speed": 13.0
 }]
 
-[node name="Enemy2" type="CharacterBody2D" unique_id=1965764076 groups=["enemy"]]
+[node name="EnemyKaju" type="CharacterBody2D" unique_id=1965764076 groups=["enemy"]]
 scale = Vector2(0.5, 0.5)
-script = ExtResource("1_4ra3w")
-stats = ExtResource("2_xwavj")
+script = ExtResource("1_w0ojr")
 is_in_battle_scene = true
-loot_drop_type = ExtResource("2_c4w8v")
+loot_drop_type = ExtResource("3_qv6qb")
 drop_rate = 100.0
 
-[node name="enemy" parent="." unique_id=1601589879 instance=ExtResource("2_5uy6h")]
-material = SubResource("ShaderMaterial_w8i8w")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=695249661]
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_qti4y")
+frame_progress = 0.26422307
+
+[node name="enemy" parent="." unique_id=1601589879 instance=ExtResource("4_goy13")]
+material = SubResource("ShaderMaterial_8pg4g")
 rotation = -3.1415927
 scale = Vector2(1, -1)
-sprite_frames = ExtResource("6_8qclf")
+sprite_frames = ExtResource("6_ef401")
 frame_progress = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=570825910]
@@ -221,30 +247,8 @@ shape = SubResource("CapsuleShape2D_bsing")
 [node name="DamageNumberOrigin" type="Node2D" parent="." unique_id=560720877]
 position = Vector2(1, -25)
 
-[node name="MoneyNumberOrigin" type="Node2D" parent="." unique_id=1559262911]
-position = Vector2(1, -25)
-
-[node name="MoneyLabel" type="Label" parent="MoneyNumberOrigin" unique_id=70844158]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -15.5
-offset_top = -3.0
-offset_right = 15.5
-offset_bottom = 3.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(15, 3)
-theme_override_colors/font_color = Color(0.10646372, 0.5503035, 0, 1)
-theme_override_fonts/font = ExtResource("7_w8i8w")
-theme_override_font_sizes/font_size = 6
-text = "$9999"
-
 [node name="StatusComponent" type="Node2D" parent="." unique_id=1350344235]
-script = ExtResource("7_nenq2")
+script = ExtResource("7_hgioj")
 
 [node name="HitFlashAnim" type="AnimationPlayer" parent="." unique_id=1013581890]
 libraries/ = SubResource("AnimationLibrary_ebxvl")
@@ -271,9 +275,9 @@ position = Vector2(0, 12)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1295717044]
 
-[node name="DamageNumberSpawner2" parent="." unique_id=549251904 instance=ExtResource("10_8qclf")]
+[node name="DamageNumberSpawner2" parent="." unique_id=549251904 instance=ExtResource("9_3akc1")]
 position = Vector2(0, -29)
-label_settings = ExtResource("9_8qclf")
+label_settings = ExtResource("10_066og")
 
 [connection signal="animation_finished" from="HitFlashAnim" to="." method="_on_hit_flash_anim_animation_finished"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

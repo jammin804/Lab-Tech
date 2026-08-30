@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://bki6hpddo6sgq" path="res://assets/music/bgm/Evil Grudge (RT 1.875)/Chiptune Vol2 Evil Grudge Main.wav" id="8_14nfc"]
 [ext_resource type="PackedScene" uid="uid://bktpyu7vhq0km" path="res://scenes/Systems/enemySpawner.tscn" id="10_0r5j3"]
 [ext_resource type="PackedScene" uid="uid://lccgrpafmldk" path="res://scenes/debug/debug_text_overlay.tscn" id="11_d0wj5"]
+[ext_resource type="FontFile" uid="uid://c2a35mxw7sbmh" path="res://font/PressStart2P.ttf" id="11_vtd0g"]
 [ext_resource type="PackedScene" uid="uid://bd1e7fmt2sl4m" path="res://scenes/UI/settings_menu.tscn" id="12_1n1l4"]
 [ext_resource type="PackedScene" uid="uid://dg66c7f7p6iii" path="res://scenes/pause_menu.tscn" id="13_yhe24"]
 [ext_resource type="PackedScene" uid="uid://ck75rgmytou2t" path="res://scenes/UI/result_screen.tscn" id="14_x5rd6"]
@@ -65,6 +66,8 @@ pause_menu = NodePath("PauseLayer/PauseMenu")
 settings_menu = NodePath("PauseLayer/SettingsMenu")
 player = ExtResource("2_vtd0g")
 player_spawn = NodePath("Pausable/PlayerSpawnPoint")
+metadata/_edit_horizontal_guides_ = [23.0]
+metadata/_edit_vertical_guides_ = [19.0]
 
 [node name="Background" type="TextureRect" parent="." unique_id=62776617]
 texture_filter = 1
@@ -108,7 +111,7 @@ position = Vector2(312, 128)
 
 [node name="EnemySpawnPoint2" type="Marker2D" parent="Pausable" unique_id=1077596327 groups=["ground_spawns"]]
 unique_name_in_owner = true
-position = Vector2(312, 96)
+position = Vector2(312, 65)
 
 [node name="Enemies" type="Node2D" parent="Pausable" unique_id=374635073]
 
@@ -130,10 +133,11 @@ texture_hover = SubResource("AtlasTexture_p5bt8")
 unique_name_in_owner = true
 position = Vector2(32, 128)
 
-[node name="EnemySpawner" parent="Pausable" unique_id=1886090633 instance=ExtResource("10_0r5j3")]
+[node name="EnemySpawner" parent="Pausable" unique_id=1886090633 node_paths=PackedStringArray("spawn_locations") instance=ExtResource("10_0r5j3")]
 unique_name_in_owner = true
 position = Vector2(312, 128)
 total_waves = 10
+spawn_locations = [NodePath("../EnemySpawnPoint"), NodePath("../EnemySpawnPoint2")]
 
 [node name="WaveLabel" type="Label" parent="Pausable" unique_id=398613744]
 layout_mode = 1
@@ -170,7 +174,6 @@ bus = &"Music"
 [node name="DebugLayer" type="CanvasLayer" parent="." unique_id=389921551]
 process_mode = 3
 layer = 128
-visible = false
 
 [node name="DebugRoot" type="Control" parent="DebugLayer" unique_id=1584273552]
 layout_mode = 3
@@ -182,6 +185,21 @@ offset_right = 40.0
 grow_vertical = 0
 mouse_filter = 2
 mouse_behavior_recursive = 1
+
+[node name="MoneyLabel" type="Label" parent="DebugLayer/DebugRoot" unique_id=196329218]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 177.0
+offset_top = -122.0
+offset_right = 237.0
+offset_bottom = -114.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("11_vtd0g")
+theme_override_font_sizes/font_size = 8
+text = "$999999"
 
 [node name="DebugTextOverlay" parent="DebugLayer/DebugRoot" unique_id=1309649993 instance=ExtResource("11_d0wj5")]
 layout_mode = 1

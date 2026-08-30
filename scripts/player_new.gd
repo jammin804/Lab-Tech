@@ -62,20 +62,19 @@ func _ready() -> void:
 
 func _on_damage_done(amount: int) -> void:
 	level_damage_done += amount
-	print("Current level damage ", level_damage_done)
 
 func _on_currency_gained(amount: int, type_title: String="money") -> void:
 	print(type_title)
-	if type_title == "Money":
+	if type_title == "money":
 		level_money += amount
 		SaveLoad.SaveFileData.money +=  amount
 		print("Current Money ", level_money)
 
-	elif type_title == "Scrap":
+	elif type_title == "scrap":
 		level_scraps += amount
 		SaveLoad.SaveFileData.scrap += amount
 
-	elif type_title == "Core":
+	elif type_title == "core":
 		level_cores += amount
 		SaveLoad.SaveFileData.core += amount
 
