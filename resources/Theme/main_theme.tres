@@ -1,6 +1,6 @@
 [gd_resource type="Theme" format=3 uid="uid://65aipdpydskv"]
 
-[ext_resource type="FontFile" uid="uid://c2a35mxw7sbmh" path="res://font/PressStart2P.ttf" id="1_ik7p3"]
+[ext_resource type="FontFile" uid="uid://jym6het72df5" path="res://new_font_file.tres" id="1_ik7p3"]
 
 [resource]
 Label/font_sizes/font_size = 8

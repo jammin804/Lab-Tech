@@ -1,7 +1,8 @@
 [gd_resource type="Theme" format=3 uid="uid://br8j38ejqosgk"]
 
 [ext_resource type="FontFile" uid="uid://c2a35mxw7sbmh" path="res://font/PressStart2P.ttf" id="1_jwjua"]
+[ext_resource type="FontFile" uid="uid://jym6het72df5" path="res://new_font_file.tres" id="2_dheqo"]
 
 [resource]
 Button/fonts/font = ExtResource("1_jwjua")
-Label/fonts/font = ExtResource("1_jwjua")
+Label/fonts/font = ExtResource("2_dheqo")
