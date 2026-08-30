@@ -34,6 +34,7 @@ var weights
 @onready var destroy_anim: AnimatedSprite2D = $DestroyAnim
 @onready var spawner: Marker2D = $Spawner
 @onready var damage_number_spawner: DamageNumberSpawner = $DamageNumberSpawner2
+@onready var money_label: Label = $MoneyNumberOrigin/MoneyLabel
 
 @onready var shaker := Shaker.new(enemy_sprite)
 
@@ -132,8 +133,16 @@ func _drop_item() -> void:
 
 func _on_hit_flash_anim_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "death":
-		print("Enemy Dropped: ", loot_amount[rng.rand_weighted(weights)])
-		Events.increase_currency.emit(loot_amount[rng.rand_weighted(weights)])
+		#print("Enemy Dropped: ", loot_amount[rng.rand_weighted(weights)])
+		var amount = loot_amount[rng.rand_weighted(weights)]
+		money_label.text = str("$", amount)
+		money_label.show()
+		TweenFX.punch_in(money_label)
+		await TweenFX.punch_in(money_label).finished
+		money_label.hide()
+
+		Events.increase_currency.emit(amount)
+
 		#if loot_drop_type:
 			#var rng = randf() * 100
 			#if rng <= drop_rate:

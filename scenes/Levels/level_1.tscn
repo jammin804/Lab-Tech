@@ -66,6 +66,8 @@ pause_menu = NodePath("PauseLayer/PauseMenu")
 settings_menu = NodePath("PauseLayer/SettingsMenu")
 player = ExtResource("2_vtd0g")
 player_spawn = NodePath("Pausable/PlayerSpawnPoint")
+metadata/_edit_horizontal_guides_ = [23.0]
+metadata/_edit_vertical_guides_ = [19.0]
 
 [node name="Background" type="TextureRect" parent="." unique_id=62776617]
 texture_filter = 1

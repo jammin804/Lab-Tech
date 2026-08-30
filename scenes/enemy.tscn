@@ -8,10 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://dcstwgwvdksfg" path="res://assets/enemy/explosions/explode9.png" id="4_5uy6h"]
 [ext_resource type="SpriteFrames" uid="uid://bqmihelqdobus" path="res://basic_bot_anim.tres" id="6_8qclf"]
 [ext_resource type="Script" uid="uid://bmfxk2cb1ujol" path="res://scripts/component/status_component.gd" id="7_nenq2"]
+[ext_resource type="FontFile" uid="uid://c2a35mxw7sbmh" path="res://font/PressStart2P.ttf" id="7_w8i8w"]
 [ext_resource type="LabelSettings" uid="uid://b16prvyeyp2wt" path="res://damage_label_basic.tres" id="9_8qclf"]
 [ext_resource type="PackedScene" uid="uid://dfq7vuxtt7gve" path="res://scenes/UI/damage_number_spawner.tscn" id="10_8qclf"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8qclf"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w8i8w"]
 resource_local_to_scene = true
 shader = ExtResource("3_c4w8v")
 shader_parameter/hit_flash_color = Color(1, 1, 1, 1)
@@ -206,7 +207,7 @@ loot_drop_type = ExtResource("2_c4w8v")
 drop_rate = 100.0
 
 [node name="enemy" parent="." unique_id=1601589879 instance=ExtResource("2_5uy6h")]
-material = SubResource("ShaderMaterial_8qclf")
+material = SubResource("ShaderMaterial_w8i8w")
 rotation = -3.1415927
 scale = Vector2(1, -1)
 sprite_frames = ExtResource("6_8qclf")
@@ -219,6 +220,28 @@ shape = SubResource("CapsuleShape2D_bsing")
 
 [node name="DamageNumberOrigin" type="Node2D" parent="." unique_id=560720877]
 position = Vector2(1, -25)
+
+[node name="MoneyNumberOrigin" type="Node2D" parent="." unique_id=1559262911]
+position = Vector2(1, -25)
+
+[node name="MoneyLabel" type="Label" parent="MoneyNumberOrigin" unique_id=70844158]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.5
+offset_top = -3.0
+offset_right = 15.5
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(15, 3)
+theme_override_colors/font_color = Color(0.10646372, 0.5503035, 0, 1)
+theme_override_fonts/font = ExtResource("7_w8i8w")
+theme_override_font_sizes/font_size = 6
+text = "$9999"
 
 [node name="StatusComponent" type="Node2D" parent="." unique_id=1350344235]
 script = ExtResource("7_nenq2")
