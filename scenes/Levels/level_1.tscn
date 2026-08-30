@@ -109,7 +109,7 @@ position = Vector2(312, 128)
 
 [node name="EnemySpawnPoint2" type="Marker2D" parent="Pausable" unique_id=1077596327 groups=["ground_spawns"]]
 unique_name_in_owner = true
-position = Vector2(312, 96)
+position = Vector2(312, 65)
 
 [node name="Enemies" type="Node2D" parent="Pausable" unique_id=374635073]
 
@@ -131,10 +131,11 @@ texture_hover = SubResource("AtlasTexture_p5bt8")
 unique_name_in_owner = true
 position = Vector2(32, 128)
 
-[node name="EnemySpawner" parent="Pausable" unique_id=1886090633 instance=ExtResource("10_0r5j3")]
+[node name="EnemySpawner" parent="Pausable" unique_id=1886090633 node_paths=PackedStringArray("spawn_locations") instance=ExtResource("10_0r5j3")]
 unique_name_in_owner = true
 position = Vector2(312, 128)
 total_waves = 10
+spawn_locations = [NodePath("../EnemySpawnPoint"), NodePath("../EnemySpawnPoint2")]
 
 [node name="WaveLabel" type="Label" parent="Pausable" unique_id=398613744]
 layout_mode = 1
