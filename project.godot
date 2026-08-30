@@ -60,6 +60,10 @@ folder_colors={
 "res://scripts/": "orange"
 }
 
+[gui]
+
+theme/custom_font="uid://jym6het72df5"
+
 [input]
 
 left_click={
