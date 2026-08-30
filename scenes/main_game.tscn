@@ -58,6 +58,7 @@ process_mode = 3
 layer = 128
 
 [node name="DebugRoot" type="Control" parent="DebugLayer" unique_id=620348261]
+visible = false
 layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
