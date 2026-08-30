@@ -140,6 +140,7 @@ total_waves = 10
 spawn_locations = [NodePath("../EnemySpawnPoint"), NodePath("../EnemySpawnPoint2")]
 
 [node name="WaveLabel" type="Label" parent="Pausable" unique_id=398613744]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -174,6 +175,7 @@ bus = &"Music"
 [node name="DebugLayer" type="CanvasLayer" parent="." unique_id=389921551]
 process_mode = 3
 layer = 128
+visible = false
 
 [node name="DebugRoot" type="Control" parent="DebugLayer" unique_id=1584273552]
 layout_mode = 3
