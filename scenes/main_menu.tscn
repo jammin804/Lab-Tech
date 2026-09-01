@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dkv5y2uqieykr" path="res://large_resources/main_menu_background.res" id="2_8ln24"]
 [ext_resource type="PackedScene" uid="uid://cbvkqygoialpb" path="res://scenes/button.tscn" id="2_bqqt6"]
 [ext_resource type="FontFile" uid="uid://b5bmx6loo6pht" path="res://font/FiraCode-Retina.ttf" id="4_1ajci"]
+[ext_resource type="FontFile" uid="uid://c35cyd4b2jdq3" path="res://font/yoster.ttf" id="6_7b55j"]
 [ext_resource type="PackedScene" uid="uid://bd1e7fmt2sl4m" path="res://scenes/UI/settings_menu.tscn" id="10_rcqid"]
 [ext_resource type="AudioStream" uid="uid://oyl65rapnofy" path="res://assets/music/bgm/Do It (RT 4.624)/Chiptune Vol7 Do It Main.wav" id="12_flqon"]
 [ext_resource type="PackedScene" uid="uid://blqe7ke2t7a3n" path="res://scenes/UI/custom_mouse.tscn" id="14_1ajci"]
@@ -3084,7 +3085,7 @@ alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("1_rcqid")
+theme_override_fonts/font = ExtResource("6_7b55j")
 theme_override_font_sizes/font_size = 8
 text = "CONTINUE"
 
