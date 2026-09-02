@@ -1,6 +1,6 @@
 [gd_resource type="Theme" format=3 uid="uid://65aipdpydskv"]
 
-[ext_resource type="FontFile" uid="uid://b5bmx6loo6pht" path="res://font/FiraCode-Retina.ttf" id="1_ik7p3"]
+[ext_resource type="FontFile" uid="uid://cno3po4cl2ol2" path="res://font/Cyberphont 3.0 A.ttf" id="1_ik7p3"]
 
 [resource]
 Label/font_sizes/font_size = 8
