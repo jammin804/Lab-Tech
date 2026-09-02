@@ -4,7 +4,7 @@
 [ext_resource type="StyleBox" uid="uid://h4hbbqa8c1d3" path="res://themes/text_boxes.tres" id="2_alpht"]
 [ext_resource type="Texture2D" uid="uid://bmgd5bh11073r" path="res://assets/ui/hud/coins-chests-etc-2-0.png" id="3_ff7hv"]
 [ext_resource type="Texture2D" uid="uid://brvmjalwweco2" path="res://assets/ui/hud/Sprite-0001.png" id="4_gfnu0"]
-[ext_resource type="FontFile" uid="uid://c2a35mxw7sbmh" path="res://font/PressStart2P.ttf" id="4_xfnpj"]
+[ext_resource type="Theme" uid="uid://b2yiqfrkj5dmr" path="res://resources/Theme/ui_theme.tres" id="4_xfnpj"]
 [ext_resource type="PackedScene" uid="uid://cd5t621s5krvm" path="res://scenes/UI/New Talent Tree/talent_icon.tscn" id="5_50yuc"]
 [ext_resource type="Resource" uid="uid://b3i2vvmo6wtel" path="res://resources/TalentTree/BodyTree/skills/body_quick_charge.tres" id="6_jfnck"]
 [ext_resource type="Resource" uid="uid://dl5vqn7o1sbcj" path="res://resources/TalentTree/BodyTree/skills/body_lighting_rod.tres" id="6_yn5dh"]
@@ -170,6 +170,7 @@ offset_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 8
+theme = ExtResource("4_xfnpj")
 theme_override_constants/separation = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="InfoPanel/VBoxContainer" unique_id=344098555]
@@ -192,8 +193,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_qti4y")
 [node name="DescriptionLabel" type="Label" parent="InfoPanel/VBoxContainer/PanelContainer2" unique_id=1546630465]
 custom_minimum_size = Vector2(157, 25)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_xfnpj")
-theme_override_font_sizes/font_size = 6
+theme_override_font_sizes/font_size = 8
 text = "Upgrades Level 2 
 Charge Shot"
 autowrap_mode = 3
@@ -208,6 +208,7 @@ offset_top = 25.0
 offset_right = -7.0
 offset_bottom = 40.0
 grow_horizontal = 0
+theme = ExtResource("4_xfnpj")
 theme_override_styles/panel = SubResource("StyleBoxFlat_b1g2q")
 
 [node name="MarginContainer" type="MarginContainer" parent="CostPanel" unique_id=1198450417]
@@ -227,15 +228,17 @@ layout_mode = 2
 [node name="CostLabel" type="Label" parent="CostPanel/MarginContainer/HBoxContainer" unique_id=336926679]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 9
+theme_override_font_sizes/font_size = 10
 text = "COST"
+vertical_alignment = 1
 
 [node name="AmountLabel" type="Label" parent="CostPanel/MarginContainer/HBoxContainer" unique_id=1474499407]
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_colors/font_color = Color(1, 0.30588236, 0.23529412, 1)
-theme_override_font_sizes/font_size = 9
+theme_override_font_sizes/font_size = 10
 text = "0"
+vertical_alignment = 1
 
 [node name="MoneyPanel" type="Panel" parent="." unique_id=842886115]
 layout_mode = 1
@@ -247,6 +250,7 @@ offset_top = 3.0
 offset_right = -4.0
 offset_bottom = 17.0
 grow_horizontal = 0
+theme = ExtResource("4_xfnpj")
 theme_override_styles/panel = SubResource("StyleBoxFlat_b1g2q")
 
 [node name="TextureRect" type="TextureRect" parent="MoneyPanel" unique_id=2050451765]
@@ -333,6 +337,7 @@ size_flags_vertical = 4
 talent_resource = ExtResource("8_07sy3")
 
 [node name="LockedScene" type="Panel" parent="." unique_id=831147695]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

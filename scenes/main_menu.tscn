@@ -1,9 +1,9 @@
 [gd_scene format=4 uid="uid://1lqqs1b6h2wp"]
 
 [ext_resource type="Script" uid="uid://or3x410au1eh" path="res://scripts/main_menu.gd" id="1_l6cm7"]
-[ext_resource type="FontFile" uid="uid://c2a35mxw7sbmh" path="res://font/PressStart2P.ttf" id="1_rcqid"]
 [ext_resource type="Texture2D" uid="uid://dkv5y2uqieykr" path="res://large_resources/main_menu_background.res" id="2_8ln24"]
 [ext_resource type="PackedScene" uid="uid://cbvkqygoialpb" path="res://scenes/button.tscn" id="2_bqqt6"]
+[ext_resource type="FontFile" uid="uid://cno3po4cl2ol2" path="res://font/Cyberphont 3.0 A.ttf" id="4_1ajci"]
 [ext_resource type="PackedScene" uid="uid://bd1e7fmt2sl4m" path="res://scenes/UI/settings_menu.tscn" id="10_rcqid"]
 [ext_resource type="AudioStream" uid="uid://oyl65rapnofy" path="res://assets/music/bgm/Do It (RT 4.624)/Chiptune Vol7 Do It Main.wav" id="12_flqon"]
 [ext_resource type="PackedScene" uid="uid://blqe7ke2t7a3n" path="res://scenes/UI/custom_mouse.tscn" id="14_1ajci"]
@@ -15,8 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://bvflwlhln7mt" path="res://assets/ui/socials/icons8-discord-50 (2).png" id="18_8egab"]
 
 [sub_resource type="Theme" id="Theme_3i1ia"]
-Button/fonts/font = ExtResource("1_rcqid")
-Label/fonts/font = ExtResource("1_rcqid")
+Button/fonts/font = ExtResource("4_1ajci")
+Label/fonts/font = ExtResource("4_1ajci")
 
 [sub_resource type="Image" id="Image_bqqt6"]
 data = {
@@ -3056,7 +3056,7 @@ layout_mode = 1
 offset_left = 8.0
 offset_right = 280.0
 offset_bottom = 45.0
-theme_override_fonts/font = ExtResource("1_rcqid")
+theme_override_fonts/font = ExtResource("4_1ajci")
 text = "MegaCremental"
 vertical_alignment = 1
 
@@ -3083,32 +3083,28 @@ alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("1_rcqid")
-theme_override_font_sizes/font_size = 8
+theme_override_fonts/font = ExtResource("4_1ajci")
 text = "CONTINUE"
 
 [node name="StartBtn" parent="Options Container/MainButtons" unique_id=2023809420 instance=ExtResource("2_bqqt6")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("1_rcqid")
-theme_override_font_sizes/font_size = 8
+theme_override_fonts/font = ExtResource("4_1ajci")
 text = "NEW  GAME"
 
 [node name="SettingsBtn" parent="Options Container/MainButtons" unique_id=1462179087 instance=ExtResource("2_bqqt6")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("1_rcqid")
-theme_override_font_sizes/font_size = 8
+theme_override_fonts/font = ExtResource("4_1ajci")
 text = "SETTINGS"
 
 [node name="QuitBtn" parent="Options Container/MainButtons" unique_id=643844570 instance=ExtResource("2_bqqt6")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("1_rcqid")
-theme_override_font_sizes/font_size = 8
+theme_override_fonts/font = ExtResource("4_1ajci")
 text = "QUIT"
 
 [node name="CreditsMenu" type="VBoxContainer" parent="Options Container" unique_id=1779441200]
