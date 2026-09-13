@@ -27,6 +27,8 @@ var rng = RandomNumberGenerator.new()
 var loot_amount : Array = []
 var weights
 
+var direction: int = -1
+
 @onready var enemy_sprite: AnimatedSprite2D = $enemy
 @onready var status_component: Node = $StatusComponent
 @onready var hit_flash_anim: AnimationPlayer = $HitFlashAnim
@@ -39,6 +41,10 @@ var weights
 @onready var shaker := Shaker.new(enemy_sprite)
 
 func _ready() -> void:
+	#Signal Initalization
+	Events.change_direction.connect(_on_change_direction)
+	#End
+
 	destroy_anim.hide()
 	if stats:
 		current_data = stats.duplicate()
@@ -55,11 +61,10 @@ func _ready() -> void:
 			])
 
 
-
 	#Change health based on level
 	current_enemy_health = current_data.health
 	current_enemy_health = floor( (current_enemy_health + 10) * Globals.level * randf_range(1.0, 1.5) )
-	#print("From Enemy.gd Current Health of this enemy is: ",current_enemy_health)
+
 	if is_in_debug_mode:
 		current_enemy_health = 1000
 		current_data.move_speed = 0
@@ -125,12 +130,13 @@ func destroy():
 
 func move_enemy(delta):
 	if is_in_battle_scene or is_in_debug_mode:
-		position.x += current_data.move_speed * delta * -1
+		position.x += current_data.move_speed * delta * direction
 		enemy_sprite.play()
 
 func _drop_item() -> void:
 	pass
 
+##FIXME Need to fix the issue of the shader studder
 func _on_hit_flash_anim_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "death":
 		#print("Enemy Dropped: ", loot_amount[rng.rand_weighted(weights)])
@@ -161,3 +167,11 @@ func _on_lab_uprgrade_scene_start() -> void:
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	destroy()
+
+
+
+func _on_change_direction():
+	if direction == -1:
+		direction = 1
+	else:
+		direction = -1

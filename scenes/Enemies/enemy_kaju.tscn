@@ -34,7 +34,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8pg4g"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m21rq"]
 resource_local_to_scene = true
 shader = ExtResource("5_k8v0n")
 shader_parameter/hit_flash_color = Color(1, 1, 1, 1)
@@ -233,7 +233,7 @@ sprite_frames = SubResource("SpriteFrames_qti4y")
 frame_progress = 0.26422307
 
 [node name="enemy" parent="." unique_id=1601589879 instance=ExtResource("4_goy13")]
-material = SubResource("ShaderMaterial_8pg4g")
+material = SubResource("ShaderMaterial_m21rq")
 rotation = -3.1415927
 scale = Vector2(1, -1)
 sprite_frames = ExtResource("6_ef401")

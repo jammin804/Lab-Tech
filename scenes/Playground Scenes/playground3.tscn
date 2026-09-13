@@ -195,9 +195,8 @@ tile_map_data = PackedByteArray("AAAAAAcAAAAPAAIAAAAAAAgAAAANAAYAAAAAAAkAAAANAAc
 tile_set = SubResource("TileSet_akbqt")
 y_sort_origin = -2
 
-[node name="BattlePlayer" parent="." unique_id=166741663 node_paths=PackedStringArray("camera") instance=ExtResource("2_c68yg")]
+[node name="BattlePlayer" parent="." unique_id=166741663 instance=ExtResource("2_c68yg")]
 position = Vector2(38, 102)
-camera = NodePath("../Camera")
 drain_amount = 20
 
 [node name="Player" parent="BattlePlayer" unique_id=2126503732 instance=ExtResource("3_q4f50")]
