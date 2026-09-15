@@ -30,18 +30,14 @@ func _ready() -> void:
 
 
 
-func _on_switch_collision_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemy") and current_row == Row.BOTTOM_ROW:
-		print("Can move to the top")
-		#Move Up
-		enemy.global_position.y = top_spawn_point.global_position.y
-		#Change Directon movement backwards
-
-	elif body.is_in_group("enemy") and current_row == Row.TOP_ROW:
-		print("Can move to the bottom")
-		enemy.global_position.y = bottom_spawn_point.global_position.y
-
-	Events.change_direction.emit()
+func _on_switch_collision_body_entered(body: Enemy) -> void:
+	if body.ESCAPE_OPTIONS.NORMAL:
+		_normal_escape_pattern(body)
+	elif body.ESCAPE_OPTIONS.SPEED_UP:
+		_normal_escape_pattern(body)
+		enemy.current_data.move_speed *= 2
+	elif body.ESCAPE_OPTIONS.TELEPORT:
+		_teleport_escape_pattern()
 
 func _spawn_enemy() -> void:
 	enemy = enemy_scene.instantiate()
@@ -53,3 +49,28 @@ func _spawn_enemy() -> void:
 
 func _on_spawn_enemy_button_pressed() -> void:
 	_spawn_enemy()
+
+
+func _on_switch_collision_2_body_entered(body: Enemy) -> void:
+	if body.ESCAPE_OPTIONS.ZIG_ZAG:
+		print("Can do the zig zig escape movment")
+
+
+func _normal_escape_pattern(body: Enemy):
+	change_lanes(body)
+
+	Events.change_direction.emit()
+
+
+func change_lanes(body):
+	if body.is_in_group("enemy") and current_row == Row.BOTTOM_ROW:
+		#print("Can move to the top")
+		enemy.global_position.y = top_spawn_point.global_position.y
+
+	elif body.is_in_group("enemy") and current_row == Row.TOP_ROW:
+		#print("Can move to the bottom")
+		enemy.global_position.y = bottom_spawn_point.global_position.y
+
+func _teleport_escape_pattern() -> void:
+	enemy.global_position.x = %TeleportPoint.global_position.x
+	Events.change_direction.emit()

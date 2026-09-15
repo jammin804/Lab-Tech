@@ -201,6 +201,7 @@ animations = [{
 [node name="Enemy2" type="CharacterBody2D" unique_id=1965764076 groups=["enemy"]]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_4ra3w")
+escape_options = 3
 stats = ExtResource("2_xwavj")
 is_in_battle_scene = true
 loot_drop_type = ExtResource("2_c4w8v")

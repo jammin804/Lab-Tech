@@ -1,8 +1,8 @@
 class_name Enemy
 extends CharacterBody2D
 
-
-
+enum ESCAPE_OPTIONS { NORMAL, ZIG_ZAG, SPEED_UP, TELEPORT}
+@export var escape_options : ESCAPE_OPTIONS
 #region DEBUG OPTIONS
 @export_category("DEBUG OPTIONS")
 @export var is_in_debug_mode : bool = false
@@ -45,6 +45,7 @@ func _ready() -> void:
 	Events.change_direction.connect(_on_change_direction)
 	#End
 
+	#Choose
 	destroy_anim.hide()
 	if stats:
 		current_data = stats.duplicate()
@@ -175,3 +176,5 @@ func _on_change_direction():
 		direction = 1
 	else:
 		direction = -1
+
+	enemy_sprite.scale.x = -1

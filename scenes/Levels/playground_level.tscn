@@ -119,7 +119,11 @@ position = Vector2(160, 90)
 
 [node name="EnemySpawnPoint" type="Marker2D" parent="Pausable" unique_id=195233964 groups=["ground_spawns"]]
 unique_name_in_owner = true
-position = Vector2(312, 128)
+position = Vector2(304, 133)
+
+[node name="TeleportPoint" type="Marker2D" parent="Pausable" unique_id=1543482778 groups=["ground_spawns"]]
+unique_name_in_owner = true
+position = Vector2(342, 133)
 
 [node name="EnemySpawnPoint2" type="Marker2D" parent="Pausable" unique_id=1077596327 groups=["ground_spawns"]]
 unique_name_in_owner = true
@@ -179,6 +183,20 @@ bus = &"Music"
 position = Vector2(160, 118)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pausable/SwitchCollision" unique_id=1853244716]
+position = Vector2(0, -28)
+shape = SubResource("RectangleShape2D_s5m6i")
+
+[node name="SwitchCollision2" type="Area2D" parent="Pausable" unique_id=1293710788]
+position = Vector2(224, 118)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pausable/SwitchCollision2" unique_id=184129917]
+position = Vector2(0, -28)
+shape = SubResource("RectangleShape2D_s5m6i")
+
+[node name="SwitchCollision3" type="Area2D" parent="Pausable" unique_id=357240525]
+position = Vector2(286, 118)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pausable/SwitchCollision3" unique_id=1807904666]
 position = Vector2(0, -28)
 shape = SubResource("RectangleShape2D_s5m6i")
 
@@ -243,3 +261,4 @@ offset_bottom = 40.0
 
 [connection signal="pressed" from="Pausable/SpawnEnemyButton" to="." method="_on_spawn_enemy_button_pressed"]
 [connection signal="body_entered" from="Pausable/SwitchCollision" to="." method="_on_switch_collision_body_entered"]
+[connection signal="body_entered" from="Pausable/SwitchCollision2" to="." method="_on_switch_collision_2_body_entered"]
