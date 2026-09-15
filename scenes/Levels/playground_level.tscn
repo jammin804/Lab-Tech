@@ -117,7 +117,7 @@ autostart = true
 [node name="Camera" parent="Pausable" unique_id=263792174 instance=ExtResource("7_jqjvn")]
 position = Vector2(160, 90)
 
-[node name="EnemySpawnPoint" type="Marker2D" parent="Pausable" unique_id=195233964 groups=["ground_spawns"]]
+[node name="BottomSpawnPoint" type="Marker2D" parent="Pausable" unique_id=195233964 groups=["ground_spawns"]]
 unique_name_in_owner = true
 position = Vector2(304, 133)
 
@@ -125,7 +125,7 @@ position = Vector2(304, 133)
 unique_name_in_owner = true
 position = Vector2(342, 133)
 
-[node name="EnemySpawnPoint2" type="Marker2D" parent="Pausable" unique_id=1077596327 groups=["ground_spawns"]]
+[node name="TopSpawnPoint" type="Marker2D" parent="Pausable" unique_id=1077596327 groups=["ground_spawns"]]
 unique_name_in_owner = true
 position = Vector2(312, 65)
 
@@ -261,4 +261,3 @@ offset_bottom = 40.0
 
 [connection signal="pressed" from="Pausable/SpawnEnemyButton" to="." method="_on_spawn_enemy_button_pressed"]
 [connection signal="body_entered" from="Pausable/SwitchCollision" to="." method="_on_switch_collision_body_entered"]
-[connection signal="body_entered" from="Pausable/SwitchCollision2" to="." method="_on_switch_collision_2_body_entered"]

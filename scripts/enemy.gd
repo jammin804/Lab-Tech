@@ -28,6 +28,7 @@ var loot_amount : Array = []
 var weights
 
 var direction: int = -1
+var escape_option: int
 
 @onready var enemy_sprite: AnimatedSprite2D = $enemy
 @onready var status_component: Node = $StatusComponent
@@ -37,6 +38,7 @@ var direction: int = -1
 @onready var spawner: Marker2D = $Spawner
 @onready var damage_number_spawner: DamageNumberSpawner = $DamageNumberSpawner2
 @onready var money_label: Label = $MoneyNumberOrigin/MoneyLabel
+@onready var pattern_indicator: Sprite2D = $PatternIndicator
 
 @onready var shaker := Shaker.new(enemy_sprite)
 
@@ -46,6 +48,8 @@ func _ready() -> void:
 	#End
 
 	#Choose
+	_choose_escape_option(randi_range(0, 3) as ESCAPE_OPTIONS)
+
 	destroy_anim.hide()
 	if stats:
 		current_data = stats.duplicate()
@@ -69,6 +73,8 @@ func _ready() -> void:
 	if is_in_debug_mode:
 		current_enemy_health = 1000
 		current_data.move_speed = 0
+
+
 
 func _process(delta: float) -> void:
 	if not is_dead:
@@ -178,3 +184,25 @@ func _on_change_direction():
 		direction = -1
 
 	enemy_sprite.scale.x = -1
+
+
+func _choose_escape_option(options: ESCAPE_OPTIONS) -> void:
+	match options:
+		ESCAPE_OPTIONS.NORMAL:
+			print("Normal Exit")
+			pattern_indicator.modulate = Color.ALICE_BLUE
+			escape_option = 0
+		ESCAPE_OPTIONS.ZIG_ZAG:
+			print("Zig Exit")
+			pattern_indicator.modulate = Color.GOLD
+			escape_option = 1
+		ESCAPE_OPTIONS.SPEED_UP:
+			print("Fast Exit")
+			pattern_indicator.modulate = Color.NAVY_BLUE
+
+			escape_option = 2
+		ESCAPE_OPTIONS.TELEPORT:
+			print("Tele Exit")
+			pattern_indicator.modulate = Color.DARK_MAGENTA
+
+			escape_option = 3

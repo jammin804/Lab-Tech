@@ -8,13 +8,13 @@ enum Row {TOP_ROW, BOTTOM_ROW}
 
 
 var spawn_points: Array[Marker2D]
-var current_row : Row
+var current_row : int
 var spawn_point : Marker2D
 var enemy: Enemy
 
-@onready var bottom_spawn_point: Marker2D = %EnemySpawnPoint
+@onready var bottom_spawn_point: Marker2D = %BottomSpawnPoint
 @onready var switch_collision: Area2D = $Pausable/SwitchCollision
-@onready var top_spawn_point: Marker2D = %EnemySpawnPoint2
+@onready var top_spawn_point: Marker2D = %TopSpawnPoint
 
 func _ready() -> void:
 	spawn_points += [bottom_spawn_point, top_spawn_point]
@@ -22,21 +22,22 @@ func _ready() -> void:
 	_spawn_enemy()
 
 	if bottom_spawn_point.global_position.y == enemy.global_position.y: #bottom row
-		current_row = Row.BOTTOM_ROW
+		current_row = 1
 		print("On Bottom Row")
 	elif top_spawn_point.global_position.y == enemy.global_position.y:
-		current_row = Row.TOP_ROW
-		print("On Bottom Row")
+		current_row = 0
+		print("On Top Row")
 
 
 
 func _on_switch_collision_body_entered(body: Enemy) -> void:
-	if body.ESCAPE_OPTIONS.NORMAL:
+
+	if body.escape_option == body.ESCAPE_OPTIONS.NORMAL:
 		_normal_escape_pattern(body)
-	elif body.ESCAPE_OPTIONS.SPEED_UP:
+	if body.escape_option == body.ESCAPE_OPTIONS.SPEED_UP:
 		_normal_escape_pattern(body)
-		enemy.current_data.move_speed *= 2
-	elif body.ESCAPE_OPTIONS.TELEPORT:
+		body.current_data.move_speed *= 2
+	elif body.escape_option == body.ESCAPE_OPTIONS.TELEPORT:
 		_teleport_escape_pattern()
 
 func _spawn_enemy() -> void:
@@ -50,10 +51,6 @@ func _spawn_enemy() -> void:
 func _on_spawn_enemy_button_pressed() -> void:
 	_spawn_enemy()
 
-
-func _on_switch_collision_2_body_entered(body: Enemy) -> void:
-	if body.ESCAPE_OPTIONS.ZIG_ZAG:
-		print("Can do the zig zig escape movment")
 
 
 func _normal_escape_pattern(body: Enemy):

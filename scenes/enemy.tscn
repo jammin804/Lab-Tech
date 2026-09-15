@@ -11,6 +11,7 @@
 [ext_resource type="FontFile" uid="uid://c2a35mxw7sbmh" path="res://font/PressStart2P.ttf" id="7_w8i8w"]
 [ext_resource type="LabelSettings" uid="uid://b16prvyeyp2wt" path="res://damage_label_basic.tres" id="9_8qclf"]
 [ext_resource type="PackedScene" uid="uid://dfq7vuxtt7gve" path="res://scenes/UI/damage_number_spawner.tscn" id="10_8qclf"]
+[ext_resource type="Texture2D" uid="uid://crvn6amtty103" path="res://assets/particles/hit-a1.png" id="12_otmr2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w8i8w"]
 resource_local_to_scene = true
@@ -275,6 +276,11 @@ position = Vector2(0, 12)
 [node name="DamageNumberSpawner2" parent="." unique_id=549251904 instance=ExtResource("10_8qclf")]
 position = Vector2(0, -29)
 label_settings = ExtResource("9_8qclf")
+
+[node name="PatternIndicator" type="Sprite2D" parent="." unique_id=430750052]
+position = Vector2(10, -28)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("12_otmr2")
 
 [connection signal="animation_finished" from="HitFlashAnim" to="." method="_on_hit_flash_anim_animation_finished"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
