@@ -21,12 +21,7 @@ func _ready() -> void:
 	#enemy.global_position = bottom_spawn_point.global_position
 	_spawn_enemy()
 
-	if bottom_spawn_point.global_position.y == enemy.global_position.y: #bottom row
-		current_row = 1
-		print("On Bottom Row")
-	elif top_spawn_point.global_position.y == enemy.global_position.y:
-		current_row = 0
-		print("On Top Row")
+
 
 
 
@@ -36,16 +31,23 @@ func _on_switch_collision_body_entered(body: Enemy) -> void:
 		_normal_escape_pattern(body)
 	if body.escape_option == body.ESCAPE_OPTIONS.SPEED_UP:
 		_normal_escape_pattern(body)
-		body.current_data.move_speed *= 2
+		body.current_data.move_speed = 100
 	elif body.escape_option == body.ESCAPE_OPTIONS.TELEPORT:
-		_teleport_escape_pattern()
+		_teleport_escape_pattern(body)
 
 func _spawn_enemy() -> void:
-	enemy = enemy_scene.instantiate()
+	var new_enemy = enemy_scene.instantiate()
 	spawn_point = spawn_points.pick_random()
 
-	enemy.global_position = spawn_point.global_position
-	get_node("Pausable").add_child(enemy)
+	new_enemy.global_position = spawn_point.global_position
+	get_node("Pausable").add_child(new_enemy)
+
+	if bottom_spawn_point.global_position.y == new_enemy.global_position.y: #bottom row
+		current_row = 1
+		print("On Bottom Row")
+	elif top_spawn_point.global_position.y == new_enemy.global_position.y:
+		current_row = 0
+		print("On Top Row")
 
 
 func _on_spawn_enemy_button_pressed() -> void:
@@ -55,19 +57,15 @@ func _on_spawn_enemy_button_pressed() -> void:
 
 func _normal_escape_pattern(body: Enemy):
 	change_lanes(body)
+	body.change_direction()
 
-	Events.change_direction.emit()
 
+func change_lanes(body: Enemy):
+	if is_equal_approx(body.global_position.y, bottom_spawn_point.global_position.y):
+		body.global_position.y = top_spawn_point.global_position.y
+	else:
+		body.global_position.y = bottom_spawn_point.global_position.y
 
-func change_lanes(body):
-	if body.is_in_group("enemy") and current_row == Row.BOTTOM_ROW:
-		#print("Can move to the top")
-		enemy.global_position.y = top_spawn_point.global_position.y
-
-	elif body.is_in_group("enemy") and current_row == Row.TOP_ROW:
-		#print("Can move to the bottom")
-		enemy.global_position.y = bottom_spawn_point.global_position.y
-
-func _teleport_escape_pattern() -> void:
-	enemy.global_position.x = %TeleportPoint.global_position.x
-	Events.change_direction.emit()
+func _teleport_escape_pattern(body) -> void:
+	body.global_position.x = %TeleportPoint.global_position.x
+	body.change_direction()

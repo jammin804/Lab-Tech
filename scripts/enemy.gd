@@ -44,7 +44,7 @@ var escape_option: int
 
 func _ready() -> void:
 	#Signal Initalization
-	Events.change_direction.connect(_on_change_direction)
+	#Events.change_direction.connect(_on_change_direction)
 	#End
 
 	#Choose
@@ -177,13 +177,9 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 
 
 
-func _on_change_direction():
-	if direction == -1:
-		direction = 1
-	else:
-		direction = -1
-
-	enemy_sprite.scale.x = -1
+func change_direction():
+	direction *= -1
+	enemy_sprite.scale.x *= -1
 
 
 func _choose_escape_option(options: ESCAPE_OPTIONS) -> void:
