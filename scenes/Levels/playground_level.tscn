@@ -1,0 +1,263 @@
+[gd_scene format=4 uid="uid://cmx4av6ymkfpx"]
+
+[ext_resource type="Script" uid="uid://cw44npxliu0fh" path="res://scenes/Levels/playground_level.gd" id="1_dwy54"]
+[ext_resource type="PackedScene" uid="uid://drdlmsifm1unh" path="res://scenes/Entities_New/player.tscn" id="2_ecuf2"]
+[ext_resource type="Texture2D" uid="uid://cvjej43nsn7ha" path="res://assets/backgrounds/level_3.png" id="3_0nsmb"]
+[ext_resource type="Texture2D" uid="uid://8aayan6npc78" path="res://assets/backgrounds/tileset.png" id="4_d748c"]
+[ext_resource type="PackedScene" uid="uid://blqe7ke2t7a3n" path="res://scenes/UI/custom_mouse.tscn" id="5_w4kf8"]
+[ext_resource type="Theme" uid="uid://65aipdpydskv" path="res://resources/Theme/main_theme.tres" id="6_lstyb"]
+[ext_resource type="PackedScene" uid="uid://cooeppa7wcj7x" path="res://scenes/camera.tscn" id="7_jqjvn"]
+[ext_resource type="Texture2D" uid="uid://b8h7y5diislmb" path="res://assets/ui/hud/Settigns.png" id="8_o6lyy"]
+[ext_resource type="AudioStream" uid="uid://bki6hpddo6sgq" path="res://assets/music/bgm/Evil Grudge (RT 1.875)/Chiptune Vol2 Evil Grudge Main.wav" id="10_8hbam"]
+[ext_resource type="FontFile" uid="uid://c2a35mxw7sbmh" path="res://font/PressStart2P.ttf" id="11_f8ofd"]
+[ext_resource type="PackedScene" uid="uid://lccgrpafmldk" path="res://scenes/debug/debug_text_overlay.tscn" id="12_3vacm"]
+[ext_resource type="PackedScene" uid="uid://bd1e7fmt2sl4m" path="res://scenes/UI/settings_menu.tscn" id="13_jevph"]
+[ext_resource type="PackedScene" uid="uid://dg66c7f7p6iii" path="res://scenes/pause_menu.tscn" id="14_xuedy"]
+[ext_resource type="PackedScene" uid="uid://cqueta70ubjqr" path="res://scenes/enemy.tscn" id="15_85ul7"]
+[ext_resource type="PackedScene" uid="uid://ck75rgmytou2t" path="res://scenes/UI/result_screen.tscn" id="15_iehtx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkca0"]
+atlas = ExtResource("3_0nsmb")
+region = Rect2(0, 0, 288, 208)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_iiv34"]
+tile_data = PackedInt32Array(0, 0, 5, 1, 65536, 5, 2, 131072, 5, 3, 0, 4, 4, 0, 4, 5, 131072, 5, 6, 65536, 4, 7, 0, 5, 8, 0, 4, 9, 0, 5, 10, 65536, 5, 11, 131072, 5, 12, 0, 4, 13, 0, 4, 14, 131072, 5, 15, 65536, 4, 16, 0, 5, 17, 0, 4, 18, 0, 5, 19, 65536, 5)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vtd0g"]
+texture = ExtResource("4_d748c")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_qti4y"]
+sources/0 = SubResource("TileSetAtlasSource_vtd0g")
+pattern_0 = SubResource("TileMapPattern_iiv34")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lskjy"]
+atlas = ExtResource("8_o6lyy")
+region = Rect2(26, 2, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qm3lx"]
+atlas = ExtResource("8_o6lyy")
+region = Rect2(26, 42, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5bt8"]
+atlas = ExtResource("8_o6lyy")
+region = Rect2(26, 21, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s5m6i"]
+size = Vector2(20, 98)
+
+[node name="Playground" type="Node" unique_id=1489670400]
+process_mode = 3
+script = ExtResource("1_dwy54")
+enemy_scene = ExtResource("15_85ul7")
+metadata/_edit_horizontal_guides_ = [23.0]
+metadata/_edit_vertical_guides_ = [19.0, 160.0]
+
+[node name="Background" type="TextureRect" parent="." unique_id=62776617]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_jkca0")
+expand_mode = 2
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1317919358]
+tile_map_data = PackedByteArray("AAAAAAUAAAAAAAUAAAABAAUAAAABAAUAAAACAAUAAAACAAUAAAADAAUAAAAAAAQAAAAEAAUAAAAAAAQAAAAFAAUAAAACAAUAAAAGAAUAAAABAAQAAAAHAAUAAAAAAAUAAAAIAAUAAAAAAAQAAAAJAAUAAAAAAAUAAAAKAAUAAAABAAUAAAALAAUAAAACAAUAAAAMAAUAAAAAAAQAAAANAAUAAAAAAAQAAAAOAAUAAAACAAUAAAAPAAUAAAABAAQAAAAQAAUAAAAAAAUAAAARAAUAAAAAAAQAAAASAAUAAAAAAAUAAAATAAUAAAABAAUAAAA=")
+tile_set = SubResource("TileSet_qti4y")
+
+[node name="CustomMouse" parent="." unique_id=289937816 instance=ExtResource("5_w4kf8")]
+layer = 400
+
+[node name="Pausable" type="Control" parent="." unique_id=604897688]
+process_mode = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("6_lstyb")
+
+[node name="SpawnEnemyButton" type="Button" parent="Pausable" unique_id=407546252]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 7.0
+offset_right = 286.0
+offset_bottom = 22.0
+theme_override_font_sizes/font_size = 6
+text = "Spanw Enemy"
+
+[node name="Player" parent="Pausable" unique_id=98801044 instance=ExtResource("2_ecuf2")]
+position = Vector2(26, 128)
+
+[node name="InBetweenWaves" type="Timer" parent="Pausable" unique_id=182636926]
+unique_name_in_owner = true
+one_shot = true
+autostart = true
+
+[node name="Camera" parent="Pausable" unique_id=263792174 instance=ExtResource("7_jqjvn")]
+position = Vector2(160, 90)
+
+[node name="BottomSpawnPoint" type="Marker2D" parent="Pausable" unique_id=195233964 groups=["ground_spawns"]]
+unique_name_in_owner = true
+position = Vector2(304, 133)
+
+[node name="TeleportPoint" type="Marker2D" parent="Pausable" unique_id=1543482778 groups=["ground_spawns"]]
+unique_name_in_owner = true
+position = Vector2(342, 133)
+
+[node name="TopSpawnPoint" type="Marker2D" parent="Pausable" unique_id=1077596327 groups=["ground_spawns"]]
+unique_name_in_owner = true
+position = Vector2(312, 65)
+
+[node name="Enemies" type="Node2D" parent="Pausable" unique_id=374635073]
+
+[node name="PauseBtn" type="TextureButton" parent="Pausable" unique_id=1050029617]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -27.0
+offset_top = 7.0
+offset_right = -11.0
+offset_bottom = 23.0
+grow_horizontal = 0
+texture_normal = SubResource("AtlasTexture_lskjy")
+texture_pressed = SubResource("AtlasTexture_qm3lx")
+texture_hover = SubResource("AtlasTexture_p5bt8")
+
+[node name="WaveLabel" type="Label" parent="Pausable" unique_id=398613744]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -103.0
+offset_top = 6.0
+offset_right = -43.0
+offset_bottom = 29.0
+grow_horizontal = 0
+text = "Wave: 1"
+
+[node name="EnemiesInWaveLabel" type="Label" parent="Pausable" unique_id=1891000520]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -103.0
+offset_top = 31.0
+offset_right = -43.0
+offset_bottom = 54.0
+grow_horizontal = 0
+text = "0/3"
+horizontal_alignment = 2
+
+[node name="LevelBGM" type="AudioStreamPlayer2D" parent="Pausable" unique_id=862273180]
+stream = ExtResource("10_8hbam")
+volume_db = 8.0
+autoplay = true
+bus = &"Music"
+
+[node name="SwitchCollision" type="Area2D" parent="Pausable" unique_id=846345559]
+position = Vector2(160, 118)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pausable/SwitchCollision" unique_id=1853244716]
+position = Vector2(0, -28)
+shape = SubResource("RectangleShape2D_s5m6i")
+
+[node name="SwitchCollision2" type="Area2D" parent="Pausable" unique_id=1293710788]
+position = Vector2(224, 118)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pausable/SwitchCollision2" unique_id=184129917]
+position = Vector2(0, -28)
+shape = SubResource("RectangleShape2D_s5m6i")
+
+[node name="SwitchCollision3" type="Area2D" parent="Pausable" unique_id=357240525]
+position = Vector2(286, 118)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pausable/SwitchCollision3" unique_id=1807904666]
+position = Vector2(0, -28)
+shape = SubResource("RectangleShape2D_s5m6i")
+
+[node name="DebugLayer" type="CanvasLayer" parent="." unique_id=389921551]
+process_mode = 3
+layer = 128
+visible = false
+
+[node name="DebugRoot" type="Control" parent="DebugLayer" unique_id=1584273552]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+mouse_filter = 2
+mouse_behavior_recursive = 1
+
+[node name="MoneyLabel" type="Label" parent="DebugLayer/DebugRoot" unique_id=196329218]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 177.0
+offset_top = -122.0
+offset_right = 237.0
+offset_bottom = -114.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("11_f8ofd")
+theme_override_font_sizes/font_size = 8
+text = "$999999"
+
+[node name="DebugTextOverlay" parent="DebugLayer/DebugRoot" unique_id=1309649993 instance=ExtResource("12_3vacm")]
+layout_mode = 1
+offset_top = -46.0
+offset_bottom = -46.0
+
+[node name="PauseLayer" type="CanvasLayer" parent="." unique_id=1812816143]
+layer = 300
+
+[node name="SettingsMenu" parent="PauseLayer" unique_id=1195811390 instance=ExtResource("13_jevph")]
+process_mode = 2
+visible = false
+
+[node name="PauseMenu" parent="PauseLayer" unique_id=1716673666 instance=ExtResource("14_xuedy")]
+process_mode = 2
+visible = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=304703305]
+
+[node name="ResultScreen" parent="CanvasLayer" unique_id=1112778916 instance=ExtResource("15_iehtx")]
+visible = false
+z_index = 4000
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=65889336]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="pressed" from="Pausable/SpawnEnemyButton" to="." method="_on_spawn_enemy_button_pressed"]
+[connection signal="body_entered" from="Pausable/SwitchCollision" to="." method="_on_switch_collision_body_entered"]

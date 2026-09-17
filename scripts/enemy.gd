@@ -1,8 +1,8 @@
 class_name Enemy
 extends CharacterBody2D
 
-
-
+enum ESCAPE_OPTIONS { NORMAL, ZIG_ZAG, SPEED_UP, TELEPORT}
+@export var escape_options : ESCAPE_OPTIONS
 #region DEBUG OPTIONS
 @export_category("DEBUG OPTIONS")
 @export var is_in_debug_mode : bool = false
@@ -27,6 +27,9 @@ var rng = RandomNumberGenerator.new()
 var loot_amount : Array = []
 var weights
 
+var direction: int = -1
+var escape_option: int
+
 @onready var enemy_sprite: AnimatedSprite2D = $enemy
 @onready var status_component: Node = $StatusComponent
 @onready var hit_flash_anim: AnimationPlayer = $HitFlashAnim
@@ -35,10 +38,18 @@ var weights
 @onready var spawner: Marker2D = $Spawner
 @onready var damage_number_spawner: DamageNumberSpawner = $DamageNumberSpawner2
 @onready var money_label: Label = $MoneyNumberOrigin/MoneyLabel
+@onready var pattern_indicator: Sprite2D = $PatternIndicator
 
 @onready var shaker := Shaker.new(enemy_sprite)
 
 func _ready() -> void:
+	#Signal Initalization
+
+	#End
+
+	#Choose escape options
+	_choose_escape_option(randi_range(0, 3) as ESCAPE_OPTIONS)
+
 	destroy_anim.hide()
 	if stats:
 		current_data = stats.duplicate()
@@ -55,14 +66,15 @@ func _ready() -> void:
 			])
 
 
-
 	#Change health based on level
 	current_enemy_health = current_data.health
 	current_enemy_health = floor( (current_enemy_health + 10) * Globals.level * randf_range(1.0, 1.5) )
-	#print("From Enemy.gd Current Health of this enemy is: ",current_enemy_health)
+
 	if is_in_debug_mode:
 		current_enemy_health = 1000
 		current_data.move_speed = 0
+
+
 
 func _process(delta: float) -> void:
 	if not is_dead:
@@ -125,12 +137,13 @@ func destroy():
 
 func move_enemy(delta):
 	if is_in_battle_scene or is_in_debug_mode:
-		position.x += current_data.move_speed * delta * -1
+		position.x += current_data.move_speed * delta * direction
 		enemy_sprite.play()
 
 func _drop_item() -> void:
 	pass
 
+##FIXME Need to fix the issue of the shader studder
 func _on_hit_flash_anim_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "death":
 		#print("Enemy Dropped: ", loot_amount[rng.rand_weighted(weights)])
@@ -161,3 +174,29 @@ func _on_lab_uprgrade_scene_start() -> void:
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	destroy()
+
+func change_direction():
+	direction *= -1
+	enemy_sprite.scale.x *= -1
+
+
+func _choose_escape_option(options: ESCAPE_OPTIONS) -> void:
+	match options:
+		ESCAPE_OPTIONS.NORMAL:
+			print("Normal Exit")
+			pattern_indicator.modulate = Color.ALICE_BLUE
+			escape_option = 0
+		ESCAPE_OPTIONS.ZIG_ZAG:
+			print("Zig Exit")
+			pattern_indicator.modulate = Color.GOLD
+			escape_option = 1
+		ESCAPE_OPTIONS.SPEED_UP:
+			print("Fast Exit")
+			pattern_indicator.modulate = Color.NAVY_BLUE
+
+			escape_option = 2
+		ESCAPE_OPTIONS.TELEPORT:
+			print("Tele Exit")
+			pattern_indicator.modulate = Color.DARK_MAGENTA
+
+			escape_option = 3

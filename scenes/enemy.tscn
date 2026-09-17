@@ -11,8 +11,9 @@
 [ext_resource type="FontFile" uid="uid://c2a35mxw7sbmh" path="res://font/PressStart2P.ttf" id="7_w8i8w"]
 [ext_resource type="LabelSettings" uid="uid://b16prvyeyp2wt" path="res://damage_label_basic.tres" id="9_8qclf"]
 [ext_resource type="PackedScene" uid="uid://dfq7vuxtt7gve" path="res://scenes/UI/damage_number_spawner.tscn" id="10_8qclf"]
+[ext_resource type="Texture2D" uid="uid://crvn6amtty103" path="res://assets/particles/hit-a1.png" id="12_otmr2"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_w8i8w"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_otmr2"]
 resource_local_to_scene = true
 shader = ExtResource("3_c4w8v")
 shader_parameter/hit_flash_color = Color(1, 1, 1, 1)
@@ -201,13 +202,14 @@ animations = [{
 [node name="Enemy2" type="CharacterBody2D" unique_id=1965764076 groups=["enemy"]]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_4ra3w")
+escape_options = 3
 stats = ExtResource("2_xwavj")
 is_in_battle_scene = true
 loot_drop_type = ExtResource("2_c4w8v")
 drop_rate = 100.0
 
 [node name="enemy" parent="." unique_id=1601589879 instance=ExtResource("2_5uy6h")]
-material = SubResource("ShaderMaterial_w8i8w")
+material = SubResource("ShaderMaterial_otmr2")
 rotation = -3.1415927
 scale = Vector2(1, -1)
 sprite_frames = ExtResource("6_8qclf")
@@ -274,6 +276,11 @@ position = Vector2(0, 12)
 [node name="DamageNumberSpawner2" parent="." unique_id=549251904 instance=ExtResource("10_8qclf")]
 position = Vector2(0, -29)
 label_settings = ExtResource("9_8qclf")
+
+[node name="PatternIndicator" type="Sprite2D" parent="." unique_id=430750052]
+position = Vector2(10, -28)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("12_otmr2")
 
 [connection signal="animation_finished" from="HitFlashAnim" to="." method="_on_hit_flash_anim_animation_finished"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
