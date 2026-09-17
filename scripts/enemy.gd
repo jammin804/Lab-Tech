@@ -44,10 +44,10 @@ var escape_option: int
 
 func _ready() -> void:
 	#Signal Initalization
-	#Events.change_direction.connect(_on_change_direction)
+
 	#End
 
-	#Choose
+	#Choose escape options
 	_choose_escape_option(randi_range(0, 3) as ESCAPE_OPTIONS)
 
 	destroy_anim.hide()

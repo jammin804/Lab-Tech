@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dfq7vuxtt7gve" path="res://scenes/UI/damage_number_spawner.tscn" id="10_8qclf"]
 [ext_resource type="Texture2D" uid="uid://crvn6amtty103" path="res://assets/particles/hit-a1.png" id="12_otmr2"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_w8i8w"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_otmr2"]
 resource_local_to_scene = true
 shader = ExtResource("3_c4w8v")
 shader_parameter/hit_flash_color = Color(1, 1, 1, 1)
@@ -209,7 +209,7 @@ loot_drop_type = ExtResource("2_c4w8v")
 drop_rate = 100.0
 
 [node name="enemy" parent="." unique_id=1601589879 instance=ExtResource("2_5uy6h")]
-material = SubResource("ShaderMaterial_w8i8w")
+material = SubResource("ShaderMaterial_otmr2")
 rotation = -3.1415927
 scale = Vector2(1, -1)
 sprite_frames = ExtResource("6_8qclf")
