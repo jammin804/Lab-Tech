@@ -100,6 +100,7 @@ mouse_filter = 2
 theme = ExtResource("6_lstyb")
 
 [node name="SpawnEnemyButton" type="Button" parent="Pausable" unique_id=407546252]
+visible = false
 layout_mode = 0
 offset_left = 133.0
 offset_top = 6.0

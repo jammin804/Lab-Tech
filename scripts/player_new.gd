@@ -46,6 +46,7 @@ func _ready() -> void:
 	Events.enemy_died.connect(func(): level_enemies_killed += 1)
 	Events.damage_dealt.connect(_on_damage_done)
 	Events.increase_currency.connect(_on_currency_gained)
+	Events.level_complete.connect(_on_level_complete)
 
 
 #region Remove this and move it to upgrade scene
@@ -141,3 +142,7 @@ func _load_skills():
 
 func _on_firing_component_drain_battery(amount: Variant) -> void:
 	current_health -= amount
+
+
+func _on_level_complete() -> void:
+	_die()

@@ -251,7 +251,7 @@ script = ExtResource("7_nenq2")
 [node name="HitFlashAnim" type="AnimationPlayer" parent="." unique_id=1013581890]
 libraries/ = SubResource("AnimationLibrary_ebxvl")
 
-[node name="PlayerDetectionArea" type="Area2D" parent="." unique_id=1832158773 groups=["enemy"]]
+[node name="PlayerDetectionArea" type="Area2D" parent="." unique_id=1832158773]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionArea" unique_id=1494460161]
 shape = SubResource("CircleShape2D_d4cuo")
