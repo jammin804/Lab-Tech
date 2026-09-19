@@ -173,7 +173,7 @@ func _on_lab_uprgrade_scene_start() -> void:
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	destroy()
+	queue_free()
 
 func change_direction():
 	direction *= -1

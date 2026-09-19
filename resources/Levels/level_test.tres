@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Levels" format=3 uid="uid://couf8au0ggobh"]
+
+[ext_resource type="Script" uid="uid://ci2m2uau1arlp" path="res://scripts/levels/level.gd" id="1_ditap"]
+[ext_resource type="PackedScene" uid="uid://cqueta70ubjqr" path="res://scenes/enemy.tscn" id="1_hfaw0"]
+
+[resource]
+script = ExtResource("1_ditap")
+enemies_to_defeat = 3
+enemies_to_spawn = 5
+enemies_type = Array[PackedScene]([ExtResource("1_hfaw0")])
+metadata/_custom_type_script = "uid://ci2m2uau1arlp"

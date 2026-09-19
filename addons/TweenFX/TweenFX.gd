@@ -1068,7 +1068,7 @@ func press_rotate(node: CanvasItem, duration: float = 0.3) -> Tween:
 	tween.tween_property(node, "rotation", original_rotation, duration * 0.33).set_trans(Tween.TRANS_SINE).set_delay(duration * 0.66)
 	TweenManager.track(node, Animations.PRESS_ROTATE, tween)
 	return tween
-	
+
 ## Moves toward a target point and snaps back. Magnetic pull feel.
 func magnetic_pull(node: CanvasItem, duration: float = 0.5, target: Vector2 = Vector2.ZERO, strength: float = 0.4) -> Tween:
 	TweenManager.stop(node, Animations.MAGNETIC_PULL)
