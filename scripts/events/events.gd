@@ -19,6 +19,7 @@ signal max_health_upgraded(new_max)
 signal damage_dealt(amount: int)
 signal damage_taken(amount: int)
 signal change_direction
+signal send_kills(amount: int)
 
 
 var target_talent_tab : int = 0

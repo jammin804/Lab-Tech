@@ -137,14 +137,15 @@ func _check_enemies_left() -> void:
 	var enemies_left = get_tree().get_nodes_in_group("enemy")
 	if enemies_left.size() == 0 && enemies_to_spawn == 0:
 		_check_win_condition()
-		print("Go to lab")
-	else:
-		print("carry on")
 
 
 func _check_win_condition():
 	if num_killed >= num_to_succeed:
 		is_win_condition_met = true
+		#TODO Setup reward: increment the level/amount of enemies destroyed for the lab scene
+		Globals.enemies_killed += num_killed
+		get_tree().change_scene_to_file("res://scenes/lab.tscn")
 	else:
 		is_win_condition_met = false
+		#TODO Setup punishment: Lose life/lose resource/ lose upgrade
 	print("Win condition ", is_win_condition_met)
