@@ -10,7 +10,6 @@ battery_tanks = 2
 battery_tank_points = 0
 power = 0
 rapid = 0.0
-can_charge = true
 metadata/_custom_type_script = "uid://d332ldvfmgnhy"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xjuf2"]

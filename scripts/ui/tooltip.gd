@@ -21,7 +21,7 @@ func toggle(on: bool):
 		modulate.a = 1.0
 		await tween_opacity(0.0)
 		hide()
-		
+
 func tween_opacity(to: float):
 	if opacity_tween: opacity_tween.kill()
 	opacity_tween = get_tree().create_tween()

@@ -1,7 +1,6 @@
 class_name Playground
 extends Node
 
-
 enum Row {TOP_ROW, BOTTOM_ROW}
 
 @export var level_info : Levels
@@ -13,12 +12,11 @@ var spawn_point : Marker2D
 var current_row : int
 var enemy: Enemy
 var num_to_succeed : int
-var num_killed : int = 0:
-	set(value):
-		num_killed = clampi(value, 0, num_to_succeed)
+var num_killed : int = 0
 var enemies_to_spawn: int:
 	set(value):
 		enemies_to_spawn = max(0, value)
+var is_win_condition_met:bool = false
 
 @onready var bottom_spawn_point: Marker2D = %BottomSpawnPoint
 @onready var switch_collision: Area2D = $Pausable/SwitchCollision
@@ -37,12 +35,13 @@ func _ready() -> void:
 	num_to_succeed = level_info.enemies_to_defeat
 	enemies_to_spawn = level_info.enemies_to_spawn
 
+	#Spawing Logic
+	_spawn_enemy()
+
 	#Updating UI
 	update_kill_counter()
 	update_spawn_counter()
 
-	#Spawing Logic
-	_spawn_enemy()
 
 	#Add timer
 
@@ -65,6 +64,8 @@ func _spawn_enemy() -> void:
 	new_enemy.global_position = spawn_point.global_position
 	get_node("Pausable").add_child(new_enemy)
 
+	enemies_to_spawn -= 1
+
 	if bottom_spawn_point.global_position.y == new_enemy.global_position.y: #bottom row
 		current_row = 1
 		print("On Bottom Row")
@@ -72,16 +73,24 @@ func _spawn_enemy() -> void:
 		current_row = 0
 		print("On Top Row")
 
+	if enemies_to_spawn != 0:
+		$Pausable/Timer.start()
+	else:
+		$Pausable/Timer.stop()
 
-func _on_spawn_enemy_button_pressed() -> void:
-	_spawn_enemy()
+func _process(delta: float) -> void:
+	#_check_enemies_left()
+	pass
+
+
+#func _on_spawn_enemy_button_pressed() -> void:
+	#_spawn_enemy()
 
 
 
 func _normal_escape_pattern(body: Enemy):
 	change_lanes(body)
 	body.change_direction()
-
 
 func change_lanes(body: Enemy):
 	if is_equal_approx(body.global_position.y, bottom_spawn_point.global_position.y):
@@ -93,33 +102,58 @@ func _teleport_escape_pattern(body) -> void:
 	body.global_position.x = %TeleportPoint.global_position.x
 	body.change_direction()
 
-
 func _on_enemy_killed() -> void:
 	num_killed += 1
 	update_kill_counter()
+	if enemies_to_spawn == 0:
+		_check_win_condition()
+
 
 
 func update_kill_counter():
 	enemies_remaining_label.text = str(num_killed) + "/" + str(num_to_succeed)
 
-	if num_killed == num_to_succeed:
+	if num_killed >= num_to_succeed:
 		enemies_remaining_label.modulate = Color.WEB_GREEN
 	else:
 		enemies_remaining_label.modulate = Color.WHITE
 
 
+
 func update_spawn_counter():
 	spawns_remaining_label.text = str(enemies_to_spawn)
-	print(int(enemies_to_spawn / 2))
 
 	if enemies_to_spawn <= 3:
 		spawns_remaining_label.modulate = Color.FIREBRICK
 		#TweenFX.heartbeat(spawns_remaining_label)
 
 
+
+
 func _on_timer_timeout() -> void:
 	print("spawn enemy if available")
-	_spawn_enemy()
-	enemies_to_spawn -= 1
-	update_spawn_counter()
-	$Pausable/Timer.start()
+	if enemies_to_spawn >= 0:
+
+		_spawn_enemy()
+
+		update_spawn_counter()
+	else:
+		#_check_enemies_left()
+		return
+
+func _check_enemies_left() -> void:
+	var enemies_left = get_tree().get_nodes_in_group("enemy")
+	if enemies_left.size() == 0 && enemies_to_spawn == 0:
+		_check_win_condition()
+
+
+func _check_win_condition():
+	if num_killed >= num_to_succeed:
+		is_win_condition_met = true
+		#TODO Setup reward: increment the level/amount of enemies destroyed for the lab scene
+		Globals.enemies_killed += num_killed
+		#get_tree().change_scene_to_file("res://scenes/lab.tscn")
+	else:
+		is_win_condition_met = false
+		#TODO Setup punishment: Lose life/lose resource/ lose upgrade
+	print("Win condition ", is_win_condition_met)

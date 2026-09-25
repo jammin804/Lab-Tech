@@ -3,11 +3,12 @@ extends Node
 
 signal drain_battery(amount)
 
+@export var player: PlayerNew = null
 @export var player_anim : AnimatedSprite2D = null
 @export var spawn_point : Marker2D
 @export var charge_progress_bar_container: HBoxContainer
 @export var spawn_offset : float = 30.0
-@export var drain_amount: int = 10
+@export var drain_amount: int = 25
 
 
 var PROJECTILE_SCENE = preload("res://scenes/projectile.tscn")
@@ -43,7 +44,7 @@ func _handle_firing_inputs(delta: float) -> void:
 		is_shooting = false
 
 #region Charge Fire Code
-	if can_charge == true:
+	if can_charge == true and player.current_health >= 25:
 		if Input.is_action_pressed("left_click"):
 			_process_charging(delta)
 
@@ -94,6 +95,7 @@ func _shoot(charge_percentage : float):
 	if charge_percentage >= 100.0:
 		charge_scale = Vector2(2.0, 2.0)
 		bullet_strength = int(PlayerManager.current_stats.power * PlayerManager.current_stats.charge_damage_multipler)
+		drain_battery.emit(drain_amount)
 	else:
 		charge_scale = Vector2.ONE
 		bullet_strength = PlayerManager.current_stats.power
@@ -106,9 +108,8 @@ func _shoot(charge_percentage : float):
 	for i in range(burst_count):
 		_create_bullet(i, burst_count)
 
-	drain_battery.emit(drain_amount)
-	#Events.damage_dealt.emit(drain_amount)
 	Events.bullet_fired.emit()
+	print("Current Battery", player.current_health)
 
 func _create_bullet(bullet_index: int, total_bullets: int) -> void:
 	var bullet : Projectile = PROJECTILE_SCENE.instantiate()

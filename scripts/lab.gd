@@ -44,6 +44,7 @@ var level_1: String = "uid://bdpj78s126rdu"
 
 
 func _ready() -> void:
+	print("Num of enemies killed ", Globals.enemies_killed)
 	if Engine.time_scale < 1.0:
 		Engine.time_scale = 1.0
 
