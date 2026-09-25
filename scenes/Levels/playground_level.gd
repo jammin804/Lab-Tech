@@ -1,7 +1,6 @@
 class_name Playground
 extends Node
 
-
 enum Row {TOP_ROW, BOTTOM_ROW}
 
 @export var level_info : Levels
@@ -144,7 +143,7 @@ func _check_win_condition():
 		is_win_condition_met = true
 		#TODO Setup reward: increment the level/amount of enemies destroyed for the lab scene
 		Globals.enemies_killed += num_killed
-		get_tree().change_scene_to_file("res://scenes/lab.tscn")
+		#get_tree().change_scene_to_file("res://scenes/lab.tscn")
 	else:
 		is_win_condition_met = false
 		#TODO Setup punishment: Lose life/lose resource/ lose upgrade

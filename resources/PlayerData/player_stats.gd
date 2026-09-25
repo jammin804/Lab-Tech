@@ -24,6 +24,6 @@ enum Form {DEFAULT, COMBINED, AVATAR}
 @export var power : int = 8
 @export var range : int = 2
 @export var rapid : int = 1 #Bullets per shot
-@export var can_charge : bool = false
+@export var can_charge : bool = true
 @export var charge_rate : float = 40.0
 @export var charge_damage_multipler : float = 2.0

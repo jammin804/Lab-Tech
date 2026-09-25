@@ -39,11 +39,11 @@ var ctrl_or_meta_key:Key # for mac support
 
 func setup(path):
 	ctrl_or_meta_key = KEY_META if OS.get_name() == "macOS" else KEY_CTRL
-	
+
 	image_path = path
 	var img:Image = Image.load_from_file(path)
 	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
-	
+
 	#texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	#img.generate_mipmaps(false)
 	image_size = img.get_size()
@@ -56,7 +56,7 @@ func setup(path):
 	scale_based_on_window()
 	move_to_window_center()
 	EditorInterface.get_base_control().resized.connect(clamp_within_window.bind(100))
-	
+
 	if add_as_command:
 		add_in_command_palette()
 	if quick_view_placement == "tooltip":
@@ -70,15 +70,15 @@ func setup(path):
 
 func _gui_input(event: InputEvent) -> void:
 	if not visible:return
-	
+
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		if Input.is_physical_key_pressed(ctrl_or_meta_key):
 			open_reference_url()
-			
+
 		if Input.is_key_pressed(KEY_SHIFT):
 			scale_based_on_window()
 			clamp_within_window()
-			
+
 		if Input.is_key_pressed(KEY_ALT):
 			open_in_os()
 		mouse_offset = self.global_position - get_global_mouse_position()
@@ -130,13 +130,13 @@ func _gui_input(event: InputEvent) -> void:
 
 
 func scale_based_on_window():
-	if not auto_scale: 
+	if not auto_scale:
 		self.scale = Vector2.ONE
 		return
 	var windows_size:Vector2 = EditorInterface.get_base_control().size
-	
+
 	# Scale to fit in screen
-	
+
 	self.scale = Vector2.ONE
 	if set_scale and (image_size.y > windows_size.y or image_size.x > windows_size.x):
 		var factor_x = (windows_size.x*0.95) / image_size.x
@@ -169,7 +169,7 @@ func pin():
 	tween.tween_property(self,"position:y",10.0,0.00).as_relative()
 	tween.tween_property(self,"position:y",-10.0,0.2).as_relative()
 
-	
+
 func unpin():
 	visible = false
 	is_pinned = false
@@ -179,7 +179,7 @@ func unpin():
 func toggle():
 	visible = !visible
 	self.modulate.v = 1.0
-	if visible: 
+	if visible:
 		#fit_in_screen()
 		is_pinned = true
 		mouse_filter = Control.MOUSE_FILTER_STOP
@@ -189,10 +189,10 @@ func toggle():
 			was_shown_before = true
 	else:
 		is_pinned = false
-		
+
 	# required for command palette use
 	visibility_changed.emit()
-	
+
 
 func cleanup():
 	if added_as_a_command:
@@ -209,7 +209,7 @@ func add_in_command_palette():
 	var command_callable = Callable(self, "toggle")#.bind(arguments)
 	command_palette.add_command("Toggle Cheatsheet " + nice_name, "cheatsheet_viewer/toggle_%s" % nice_name, command_callable)
 	added_as_a_command = true
-	
+
 func open_reference_url():
 	if not reference_url:return
 	OS.shell_open(reference_url)
@@ -217,7 +217,7 @@ func open_reference_url():
 func open_in_os():
 	if not image_path:return
 	OS.shell_open(image_path)
-	
+
 func quick_view(tooltip_node=null):
 	if self.visible or self.is_pinned: return
 	modulate.v = 0.85 # darker to indicate quick view vs pinned
@@ -230,7 +230,7 @@ func quick_view(tooltip_node=null):
 		else:
 			self.show()
 		return
-	
+
 	was_shown_before = true
 	scale_based_on_window()
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -263,7 +263,7 @@ func move_based_on_quick_view_placement(tooltip_node=null):
 		#"list":
 			#self.scale_based_on_window()
 			#if is_instance_valid(tooltip_node):
-				#self.global_position.x = tooltip_node.global_position.x 
+				#self.global_position.x = tooltip_node.global_position.x
 				#self.global_position.x -= (self.size.x * self.scale.x)
 				#self.global_position.y = tooltip_node.global_position.y
 				#self.global_position.y -= (self.size.y * self.scale.y)
@@ -276,7 +276,7 @@ func move_based_on_quick_view_placement(tooltip_node=null):
 				#global_position.x += (EditorInterface.get_base_control().size.x - (global_position.x + (size.x*scale.x)))
 			#global_position.y -= (self.size.y * self.scale.y)
 			#global_position.y -= 10
-			
+
 		"center":
 			move_to_window_center()
 			show()
@@ -284,5 +284,3 @@ func move_based_on_quick_view_placement(tooltip_node=null):
 		"":
 			move_to_window_center()
 			show()
-
-	

@@ -9,7 +9,6 @@ script = ExtResource("2_qr5sa")
 battery_tanks = 0
 battery_tank_points = 0
 power = 0
-can_charge = true
 charge_rate = 60.0
 charge_damage_multipler = 4.0
 metadata/_custom_type_script = "uid://d332ldvfmgnhy"

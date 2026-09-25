@@ -10,7 +10,6 @@ battery_tanks = 0
 battery_tank_points = 0
 power = 0
 rapid = 0.0
-can_charge = true
 charge_rate = 80.0
 charge_damage_multipler = 6.0
 metadata/_custom_type_script = "uid://d332ldvfmgnhy"
