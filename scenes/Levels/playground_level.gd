@@ -79,7 +79,8 @@ func _spawn_enemy() -> void:
 		$Pausable/Timer.stop()
 
 func _process(delta: float) -> void:
-	_check_enemies_left()
+	#_check_enemies_left()
+	pass
 
 
 #func _on_spawn_enemy_button_pressed() -> void:
@@ -104,6 +105,9 @@ func _teleport_escape_pattern(body) -> void:
 func _on_enemy_killed() -> void:
 	num_killed += 1
 	update_kill_counter()
+	if enemies_to_spawn == 0:
+		_check_win_condition()
+
 
 
 func update_kill_counter():
@@ -115,6 +119,7 @@ func update_kill_counter():
 		enemies_remaining_label.modulate = Color.WHITE
 
 
+
 func update_spawn_counter():
 	spawns_remaining_label.text = str(enemies_to_spawn)
 
@@ -123,13 +128,17 @@ func update_spawn_counter():
 		#TweenFX.heartbeat(spawns_remaining_label)
 
 
+
+
 func _on_timer_timeout() -> void:
 	print("spawn enemy if available")
 	if enemies_to_spawn >= 0:
+
 		_spawn_enemy()
 
 		update_spawn_counter()
 	else:
+		#_check_enemies_left()
 		return
 
 func _check_enemies_left() -> void:
