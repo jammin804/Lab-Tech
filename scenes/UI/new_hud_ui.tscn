@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://whd42y28mu3l"]
 
+[ext_resource type="Script" uid="uid://b334a8qmhk7rb" path="res://scenes/UI/new_hud_ui.gd" id="1_jqpmw"]
 [ext_resource type="PackedScene" uid="uid://b3gf3rdu50uej" path="res://scenes/UI/battery_hud.tscn" id="1_mmhfa"]
 [ext_resource type="Texture2D" uid="uid://bwvjfvn1mt8h2" path="res://assets/ui/hud/player_heart.png" id="2_odp45"]
 
@@ -8,6 +9,7 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s5m6i"]
 
 [node name="HUD" type="CanvasLayer" unique_id=641719506]
+script = ExtResource("1_jqpmw")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1031688995]
 anchors_preset = 15
@@ -60,15 +62,16 @@ theme_override_constants/margin_right = 5
 layout_mode = 2
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/Panel2/Panel/MarginContainer/HBoxContainer" unique_id=1644034138]
+[node name="LivesIcon" type="TextureRect" parent="MarginContainer/Panel2/Panel/MarginContainer/HBoxContainer" unique_id=1644034138]
 layout_mode = 2
 texture = ExtResource("2_odp45")
 stretch_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/Panel2/Panel/MarginContainer/HBoxContainer" unique_id=2095757631]
+[node name="NumOfLivesLabel" type="Label" parent="MarginContainer/Panel2/Panel/MarginContainer/HBoxContainer" unique_id=2095757631]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 1
 offset_transform_enabled = true
-offset_transform_position = Vector2(0, 1)
+offset_transform_position = Vector2(0, 1.5)
 theme_override_font_sizes/font_size = 8
-text = "2"
+text = "99"

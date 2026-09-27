@@ -156,4 +156,9 @@ func _check_win_condition():
 	else:
 		is_win_condition_met = false
 		#TODO Setup punishment: Lose life/lose resource/ lose upgrade
+		Globals.player_levels -= 1
+		print(Globals.player_levels)
+		#play animation to show number (or array of hearts) then choose the last heart and show heart break animation
+		if Globals.player_levels <= 0:
+			get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 	print("Win condition ", is_win_condition_met)
