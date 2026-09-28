@@ -21,6 +21,7 @@ signal damage_taken(amount: int)
 signal change_direction
 signal send_kills(amount: int)
 signal check_remaining
+signal win_condition_fail
 
 
 var target_talent_tab : int = 0

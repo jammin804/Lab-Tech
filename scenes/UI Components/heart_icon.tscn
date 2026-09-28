@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://bpo88mkwondid"]
 
 [ext_resource type="Texture2D" uid="uid://bwvjfvn1mt8h2" path="res://assets/ui/hud/player_heart.png" id="1_p4euo"]
+[ext_resource type="Script" uid="uid://sxafcjxtdkua" path="res://scenes/UI Components/heart_icon.gd" id="2_g22sl"]
 
 [node name="HeartIcon" type="TextureRect" unique_id=405267492]
 texture = ExtResource("1_p4euo")
+script = ExtResource("2_g22sl")

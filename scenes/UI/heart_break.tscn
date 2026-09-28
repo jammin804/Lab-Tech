@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://edlqqwhtasyq"]
 
 [ext_resource type="Script" uid="uid://csf12hipoh47y" path="res://scenes/UI/heart_break.gd" id="1_insni"]
+[ext_resource type="PackedScene" uid="uid://bpo88mkwondid" path="res://scenes/UI Components/heart_icon.tscn" id="2_plk1n"]
 
 [node name="HeartBreak" type="CanvasLayer" unique_id=665419767]
 script = ExtResource("1_insni")
+heart_icon = ExtResource("2_plk1n")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1652036811]
 anchors_preset = 15
@@ -38,3 +40,15 @@ layout_mode = 2
 [node name="HeartRow2" type="HBoxContainer" parent="PanelContainer/HeartContianer/VBoxContainer" unique_id=1240284074]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="BreakHeart" type="Button" parent="." unique_id=1169702863]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 8
+text = "Break Heart"
+
+[connection signal="pressed" from="BreakHeart" to="." method="_on_break_heart_pressed"]

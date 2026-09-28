@@ -82,13 +82,6 @@ func _spawn_enemy() -> void:
 	else:
 		$Pausable/Timer.stop()
 
-func _process(delta: float) -> void:
-	#_check_enemies_left()
-	pass
-
-
-#func _on_spawn_enemy_button_pressed() -> void:
-	#_spawn_enemy()
 
 
 
@@ -160,10 +153,11 @@ func _check_win_condition():
 	else:
 		is_win_condition_met = false
 		#TODO Setup punishment: Lose life/lose resource/ lose upgrade
-		Globals.player_levels -= 1
-		print(Globals.player_levels)
+		Globals.player_lives -= 1
+		print("Number of lives left", Globals.player_lives)
+		Events.win_condition_fail.emit()
 		#play animation to show number (or array of hearts) then choose the last heart and show heart break animation
-		if Globals.player_levels <= 0:
+		if Globals.player_lives <= 0:
 			get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 	print("Win condition ", is_win_condition_met)
 
