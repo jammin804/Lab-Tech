@@ -123,6 +123,8 @@ func take_damage(incoming_damage: float, incoming_element:WeaponData.Element) ->
 func destroy():
 	is_dead = true
 	Events.enemy_died.emit()
+	#Events.check_remaining.emit()
+
 
 	enemy_sprite.stop()
 	enemy_sprite.hide()
@@ -164,6 +166,8 @@ func _on_hit_flash_anim_animation_finished(anim_name: StringName) -> void:
 				#get_tree().current_scene.add_child(loot)
 
 		self.queue_free()
+		#Events.enemy_died.emit()
+		Events.check_remaining.emit()
 
 func _on_lab_battle_scene_start() -> void:
 	is_in_battle_scene = true
@@ -174,6 +178,8 @@ func _on_lab_uprgrade_scene_start() -> void:
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
+	Events.check_remaining.emit()
+
 
 func change_direction():
 	direction *= -1

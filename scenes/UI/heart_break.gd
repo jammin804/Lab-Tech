@@ -13,11 +13,11 @@ func _ready() -> void:
 
 func update_hearts() -> void:
 	#var heart_1_row = heart_row_1.get_childern()
-	for i in range(Globals.player_levels):
+	for i in range(Globals.player_lives):
 		var heart = heart_icon.instantiate()
 
 		heart_row_1.add_child(heart)
-		if Globals.player_levels < 6:
+		if Globals.player_lives < 6:
 			heart_row_2.hide()
 		else:
 			heart_row_2.show()
