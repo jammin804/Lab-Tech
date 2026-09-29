@@ -9,6 +9,7 @@ extends Control
 
 var lab_scene: String = "res://scenes/lab.tscn"
 var level_1: String = "res://scenes/Levels/level_1.tscn"
+var level_test: String = "res://scenes/Levels/playground_level.tscn"
 
 func _ready() -> void:
 	#if $MainMenmBGM.Volume < -10.0:

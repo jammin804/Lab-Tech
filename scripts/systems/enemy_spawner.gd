@@ -2,7 +2,10 @@ class_name Enemy_Spawner
 extends Node2D
 
 const ENEMY = preload("uid://cqueta70ubjqr")
+@export_category("Level Information")
+@export var level_info : Levels = null
 
+@export_category("Spawning Information")
 @export var total_waves : int = 5
 @export var current_wave: int
 @export var current_number_of_enemies: int
@@ -10,119 +13,194 @@ const ENEMY = preload("uid://cqueta70ubjqr")
 @export var enemies_left: int
 @export var spawn_locations : Array[Marker2D]
 
-@onready var spawn_timer: Timer = $SpawnTimer
-
+var current_row : int
+var spawn_point : Marker2D
+var bottom_spawn_point : Marker2D
+var top_spawn_point : Marker2D
+var enemies_to_spawn: int:
+	set(value):
+		enemies_to_spawn = max(0, value)
+var total_num_of_enemies_in_level: int
 var enemies_defeated : int
 
+@onready var spawn_timer: Timer = $SpawnTimer
+@onready var enemies_remaining_label: Label = %EnemiesRemainingLabel
+@onready var spawns_remaining_label: Label = %SpawnsRemainingLabel
+
+
 func _ready() -> void:
-	current_wave = Globals.current_wave
-	Events.enemy_died.connect(_on_enemy_died)
+	#current_wave = Globals.current_wave
+	#Events.enemy_died.connect(_on_enemy_died)
 	#check_wave_number()
 
-func check_wave_number() -> void:
-	_reset_enemies_defeat()
+	#Setting up spawning points
+	bottom_spawn_point = spawn_locations[0]
+	top_spawn_point = spawn_locations[1]
 
-	#check player level. If the player is at a certain level spawn from a certain dictonary
+	enemies_to_spawn = level_info.enemies_to_spawn
 
-	#number_enemies_in_wave = 0
-	#print("Current wave is ", current_wave)
-	if current_wave == 1:
-		#TODO Add animation or show panel when wave is starting. Emit a signal of the UI to listen for it
-		#Reset enemies to defeat
-		number_enemies_in_wave = 3
-		await get_tree().create_timer(2).timeout
-		spawn_timer.start()
-		#TODO Add a lable to indicate the current wave
-		#print("Wave One Start")
-	elif current_wave == 2:
-		number_enemies_in_wave = 6
-		await get_tree().create_timer(2).timeout
-		spawn_timer.start()
-		#TODO Add a lable to indicate the current wave
-		#print("Wave Two Start")
-	elif current_wave == 3:
-		number_enemies_in_wave = 9
-		await get_tree().create_timer(2).timeout
-		spawn_timer.start()
-		#TODO Add a lable to indicate the current wave
-	elif current_wave == 4:
-		number_enemies_in_wave = 12
-		await get_tree().create_timer(2).timeout
-		spawn_timer.start()
-		#TODO Add a lable to indicate the current wave
-	elif current_wave == 5:
-		number_enemies_in_wave = 15
-		await get_tree().create_timer(2).timeout
-		spawn_timer.start()
-		#TODO Add a lable to indicate the current wave
-	elif current_wave == 6:
-		number_enemies_in_wave = 18
-		await get_tree().create_timer(2).timeout
-		spawn_timer.start()
-		#TODO Add a lable to indicate the current wave
-		#print("Wave Two Start")
-	elif current_wave == 7:
-		number_enemies_in_wave = 21
-		await get_tree().create_timer(2).timeout
-		spawn_timer.start()
-		#TODO Add a lable to indicate the current wave
-	elif current_wave == 8:
-		number_enemies_in_wave = 24
-		await get_tree().create_timer(2).timeout
-		spawn_timer.start()
-		#TODO Add a lable to indicate the current wave
-	elif current_wave == 9:
-		number_enemies_in_wave = 27
-		await get_tree().create_timer(2).timeout
-		spawn_timer.start()
-		#TODO Add a lable to indicate the current wave
-	elif current_wave == 10:
-		number_enemies_in_wave = 30
-		await get_tree().create_timer(2).timeout
-		spawn_timer.start()
-		#TODO Add a lable to indicate the current wave
+	total_num_of_enemies_in_level = enemies_to_spawn
+
+	#Spawing Logic
+	_spawn_enemy()
+
+	#Updating UI
+	#update_kill_counter()
+	update_spawn_counter()
+
+#func check_wave_number() -> void:
+	#_reset_enemies_defeat()
+#
+	##check player level. If the player is at a certain level spawn from a certain dictonary
+#
+	##number_enemies_in_wave = 0
+	##print("Current wave is ", current_wave)
+	#if current_wave == 1:
+		##TODO Add animation or show panel when wave is starting. Emit a signal of the UI to listen for it
+		##Reset enemies to defeat
+		#number_enemies_in_wave = 3
+		#await get_tree().create_timer(2).timeout
+		#spawn_timer.start()
+		##TODO Add a lable to indicate the current wave
+		##print("Wave One Start")
+	#elif current_wave == 2:
+		#number_enemies_in_wave = 6
+		#await get_tree().create_timer(2).timeout
+		#spawn_timer.start()
+		##TODO Add a lable to indicate the current wave
+		##print("Wave Two Start")
+	#elif current_wave == 3:
+		#number_enemies_in_wave = 9
+		#await get_tree().create_timer(2).timeout
+		#spawn_timer.start()
+		##TODO Add a lable to indicate the current wave
+	#elif current_wave == 4:
+		#number_enemies_in_wave = 12
+		#await get_tree().create_timer(2).timeout
+		#spawn_timer.start()
+		##TODO Add a lable to indicate the current wave
+	#elif current_wave == 5:
+		#number_enemies_in_wave = 15
+		#await get_tree().create_timer(2).timeout
+		#spawn_timer.start()
+		##TODO Add a lable to indicate the current wave
+	#elif current_wave == 6:
+		#number_enemies_in_wave = 18
+		#await get_tree().create_timer(2).timeout
+		#spawn_timer.start()
+		##TODO Add a lable to indicate the current wave
+		##print("Wave Two Start")
+	#elif current_wave == 7:
+		#number_enemies_in_wave = 21
+		#await get_tree().create_timer(2).timeout
+		#spawn_timer.start()
+		##TODO Add a lable to indicate the current wave
+	#elif current_wave == 8:
+		#number_enemies_in_wave = 24
+		#await get_tree().create_timer(2).timeout
+		#spawn_timer.start()
+		##TODO Add a lable to indicate the current wave
+	#elif current_wave == 9:
+		#number_enemies_in_wave = 27
+		#await get_tree().create_timer(2).timeout
+		#spawn_timer.start()
+		##TODO Add a lable to indicate the current wave
+	#elif current_wave == 10:
+		#number_enemies_in_wave = 30
+		#await get_tree().create_timer(2).timeout
+		#spawn_timer.start()
+		##TODO Add a lable to indicate the current wave
+#
+#
+#
+	#Events.wave_completed.emit(current_wave, enemies_defeated)
+#
+#func _on_enemy_died() -> void:
+#
+	#enemies_left -= 1
+	#enemies_defeated += 1
+	#if current_wave == total_waves and enemies_left == 0:
+		#print(current_wave == total_waves)
+		#_on_level_end()
+	#elif enemies_left == 0 and current_wave <= total_waves:
+		#current_wave += 1
+		#check_wave_number()
+#
+#func _on_spawn_timer_timeout() -> void:
+	#var new_enemey = ENEMY.instantiate()
+	##var random_location = spawn_locations.pick_random().global_position
+	#print("Spawn")
+#
+	#get_parent().add_child(new_enemey)
+	#new_enemey.global_position = spawn_locations.pick_random().global_position
+#
+	#if current_number_of_enemies < number_enemies_in_wave:
+		#current_number_of_enemies += 1
+		#enemies_left += 1
+		#get_parent().add_child(new_enemey)
+		#new_enemey.global_position = spawn_locations.pick_random().global_position
+		#print("Choosen Global Position ", new_enemey.global_position)
+		##spawn_timer.start()
+	#else:
+		#current_number_of_enemies = 0
+		##spawn_timer.stop()
+#
+#func _on_level_end() -> void:
+	#Events.pause_auto_actions.emit()
+	#Globals.level += 1
+	#get_tree().create_timer(2.0).timeout
+	#Events.level_complete.emit(Globals.level)
+#
+#func _reset_enemies_defeat():
+	#enemies_defeated = 0
+
+
+func _spawn_enemy() -> void:
+	var new_enemy = level_info.enemies_type.pick_random().instantiate()
+	spawn_point = spawn_locations.pick_random()
+
+	new_enemy.global_position = spawn_point.global_position
+	Events.spawn_enemy.emit(new_enemy)
+	#add_child(new_enemy)
+
+	enemies_to_spawn -= 1
+
+	#spawn_locations[0]
+	if bottom_spawn_point.global_position.y == new_enemy.global_position.y: #bottom row
+		current_row = 1
+		print("On Bottom Row")
+	elif top_spawn_point.global_position.y == new_enemy.global_position.y:
+		current_row = 0
+		print("On Top Row")
+
+	if enemies_to_spawn != 0:
+		%SpawnTimer.start()
+	else:
+		%SpawnTimer.stop()
+
+
+#func update_kill_counter():
+	#enemies_remaining_label.text = str(num_killed) + "/" + str(num_to_succeed)
+#
+	#if num_killed >= num_to_succeed:
+		#enemies_remaining_label.modulate = Color.WEB_GREEN
+	#else:
+		#enemies_remaining_label.modulate = Color.WHITE
 
 
 
-	Events.wave_completed.emit(current_wave, enemies_defeated)
+func update_spawn_counter():
+	spawns_remaining_label.text = str(enemies_to_spawn)
 
-func _on_enemy_died() -> void:
-
-	enemies_left -= 1
-	enemies_defeated += 1
-	if current_wave == total_waves and enemies_left == 0:
-		print(current_wave == total_waves)
-		_on_level_end()
-	elif enemies_left == 0 and current_wave <= total_waves:
-		current_wave += 1
-		check_wave_number()
+	if enemies_to_spawn <= 3:
+		spawns_remaining_label.modulate = Color.FIREBRICK
 
 
 func _on_spawn_timer_timeout() -> void:
-	var new_enemey = ENEMY.instantiate()
-	#var random_location = spawn_locations.pick_random().global_position
-	print("Spawn")
+	if enemies_to_spawn >= 0:
 
-	get_parent().add_child(new_enemey)
-	new_enemey.global_position = spawn_locations.pick_random().global_position
+		_spawn_enemy()
 
-	if current_number_of_enemies < number_enemies_in_wave:
-		current_number_of_enemies += 1
-		enemies_left += 1
-		get_parent().add_child(new_enemey)
-		new_enemey.global_position = spawn_locations.pick_random().global_position
-		print("Choosen Global Position ", new_enemey.global_position)
-		#spawn_timer.start()
+		update_spawn_counter()
 	else:
-		current_number_of_enemies = 0
-		#spawn_timer.stop()
-
-func _on_level_end() -> void:
-	Events.pause_auto_actions.emit()
-	Globals.level += 1
-	get_tree().create_timer(2.0).timeout
-	Events.level_complete.emit(Globals.level)
-
-
-func _reset_enemies_defeat():
-	enemies_defeated = 0
+		return
