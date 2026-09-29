@@ -13,10 +13,20 @@ var is_option_menu_open : bool = false
 var is_result_screen_open : bool = false
 
 var enemies_to_defeat: int = 0
-var enemies_defeated: int = 0
+var enemies_defeated: int = 0 #when player kills enemy
+var enemies_destoryed: int = 0
+var total_num_of_enemies_in_level: int
 var total_enemies_defeated : int = 0
+
 var total_damage_done : int = 0
 var total_player_damage_taken : int = 0
+
+#Conditions variables
+var num_to_succeed : int
+var is_win_condition_met:bool = false
+
+
+
 var total_money_gained: int = 0
 var total_scraps_gained : int = 0
 var total_cores_gained : int = 0
@@ -28,6 +38,11 @@ var grade = ""
 @onready var enemies_in_wave_label: Label = $Pausable/EnemiesInWaveLabel
 @onready var enemy_spawner: Enemy_Spawner = %EnemySpawner
 @onready var money_label: Label = %MoneyLabel
+
+@onready var bottom_spawn_point: Marker2D = %BottomSpawnPoint
+@onready var teleport_point: Marker2D = %TeleportPoint
+@onready var top_spawn_point: Marker2D = %TopSpawnPoint
+
 
 func _ready() -> void:
 	#Load player at spawn
@@ -45,6 +60,10 @@ func _ready() -> void:
 	pause_menu.retreat.connect(_on_retreat_button_pressed)
 	pause_menu.exit_to_title.connect(_on_quit_btn_pressed)
 	settings_menu.back_button_pressed.connect(_on_back_btn_pressed)
+
+	#Initializing signals
+	#Events.enemy_died.connect(_on_enemy_killed)
+	Events.check_remaining.connect(_on_enemy_queue_free)
 	Events.level_complete.connect(_on_result_screen_shown)
 	Events.wave_completed.connect(_on_wave_change)
 	Events.enemy_died.connect(_update_enemy_counter)
@@ -143,3 +162,51 @@ func update_wave_counter(number_defeated: int):
 func _on_currency_gained(amount: int) -> void:
 	total_money_gained += amount
 	money_label.text = str("$", total_money_gained)
+
+
+func _on_enemy_queue_free() -> void:
+	enemies_destoryed += 1
+	if enemies_destoryed == total_num_of_enemies_in_level:
+		print("Start checking process")
+		_check_win_condition()
+
+func _check_win_condition():
+	if enemies_defeated >= num_to_succeed:
+		is_win_condition_met = true
+		#TODO Setup reward: increment the level/amount of enemies destroyed for the lab scene
+		Globals.enemies_killed += enemies_defeated
+		#get_tree().change_scene_to_file("res://scenes/lab.tscn")
+	else:
+		is_win_condition_met = false
+		#TODO Setup punishment: Lose life/lose resource/ lose upgrade
+		Globals.player_lives -= 1
+		print("Number of lives left", Globals.player_lives)
+		Events.win_condition_fail.emit()
+		#play animation to show number (or array of hearts) then choose the last heart and show heart break animation
+		if Globals.player_lives <= 0:
+			get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	print("Win condition ", is_win_condition_met)
+
+
+func _on_switch_collision_body_entered(body: Enemy) -> void:
+	if body.escape_option == body.ESCAPE_OPTIONS.NORMAL:
+		_normal_escape_pattern(body)
+	if body.escape_option == body.ESCAPE_OPTIONS.SPEED_UP:
+		_normal_escape_pattern(body)
+		body.current_data.move_speed = 100
+	elif body.escape_option == body.ESCAPE_OPTIONS.TELEPORT:
+		_teleport_escape_pattern(body)
+
+func _normal_escape_pattern(body: Enemy):
+	change_lanes(body)
+	body.change_direction()
+
+func change_lanes(body: Enemy):
+	if is_equal_approx(body.global_position.y, bottom_spawn_point.global_position.y):
+		body.global_position.y = top_spawn_point.global_position.y
+	else:
+		body.global_position.y = bottom_spawn_point.global_position.y
+
+func _teleport_escape_pattern(body) -> void:
+	body.global_position.x = %TeleportPoint.global_position.x
+	body.change_direction()

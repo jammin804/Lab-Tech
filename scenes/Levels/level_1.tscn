@@ -10,6 +10,7 @@
 [ext_resource type="Theme" uid="uid://65aipdpydskv" path="res://resources/Theme/main_theme.tres" id="6_iiv34"]
 [ext_resource type="AudioStream" uid="uid://bki6hpddo6sgq" path="res://assets/music/bgm/Evil Grudge (RT 1.875)/Chiptune Vol2 Evil Grudge Main.wav" id="8_14nfc"]
 [ext_resource type="PackedScene" uid="uid://bktpyu7vhq0km" path="res://scenes/Systems/enemySpawner.tscn" id="10_0r5j3"]
+[ext_resource type="Resource" uid="uid://couf8au0ggobh" path="res://resources/Levels/level_test.tres" id="10_hk2jt"]
 [ext_resource type="PackedScene" uid="uid://lccgrpafmldk" path="res://scenes/debug/debug_text_overlay.tscn" id="11_d0wj5"]
 [ext_resource type="FontFile" uid="uid://c2a35mxw7sbmh" path="res://font/PressStart2P.ttf" id="11_vtd0g"]
 [ext_resource type="PackedScene" uid="uid://bd1e7fmt2sl4m" path="res://scenes/UI/settings_menu.tscn" id="12_1n1l4"]
@@ -59,6 +60,9 @@ region = Rect2(26, 42, 16, 16)
 atlas = ExtResource("6_a60bd")
 region = Rect2(26, 21, 16, 16)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vtd0g"]
+size = Vector2(20, 98)
+
 [node name="Level1" type="Node" unique_id=1489670400 node_paths=PackedStringArray("pause_menu", "settings_menu", "player_spawn")]
 process_mode = 3
 script = ExtResource("1_iiv34")
@@ -105,11 +109,15 @@ autostart = true
 [node name="Camera" parent="Pausable" unique_id=263792174 instance=ExtResource("5_7u17y")]
 position = Vector2(160, 90)
 
-[node name="EnemySpawnPoint" type="Marker2D" parent="Pausable" unique_id=195233964 groups=["ground_spawns"]]
+[node name="BottomSpawnPoint" type="Marker2D" parent="Pausable" unique_id=2095093862 groups=["ground_spawns"]]
 unique_name_in_owner = true
-position = Vector2(312, 128)
+position = Vector2(304, 133)
 
-[node name="EnemySpawnPoint2" type="Marker2D" parent="Pausable" unique_id=1077596327 groups=["ground_spawns"]]
+[node name="TeleportPoint" type="Marker2D" parent="Pausable" unique_id=1276716611 groups=["ground_spawns"]]
+unique_name_in_owner = true
+position = Vector2(342, 133)
+
+[node name="TopSpawnPoint" type="Marker2D" parent="Pausable" unique_id=1684224505 groups=["ground_spawns"]]
 unique_name_in_owner = true
 position = Vector2(312, 65)
 
@@ -136,8 +144,9 @@ position = Vector2(32, 128)
 [node name="EnemySpawner" parent="Pausable" unique_id=1886090633 node_paths=PackedStringArray("spawn_locations") instance=ExtResource("10_0r5j3")]
 unique_name_in_owner = true
 position = Vector2(312, 128)
+level_info = ExtResource("10_hk2jt")
 total_waves = 10
-spawn_locations = [NodePath("../EnemySpawnPoint"), NodePath("../EnemySpawnPoint2")]
+spawn_locations = [NodePath("../BottomSpawnPoint"), NodePath("../TopSpawnPoint")]
 
 [node name="WaveLabel" type="Label" parent="Pausable" unique_id=398613744]
 visible = false
@@ -171,6 +180,27 @@ stream = ExtResource("8_14nfc")
 volume_db = 8.0
 autoplay = true
 bus = &"Music"
+
+[node name="SwitchCollision" type="Area2D" parent="Pausable" unique_id=453565540]
+position = Vector2(160, 118)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pausable/SwitchCollision" unique_id=2135476636]
+position = Vector2(0, -28)
+shape = SubResource("RectangleShape2D_vtd0g")
+
+[node name="SwitchCollision2" type="Area2D" parent="Pausable" unique_id=151440888]
+position = Vector2(224, 118)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pausable/SwitchCollision2" unique_id=407873765]
+position = Vector2(0, -28)
+shape = SubResource("RectangleShape2D_vtd0g")
+
+[node name="SwitchCollision3" type="Area2D" parent="Pausable" unique_id=34020520]
+position = Vector2(286, 118)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pausable/SwitchCollision3" unique_id=48370142]
+position = Vector2(0, -28)
+shape = SubResource("RectangleShape2D_vtd0g")
 
 [node name="DebugLayer" type="CanvasLayer" parent="." unique_id=389921551]
 process_mode = 3
@@ -232,3 +262,4 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [connection signal="pressed" from="Pausable/PauseBtn" to="." method="_on_pause_btn_pressed"]
+[connection signal="body_entered" from="Pausable/SwitchCollision" to="." method="_on_switch_collision_body_entered"]

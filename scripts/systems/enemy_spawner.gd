@@ -2,7 +2,10 @@ class_name Enemy_Spawner
 extends Node2D
 
 const ENEMY = preload("uid://cqueta70ubjqr")
+@export_category("Level Information")
+@export var level_info : Levels = null
 
+@export_category("Spawning Information")
 @export var total_waves : int = 5
 @export var current_wave: int
 @export var current_number_of_enemies: int

@@ -313,6 +313,8 @@ texture_normal = SubResource("AtlasTexture_kxeyc")
 texture_pressed = SubResource("AtlasTexture_jie0k")
 texture_hover = SubResource("AtlasTexture_ffhs6")
 
+[node name="Node" type="Node" parent="CanvasLayer/Pausable" unique_id=1789906161]
+
 [node name="PauseMenu" parent="CanvasLayer" unique_id=1716673666 instance=ExtResource("17_ijdgx")]
 process_mode = 2
 visible = false
