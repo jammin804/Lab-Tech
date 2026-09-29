@@ -296,3 +296,6 @@ offset_bottom = 40.0
 [connection signal="pressed" from="Pausable/SpawnEnemyButton" to="." method="_on_spawn_enemy_button_pressed"]
 [connection signal="body_entered" from="Pausable/SwitchCollision" to="." method="_on_switch_collision_body_entered"]
 [connection signal="timeout" from="Pausable/Timer" to="." method="_on_timer_timeout"]
+
+[editable path="Pausable/Player"]
+[editable path="Pausable/Player/HUD"]

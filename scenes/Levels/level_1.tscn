@@ -66,6 +66,7 @@ size = Vector2(20, 98)
 [node name="Level1" type="Node" unique_id=1489670400 node_paths=PackedStringArray("pause_menu", "settings_menu", "player_spawn")]
 process_mode = 3
 script = ExtResource("1_iiv34")
+level_info = ExtResource("10_hk2jt")
 pause_menu = NodePath("PauseLayer/PauseMenu")
 settings_menu = NodePath("PauseLayer/SettingsMenu")
 player = ExtResource("2_vtd0g")
@@ -201,6 +202,40 @@ position = Vector2(286, 118)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pausable/SwitchCollision3" unique_id=48370142]
 position = Vector2(0, -28)
 shape = SubResource("RectangleShape2D_vtd0g")
+
+[node name="EnemiesRemainingLabel" type="Label" parent="Pausable" unique_id=950870902]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -70.0
+offset_top = 8.0
+offset_right = -30.0
+offset_bottom = 16.0
+grow_horizontal = 0
+text = "99/99"
+horizontal_alignment = 2
+
+[node name="SpawnsRemainingLabel" type="Label" parent="Pausable" unique_id=67775760]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -70.0
+offset_top = 17.0
+offset_right = -30.0
+offset_bottom = 25.0
+grow_horizontal = 0
+text = "10"
+horizontal_alignment = 2
+
+[node name="Timer" type="Timer" parent="Pausable" unique_id=545971106]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
+autostart = true
 
 [node name="DebugLayer" type="CanvasLayer" parent="." unique_id=389921551]
 process_mode = 3

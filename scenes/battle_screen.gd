@@ -1,6 +1,9 @@
 class_name Level_1
 extends Node
 
+@export_group("Level Information")
+@export var level_info : Levels
+
 @export_category("Menu UI Components")
 @export var pause_menu: PauseMenu
 @export var settings_menu: Settings
@@ -42,6 +45,8 @@ var grade = ""
 @onready var bottom_spawn_point: Marker2D = %BottomSpawnPoint
 @onready var teleport_point: Marker2D = %TeleportPoint
 @onready var top_spawn_point: Marker2D = %TopSpawnPoint
+@onready var enemies_remaining_label: Label = $Pausable/EnemiesRemainingLabel
+@onready var spawns_remaining_label: Label = $Pausable/SpawnsRemainingLabel
 
 
 func _ready() -> void:
@@ -52,8 +57,15 @@ func _ready() -> void:
 	player_inst.global_position = %PlayerSpawnPoint.global_position
 	money_label.text = str("$",total_money_gained)
 
+
+
 	#TODO Increment level on the global level so the lab/upgrade scene can see it
 	Globals.level = 1
+
+	#Collecting Condition Gates information
+	num_to_succeed = level_info.enemies_to_defeat
+	#enemies_to_spawn = level_info.enemies_to_spawn
+	#total_num_of_enemies_in_level = enemies_to_spawn
 
 	pause_menu.resume_game.connect(_on_resume_btn_pressed)
 	pause_menu.open_options.connect(_on_options_btn_pressed)
@@ -70,8 +82,11 @@ func _ready() -> void:
 	Events.damage_dealt.connect(_on_damage_done)
 	Events.damage_taken.connect(_on_player_damage_taken)
 	Events.increase_currency.connect(_on_currency_gained)
+	Events.spawn_enemy.connect(_on_enemy_spawn)
 
 	_reset_flags()
+	update_kill_counter()
+
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"): #and is_result_screen_open == false:
@@ -138,6 +153,8 @@ func _update_enemy_counter() -> void:
 	total_enemies_defeated += 1
 
 	enemies_in_wave_label.text = str(enemies_defeated) + "/" + str(enemies_to_defeat)
+
+	update_kill_counter()
 
 
 func _on_damage_done() -> void:
@@ -210,3 +227,16 @@ func change_lanes(body: Enemy):
 func _teleport_escape_pattern(body) -> void:
 	body.global_position.x = %TeleportPoint.global_position.x
 	body.change_direction()
+
+
+func _on_enemy_spawn(body: Enemy) -> void:
+	get_node("Pausable/Enemies").add_child(body)
+
+
+func update_kill_counter():
+	enemies_remaining_label.text = str(enemies_defeated) + "/" + str(num_to_succeed)
+
+	if enemies_defeated >= num_to_succeed:
+		enemies_remaining_label.modulate = Color.WEB_GREEN
+	else:
+		enemies_remaining_label.modulate = Color.WHITE
