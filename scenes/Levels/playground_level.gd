@@ -103,8 +103,8 @@ func _on_enemy_killed() -> void:
 	num_killed += 1
 
 	update_kill_counter()
-	if enemies_to_spawn == 0:
-		_check_win_condition()
+	#if enemies_to_spawn == 0:
+		#_check_win_condition()
 
 
 func update_kill_counter():
@@ -122,26 +122,18 @@ func update_spawn_counter():
 
 	if enemies_to_spawn <= 3:
 		spawns_remaining_label.modulate = Color.FIREBRICK
-		#TweenFX.heartbeat(spawns_remaining_label)
 
 
 
 
 func _on_timer_timeout() -> void:
-	#print("spawn enemy if available")
 	if enemies_to_spawn >= 0:
 
 		_spawn_enemy()
 
 		update_spawn_counter()
 	else:
-		#_check_enemies_left()
 		return
-
-#func _check_enemies_left() -> void:
-	#var enemies_left = get_tree().get_nodes_in_group("enemy")
-	#if enemies_left.size() == 0 && enemies_to_spawn == 0:
-		#_check_win_condition()
 
 
 func _check_win_condition():

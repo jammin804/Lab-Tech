@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://csf12hipoh47y" path="res://scenes/UI/heart_break.gd" id="1_insni"]
 [ext_resource type="PackedScene" uid="uid://bpo88mkwondid" path="res://scenes/UI Components/heart_icon.tscn" id="2_plk1n"]
+[ext_resource type="Theme" uid="uid://b2yiqfrkj5dmr" path="res://resources/Theme/ui_theme.tres" id="3_plk1n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_plk1n"]
 
 [node name="HeartBreak" type="CanvasLayer" unique_id=665419767]
 script = ExtResource("1_insni")
@@ -30,6 +33,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+offset_transform_enabled = true
 theme_override_constants/separation = 10
 alignment = 1
 
@@ -41,6 +45,49 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/HeartContianer/VBoxContainer" unique_id=1558364060]
+layout_mode = 2
+theme_override_constants/separation = 15
+theme_override_styles/separator = SubResource("StyleBoxEmpty_plk1n")
+
+[node name="ButtonOptionRow" type="HBoxContainer" parent="PanelContainer/HeartContianer/VBoxContainer" unique_id=1110906478]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="RetryButton" type="Button" parent="PanelContainer/HeartContianer/VBoxContainer/ButtonOptionRow" unique_id=421433287]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("3_plk1n")
+theme_override_font_sizes/font_size = 8
+text = "Retry?"
+
+[node name="ReturnButton" type="Button" parent="PanelContainer/HeartContianer/VBoxContainer/ButtonOptionRow" unique_id=626246015]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("3_plk1n")
+theme_override_font_sizes/font_size = 8
+text = "Retrun
+to Base"
+
+[node name="ButtonOptionRow2" type="HBoxContainer" parent="PanelContainer/HeartContianer/VBoxContainer" unique_id=2064386374]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+offset_transform_enabled = true
+offset_transform_pivot = Vector2(102, 19)
+
+[node name="DoubleDownButton" type="Button" parent="PanelContainer/HeartContianer/VBoxContainer/ButtonOptionRow2" unique_id=173711335]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 6
+offset_transform_enabled = true
+theme = ExtResource("3_plk1n")
+theme_override_font_sizes/font_size = 8
+text = "Double Down"
+
 [node name="BreakHeart" type="Button" parent="." unique_id=1169702863]
 anchors_preset = 1
 anchor_left = 1.0
@@ -51,4 +98,7 @@ grow_horizontal = 0
 theme_override_font_sizes/font_size = 8
 text = "Break Heart"
 
+[connection signal="pressed" from="PanelContainer/HeartContianer/VBoxContainer/ButtonOptionRow/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="PanelContainer/HeartContianer/VBoxContainer/ButtonOptionRow/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="PanelContainer/HeartContianer/VBoxContainer/ButtonOptionRow2/DoubleDownButton" to="." method="_on_double_down_button_pressed"]
 [connection signal="pressed" from="BreakHeart" to="." method="_on_break_heart_pressed"]
