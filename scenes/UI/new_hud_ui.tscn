@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://whd42y28mu3l"]
+
+[ext_resource type="Script" uid="uid://b334a8qmhk7rb" path="res://scenes/UI/new_hud_ui.gd" id="1_jqpmw"]
+[ext_resource type="PackedScene" uid="uid://b3gf3rdu50uej" path="res://scenes/UI/battery_hud.tscn" id="1_mmhfa"]
+[ext_resource type="Texture2D" uid="uid://bwvjfvn1mt8h2" path="res://assets/ui/hud/player_heart.png" id="2_odp45"]
+[ext_resource type="PackedScene" uid="uid://edlqqwhtasyq" path="res://scenes/UI/heart_break.tscn" id="4_6sbxy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qti4y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s5m6i"]
+
+[node name="HUD" type="Node" unique_id=1596168860]
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=641719506]
+script = ExtResource("1_jqpmw")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD" unique_id=1031688995]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel2" type="Panel" parent="HUD/MarginContainer" unique_id=1899893574]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_qti4y")
+
+[node name="Battery" parent="HUD/MarginContainer/Panel2" unique_id=1694848608 instance=ExtResource("1_mmhfa")]
+layout_mode = 1
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Panel" type="Panel" parent="HUD/MarginContainer/Panel2" unique_id=715651831]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.80600005
+anchor_right = 0.128
+anchor_bottom = 1.0
+offset_top = 8.919983
+offset_right = -0.9600029
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_s5m6i")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/MarginContainer/Panel2/Panel" unique_id=958422348]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/MarginContainer/Panel2/Panel/MarginContainer" unique_id=677377388]
+layout_mode = 2
+alignment = 1
+
+[node name="LivesIcon" type="TextureRect" parent="HUD/MarginContainer/Panel2/Panel/MarginContainer/HBoxContainer" unique_id=1644034138]
+layout_mode = 2
+texture = ExtResource("2_odp45")
+stretch_mode = 2
+
+[node name="NumOfLivesLabel" type="Label" parent="HUD/MarginContainer/Panel2/Panel/MarginContainer/HBoxContainer" unique_id=2095757631]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 1.5)
+theme_override_font_sizes/font_size = 8
+text = "99"
+
+[node name="HeartBreak" parent="." unique_id=665419767 instance=ExtResource("4_6sbxy")]
+visible = false

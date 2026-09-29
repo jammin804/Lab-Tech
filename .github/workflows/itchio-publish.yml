@@ -8,9 +8,13 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - name: Checkout source code
         uses: actions/checkout@v5
+      
+      - name: Clear Godot import cache
+        run: rm -rf .godot
 
       - name: Godot Export
         id: export

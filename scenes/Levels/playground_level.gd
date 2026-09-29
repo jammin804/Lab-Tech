@@ -13,9 +13,11 @@ var current_row : int
 var enemy: Enemy
 var num_to_succeed : int
 var num_killed : int = 0
+var enemies_destoryed : int = 0
 var enemies_to_spawn: int:
 	set(value):
 		enemies_to_spawn = max(0, value)
+var total_num_of_enemies_in_level: int
 var is_win_condition_met:bool = false
 
 @onready var bottom_spawn_point: Marker2D = %BottomSpawnPoint
@@ -27,6 +29,7 @@ var is_win_condition_met:bool = false
 func _ready() -> void:
 	#Initializing signals
 	Events.enemy_died.connect(_on_enemy_killed)
+	Events.check_remaining.connect(_on_enemy_queue_free)
 
 	#Setting up spawning points
 	spawn_points += [bottom_spawn_point, top_spawn_point]
@@ -34,6 +37,7 @@ func _ready() -> void:
 	#Collecting Condition Gates information
 	num_to_succeed = level_info.enemies_to_defeat
 	enemies_to_spawn = level_info.enemies_to_spawn
+	total_num_of_enemies_in_level = enemies_to_spawn
 
 	#Spawing Logic
 	_spawn_enemy()
@@ -78,13 +82,6 @@ func _spawn_enemy() -> void:
 	else:
 		$Pausable/Timer.stop()
 
-func _process(delta: float) -> void:
-	#_check_enemies_left()
-	pass
-
-
-#func _on_spawn_enemy_button_pressed() -> void:
-	#_spawn_enemy()
 
 
 
@@ -104,10 +101,10 @@ func _teleport_escape_pattern(body) -> void:
 
 func _on_enemy_killed() -> void:
 	num_killed += 1
-	update_kill_counter()
-	if enemies_to_spawn == 0:
-		_check_win_condition()
 
+	update_kill_counter()
+	#if enemies_to_spawn == 0:
+		#_check_win_condition()
 
 
 func update_kill_counter():
@@ -125,26 +122,18 @@ func update_spawn_counter():
 
 	if enemies_to_spawn <= 3:
 		spawns_remaining_label.modulate = Color.FIREBRICK
-		#TweenFX.heartbeat(spawns_remaining_label)
 
 
 
 
 func _on_timer_timeout() -> void:
-	print("spawn enemy if available")
 	if enemies_to_spawn >= 0:
 
 		_spawn_enemy()
 
 		update_spawn_counter()
 	else:
-		#_check_enemies_left()
 		return
-
-func _check_enemies_left() -> void:
-	var enemies_left = get_tree().get_nodes_in_group("enemy")
-	if enemies_left.size() == 0 && enemies_to_spawn == 0:
-		_check_win_condition()
 
 
 func _check_win_condition():
@@ -156,4 +145,20 @@ func _check_win_condition():
 	else:
 		is_win_condition_met = false
 		#TODO Setup punishment: Lose life/lose resource/ lose upgrade
+		Globals.player_lives -= 1
+		print("Number of lives left", Globals.player_lives)
+		Events.win_condition_fail.emit()
+		#play animation to show number (or array of hearts) then choose the last heart and show heart break animation
+		if Globals.player_lives <= 0:
+			get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 	print("Win condition ", is_win_condition_met)
+
+
+func _on_enemy_queue_free() -> void:
+	enemies_destoryed += 1
+	print("Enemy destroyed ", enemies_destoryed, " out of ", total_num_of_enemies_in_level)
+	if enemies_destoryed == total_num_of_enemies_in_level:
+		print("Start checking process")
+		_check_win_condition()
+	#else:
+		#print("Start losing process")

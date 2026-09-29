@@ -1,7 +1,7 @@
 ## Internal tracking system for TweenFX.
 ## [br][br]
 ## Manages active tweens per node, handles cleanup when nodes are freed,
-## and provides stop/query methods. Not intended for direct use — 
+## and provides stop/query methods. Not intended for direct use —
 ## access through [TweenFX] instead.
 
 static var _active: Dictionary = {}  # { node: { TweenFX.Animations.X: tween } }

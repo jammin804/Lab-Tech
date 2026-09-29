@@ -27,3 +27,4 @@ enum Form {DEFAULT, COMBINED, AVATAR}
 @export var can_charge : bool = true
 @export var charge_rate : float = 40.0
 @export var charge_damage_multipler : float = 2.0
+@export var double_down : bool = true
