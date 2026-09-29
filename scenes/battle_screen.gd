@@ -65,7 +65,7 @@ func _ready() -> void:
 	#Collecting Condition Gates information
 	num_to_succeed = level_info.enemies_to_defeat
 	#enemies_to_spawn = level_info.enemies_to_spawn
-	#total_num_of_enemies_in_level = enemies_to_spawn
+	total_num_of_enemies_in_level = enemy_spawner.enemies_to_spawn
 
 	pause_menu.resume_game.connect(_on_resume_btn_pressed)
 	pause_menu.open_options.connect(_on_options_btn_pressed)
@@ -192,7 +192,7 @@ func _check_win_condition():
 		is_win_condition_met = true
 		#TODO Setup reward: increment the level/amount of enemies destroyed for the lab scene
 		Globals.enemies_killed += enemies_defeated
-		#get_tree().change_scene_to_file("res://scenes/lab.tscn")
+		get_tree().change_scene_to_file("res://scenes/lab.tscn")
 	else:
 		is_win_condition_met = false
 		#TODO Setup punishment: Lose life/lose resource/ lose upgrade

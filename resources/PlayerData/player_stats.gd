@@ -21,7 +21,7 @@ enum Form {DEFAULT, COMBINED, AVATAR}
 #Attributes
 @export var super_click : bool = false
 @export var auto_fire : bool = false
-@export var power : int = 8
+@export var power : int = 10
 @export var range : int = 2
 @export var rapid : int = 1 #Bullets per shot
 @export var can_charge : bool = true

@@ -89,6 +89,7 @@ theme_override_font_sizes/font_size = 8
 text = "Double Down"
 
 [node name="BreakHeart" type="Button" parent="." unique_id=1169702863]
+visible = false
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0

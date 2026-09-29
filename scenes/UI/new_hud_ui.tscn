@@ -12,7 +12,6 @@
 [node name="HUD" type="Node" unique_id=1596168860]
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=641719506]
-layer = 400
 script = ExtResource("1_jqpmw")
 
 [node name="MarginContainer" type="MarginContainer" parent="HUD" unique_id=1031688995]
@@ -81,5 +80,4 @@ theme_override_font_sizes/font_size = 8
 text = "99"
 
 [node name="HeartBreak" parent="." unique_id=665419767 instance=ExtResource("4_6sbxy")]
-layer = 401
 visible = false
