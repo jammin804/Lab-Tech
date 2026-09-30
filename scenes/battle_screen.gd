@@ -201,7 +201,7 @@ func _check_win_condition():
 		Events.win_condition_fail.emit()
 		#play animation to show number (or array of hearts) then choose the last heart and show heart break animation
 		if Globals.player_lives <= 0:
-			get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+			get_tree().change_scene_to_file("res://scenes/lab.tscn")
 	print("Win condition ", is_win_condition_met)
 
 
