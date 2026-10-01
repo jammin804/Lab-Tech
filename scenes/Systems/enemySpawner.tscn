@@ -7,6 +7,7 @@ script = ExtResource("1_no5mm")
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=1309119056]
 unique_name_in_owner = true
+wait_time = 2.0
 one_shot = true
 autostart = true
 

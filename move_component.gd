@@ -2,7 +2,7 @@ extends Node
 
 @export var player : PlayerNew
 
-var lane_distance : float = 40
+var lane_distance : float = 62
 var is_on_third_floor : bool = false
 var is_on_second_floor : bool = false
 var is_on_ground_floor : bool = true

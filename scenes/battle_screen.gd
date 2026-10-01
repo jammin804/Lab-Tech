@@ -45,8 +45,8 @@ var grade = ""
 @onready var bottom_spawn_point: Marker2D = %BottomSpawnPoint
 @onready var teleport_point: Marker2D = %TeleportPoint
 @onready var top_spawn_point: Marker2D = %TopSpawnPoint
-@onready var enemies_remaining_label: Label = $Pausable/EnemiesRemainingLabel
-@onready var spawns_remaining_label: Label = $Pausable/SpawnsRemainingLabel
+@onready var enemies_remaining_label: Label = %EnemiesRemainingLabel
+@onready var spawns_remaining_label: Label = %SpawnsRemainingLabel
 
 
 func _ready() -> void:
