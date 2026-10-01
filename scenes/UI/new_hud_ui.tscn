@@ -10,6 +10,7 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s5m6i"]
 
 [node name="HUD" type="Node" unique_id=1596168860]
+metadata/_edit_vertical_guides_ = [10.0]
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=641719506]
 script = ExtResource("1_jqpmw")
@@ -20,6 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -27,6 +29,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="Panel2" type="Panel" parent="HUD/MarginContainer" unique_id=1899893574]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_qti4y")
 
 [node name="Battery" parent="HUD/MarginContainer/Panel2" unique_id=1694848608 instance=ExtResource("1_mmhfa")]
@@ -49,6 +52,7 @@ offset_right = -0.9600029
 grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_s5m6i")
 
 [node name="MarginContainer" type="MarginContainer" parent="HUD/MarginContainer/Panel2/Panel" unique_id=958422348]
@@ -58,12 +62,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 5
+theme_override_constants/margin_left = -1
 theme_override_constants/margin_right = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/MarginContainer/Panel2/Panel/MarginContainer" unique_id=677377388]
 layout_mode = 2
-alignment = 1
+size_flags_vertical = 8
 
 [node name="LivesIcon" type="TextureRect" parent="HUD/MarginContainer/Panel2/Panel/MarginContainer/HBoxContainer" unique_id=1644034138]
 layout_mode = 2

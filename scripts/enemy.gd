@@ -189,20 +189,20 @@ func change_direction():
 func _choose_escape_option(options: ESCAPE_OPTIONS) -> void:
 	match options:
 		ESCAPE_OPTIONS.NORMAL:
-			print("Normal Exit")
+			#print("Normal Exit")
 			pattern_indicator.modulate = Color.ALICE_BLUE
 			escape_option = 0
 		ESCAPE_OPTIONS.ZIG_ZAG:
-			print("Zig Exit")
+			#print("Zig Exit")
 			pattern_indicator.modulate = Color.GOLD
 			escape_option = 1
 		ESCAPE_OPTIONS.SPEED_UP:
-			print("Fast Exit")
+			#print("Fast Exit")
 			pattern_indicator.modulate = Color.NAVY_BLUE
 
 			escape_option = 2
 		ESCAPE_OPTIONS.TELEPORT:
-			print("Tele Exit")
+			#print("Tele Exit")
 			pattern_indicator.modulate = Color.DARK_MAGENTA
 
 			escape_option = 3
