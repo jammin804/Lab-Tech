@@ -23,8 +23,8 @@ var is_win_condition_met:bool = false
 @onready var bottom_spawn_point: Marker2D = %BottomSpawnPoint
 @onready var switch_collision: Area2D = $Pausable/SwitchCollision
 @onready var top_spawn_point: Marker2D = %TopSpawnPoint
-@onready var enemies_remaining_label: Label = $Pausable/EnemiesRemainingLabel
-@onready var spawns_remaining_label: Label = $Pausable/SpawnsRemainingLabel
+@export var enemies_remaining_label: Label
+@export var spawns_remaining_label: Label
 
 func _ready() -> void:
 	#Initializing signals
@@ -141,6 +141,7 @@ func _check_win_condition():
 		is_win_condition_met = true
 		#TODO Setup reward: increment the level/amount of enemies destroyed for the lab scene
 		Globals.enemies_killed += num_killed
+		Events.show_result_screen.emit()
 		#get_tree().change_scene_to_file("res://scenes/lab.tscn")
 	else:
 		is_win_condition_met = false

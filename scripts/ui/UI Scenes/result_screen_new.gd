@@ -18,8 +18,6 @@ var cash_total: int = 0
 @onready var continue_btn: Button = %ContinueBtn
 @onready var total_number_label: Label = %TotalNumberLabel
 
-
-
 func setup(enemies:int, damage_done:int, damage_taken:int, money:int, scraps:int, cores:int, success: String, grade_index)->void:
 	return_btn.hide()
 	continue_btn.hide()
@@ -124,7 +122,7 @@ func _on_return_pressed ()-> void:
 
 
 func _on_return_btn_pressed() -> void:
-	print("clicking return")
+	#print("clicking return")
 	get_tree().paused = false
 	queue_free()
 	LevelTransition.change_scene_to("res://scenes/lab.tscn")
