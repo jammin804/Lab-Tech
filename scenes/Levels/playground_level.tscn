@@ -320,9 +320,7 @@ grow_vertical = 2
 [node name="ResultScreenNew" parent="UILayer/Menus/VictoryScreen" unique_id=908788247 instance=ExtResource("16_d748c")]
 visible = false
 layout_mode = 1
-
-[node name="ResultLayer" type="CanvasLayer" parent="UILayer/Menus/VictoryScreen" unique_id=304703305]
-visible = false
+player = ExtResource("2_ecuf2")
 
 [node name="DebugLayer" type="CanvasLayer" parent="." unique_id=389921551]
 process_mode = 3
