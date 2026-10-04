@@ -13,11 +13,11 @@
 [ext_resource type="Texture2D" uid="uid://clmr8jibxvftl" path="res://assets/backgrounds/back.png" id="8_hc568"]
 [ext_resource type="PackedScene" uid="uid://bktpyu7vhq0km" path="res://scenes/Systems/enemySpawner.tscn" id="10_0r5j3"]
 [ext_resource type="Resource" uid="uid://couf8au0ggobh" path="res://resources/Levels/level_test.tres" id="10_hk2jt"]
-[ext_resource type="PackedScene" uid="uid://lccgrpafmldk" path="res://scenes/debug/debug_text_overlay.tscn" id="11_d0wj5"]
-[ext_resource type="FontFile" uid="uid://c2a35mxw7sbmh" path="res://font/PressStart2P.ttf" id="11_vtd0g"]
 [ext_resource type="PackedScene" uid="uid://bd1e7fmt2sl4m" path="res://scenes/UI/settings_menu.tscn" id="12_1n1l4"]
+[ext_resource type="PackedScene" uid="uid://whd42y28mu3l" path="res://scenes/UI/new_hud_ui.tscn" id="13_7u17y"]
 [ext_resource type="PackedScene" uid="uid://dg66c7f7p6iii" path="res://scenes/pause_menu.tscn" id="13_yhe24"]
-[ext_resource type="PackedScene" uid="uid://ck75rgmytou2t" path="res://scenes/UI/result_screen.tscn" id="14_x5rd6"]
+[ext_resource type="PackedScene" uid="uid://edlqqwhtasyq" path="res://scenes/UI/heart_break.tscn" id="17_a60bd"]
+[ext_resource type="PackedScene" uid="uid://bogawab6ydtph" path="res://scenes/UI/result_screen_new.tscn" id="18_811s2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jkca0"]
 atlas = ExtResource("3_hk2jt")
@@ -263,28 +263,35 @@ size = Vector2(20, 192)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a60bd"]
 size = Vector2(20, 192)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lskjy"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qti4y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xsrm"]
 atlas = ExtResource("6_a60bd")
 region = Rect2(26, 2, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qm3lx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hc568"]
 atlas = ExtResource("6_a60bd")
 region = Rect2(26, 42, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_p5bt8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0r5j3"]
 atlas = ExtResource("6_a60bd")
 region = Rect2(26, 21, 16, 16)
 
-[node name="Level1" type="Node" unique_id=1489670400 node_paths=PackedStringArray("pause_menu", "settings_menu", "player_spawn")]
+[node name="Level1" type="Node" unique_id=1489670400 node_paths=PackedStringArray("pause_menu", "settings_menu", "player_spawn", "enemies_remaining_label", "spawns_remaining_label")]
 process_mode = 3
 script = ExtResource("1_iiv34")
 level_info = ExtResource("10_hk2jt")
-pause_menu = NodePath("PauseLayer/PauseMenu")
-settings_menu = NodePath("PauseLayer/SettingsMenu")
+pause_menu = NodePath("UILayer/Menus/PauseMenu/PauseLayer/PauseMenu")
+settings_menu = NodePath("UILayer/Menus/PauseMenu/PauseLayer/SettingsMenu")
 player = ExtResource("2_vtd0g")
 player_spawn = NodePath("Pausable/PlayerSpawnPoint")
+enemies_remaining_label = NodePath("UILayer/HUD/LevelGUI/MarginContainer/HBoxContainer/StatsLabels/EnemiesRemainingLabel")
+spawns_remaining_label = NodePath("UILayer/HUD/LevelGUI/MarginContainer/HBoxContainer/StatsLabels/SpawnsRemainingLabel")
 metadata/_edit_vertical_guides_ = [32.0, 621.0]
-metadata/_edit_horizontal_guides_ = [265.0, 204.00975, 128.0, 94.0]
+metadata/_edit_horizontal_guides_ = [265.0, 204.00975, 128.0, 94.0, 8.0]
+
+[node name="CustomMouse" parent="." unique_id=289937816 instance=ExtResource("4_5gowt")]
+layer = 400
 
 [node name="Background" type="TextureRect" parent="." unique_id=62776617]
 visible = false
@@ -308,11 +315,8 @@ tile_map_data = PackedByteArray("AAAAAAQABQAAAAAAAAAAAAUABQAAAAEAAAAAAAYABQAAAAI
 tile_set = SubResource("TileSet_qti4y")
 
 [node name="Floor" type="TileMapLayer" parent="." unique_id=1980478336]
-tile_map_data = PackedByteArray("AAAAAA4AAAAAAAUAAAABAA4AAAABAAUAAAACAA4AAAACAAUAAAADAA4AAAAAAAQAAAAEAA4AAAAAAAUAAAAFAA4AAAABAAQAAAAGAA4AAAACAAUAAAAHAA4AAAAAAAQAAAAIAA4AAAAAAAUAAAAJAA4AAAABAAUAAAAKAA4AAAACAAUAAAALAA4AAAAAAAQAAAAMAA4AAAAAAAUAAAANAA4AAAABAAQAAAAOAA4AAAACAAUAAAAPAA4AAAAAAAQAAAAQAA4AAAAAAAUAAAARAA4AAAABAAQAAAASAA4AAAACAAUAAAATAA4AAAAAAAQAAAAUAA4AAAAAAAQAAAAVAA4AAAAAAAUAAAAWAA4AAAABAAUAAAAXAA4AAAACAAUAAAAYAA4AAAAAAAQAAAAZAA4AAAAAAAUAAAAaAA4AAAABAAQAAAAbAA4AAAACAAUAAAAcAA4AAAAAAAQAAAAdAA4AAAAAAAUAAAAeAA4AAAABAAUAAAAfAA4AAAACAAUAAAAgAA4AAAAAAAQAAAAhAA4AAAAAAAUAAAAiAA4AAAABAAQAAAAjAA4AAAACAAUAAAAkAA4AAAAAAAQAAAAlAA4AAAAAAAUAAAAmAA4AAAABAAQAAAAnAA4AAAACAAUAAAAAABIAAAAAAAUAAAABABIAAAABAAUAAAACABIAAAACAAUAAAADABIAAAAAAAQAAAAEABIAAAAAAAUAAAAFABIAAAABAAQAAAAGABIAAAACAAUAAAAHABIAAAAAAAQAAAAIABIAAAAAAAUAAAAJABIAAAABAAUAAAAKABIAAAACAAUAAAALABIAAAAAAAQAAAAMABIAAAAAAAUAAAANABIAAAABAAQAAAAOABIAAAACAAUAAAAPABIAAAAAAAQAAAAQABIAAAAAAAUAAAARABIAAAABAAQAAAASABIAAAACAAUAAAATABIAAAAAAAQAAAAUABIAAAAAAAQAAAAVABIAAAAAAAUAAAAWABIAAAABAAUAAAAXABIAAAACAAUAAAAYABIAAAAAAAQAAAAZABIAAAAAAAUAAAAaABIAAAABAAQAAAAbABIAAAACAAUAAAAcABIAAAAAAAQAAAAdABIAAAAAAAUAAAAeABIAAAABAAUAAAAfABIAAAACAAUAAAAgABIAAAAAAAQAAAAhABIAAAAAAAUAAAAiABIAAAABAAQAAAAjABIAAAACAAUAAAAkABIAAAAAAAQAAAAlABIAAAAAAAUAAAAmABIAAAABAAQAAAAnABIAAAACAAUAAAAAABMAAAAAAAYAAAABABMAAAABAAYAAAACABMAAAAAAAYAAAADABMAAAACAAYAAAAEABMAAAAAAAYAAAAFABMAAAABAAYAAAAGABMAAAAAAAYAAAAHABMAAAABAAYAAAAIABMAAAAAAAYAAAAJABMAAAACAAYAAAAKABMAAAAAAAYAAAALABMAAAABAAYAAAAMABMAAAAAAAYAAAANABMAAAACAAYAAAAOABMAAAAAAAYAAAAPABMAAAABAAYAAAAQABMAAAAAAAYAAAARABMAAAACAAYAAAASABMAAAAAAAYAAAATABMAAAAAAAYAAAAUABMAAAABAAYAAAAVABMAAAAAAAYAAAAWABMAAAABAAYAAAAXABMAAAAAAAYAAAAYABMAAAACAAYAAAAZABMAAAAAAAYAAAAaABMAAAABAAYAAAAbABMAAAAAAAYAAAAcABMAAAABAAYAAAAdABMAAAAAAAYAAAAeABMAAAACAAYAAAAfABMAAAAAAAYAAAAgABMAAAABAAYAAAAhABMAAAAAAAYAAAAiABMAAAACAAYAAAAjABMAAAAAAAYAAAAkABMAAAABAAYAAAAlABMAAAAAAAYAAAAmABMAAAACAAYAAAAnABMAAAAAAAYAAAAAAAoAAAAAAAUAAAABAAoAAAABAAUAAAACAAoAAAACAAUAAAADAAoAAAAAAAQAAAAEAAoAAAAAAAUAAAAFAAoAAAABAAQAAAAGAAoAAAACAAUAAAAHAAoAAAAAAAQAAAAIAAoAAAAAAAUAAAAJAAoAAAABAAUAAAAKAAoAAAACAAUAAAALAAoAAAAAAAQAAAAMAAoAAAAAAAUAAAANAAoAAAABAAQAAAAOAAoAAAACAAUAAAAPAAoAAAAAAAQAAAAQAAoAAAAAAAUAAAARAAoAAAABAAQAAAASAAoAAAACAAUAAAATAAoAAAAAAAQAAAAUAAoAAAAAAAQAAAAVAAoAAAAAAAUAAAAWAAoAAAABAAUAAAAXAAoAAAACAAUAAAAYAAoAAAAAAAQAAAAZAAoAAAAAAAUAAAAaAAoAAAABAAQAAAAbAAoAAAACAAUAAAAcAAoAAAAAAAQAAAAdAAoAAAAAAAUAAAAeAAoAAAABAAUAAAAfAAoAAAACAAUAAAAgAAoAAAAAAAQAAAAhAAoAAAAAAAUAAAAiAAoAAAABAAQAAAAjAAoAAAACAAUAAAAkAAoAAAAAAAQAAAAlAAoAAAAAAAUAAAAmAAoAAAABAAQAAAAnAAoAAAACAAUAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAEAAAABAAIAAAABAAAAAAABAAMAAAABAAEAAAACAAIAAAAAAAAAAAACAAMAAAACAAEAAAADAAIAAAAAAAAAAAADAAMAAAABAAEAAAAEAAIAAAABAAAAAAAEAAMAAAAAAAEAAAAFAAIAAAAAAAAAAAAFAAMAAAABAAEAAAAGAAMAAAAAAAEAAAAHAAMAAAABAAEAAAAIAAMAAAACAAEAAAAGAAIAAAAAAAAAAAAHAAIAAAABAAAAAAAIAAIAAAAAAAAAAAAJAAMAAAABAAEAAAAKAAMAAAACAAEAAAALAAMAAAABAAEAAAAMAAMAAAAAAAEAAAANAAMAAAABAAEAAAAOAAMAAAAAAAEAAAAPAAMAAAABAAEAAAAQAAMAAAACAAEAAAASAAMAAAABAAIAAAATAAMAAAACAAEAAAARAAMAAAAAAAEAAAAUAAMAAAABAAEAAAAVAAMAAAAAAAEAAAAWAAMAAAABAAEAAAAXAAMAAAACAAEAAAAYAAMAAAABAAEAAAAZAAMAAAAAAAEAAAAaAAMAAAABAAEAAAAbAAMAAAAAAAEAAAAcAAMAAAABAAEAAAAdAAMAAAACAAEAAAAeAAMAAAABAAEAAAAfAAMAAAACAAEAAAAgAAMAAAABAAEAAAAhAAMAAAAAAAEAAAAiAAMAAAABAAEAAAAjAAMAAAAAAAEAAAAkAAMAAAABAAEAAAAlAAMAAAACAAEAAAAmAAMAAAABAAEAAAAnAAMAAAACAAEAAAAJAAIAAAAAAAAAAAAKAAIAAAABAAAAAAALAAIAAAAAAAAAAAAMAAIAAAAAAAAAAAANAAIAAAABAAAAAAAOAAIAAAAAAAAAAAAPAAIAAAAAAAAAAAAQAAIAAAABAAAAAAARAAIAAAAAAAAAAAASAAIAAAAAAAAAAAATAAIAAAABAAAAAAAUAAIAAAAAAAAAAAAVAAIAAAAAAAAAAAAWAAIAAAABAAAAAAAXAAIAAAAAAAAAAAAYAAIAAAAAAAAAAAAZAAIAAAABAAAAAAAaAAIAAAAAAAAAAAAbAAIAAAAAAAAAAAAcAAIAAAABAAAAAAAdAAIAAAAAAAAAAAAeAAIAAAAAAAAAAAAfAAIAAAABAAAAAAAgAAIAAAAAAAAAAAAhAAIAAAAAAAAAAAAiAAIAAAABAAAAAAAjAAIAAAAAAAAAAAAkAAIAAAABAAAAAAAlAAIAAAAAAAAAAAAmAAIAAAABAAAAAAAnAAIAAAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAAAA4AAAAAAAUAAAABAA4AAAABAAUAAAACAA4AAAACAAUAAAADAA4AAAAAAAQAAAAEAA4AAAAAAAUAAAAFAA4AAAABAAQAAAAGAA4AAAACAAUAAAAHAA4AAAAAAAQAAAAIAA4AAAAAAAUAAAAJAA4AAAABAAUAAAAKAA4AAAACAAUAAAALAA4AAAAAAAQAAAAMAA4AAAAAAAUAAAANAA4AAAABAAQAAAAOAA4AAAACAAUAAAAPAA4AAAAAAAQAAAAQAA4AAAAAAAUAAAARAA4AAAABAAQAAAASAA4AAAACAAUAAAATAA4AAAAAAAQAAAAUAA4AAAAAAAQAAAAVAA4AAAAAAAUAAAAWAA4AAAABAAUAAAAXAA4AAAACAAUAAAAYAA4AAAAAAAQAAAAZAA4AAAAAAAUAAAAaAA4AAAABAAQAAAAbAA4AAAACAAUAAAAcAA4AAAAAAAQAAAAdAA4AAAAAAAUAAAAeAA4AAAABAAUAAAAfAA4AAAACAAUAAAAgAA4AAAAAAAQAAAAhAA4AAAAAAAUAAAAiAA4AAAABAAQAAAAjAA4AAAACAAUAAAAkAA4AAAAAAAQAAAAlAA4AAAAAAAUAAAAmAA4AAAABAAQAAAAnAA4AAAACAAUAAAAAABIAAAAAAAUAAAABABIAAAABAAUAAAACABIAAAACAAUAAAADABIAAAAAAAQAAAAEABIAAAAAAAUAAAAFABIAAAABAAQAAAAGABIAAAACAAUAAAAHABIAAAAAAAQAAAAIABIAAAAAAAUAAAAJABIAAAABAAUAAAAKABIAAAACAAUAAAALABIAAAAAAAQAAAAMABIAAAAAAAUAAAANABIAAAABAAQAAAAOABIAAAACAAUAAAAPABIAAAAAAAQAAAAQABIAAAAAAAUAAAARABIAAAABAAQAAAASABIAAAACAAUAAAATABIAAAAAAAQAAAAUABIAAAAAAAQAAAAVABIAAAAAAAUAAAAWABIAAAABAAUAAAAXABIAAAACAAUAAAAYABIAAAAAAAQAAAAZABIAAAAAAAUAAAAaABIAAAABAAQAAAAbABIAAAACAAUAAAAcABIAAAAAAAQAAAAdABIAAAAAAAUAAAAeABIAAAABAAUAAAAfABIAAAACAAUAAAAgABIAAAAAAAQAAAAhABIAAAAAAAUAAAAiABIAAAABAAQAAAAjABIAAAACAAUAAAAkABIAAAAAAAQAAAAlABIAAAAAAAUAAAAmABIAAAABAAQAAAAnABIAAAACAAUAAAAAABMAAAAAAAYAAAABABMAAAABAAYAAAACABMAAAAAAAYAAAADABMAAAACAAYAAAAEABMAAAAAAAYAAAAFABMAAAABAAYAAAAGABMAAAAAAAYAAAAHABMAAAABAAYAAAAIABMAAAAAAAYAAAAJABMAAAACAAYAAAAKABMAAAAAAAYAAAALABMAAAABAAYAAAAMABMAAAAAAAYAAAANABMAAAACAAYAAAAOABMAAAAAAAYAAAAPABMAAAABAAYAAAAQABMAAAAAAAYAAAARABMAAAACAAYAAAASABMAAAAAAAYAAAATABMAAAAAAAYAAAAUABMAAAABAAYAAAAVABMAAAAAAAYAAAAWABMAAAABAAYAAAAXABMAAAAAAAYAAAAYABMAAAACAAYAAAAZABMAAAAAAAYAAAAaABMAAAABAAYAAAAbABMAAAAAAAYAAAAcABMAAAABAAYAAAAdABMAAAAAAAYAAAAeABMAAAACAAYAAAAfABMAAAAAAAYAAAAgABMAAAABAAYAAAAhABMAAAAAAAYAAAAiABMAAAACAAYAAAAjABMAAAAAAAYAAAAkABMAAAABAAYAAAAlABMAAAAAAAYAAAAmABMAAAACAAYAAAAnABMAAAAAAAYAAAAAAAoAAAAAAAUAAAABAAoAAAABAAUAAAACAAoAAAACAAUAAAADAAoAAAAAAAQAAAAEAAoAAAAAAAUAAAAFAAoAAAABAAQAAAAGAAoAAAACAAUAAAAHAAoAAAAAAAQAAAAIAAoAAAAAAAUAAAAJAAoAAAABAAUAAAAKAAoAAAACAAUAAAALAAoAAAAAAAQAAAAMAAoAAAAAAAUAAAANAAoAAAABAAQAAAAOAAoAAAACAAUAAAAPAAoAAAAAAAQAAAAQAAoAAAAAAAUAAAARAAoAAAABAAQAAAASAAoAAAACAAUAAAATAAoAAAAAAAQAAAAUAAoAAAAAAAQAAAAVAAoAAAAAAAUAAAAWAAoAAAABAAUAAAAXAAoAAAACAAUAAAAYAAoAAAAAAAQAAAAZAAoAAAAAAAUAAAAaAAoAAAABAAQAAAAbAAoAAAACAAUAAAAcAAoAAAAAAAQAAAAdAAoAAAAAAAUAAAAeAAoAAAABAAUAAAAfAAoAAAACAAUAAAAgAAoAAAAAAAQAAAAhAAoAAAAAAAUAAAAiAAoAAAABAAQAAAAjAAoAAAACAAUAAAAkAAoAAAAAAAQAAAAlAAoAAAAAAAUAAAAmAAoAAAABAAQAAAAnAAoAAAACAAUAAAAAAAMAAAAAAAAAAAABAAMAAAABAAAAAAACAAMAAAAAAAAAAAADAAMAAAAAAAAAAAAEAAMAAAABAAAAAAAFAAMAAAAAAAAAAAAGAAMAAAAAAAAAAAAHAAMAAAABAAAAAAAIAAMAAAAAAAAAAAAJAAMAAAAAAAAAAAAKAAMAAAABAAAAAAALAAMAAAAAAAAAAAAMAAMAAAAAAAAAAAANAAMAAAABAAAAAAAOAAMAAAAAAAAAAAAPAAMAAAAAAAAAAAAQAAMAAAABAAAAAAARAAMAAAAAAAAAAAASAAMAAAAAAAAAAAATAAMAAAABAAAAAAAUAAMAAAAAAAAAAAAVAAMAAAAAAAAAAAAWAAMAAAABAAAAAAAXAAMAAAAAAAAAAAAYAAMAAAAAAAAAAAAZAAMAAAABAAAAAAAaAAMAAAAAAAAAAAAbAAMAAAAAAAAAAAAcAAMAAAABAAAAAAAdAAMAAAAAAAAAAAAeAAMAAAAAAAAAAAAfAAMAAAABAAAAAAAgAAMAAAAAAAAAAAAhAAMAAAAAAAAAAAAiAAMAAAABAAAAAAAjAAMAAAAAAAAAAAAkAAMAAAABAAAAAAAlAAMAAAAAAAAAAAAmAAMAAAABAAAAAAAnAAMAAAAAAAAAAAAAAAQAAAAAAAEAAAABAAQAAAABAAEAAAACAAQAAAACAAEAAAADAAQAAAABAAEAAAAEAAQAAAAAAAEAAAAFAAQAAAABAAEAAAAGAAQAAAAAAAEAAAAHAAQAAAABAAEAAAAIAAQAAAACAAEAAAAJAAQAAAABAAEAAAAKAAQAAAACAAEAAAALAAQAAAABAAEAAAAMAAQAAAAAAAEAAAANAAQAAAABAAEAAAAOAAQAAAAAAAEAAAAPAAQAAAABAAEAAAAQAAQAAAACAAEAAAARAAQAAAAAAAEAAAASAAQAAAABAAIAAAATAAQAAAACAAEAAAAUAAQAAAABAAEAAAAVAAQAAAAAAAEAAAAWAAQAAAABAAEAAAAXAAQAAAACAAEAAAAYAAQAAAABAAEAAAAZAAQAAAAAAAEAAAAaAAQAAAABAAEAAAAbAAQAAAAAAAEAAAAcAAQAAAABAAEAAAAdAAQAAAACAAEAAAAeAAQAAAABAAEAAAAfAAQAAAACAAEAAAAgAAQAAAABAAEAAAAhAAQAAAAAAAEAAAAiAAQAAAABAAEAAAAjAAQAAAAAAAEAAAAkAAQAAAABAAEAAAAlAAQAAAACAAEAAAAmAAQAAAABAAEAAAAnAAQAAAACAAEAAAA=")
 tile_set = SubResource("TileSet_a60bd")
-
-[node name="CustomMouse" parent="." unique_id=289937816 instance=ExtResource("4_5gowt")]
-layer = 400
 
 [node name="Pausable" type="Control" parent="." unique_id=604897688]
 process_mode = 1
@@ -358,39 +362,14 @@ zoom = Vector2(0.5, 0.5)
 unique_name_in_owner = true
 position = Vector2(32, 265)
 
-[node name="EnemySpawner" parent="Pausable" unique_id=1886090633 node_paths=PackedStringArray("spawn_locations") instance=ExtResource("10_0r5j3")]
+[node name="EnemySpawner" parent="Pausable" unique_id=1886090633 node_paths=PackedStringArray("enemies_remaining_label", "spawns_remaining_label", "spawn_locations") instance=ExtResource("10_0r5j3")]
 unique_name_in_owner = true
 position = Vector2(312, 128)
 level_info = ExtResource("10_hk2jt")
+enemies_remaining_label = NodePath("../../UILayer/HUD/LevelGUI/MarginContainer/HBoxContainer/StatsLabels/EnemiesRemainingLabel")
+spawns_remaining_label = NodePath("../../UILayer/HUD/LevelGUI/MarginContainer/HBoxContainer/StatsLabels/SpawnsRemainingLabel")
 total_waves = 10
 spawn_locations = [NodePath("../SpawnPoints/BottomSpawnPoint"), NodePath("../SpawnPoints/TopSpawnPoint")]
-
-[node name="WaveLabel" type="Label" parent="Pausable" unique_id=398613744]
-visible = false
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -103.0
-offset_top = 6.0
-offset_right = -43.0
-offset_bottom = 29.0
-grow_horizontal = 0
-text = "Wave: 1"
-
-[node name="EnemiesInWaveLabel" type="Label" parent="Pausable" unique_id=1891000520]
-visible = false
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -103.0
-offset_top = 31.0
-offset_right = -43.0
-offset_bottom = 54.0
-grow_horizontal = 0
-text = "0/3"
-horizontal_alignment = 2
 
 [node name="LevelBGM" type="AudioStreamPlayer2D" parent="Pausable" unique_id=862273180]
 stream = ExtResource("8_14nfc")
@@ -425,113 +404,141 @@ wait_time = 2.0
 one_shot = true
 autostart = true
 
-[node name="GameStats" type="CanvasLayer" parent="Pausable" unique_id=645062975]
+[node name="EnemiesInWaveLabel" type="Label" parent="Pausable" unique_id=1084878349]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -103.0
+offset_top = 31.0
+offset_right = -43.0
+offset_bottom = 54.0
+grow_horizontal = 0
+text = "0/3"
+horizontal_alignment = 2
+
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=1734716023]
+process_mode = 3
 layer = 2
 
-[node name="PauseBtn" type="TextureButton" parent="Pausable/GameStats" unique_id=1050029617]
-anchors_preset = 1
-anchor_left = 1.0
+[node name="HUD" type="Control" parent="UILayer" unique_id=879052120]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
-offset_left = -28.0
-offset_top = 7.0
-offset_right = -12.0
-offset_bottom = 23.0
-grow_horizontal = 0
-mouse_filter = 1
-texture_normal = SubResource("AtlasTexture_lskjy")
-texture_pressed = SubResource("AtlasTexture_qm3lx")
-texture_hover = SubResource("AtlasTexture_p5bt8")
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="EnemiesRemainingLabel" type="Label" parent="Pausable/GameStats" unique_id=950870902]
-unique_name_in_owner = true
-anchors_preset = 1
-anchor_left = 1.0
+[node name="PlayerHUD" type="Control" parent="UILayer/HUD" unique_id=1134543982]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
-offset_left = -96.0
-offset_top = 8.0
-offset_right = -36.0
-offset_bottom = 24.0
-grow_horizontal = 0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HUD2" parent="UILayer/HUD/PlayerHUD" unique_id=1596168860 instance=ExtResource("13_7u17y")]
+
+[node name="LevelGUI" type="Control" parent="UILayer/HUD" unique_id=656322050]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/HUD/LevelGUI" unique_id=242458686]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/HUD/LevelGUI/MarginContainer" unique_id=1645896170]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/separation = 25
+
+[node name="StatsLabels" type="VBoxContainer" parent="UILayer/HUD/LevelGUI/MarginContainer/HBoxContainer" unique_id=1130880263]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="EnemiesRemainingLabel" type="Label" parent="UILayer/HUD/LevelGUI/MarginContainer/HBoxContainer/StatsLabels" unique_id=322624520]
+layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "99/99"
 horizontal_alignment = 2
-metadata/_edit_group_ = true
 
-[node name="SpawnsRemainingLabel" type="Label" parent="Pausable/GameStats" unique_id=67775760]
-unique_name_in_owner = true
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -76.0
-offset_top = 17.0
-offset_right = -36.0
-offset_bottom = 33.0
-grow_horizontal = 0
+[node name="SpawnsRemainingLabel" type="Label" parent="UILayer/HUD/LevelGUI/MarginContainer/HBoxContainer/StatsLabels" unique_id=1228669626]
+layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "10"
 horizontal_alignment = 2
-metadata/_edit_group_ = true
 
-[node name="DebugLayer" type="CanvasLayer" parent="." unique_id=389921551]
-process_mode = 3
-layer = 128
-visible = false
+[node name="VSeparator" type="VSeparator" parent="UILayer/HUD/LevelGUI/MarginContainer/HBoxContainer" unique_id=978668152]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_qti4y")
 
-[node name="DebugRoot" type="Control" parent="DebugLayer" unique_id=1584273552]
-layout_mode = 3
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 40.0
-grow_vertical = 0
-mouse_filter = 2
-mouse_behavior_recursive = 1
-
-[node name="MoneyLabel" type="Label" parent="DebugLayer/DebugRoot" unique_id=196329218]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = 177.0
-offset_top = -122.0
-offset_right = 237.0
-offset_bottom = -114.0
-grow_horizontal = 0
-theme_override_fonts/font = ExtResource("11_vtd0g")
-theme_override_font_sizes/font_size = 8
-text = "$999999"
-
-[node name="DebugTextOverlay" parent="DebugLayer/DebugRoot" unique_id=1309649993 instance=ExtResource("11_d0wj5")]
-layout_mode = 1
-offset_top = -46.0
-offset_bottom = -46.0
-
-[node name="PauseLayer" type="CanvasLayer" parent="." unique_id=1812816143]
-layer = 300
-visible = false
-
-[node name="SettingsMenu" parent="PauseLayer" unique_id=1195811390 instance=ExtResource("12_1n1l4")]
-process_mode = 2
-visible = false
-
-[node name="PauseMenu" parent="PauseLayer" unique_id=1716673666 instance=ExtResource("13_yhe24")]
-process_mode = 2
-visible = false
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=304703305]
-visible = false
-
-[node name="ResultScreen" parent="CanvasLayer" unique_id=1112778916 instance=ExtResource("14_x5rd6")]
-visible = false
-z_index = 4000
-
-[node name="Control" type="Control" parent="CanvasLayer" unique_id=65889336]
+[node name="Menus" type="Control" parent="UILayer" unique_id=740611496]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="PauseMenu" type="Control" parent="UILayer/Menus" unique_id=874705856]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PauseLayer" type="CanvasLayer" parent="UILayer/Menus/PauseMenu" unique_id=908432343]
+layer = 300
+
+[node name="SettingsMenu" parent="UILayer/Menus/PauseMenu/PauseLayer" unique_id=1195811390 instance=ExtResource("12_1n1l4")]
+process_mode = 2
+visible = false
+
+[node name="PauseMenu" parent="UILayer/Menus/PauseMenu/PauseLayer" unique_id=1716673666 instance=ExtResource("13_yhe24")]
+process_mode = 2
+visible = false
+
+[node name="GameOverScreen" type="Control" parent="UILayer/Menus" unique_id=408499527]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HeartBreak" parent="UILayer/Menus/GameOverScreen" unique_id=665419767 instance=ExtResource("17_a60bd")]
+visible = false
+
+[node name="VictoryScreen" type="Control" parent="UILayer/Menus" unique_id=594926280]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 283.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResultScreenNew" parent="UILayer/Menus/VictoryScreen" unique_id=908788247 instance=ExtResource("18_811s2")]
+visible = false
+layout_mode = 1
+player = ExtResource("2_vtd0g")
+
+[node name="PauseBtn" type="TextureButton" parent="UILayer" unique_id=1509640494]
+offset_left = 294.0
+offset_top = 8.0
+offset_right = 310.0
+offset_bottom = 28.0
+texture_normal = SubResource("AtlasTexture_4xsrm")
+texture_pressed = SubResource("AtlasTexture_hc568")
+texture_hover = SubResource("AtlasTexture_0r5j3")
+
 [connection signal="body_entered" from="Pausable/SwitchCollision" to="." method="_on_switch_collision_body_entered"]
-[connection signal="pressed" from="Pausable/GameStats/PauseBtn" to="." method="_on_pause_btn_pressed"]
+[connection signal="pressed" from="UILayer/PauseBtn" to="." method="_on_pause_btn_pressed"]

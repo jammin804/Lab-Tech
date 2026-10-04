@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_ditap")
-enemies_to_defeat = 1
-enemies_to_spawn = 2
+enemies_to_defeat = 3
+enemies_to_spawn = 5
 enemies_type = Array[PackedScene]([ExtResource("1_hfaw0")])
 metadata/_custom_type_script = "uid://ci2m2uau1arlp"

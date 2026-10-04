@@ -3098,7 +3098,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("4_1ajci")
-text = "SETTINGS"
+text = "OPTIONS"
 
 [node name="QuitBtn" parent="Options Container/MainButtons" unique_id=643844570 instance=ExtResource("2_bqqt6")]
 unique_name_in_owner = true

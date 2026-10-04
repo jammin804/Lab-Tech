@@ -47,7 +47,7 @@ func _ready() -> void:
 	Events.damage_dealt.connect(_on_damage_done)
 	Events.increase_currency.connect(_on_currency_gained)
 	Events.level_complete.connect(_on_level_complete)
-
+	Events.player_spawned.emit(self)
 
 #region Remove this and move it to upgrade scene
 #func _open_talent_tree():

@@ -98,7 +98,7 @@ offset_bottom = 23.0
 grow_horizontal = 2
 theme = ExtResource("2_878o3")
 theme_override_fonts/font = ExtResource("3_3i1ia")
-text = "Settings"
+text = "Options"
 vertical_alignment = 1
 
 [node name="SettingsMenuButtons" type="VBoxContainer" parent="." unique_id=627617667]

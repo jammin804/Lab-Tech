@@ -5,6 +5,10 @@ const ENEMY = preload("uid://cqueta70ubjqr")
 @export_category("Level Information")
 @export var level_info : Levels = null
 
+@export_category("HUD Labels")
+@export var enemies_remaining_label: Label
+@export var spawns_remaining_label: Label
+
 @export_category("Spawning Information")
 @export var total_waves : int = 5
 @export var current_wave: int
@@ -24,8 +28,7 @@ var total_num_of_enemies_in_level: int
 var enemies_defeated : int
 
 @onready var spawn_timer: Timer = $SpawnTimer
-@onready var enemies_remaining_label: Label = %EnemiesRemainingLabel
-@onready var spawns_remaining_label: Label = %SpawnsRemainingLabel
+
 
 
 func _ready() -> void:
