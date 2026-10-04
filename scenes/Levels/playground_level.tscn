@@ -11,11 +11,13 @@
 [ext_resource type="Texture2D" uid="uid://b8h7y5diislmb" path="res://assets/ui/hud/Settigns.png" id="8_o6lyy"]
 [ext_resource type="AudioStream" uid="uid://bki6hpddo6sgq" path="res://assets/music/bgm/Evil Grudge (RT 1.875)/Chiptune Vol2 Evil Grudge Main.wav" id="10_8hbam"]
 [ext_resource type="FontFile" uid="uid://c2a35mxw7sbmh" path="res://font/PressStart2P.ttf" id="11_f8ofd"]
+[ext_resource type="PackedScene" uid="uid://whd42y28mu3l" path="res://scenes/UI/new_hud_ui.tscn" id="12_0nsmb"]
 [ext_resource type="PackedScene" uid="uid://lccgrpafmldk" path="res://scenes/debug/debug_text_overlay.tscn" id="12_3vacm"]
 [ext_resource type="PackedScene" uid="uid://bd1e7fmt2sl4m" path="res://scenes/UI/settings_menu.tscn" id="13_jevph"]
 [ext_resource type="PackedScene" uid="uid://dg66c7f7p6iii" path="res://scenes/pause_menu.tscn" id="14_xuedy"]
 [ext_resource type="PackedScene" uid="uid://cqueta70ubjqr" path="res://scenes/enemy.tscn" id="15_85ul7"]
-[ext_resource type="PackedScene" uid="uid://ck75rgmytou2t" path="res://scenes/UI/result_screen.tscn" id="15_iehtx"]
+[ext_resource type="PackedScene" uid="uid://edlqqwhtasyq" path="res://scenes/UI/heart_break.tscn" id="15_d748c"]
+[ext_resource type="PackedScene" uid="uid://bogawab6ydtph" path="res://scenes/UI/result_screen_new.tscn" id="16_d748c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jkca0"]
 atlas = ExtResource("3_0nsmb")
@@ -75,13 +77,18 @@ region = Rect2(26, 42, 16, 16)
 atlas = ExtResource("8_o6lyy")
 region = Rect2(26, 21, 16, 16)
 
-[node name="Playground" type="Node" unique_id=1489670400]
+[node name="Playground" type="Node" unique_id=1489670400 node_paths=PackedStringArray("enemies_remaining_label", "spawns_remaining_label")]
 process_mode = 3
 script = ExtResource("1_dwy54")
 level_info = ExtResource("2_0nsmb")
 enemy_scene = ExtResource("15_85ul7")
+enemies_remaining_label = NodePath("UILayer/HUD/LevelGUI/MarginContainer/HBoxContainer/StatsLabels/EnemiesRemainingLabel")
+spawns_remaining_label = NodePath("UILayer/HUD/LevelGUI/MarginContainer/HBoxContainer/StatsLabels/SpawnsRemainingLabel")
 metadata/_edit_horizontal_guides_ = [23.0]
 metadata/_edit_vertical_guides_ = [19.0, 160.0]
+
+[node name="CustomMouse" parent="." unique_id=289937816 instance=ExtResource("5_w4kf8")]
+layer = 400
 
 [node name="Background" type="TextureRect" parent="." unique_id=62776617]
 texture_filter = 1
@@ -97,9 +104,6 @@ expand_mode = 2
 tile_map_data = PackedByteArray("AAAAAAUAAAAAAAUAAAABAAUAAAABAAUAAAACAAUAAAACAAUAAAADAAUAAAAAAAQAAAAEAAUAAAAAAAQAAAAFAAUAAAACAAUAAAAGAAUAAAABAAQAAAAHAAUAAAAAAAUAAAAIAAUAAAAAAAQAAAAJAAUAAAAAAAUAAAAKAAUAAAABAAUAAAALAAUAAAACAAUAAAAMAAUAAAAAAAQAAAANAAUAAAAAAAQAAAAOAAUAAAACAAUAAAAPAAUAAAABAAQAAAAQAAUAAAAAAAUAAAARAAUAAAAAAAQAAAASAAUAAAAAAAUAAAATAAUAAAABAAUAAAA=")
 tile_set = SubResource("TileSet_qti4y")
 
-[node name="CustomMouse" parent="." unique_id=289937816 instance=ExtResource("5_w4kf8")]
-layer = 400
-
 [node name="Pausable" type="Control" parent="." unique_id=604897688]
 process_mode = 1
 layout_mode = 3
@@ -111,23 +115,8 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("6_lstyb")
 
-[node name="SpawnEnemyButton" type="Button" parent="Pausable" unique_id=407546252]
-visible = false
-layout_mode = 0
-offset_left = 133.0
-offset_top = 6.0
-offset_right = 195.0
-offset_bottom = 21.0
-theme_override_font_sizes/font_size = 6
-text = "Spanw Enemy"
-
 [node name="Player" parent="Pausable" unique_id=98801044 instance=ExtResource("2_ecuf2")]
 position = Vector2(26, 128)
-
-[node name="InBetweenWaves" type="Timer" parent="Pausable" unique_id=182636926]
-unique_name_in_owner = true
-one_shot = true
-autostart = true
 
 [node name="Camera" parent="Pausable" unique_id=263792174 instance=ExtResource("7_jqjvn")]
 position = Vector2(160, 90)
@@ -215,50 +204,123 @@ position = Vector2(286, 118)
 position = Vector2(0, -28)
 shape = SubResource("RectangleShape2D_s5m6i")
 
-[node name="EnemiesRemainingLabel" type="Label" parent="Pausable" unique_id=1821520065]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -72.0
-offset_top = 9.0
-offset_right = -32.0
-offset_bottom = 17.0
-grow_horizontal = 0
-text = "99/99"
-horizontal_alignment = 2
-
-[node name="SpawnsRemainingLabel" type="Label" parent="Pausable" unique_id=408221451]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -72.0
-offset_top = 19.0
-offset_right = -32.0
-offset_bottom = 27.0
-grow_horizontal = 0
-text = "10"
-horizontal_alignment = 2
-
 [node name="Timer" type="Timer" parent="Pausable" unique_id=1113616320]
 wait_time = 2.0
 one_shot = true
 autostart = true
 
-[node name="PauseBtn2" type="TextureButton" parent="Pausable" unique_id=1801887376]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=459962682]
+process_mode = 3
+
+[node name="HUD" type="Control" parent="UILayer" unique_id=637852757]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
-offset_left = -27.0
-offset_top = 7.0
-offset_right = -11.0
-offset_bottom = 23.0
-grow_horizontal = 0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerHUD" type="Control" parent="UILayer/HUD" unique_id=1727063206]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HUD" parent="UILayer/HUD/PlayerHUD" unique_id=1596168860 instance=ExtResource("12_0nsmb")]
+
+[node name="LevelGUI" type="Control" parent="UILayer/HUD" unique_id=962263710]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/HUD/LevelGUI" unique_id=957388483]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/HUD/LevelGUI/MarginContainer" unique_id=755641007]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="StatsLabels" type="VBoxContainer" parent="UILayer/HUD/LevelGUI/MarginContainer/HBoxContainer" unique_id=1754320948]
+layout_mode = 2
+
+[node name="EnemiesRemainingLabel" type="Label" parent="UILayer/HUD/LevelGUI/MarginContainer/HBoxContainer/StatsLabels" unique_id=1821520065]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "99/99"
+horizontal_alignment = 2
+
+[node name="SpawnsRemainingLabel" type="Label" parent="UILayer/HUD/LevelGUI/MarginContainer/HBoxContainer/StatsLabels" unique_id=408221451]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "10"
+horizontal_alignment = 2
+
+[node name="PauseBtn2" type="TextureButton" parent="UILayer/HUD/LevelGUI/MarginContainer/HBoxContainer" unique_id=1801887376]
+layout_mode = 2
 texture_normal = SubResource("AtlasTexture_ecuf2")
 texture_pressed = SubResource("AtlasTexture_0nsmb")
 texture_hover = SubResource("AtlasTexture_d748c")
+
+[node name="Menus" type="Control" parent="UILayer" unique_id=1618119253]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PauseMenu" type="Control" parent="UILayer/Menus" unique_id=1683304652]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PauseLayer" type="CanvasLayer" parent="UILayer/Menus/PauseMenu" unique_id=1812816143]
+layer = 300
+
+[node name="SettingsMenu" parent="UILayer/Menus/PauseMenu/PauseLayer" unique_id=1195811390 instance=ExtResource("13_jevph")]
+process_mode = 2
+visible = false
+
+[node name="PauseMenu" parent="UILayer/Menus/PauseMenu/PauseLayer" unique_id=1716673666 instance=ExtResource("14_xuedy")]
+process_mode = 2
+visible = false
+
+[node name="GameOverScreen" type="Control" parent="UILayer/Menus" unique_id=136827584]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HeartBreak" parent="UILayer/Menus/GameOverScreen" unique_id=665419767 instance=ExtResource("15_d748c")]
+visible = false
+
+[node name="VictoryScreen" type="Control" parent="UILayer/Menus" unique_id=1738746652]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 283.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResultScreenNew" parent="UILayer/Menus/VictoryScreen" unique_id=908788247 instance=ExtResource("16_d748c")]
+visible = false
+layout_mode = 1
+player = ExtResource("2_ecuf2")
 
 [node name="DebugLayer" type="CanvasLayer" parent="." unique_id=389921551]
 process_mode = 3
@@ -296,29 +358,7 @@ layout_mode = 1
 offset_top = -46.0
 offset_bottom = -46.0
 
-[node name="PauseLayer" type="CanvasLayer" parent="." unique_id=1812816143]
-layer = 300
-
-[node name="SettingsMenu" parent="PauseLayer" unique_id=1195811390 instance=ExtResource("13_jevph")]
-process_mode = 2
-visible = false
-
-[node name="PauseMenu" parent="PauseLayer" unique_id=1716673666 instance=ExtResource("14_xuedy")]
-process_mode = 2
-visible = false
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=304703305]
-
-[node name="ResultScreen" parent="CanvasLayer" unique_id=1112778916 instance=ExtResource("15_iehtx")]
-visible = false
-z_index = 4000
-
-[node name="Control" type="Control" parent="CanvasLayer" unique_id=65889336]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[connection signal="pressed" from="Pausable/SpawnEnemyButton" to="." method="_on_spawn_enemy_button_pressed"]
 [connection signal="body_entered" from="Pausable/SwitchCollision" to="." method="_on_switch_collision_body_entered"]
 [connection signal="timeout" from="Pausable/Timer" to="." method="_on_timer_timeout"]
+
+[editable path="UILayer/HUD/PlayerHUD/HUD"]

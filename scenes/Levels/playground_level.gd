@@ -5,8 +5,11 @@ enum Row {TOP_ROW, BOTTOM_ROW}
 
 @export var level_info : Levels
 @export var enemy_scene: PackedScene
+@export var enemies_remaining_label: Label
+@export var spawns_remaining_label: Label
 
 
+var player : PlayerNew = null
 var spawn_points: Array[Marker2D]
 var spawn_point : Marker2D
 var current_row : int
@@ -23,8 +26,6 @@ var is_win_condition_met:bool = false
 @onready var bottom_spawn_point: Marker2D = %BottomSpawnPoint
 @onready var switch_collision: Area2D = $Pausable/SwitchCollision
 @onready var top_spawn_point: Marker2D = %TopSpawnPoint
-@onready var enemies_remaining_label: Label = $Pausable/EnemiesRemainingLabel
-@onready var spawns_remaining_label: Label = $Pausable/SpawnsRemainingLabel
 
 func _ready() -> void:
 	#Initializing signals
@@ -48,7 +49,9 @@ func _ready() -> void:
 
 
 	#Add timer
+	player = get_tree().get_first_node_in_group("player")
 
+	#print("player is", player.level_enemies_killed)
 
 
 func _on_switch_collision_body_entered(body: Enemy) -> void:
@@ -141,6 +144,7 @@ func _check_win_condition():
 		is_win_condition_met = true
 		#TODO Setup reward: increment the level/amount of enemies destroyed for the lab scene
 		Globals.enemies_killed += num_killed
+		Events.win_condition_success.emit()
 		#get_tree().change_scene_to_file("res://scenes/lab.tscn")
 	else:
 		is_win_condition_met = false

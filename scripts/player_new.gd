@@ -47,7 +47,7 @@ func _ready() -> void:
 	Events.damage_dealt.connect(_on_damage_done)
 	Events.increase_currency.connect(_on_currency_gained)
 	Events.level_complete.connect(_on_level_complete)
-
+	Events.player_spawned.emit(self)
 
 #region Remove this and move it to upgrade scene
 #func _open_talent_tree():
@@ -105,11 +105,11 @@ func _damage_player(damage_amount: int) -> void:
 	hit_flash_anim.play("HitFlashAnim")
 
 	if current_health <= 0:
-		_die()
+		die()
 
 	Events.damage_taken.emit(damage_amount)
 
-func _die()-> void:
+func die()-> void:
 	Engine.time_scale = 0.5
 	var status: String = "Failed"
 	var grade: int = 0
@@ -145,4 +145,4 @@ func _on_firing_component_drain_battery(amount: Variant) -> void:
 
 
 func _on_level_complete() -> void:
-	_die()
+	die()

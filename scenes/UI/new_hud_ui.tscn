@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://b334a8qmhk7rb" path="res://scenes/UI/new_hud_ui.gd" id="1_jqpmw"]
 [ext_resource type="PackedScene" uid="uid://b3gf3rdu50uej" path="res://scenes/UI/battery_hud.tscn" id="1_mmhfa"]
 [ext_resource type="Texture2D" uid="uid://bwvjfvn1mt8h2" path="res://assets/ui/hud/player_heart.png" id="2_odp45"]
-[ext_resource type="PackedScene" uid="uid://edlqqwhtasyq" path="res://scenes/UI/heart_break.tscn" id="4_6sbxy"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qti4y"]
 
@@ -23,7 +22,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
+theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
@@ -82,6 +81,3 @@ offset_transform_enabled = true
 offset_transform_position = Vector2(0, 1.5)
 theme_override_font_sizes/font_size = 8
 text = "99"
-
-[node name="HeartBreak" parent="." unique_id=665419767 instance=ExtResource("4_6sbxy")]
-visible = false

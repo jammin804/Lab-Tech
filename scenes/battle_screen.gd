@@ -9,6 +9,8 @@ extends Node
 @export var settings_menu: Settings
 @export var player : PackedScene = null
 @export var player_spawn : Marker2D
+@export var enemies_remaining_label: Label
+@export var spawns_remaining_label: Label
 
 var main_menu : String = "res://scenes/main_menu.tscn"
 var lab : String = "uid://dmqv875jehqwm"
@@ -45,8 +47,8 @@ var grade = ""
 @onready var bottom_spawn_point: Marker2D = %BottomSpawnPoint
 @onready var teleport_point: Marker2D = %TeleportPoint
 @onready var top_spawn_point: Marker2D = %TopSpawnPoint
-@onready var enemies_remaining_label: Label = %EnemiesRemainingLabel
-@onready var spawns_remaining_label: Label = %SpawnsRemainingLabel
+#@onready var enemies_remaining_label: Label = %EnemiesRemainingLabel
+#@onready var spawns_remaining_label: Label = %SpawnsRemainingLabel
 
 
 func _ready() -> void:
@@ -55,7 +57,7 @@ func _ready() -> void:
 	var player_inst = player.instantiate()
 	$Pausable.add_child(player_inst)
 	player_inst.global_position = %PlayerSpawnPoint.global_position
-	money_label.text = str("$",total_money_gained)
+	#money_label.text = str("$",total_money_gained)
 
 
 
@@ -76,7 +78,7 @@ func _ready() -> void:
 	#Initializing signals
 	#Events.enemy_died.connect(_on_enemy_killed)
 	Events.check_remaining.connect(_on_enemy_queue_free)
-	Events.level_complete.connect(_on_result_screen_shown)
+	#Events.level_complete.connect(_on_result_screen_shown)
 	Events.wave_completed.connect(_on_wave_change)
 	Events.enemy_died.connect(_update_enemy_counter)
 	Events.damage_dealt.connect(_on_damage_done)
@@ -139,9 +141,9 @@ func _on_options_btn_pressed() -> void:
 	settings_menu.visible = true
 	pause_menu.hide()
 
-func _on_result_screen_shown() -> void:
-	result_screen.show()
-	is_result_screen_open = true
+#func _on_result_screen_shown() -> void:
+	#result_screen.show()
+	#is_result_screen_open = true
 
 func _reset_flags() -> void:
 	if is_result_screen_open == true:
@@ -178,7 +180,7 @@ func update_wave_counter(number_defeated: int):
 
 func _on_currency_gained(amount: int) -> void:
 	total_money_gained += amount
-	money_label.text = str("$", total_money_gained)
+	#money_label.text = str("$", total_money_gained)
 
 
 func _on_enemy_queue_free() -> void:
@@ -192,7 +194,9 @@ func _check_win_condition():
 		is_win_condition_met = true
 		#TODO Setup reward: increment the level/amount of enemies destroyed for the lab scene
 		Globals.enemies_killed += enemies_defeated
-		get_tree().change_scene_to_file("res://scenes/lab.tscn")
+		#get_tree().change_scene_to_file("res://scenes/lab.tscn")
+		Events.win_condition_success.emit()
+
 	else:
 		is_win_condition_met = false
 		#TODO Setup punishment: Lose life/lose resource/ lose upgrade

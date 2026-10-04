@@ -22,6 +22,7 @@ signal change_direction
 signal send_kills(amount: int)
 signal check_remaining
 signal win_condition_fail
+signal win_condition_success
 signal spawn_enemy(body: Enemy)
 
 

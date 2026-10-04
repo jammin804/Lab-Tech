@@ -3,6 +3,9 @@ extends Control
 
 const GRADE_RANKS = ["F", "D", "C", "B", "A", "S"]
 
+@export var player : PackedScene
+#@export var level : PackedScene
+
 var player_won: bool = false #this will be change after a certain event is called
 var cash_total: int = 0
 
@@ -18,9 +21,10 @@ var cash_total: int = 0
 @onready var continue_btn: Button = %ContinueBtn
 @onready var total_number_label: Label = %TotalNumberLabel
 
+func _ready() -> void:
+	Events.win_condition_success.connect(_on_win_condition_success)
 
-
-func setup(enemies:int, damage_done:int, damage_taken:int, money:int, scraps:int, cores:int, success: String, grade_index)->void:
+func setup(enemies:int, damage_done:int, damage_taken:int, money:int, scraps:int, cores:int, success: String = "vicotry", grade_index = "A")->void:
 	return_btn.hide()
 	continue_btn.hide()
 
@@ -33,13 +37,13 @@ func setup(enemies:int, damage_done:int, damage_taken:int, money:int, scraps:int
 	_set_money_label(0)
 	_set_scraps_label(0)
 	_set_cores_label(0)
-	_set_grade_label(0)
+	#_set_grade_label(0)
 	_set_total_label(0)
 
-	_set_success_label(success)
-	_animate_counters(enemies, damage_done, damage_taken, money, scraps, cores, grade_index, cash_total)
+	#_set_success_label(success)
+	_animate_counters(enemies, damage_done, damage_taken, money, scraps, cores, cash_total)
 
-func _animate_counters(target_enemies:int, target_damage_done:int, target_damage_taken:int, target_money:int, target_scraps:int, target_cores:int, target_grade_index:int, target_cash_total: int):
+func _animate_counters(target_enemies:int, target_damage_done:int, target_damage_taken:int, target_money:int, target_scraps:int, target_cores:int, target_cash_total: int):
 
 	var tween = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 
@@ -59,12 +63,12 @@ func _animate_counters(target_enemies:int, target_damage_done:int, target_damage
 
 	tween.tween_method(_set_cores_label, 0, target_cores, 1.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 
-	tween.tween_method(_set_grade_label, 0, target_grade_index, 1.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	#tween.tween_method(_set_grade_label, 0, target_grade_index, 1.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 
 	tween.chain()
 
 	tween.tween_interval(1.0)
-	tween.tween_method(_set_grade_label, 0, target_grade_index, 2.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	#tween.tween_method(_set_grade_label, 0, target_grade_index, 2.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween.tween_method(_set_total_label, 0, target_cash_total, 1.5).set_trans(Tween.TRANS_CUBIC). set_ease(Tween.EASE_OUT)
 
 	tween.chain()
@@ -124,7 +128,12 @@ func _on_return_pressed ()-> void:
 
 
 func _on_return_btn_pressed() -> void:
-	print("clicking return")
+	#print("clicking return")
 	get_tree().paused = false
 	queue_free()
 	LevelTransition.change_scene_to("res://scenes/lab.tscn")
+
+
+func _on_win_condition_success() -> void:
+	#show()
+	Events.level_complete.emit()
