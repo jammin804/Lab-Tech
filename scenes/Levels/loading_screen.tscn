@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://bd2w1mt1l4m31"]
+
+[ext_resource type="Script" uid="uid://c3cpbdgyrsk57" path="res://scenes/Levels/loading_screen.gd" id="1_kyaxm"]
+[ext_resource type="Shader" uid="uid://dwt4edu5mtsc1" path="res://shaders/diamond-tranisition.gdshader" id="4_yvpcl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_665h1"]
+shader = ExtResource("4_yvpcl")
+shader_parameter/progress = 0.0
+shader_parameter/diamondPixelSize = 10.0
+
+[node name="LoadingScreen" type="CanvasLayer" unique_id=1042588644]
+layer = 10
+script = ExtResource("1_kyaxm")
+
+[node name="shader_cache" type="Node2D" parent="." unique_id=1257457950]
+
+[node name="BG" type="ColorRect" parent="." unique_id=300427715]
+material = SubResource("ShaderMaterial_665h1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05882353, 0.003921569, 0.12941177, 1)
+
+[node name="fade" type="Node2D" parent="." unique_id=1822083517]
+
+[node name="ProgressBar" type="ProgressBar" parent="fade" unique_id=1441419007]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 54.0
+offset_top = 83.0
+offset_right = 266.0
+offset_bottom = 97.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 8
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="LoadingLabel" type="Label" parent="." unique_id=692191483]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.0
+offset_top = 11.0
+offset_right = 37.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(37, 8)
+text = "Loading"
