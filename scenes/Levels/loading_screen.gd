@@ -5,13 +5,16 @@ extends CanvasLayer
 @onready var progress_bar: ProgressBar = $fade/ProgressBar
 @onready var loading_label: Label = $LoadingLabel
 @onready var shader_cache: Node2D = $shader_cache
+@onready var enemy: Enemy = $shader_cache/Enemy2
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	#$shader_cache/hitflash.material
+	enemy.hit_flash_anim.play()
 	_loading_label_loop()
 	ResourceLoader.load_threaded_get("uid://1lqqs1b6h2wp")
 	LoadingSystem.scene_loaded.connect(loading_complete)
+	#LoadingSystem.load_scene("res://scenes/main_menu.tscn")
 
 
 func update_load_progress(progress: float) -> void:

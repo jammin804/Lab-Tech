@@ -1,12 +1,7 @@
 [gd_scene format=3 uid="uid://bd2w1mt1l4m31"]
 
 [ext_resource type="Script" uid="uid://c3cpbdgyrsk57" path="res://scenes/Levels/loading_screen.gd" id="1_kyaxm"]
-[ext_resource type="Shader" uid="uid://dwt4edu5mtsc1" path="res://shaders/diamond-tranisition.gdshader" id="4_yvpcl"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_665h1"]
-shader = ExtResource("4_yvpcl")
-shader_parameter/progress = 0.0
-shader_parameter/diamondPixelSize = 10.0
+[ext_resource type="PackedScene" uid="uid://cqueta70ubjqr" path="res://scenes/enemy.tscn" id="2_8fkhg"]
 
 [node name="LoadingScreen" type="CanvasLayer" unique_id=1042588644]
 layer = 10
@@ -14,8 +9,9 @@ script = ExtResource("1_kyaxm")
 
 [node name="shader_cache" type="Node2D" parent="." unique_id=1257457950]
 
+[node name="Enemy2" parent="shader_cache" unique_id=1965764076 instance=ExtResource("2_8fkhg")]
+
 [node name="BG" type="ColorRect" parent="." unique_id=300427715]
-material = SubResource("ShaderMaterial_665h1")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
