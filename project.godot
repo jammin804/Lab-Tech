@@ -36,6 +36,7 @@ ConfigFileHeader="*uid://bbx5krn3qy2pc"
 UiManager="*uid://ctfler5fh52uh"
 SaveLoad="*uid://bmedk2yn6givf"
 TweenFX="*uid://d2n10rw2dnx8o"
+LoadingSystem="*uid://7pcx1asbsusr"
 
 [display]
 

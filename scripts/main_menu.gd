@@ -10,6 +10,7 @@ extends Control
 var lab_scene: String = "res://scenes/lab.tscn"
 var level_1: String = "res://scenes/Levels/level_1.tscn"
 var level_test: String = "res://scenes/Levels/playground_level.tscn"
+#var load_scene: String = "res://scenes/Levels/loading_screen.tscn"
 
 func _ready() -> void:
 	#if $MainMenmBGM.Volume < -10.0:
@@ -49,7 +50,8 @@ func _play_transiiton(target_scene: String, anim_name: String) -> void:
 	#if is_instance_valid($MainMenmBGM):
 		#$MainMenmBGM.queue_free()
 	#$MainMenmBGM.Volume
-	LevelTransition.change_scene_to(target_scene)
+	#LevelTransition.change_scene_to(target_scene)
+	LoadingSystem.load_scene(target_scene)
 
 
 
