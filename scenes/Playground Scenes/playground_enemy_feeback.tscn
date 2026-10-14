@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://ddrske1cd0cb0"]
+
+[ext_resource type="PackedScene" uid="uid://drdlmsifm1unh" path="res://scenes/Entities_New/player.tscn" id="1_pdspe"]
+[ext_resource type="Theme" uid="uid://65aipdpydskv" path="res://resources/Theme/main_theme.tres" id="1_vn7cl"]
+[ext_resource type="PackedScene" uid="uid://cqueta70ubjqr" path="res://scenes/enemy.tscn" id="2_vn7cl"]
+[ext_resource type="Script" uid="uid://cktn3xnxs2ojs" path="res://resources/EnemyData/enemy_stats.gd" id="3_gpgsu"]
+
+[sub_resource type="Resource" id="Resource_ixfm3"]
+script = ExtResource("3_gpgsu")
+health = 60
+attack_power = 40
+loot_tier_2_drop_rate = 0.0
+loot_tier_3_drop_rate = 0.04
+metadata/_custom_type_script = "uid://cktn3xnxs2ojs"
+
+[node name="Node2D" type="Node2D" unique_id=1220454071]
+
+[node name="Pausable" type="Control" parent="." unique_id=1385585976]
+process_mode = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_vn7cl")
+
+[node name="Player" parent="Pausable" unique_id=98801044 instance=ExtResource("1_pdspe")]
+position = Vector2(67, 135)
+
+[node name="Enemy2" parent="Pausable" unique_id=1965764076 instance=ExtResource("2_vn7cl")]
+position = Vector2(288, 138)
+stats = SubResource("Resource_ixfm3")
+should_wave = true
+frequency = 2.0
+amplitude = 3.0

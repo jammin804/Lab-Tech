@@ -13,6 +13,12 @@ enum ESCAPE_OPTIONS { NORMAL, ZIG_ZAG, SPEED_UP, TELEPORT}
 @export var stats: Resource
 @export var is_in_battle_scene : bool = false
 
+@export_category("Sine Wave")
+@export var should_wave : bool = false
+@export var time: float = 0.0
+@export_range(0.0, 100.0, 1.0) var frequency: float
+@export_range(0.0, 100.0, 1.0) var amplitude: float
+
 @export_category("Item Drop") #TODO Make this into a resource so i can just add to enemy
 @export var loot_drop_type : PackedScene
 @export_range(0, 100, 1.0, "suffix:%") var drop_rate
@@ -29,6 +35,7 @@ var weights
 
 var direction: int = -1
 var escape_option: int
+
 
 @onready var enemy_sprite: AnimatedSprite2D = $enemy
 @onready var status_component: Node = $StatusComponent
@@ -77,6 +84,15 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if should_wave:
+		var pos : Vector2 = position
+		var offset = position.y
+		time += delta
+		pos.y = sin(time * frequency) * amplitude + 130.0
+
+		position.y = pos.y
+		print(offset)
+
 	if not is_dead:
 		move_enemy(delta)
 
@@ -138,6 +154,8 @@ func destroy():
 	hit_flash_anim.play("death")
 
 func move_enemy(delta):
+
+	#position.y = sin(time * 90) * 1
 	if is_in_battle_scene or is_in_debug_mode:
 		position.x += current_data.move_speed * delta * direction
 		enemy_sprite.play()

@@ -199,6 +199,10 @@ animations = [{
 "speed": 13.0
 }]
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qti4y"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+
 [node name="Enemy2" type="CharacterBody2D" unique_id=1965764076 groups=["enemy"]]
 script = ExtResource("1_4ra3w")
 escape_options = 3
@@ -280,6 +284,13 @@ label_settings = ExtResource("9_8qclf")
 position = Vector2(10, -28)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("12_otmr2")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="." unique_id=1225714199]
+position = Vector2(8, 15)
+emitting = false
+amount = 50
+amount_ratio = 0.5
+process_material = SubResource("ParticleProcessMaterial_qti4y")
 
 [connection signal="animation_finished" from="HitFlashAnim" to="." method="_on_hit_flash_anim_animation_finished"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
