@@ -1,19 +1,20 @@
 [gd_scene format=3 uid="uid://ddrske1cd0cb0"]
 
+[ext_resource type="Script" uid="uid://kswusfj7ma2o" path="res://scenes/Playground Scenes/test scripts/playground_enemy_feeback.gd" id="1_gpgsu"]
 [ext_resource type="PackedScene" uid="uid://drdlmsifm1unh" path="res://scenes/Entities_New/player.tscn" id="1_pdspe"]
 [ext_resource type="Theme" uid="uid://65aipdpydskv" path="res://resources/Theme/main_theme.tres" id="1_vn7cl"]
 [ext_resource type="PackedScene" uid="uid://cqueta70ubjqr" path="res://scenes/enemy.tscn" id="2_vn7cl"]
 [ext_resource type="Script" uid="uid://cktn3xnxs2ojs" path="res://resources/EnemyData/enemy_stats.gd" id="3_gpgsu"]
 
-[sub_resource type="Resource" id="Resource_ixfm3"]
+[sub_resource type="Resource" id="Resource_vn7cl"]
 script = ExtResource("3_gpgsu")
-health = 60
 attack_power = 40
 loot_tier_2_drop_rate = 0.0
 loot_tier_3_drop_rate = 0.04
 metadata/_custom_type_script = "uid://cktn3xnxs2ojs"
 
 [node name="Node2D" type="Node2D" unique_id=1220454071]
+script = ExtResource("1_gpgsu")
 
 [node name="Pausable" type="Control" parent="." unique_id=1385585976]
 process_mode = 1
@@ -31,7 +32,16 @@ position = Vector2(67, 135)
 
 [node name="Enemy2" parent="Pausable" unique_id=1965764076 instance=ExtResource("2_vn7cl")]
 position = Vector2(288, 138)
-stats = SubResource("Resource_ixfm3")
+is_in_debug_mode = true
+stats = SubResource("Resource_vn7cl")
 should_wave = true
 frequency = 2.0
 amplitude = 3.0
+
+[node name="Button" type="Button" parent="." unique_id=631520270]
+offset_left = 176.0
+offset_right = 320.0
+offset_bottom = 24.0
+text = "reload scene"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
