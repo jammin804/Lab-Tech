@@ -514,6 +514,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="HeartBreak" parent="UILayer/Menus/GameOverScreen" unique_id=665419767 instance=ExtResource("17_a60bd")]
+layer = 100
 visible = false
 
 [node name="VictoryScreen" type="Control" parent="UILayer/Menus" unique_id=594926280]
