@@ -137,8 +137,8 @@ func take_damage(incoming_damage: float, incoming_element:WeaponData.Element) ->
 		Events.screen_shake_requested.emit(2.0, 0.5)
 
 
-	gpu_particles_2d.restart()
-	gpu_particles_2d.emitting = true
+	#gpu_particles_2d.restart()
+	#gpu_particles_2d.emitting = true
 
 	enemy_sprite.speed_scale = 5.0
 	should_wave = false
