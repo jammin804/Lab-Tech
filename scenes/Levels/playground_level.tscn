@@ -91,6 +91,7 @@ metadata/_edit_vertical_guides_ = [19.0, 160.0]
 layer = 400
 
 [node name="Background" type="TextureRect" parent="." unique_id=62776617]
+visible = false
 texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -101,6 +102,7 @@ texture = SubResource("AtlasTexture_jkca0")
 expand_mode = 2
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1317919358]
+visible = false
 tile_map_data = PackedByteArray("AAAAAAUAAAAAAAUAAAABAAUAAAABAAUAAAACAAUAAAACAAUAAAADAAUAAAAAAAQAAAAEAAUAAAAAAAQAAAAFAAUAAAACAAUAAAAGAAUAAAABAAQAAAAHAAUAAAAAAAUAAAAIAAUAAAAAAAQAAAAJAAUAAAAAAAUAAAAKAAUAAAABAAUAAAALAAUAAAACAAUAAAAMAAUAAAAAAAQAAAANAAUAAAAAAAQAAAAOAAUAAAACAAUAAAAPAAUAAAABAAQAAAAQAAUAAAAAAAUAAAARAAUAAAAAAAQAAAASAAUAAAAAAAUAAAATAAUAAAABAAUAAAA=")
 tile_set = SubResource("TileSet_qti4y")
 
@@ -134,6 +136,9 @@ unique_name_in_owner = true
 position = Vector2(312, 65)
 
 [node name="Enemies" type="Node2D" parent="Pausable" unique_id=374635073]
+
+[node name="Enemy2" parent="Pausable/Enemies" unique_id=1965764076 instance=ExtResource("15_85ul7")]
+position = Vector2(187, 133)
 
 [node name="PauseBtn" type="TextureButton" parent="Pausable" unique_id=1050029617]
 visible = false
@@ -184,6 +189,7 @@ autoplay = true
 bus = &"Music"
 
 [node name="SwitchCollision" type="Area2D" parent="Pausable" unique_id=846345559]
+visible = false
 position = Vector2(160, 118)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pausable/SwitchCollision" unique_id=1853244716]
@@ -191,6 +197,7 @@ position = Vector2(0, -28)
 shape = SubResource("RectangleShape2D_s5m6i")
 
 [node name="SwitchCollision2" type="Area2D" parent="Pausable" unique_id=1293710788]
+visible = false
 position = Vector2(224, 118)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pausable/SwitchCollision2" unique_id=184129917]
@@ -198,6 +205,7 @@ position = Vector2(0, -28)
 shape = SubResource("RectangleShape2D_s5m6i")
 
 [node name="SwitchCollision3" type="Area2D" parent="Pausable" unique_id=357240525]
+visible = false
 position = Vector2(286, 118)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pausable/SwitchCollision3" unique_id=1807904666]

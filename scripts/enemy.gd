@@ -1,6 +1,8 @@
 class_name Enemy
 extends CharacterBody2D
 
+signal enemy_health_change
+
 enum ESCAPE_OPTIONS { NORMAL, ZIG_ZAG, SPEED_UP, TELEPORT}
 @export var escape_options : ESCAPE_OPTIONS
 #region DEBUG OPTIONS
@@ -13,10 +15,17 @@ enum ESCAPE_OPTIONS { NORMAL, ZIG_ZAG, SPEED_UP, TELEPORT}
 @export var stats: Resource
 @export var is_in_battle_scene : bool = false
 
+@export_category("Sine Wave")
+@export var should_wave : bool = false
+@export var time: float = 0.0
+@export_range(0.0, 100.0, 1.0) var frequency: float
+@export_range(0.0, 100.0, 1.0) var amplitude: float
+
 @export_category("Item Drop") #TODO Make this into a resource so i can just add to enemy
 @export var loot_drop_type : PackedScene
 @export_range(0, 100, 1.0, "suffix:%") var drop_rate
 
+var max_enemy_health : float
 var current_enemy_health : float
 var current_data: EnemyStats
 var explosion_damage_dealt : int = 40
@@ -30,6 +39,7 @@ var weights
 var direction: int = -1
 var escape_option: int
 
+
 @onready var enemy_sprite: AnimatedSprite2D = $enemy
 @onready var status_component: Node = $StatusComponent
 @onready var hit_flash_anim: AnimationPlayer = $HitFlashAnim
@@ -39,6 +49,7 @@ var escape_option: int
 @onready var damage_number_spawner: DamageNumberSpawner = $DamageNumberSpawner2
 @onready var money_label: Label = $MoneyNumberOrigin/MoneyLabel
 @onready var pattern_indicator: Sprite2D = $PatternIndicator
+@onready var hp_label: Label = $HPLabel
 
 @onready var shaker := Shaker.new(enemy_sprite)
 
@@ -65,18 +76,28 @@ func _ready() -> void:
 				current_data.loot_tier_3_drop_rate
 			])
 
-
 	#Change health based on level
 	current_enemy_health = current_data.health
 	current_enemy_health = floor( (current_enemy_health + 10) * Globals.level * randf_range(1.0, 1.5) )
 
 	if is_in_debug_mode:
-		current_enemy_health = 1000
+		current_enemy_health = 40
 		current_data.move_speed = 0
 
+	max_enemy_health = current_enemy_health
+
+	update_hp_label()
 
 
 func _process(delta: float) -> void:
+	if should_wave:
+		var pos : Vector2 = position
+		#var offset = position.y
+		time += delta
+		pos.y = sin(time * frequency) * amplitude + 130.0
+
+		position.y = pos.y
+
 	if not is_dead:
 		move_enemy(delta)
 
@@ -103,17 +124,28 @@ func take_damage(incoming_damage: float, incoming_element:WeaponData.Element) ->
 
 	current_enemy_health -= final_damage
 
+
 	hit_flash_anim.play("hit")
 	damage_number_spawner.spawn_label(incoming_damage)
 	shaker.shake(4.0, 0.2)
+	update_hp_label()
+
+
 
 	#TODO Spawn floating damage numbers here using 'final damage'
 	if Globals.can_screenshake == true:
-		Events.screen_shake_requested.emit(1.0, 0.5)
+		Events.screen_shake_requested.emit(2.0, 0.5)
 
 
-	gpu_particles_2d.restart()
-	gpu_particles_2d.emitting = true
+	#gpu_particles_2d.restart()
+	#gpu_particles_2d.emitting = true
+
+	enemy_sprite.speed_scale = 5.0
+	should_wave = false
+	await get_tree().create_timer(1.0).timeout
+	enemy_sprite.speed_scale = 1.0
+	should_wave = true
+
 
 	if current_enemy_health <= 0:
 		destroy()
@@ -122,6 +154,10 @@ func take_damage(incoming_damage: float, incoming_element:WeaponData.Element) ->
 
 func destroy():
 	is_dead = true
+
+	if should_wave == true:
+		should_wave = false
+
 	Events.enemy_died.emit()
 	#Events.check_remaining.emit()
 
@@ -133,11 +169,15 @@ func destroy():
 	set_deferred("collision_layer", 0)
 	set_deferred("collision_mask", 0)
 
+
+	#$Death.play()
 	destroy_anim.show()
 	destroy_anim.play("default")
 	hit_flash_anim.play("death")
 
 func move_enemy(delta):
+
+	#position.y = sin(time * 90) * 1
 	if is_in_battle_scene or is_in_debug_mode:
 		position.x += current_data.move_speed * delta * direction
 		enemy_sprite.play()
@@ -206,3 +246,15 @@ func _choose_escape_option(options: ESCAPE_OPTIONS) -> void:
 			pattern_indicator.modulate = Color.DARK_MAGENTA
 
 			escape_option = 3
+
+
+func update_hp_label():
+	hp_label.text = str( int(current_enemy_health) )
+
+	if max_enemy_health > current_enemy_health:
+		hp_label.self_modulate = Color.FIREBRICK
+
+		var tween = create_tween()
+		tween.tween_property(hp_label, "self_modulate:s", 0.5, 1.0).from(1.0)
+
+	print("Max HP: ", max_enemy_health, ", Current Health: ", current_enemy_health)

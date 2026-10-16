@@ -1,7 +1,7 @@
 class_name Projectile
 extends Area2D
 
-#@export var
+@export var show_collision_sprite = true
 
 var direction : Vector2 = Vector2.RIGHT
 var speed : float = 750.0
@@ -41,8 +41,10 @@ func _on_body_entered(body: Node2D) -> void:
 
 	has_collided = true
 	bullet.hide()
-	hit.show()
-	hit.play("hit")
+	if show_collision_sprite == true:
+		hit.show()
+		hit.play("hit")
 
-	await hit.animation_finished
+		await hit.animation_finished
+		queue_free()
 	queue_free()
