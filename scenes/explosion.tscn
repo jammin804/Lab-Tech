@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://uo6j5reqj1vs"]
+
+[ext_resource type="Script" uid="uid://u658sgef4jea" path="res://explosion.gd" id="1_17npe"]
+
+[sub_resource type="Curve" id="Curve_nfeox"]
+_data = [Vector2(0.0036101118, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Explosion" type="Node2D" unique_id=294686511]
+script = ExtResource("1_17npe")
+
+[node name="GPUParticles2D" type="CPUParticles2D" parent="." unique_id=412265105]
+emitting = false
+amount = 60
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 30
+draw_order = 1
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_nfeox")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1824417464]
+zoom = Vector2(5, 5)

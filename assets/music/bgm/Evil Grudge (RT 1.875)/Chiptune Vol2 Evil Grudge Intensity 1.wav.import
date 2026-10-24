@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://vn8y6qhcxasq"
+path="res://.godot/imported/Chiptune Vol2 Evil Grudge Intensity 1.wav-c20778cabce94d358130f187e3acaf8a.sample"
+
+[deps]
+
+source_file="res://assets/music/bgm/Evil Grudge (RT 1.875)/Chiptune Vol2 Evil Grudge Intensity 1.wav"
+dest_files=["res://.godot/imported/Chiptune Vol2 Evil Grudge Intensity 1.wav-c20778cabce94d358130f187e3acaf8a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

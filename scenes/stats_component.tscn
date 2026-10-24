@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://e62qr3cbpar6"]
+
+[ext_resource type="PackedScene" uid="uid://b3gf3rdu50uej" path="res://scenes/UI/battery_hud.tscn" id="3_shrgu"]
+
+[node name="StatsComponent" type="Node2D" unique_id=397425176]
+
+[node name="BatteryHUD" parent="." unique_id=1694848608 instance=ExtResource("3_shrgu")]

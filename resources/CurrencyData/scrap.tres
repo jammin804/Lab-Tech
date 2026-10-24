@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Scrap" format=3 uid="uid://cm4g3e0uhr7fb"]
+
+[ext_resource type="Script" uid="uid://bcan0otl2wubx" path="res://resources/CurrencyData/scrap.gd" id="1_lhwnh"]
+
+[resource]
+script = ExtResource("1_lhwnh")
+scrap = 5
+title = "Scrap"
+metadata/_custom_type_script = "uid://bcan0otl2wubx"

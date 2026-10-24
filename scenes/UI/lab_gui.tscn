@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://3ylvkfrfqqst"]
+
+[ext_resource type="Script" uid="uid://q5mclauw7bhk" path="res://scenes/UI/lab_gui.gd" id="1_11a1n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g18rp"]
+content_margin_left = 2.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s5m6i"]
+content_margin_left = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qti4y"]
+bg_color = Color(0.1375682, 0.054741144, 0.19203576, 0.21568628)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.6509804, 0.7764706, 0.95686275, 1)
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cw33r"]
+bg_color = Color(0.64, 0.1536, 0.26709324, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cw33r"]
+
+[node name="LabGui" type="Control" unique_id=1716525560]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_11a1n")
+metadata/_edit_vertical_guides_ = [64.0, 252.0, 70.0, 256.0]
+metadata/_edit_horizontal_guides_ = [28.0]
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1754127263]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=307614332]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1089060349]
+layout_mode = 2
+alignment = 1
+
+[node name="EnemiesKilledLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1202037882]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_colors/font_color = Color(0.6509804, 0.7764706, 0.95686275, 1)
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxEmpty_g18rp")
+text = "99"
+horizontal_alignment = 1
+
+[node name="ZoneLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3" unique_id=932039695]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 14
+text = "New Zone"
+horizontal_alignment = 1
+
+[node name="EnemiesRequiredLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1760334369]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0.6509804, 0.7764706, 0.95686275, 1)
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxEmpty_s5m6i")
+text = "99"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=2132274195]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 6
+alignment = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=381689247]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_qti4y")
+theme_override_styles/fill = SubResource("StyleBoxFlat_cw33r")
+value = 24.0
+show_percentage = false
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/VBoxContainer" unique_id=226575369]
+layout_mode = 2
+theme_override_constants/separation = 4
+theme_override_styles/separator = SubResource("StyleBoxEmpty_cw33r")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=187386408]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="WaveLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=857786549]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 10
+text = "Waves Left: 99"
+horizontal_alignment = 2

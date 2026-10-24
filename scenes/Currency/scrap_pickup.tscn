@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://rvesxdkfpmem"]
+
+[ext_resource type="Script" uid="uid://ddgvb8t7b2cr4" path="res://scripts/currency/scrap_pickup.gd" id="1_8e4qv"]
+[ext_resource type="Texture2D" uid="uid://dx62vu0q0honp" path="res://assets/props/container-small-gray.png" id="1_jqi21"]
+[ext_resource type="Resource" uid="uid://cm4g3e0uhr7fb" path="res://resources/CurrencyData/scrap.tres" id="2_2iakg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8e4qv"]
+
+[node name="ScrapPickup" type="Area2D" unique_id=1194338808]
+script = ExtResource("1_8e4qv")
+type = ExtResource("2_2iakg")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1797428288]
+texture = ExtResource("1_jqi21")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2001358226]
+shape = SubResource("CircleShape2D_8e4qv")

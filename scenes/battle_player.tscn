@@ -1,0 +1,363 @@
+[gd_scene format=3 uid="uid://cl6xfxk4un85"]
+
+[ext_resource type="Shader" uid="uid://cht2qws53baj7" path="res://shaders/hitflash.gdshader" id="1_g11ij"]
+[ext_resource type="Script" uid="uid://mngtaamw8hpp" path="res://scripts/battle_player.gd" id="1_hugls"]
+[ext_resource type="Texture2D" uid="uid://b3ntyiv7oq1hh" path="res://assets/character/player.png" id="3_r6oyp"]
+[ext_resource type="Resource" uid="uid://ctgyx0laiurs3" path="res://resources/Weapons/Blaster.tres" id="4_yi774"]
+[ext_resource type="PackedScene" uid="uid://b3gf3rdu50uej" path="res://scenes/UI/battery_hud.tscn" id="5_goy34"]
+[ext_resource type="PackedScene" uid="uid://d37hr5i350lqv" path="res://scenes/spark.tscn" id="5_r6oyp"]
+[ext_resource type="AudioStream" uid="uid://dhhi0c4g00jnp" path="res://assets/music/sfx/shot2.wav" id="6_2tcgp"]
+[ext_resource type="PackedScene" uid="uid://dyk04xec0djot" path="res://scenes/UI/charge_progress_bar_container.tscn" id="6_escd6"]
+[ext_resource type="Texture2D" uid="uid://bmgd5bh11073r" path="res://assets/ui/hud/coins-chests-etc-2-0.png" id="7_y8qda"]
+[ext_resource type="PackedScene" uid="uid://dg3lep2meldxf" path="res://scenes/auto_turret.tscn" id="9_y8qda"]
+[ext_resource type="AudioStream" uid="uid://cqumsnxy7ag26" path="res://assets/music/sfx/charging-sfx_startup.wav" id="13_ht4sr"]
+[ext_resource type="AudioStream" uid="uid://y38wyloajjlb" path="res://assets/music/sfx/charging-sfx_repeat.wav" id="14_1rxll"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_escd6"]
+shader = ExtResource("1_g11ij")
+shader_parameter/hit_flash_color = Color(1, 1, 1, 1)
+shader_parameter/hit_flash_on = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vehr2"]
+atlas = ExtResource("3_r6oyp")
+region = Rect2(0, 480, 75, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nma8"]
+atlas = ExtResource("3_r6oyp")
+region = Rect2(75, 480, 75, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikkpg"]
+atlas = ExtResource("3_r6oyp")
+region = Rect2(0, 192, 75, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lskjy"]
+atlas = ExtResource("3_r6oyp")
+region = Rect2(75, 192, 75, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qm3lx"]
+atlas = ExtResource("3_r6oyp")
+region = Rect2(150, 192, 75, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5bt8"]
+atlas = ExtResource("3_r6oyp")
+region = Rect2(225, 192, 75, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ikkpg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vehr2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nma8")
+}],
+"loop": 1,
+"name": &"Fire",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ikkpg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lskjy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qm3lx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5bt8")
+}],
+"loop": 1,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qti4y"]
+atlas = ExtResource("7_y8qda")
+region = Rect2(65, 18, 14, 14)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_escd6"]
+load_path = "res://.godot/imported/ReturnButton.png-ead0500fcf292cd8cfeedf582424a9bc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3638"]
+atlas = SubResource("CompressedTexture2D_escd6")
+region = Rect2(32, 20, 32, 16)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h4hwa"]
+load_path = "res://.godot/imported/ReturnButton.png-ead0500fcf292cd8cfeedf582424a9bc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_escd6"]
+atlas = SubResource("CompressedTexture2D_h4hwa")
+region = Rect2(32, 50, 32, 16)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ht4sr"]
+load_path = "res://.godot/imported/ReturnButton.png-ead0500fcf292cd8cfeedf582424a9bc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ht4sr"]
+atlas = SubResource("CompressedTexture2D_ht4sr")
+region = Rect2(32, 75, 32, 16)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aqsb2"]
+radius = 13.0
+height = 36.0
+
+[sub_resource type="Animation" id="Animation_2tcgp"]
+resource_name = "HitFlashAnim"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/hit_flash_on")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_yi774"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/hit_flash_on")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_goy34"]
+_data = {
+&"HitFlashAnim": SubResource("Animation_2tcgp"),
+&"RESET": SubResource("Animation_yi774")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qti4y"]
+radius = 100.0
+
+[sub_resource type="Animation" id="Animation_y8qda"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChargeProgressBarContainer/ChargeProgressBar/FullChargeBorder:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ChargeProgressBarContainer/ChargeProgressBar/FullChargeBorder:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_50grm"]
+resource_name = "charging"
+length = 1.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("ChargeProgressBarContainer/ChargeProgressBar/FullChargeBorder:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ChargeProgressBarContainer/ChargeProgressBar/FullChargeBorder:modulate")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.36666667, 0.56666666, 0.7666667, 0.8333334, 0.90000004, 0.9666667, 1.4333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(18.892157, 18.892157, 0, 1), Color(1, 1, 1, 1), Color(18.892157, 18.892157, 0, 1), Color(1, 1, 1, 1), Color(18.892157, 18.892157, 0, 1), Color(1, 1, 1, 1), Color(18.892157, 18.892157, 0, 1), Color(18.892157, 18.892157, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i3638"]
+_data = {
+&"RESET": SubResource("Animation_y8qda"),
+&"charging": SubResource("Animation_50grm")
+}
+
+[node name="BattlePlayer" type="AnimatedSprite2D" unique_id=166741663 groups=["player"]]
+material = SubResource("ShaderMaterial_escd6")
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_ikkpg")
+animation = &"Idle"
+script = ExtResource("1_hugls")
+current_weapon = ExtResource("4_yi774")
+turret = ExtResource("9_y8qda")
+
+[node name="ChargeProgressBarContainer" parent="." unique_id=1763728426 instance=ExtResource("6_escd6")]
+visible = false
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1143428043]
+
+[node name="Battery" parent="UI" unique_id=1694848608 instance=ExtResource("5_goy34")]
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 16.0
+offset_bottom = 24.0
+
+[node name="Debug" type="VBoxContainer" parent="UI" unique_id=1611184953]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 105.0
+offset_top = -89.0
+offset_right = 122.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Power" type="Label" parent="UI/Debug" unique_id=1639148393]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "P : 1"
+
+[node name="Rapid" type="Label" parent="UI/Debug" unique_id=1896894484]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "R : 1"
+
+[node name="Battery" type="Label" parent="UI/Debug" unique_id=1753115256]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "B : 1"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI" unique_id=193485110]
+offset_left = 16.0
+offset_top = 24.0
+offset_right = 59.0
+offset_bottom = 40.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MoneyIcon" type="TextureRect" parent="UI/HBoxContainer" unique_id=1125286511]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_qti4y")
+expand_mode = 1
+
+[node name="Money" type="Label" parent="UI/HBoxContainer" unique_id=167066560]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "0"
+
+[node name="ReturnBtn" type="TextureButton" parent="UI" unique_id=1393770987]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -28.0
+offset_right = 48.0
+offset_bottom = -12.0
+grow_vertical = 0
+texture_normal = SubResource("AtlasTexture_i3638")
+texture_pressed = SubResource("AtlasTexture_escd6")
+texture_hover = SubResource("AtlasTexture_ht4sr")
+
+[node name="OutOfBatteryAlert" type="Label" parent="UI" unique_id=352445793]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -57.5
+offset_top = -66.0
+offset_right = 57.5
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.5458834, 0.0034954236, 0.13751453, 1)
+text = "Out Of Energy!
+Return to Base"
+
+[node name="Muzzle" type="Marker2D" parent="." unique_id=978875492]
+unique_name_in_owner = true
+position = Vector2(20, -1)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=134412771 groups=["player"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1546086998]
+position = Vector2(1, 5)
+shape = SubResource("CapsuleShape2D_aqsb2")
+
+[node name="ShootCooldownTimer" type="Timer" parent="." unique_id=926354550]
+one_shot = true
+
+[node name="ChargeTimer" type="Timer" parent="." unique_id=1867444841]
+one_shot = true
+
+[node name="HitFlashAnim" type="AnimationPlayer" parent="." unique_id=795432850]
+libraries/ = SubResource("AnimationLibrary_goy34")
+
+[node name="Spark" parent="." unique_id=515015113 instance=ExtResource("5_r6oyp")]
+
+[node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=685664484]
+
+[node name="Fire" type="AudioStreamPlayer2D" parent="." unique_id=1488178504]
+stream = ExtResource("6_2tcgp")
+bus = &"SFX"
+
+[node name="ChargingUp" type="AudioStreamPlayer2D" parent="." unique_id=1423316232]
+stream = ExtResource("13_ht4sr")
+bus = &"SFX"
+
+[node name="ChargingRepeat" type="AudioStreamPlayer2D" parent="." unique_id=690684369]
+stream = ExtResource("14_1rxll")
+bus = &"SFX"
+
+[node name="Magnet" type="Area2D" parent="." unique_id=40829289]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Magnet" unique_id=971187640]
+position = Vector2(6, 0)
+shape = SubResource("CircleShape2D_qti4y")
+
+[node name="Attachment" type="Marker2D" parent="." unique_id=611173487]
+position = Vector2(25, 12)
+
+[node name="ChargeAnim" type="AnimationPlayer" parent="." unique_id=278882991]
+libraries/ = SubResource("AnimationLibrary_i3638")
+
+[node name="ChargeBarLocation" type="Marker2D" parent="." unique_id=1658276322]
+position = Vector2(0, 26)
+
+[connection signal="pressed" from="UI/ReturnBtn" to="." method="_on_return_btn_pressed"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="area_entered" from="Magnet" to="." method="_on_magnet_area_entered"]

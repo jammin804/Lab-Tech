@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://bilmi2yo481su"]
+
+[ext_resource type="Script" uid="uid://fa5x46oa8uta" path="res://resources/SkillTree/skill.gd" id="1_oiayc"]
+[ext_resource type="Script" uid="uid://d332ldvfmgnhy" path="res://resources/PlayerData/player_stats.gd" id="2_wlahd"]
+[ext_resource type="Texture2D" uid="uid://cao1bbbw2ekum" path="res://assets/ui/skill_tree/rapid.png" id="3_sxpm5"]
+
+[sub_resource type="Resource" id="Resource_qlden"]
+script = ExtResource("2_wlahd")
+battery_tanks = 3
+rapid = 0.15
+metadata/_custom_type_script = "uid://d332ldvfmgnhy"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjuf2"]
+atlas = ExtResource("3_sxpm5")
+region = Rect2(669, 28, 28, 30)
+
+[resource]
+script = ExtResource("1_oiayc")
+name = "Rapid II"
+texture = SubResource("AtlasTexture_xjuf2")
+cost = 500
+stats = SubResource("Resource_qlden")
+metadata/_custom_type_script = "uid://fa5x46oa8uta"

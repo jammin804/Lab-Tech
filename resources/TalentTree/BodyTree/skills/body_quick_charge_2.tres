@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="TalentResource2" format=3 uid="uid://ceqrdnih65ms5"]
+
+[ext_resource type="Script" uid="uid://cebb35bfecrsp" path="res://resources/TalentTree/scripts/talent_resource2.gd" id="1_3xow4"]
+[ext_resource type="Texture2D" uid="uid://nust27da1vec" path="res://assets/ui/skill_tree/Scifi weapons and items.png" id="2_dnwdw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nhfs5"]
+atlas = ExtResource("2_dnwdw")
+region = Rect2(136.01073, 418.10605, 16.613297, 30.273102)
+
+[resource]
+script = ExtResource("1_3xow4")
+talent_id = "quick_charge_2"
+talent_icon = SubResource("AtlasTexture_nhfs5")
+talentName = "Quick Charge+ "
+talentDescription = "The Blaster can be charged 2x faster"
+metadata/_custom_type_script = "uid://cebb35bfecrsp"

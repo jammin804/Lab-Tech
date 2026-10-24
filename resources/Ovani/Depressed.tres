@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="OvaniSong" format=3 uid="uid://8oofuwkj0u4f"]
+
+[ext_resource type="Script" uid="uid://m1bfaxshhh8l" path="res://plugin/OvaniPlugin/OvaniSong.gd" id="1_5o23y"]
+[ext_resource type="AudioStream" uid="uid://b6hxfqrubq8gr" path="res://assets/music/bgm/Depressed (RT 1.875)/Chiptune Vol2 Depressed Intensity 1.wav" id="1_sdol8"]
+[ext_resource type="AudioStream" uid="uid://s6xw8cw0w1r1" path="res://assets/music/bgm/Depressed (RT 1.875)/Chiptune Vol2 Depressed Intensity 2.wav" id="2_nwd7q"]
+[ext_resource type="AudioStream" uid="uid://c4s1hjl635w5k" path="res://assets/music/bgm/Depressed (RT 1.875)/Chiptune Vol2 Depressed Main.wav" id="3_bgse4"]
+[ext_resource type="AudioStream" uid="uid://d0okureots224" path="res://assets/music/bgm/Depressed (RT 1.875)/Chiptune Vol2 Depressed Cut 30.wav" id="4_krhj2"]
+[ext_resource type="AudioStream" uid="uid://c3pewwnxgkspa" path="res://assets/music/bgm/Depressed (RT 1.875)/Chiptune Vol2 Depressed Cut 60.wav" id="5_khsr4"]
+
+[resource]
+script = ExtResource("1_5o23y")
+Intensity1 = ExtResource("1_sdol8")
+Intensity2 = ExtResource("2_nwd7q")
+Intensity3 = ExtResource("3_bgse4")
+Loop30 = ExtResource("4_krhj2")
+Loop60 = ExtResource("5_khsr4")
+ReverbTail = 1.875
+SongMode = 1
+metadata/_custom_type_script = "uid://m1bfaxshhh8l"

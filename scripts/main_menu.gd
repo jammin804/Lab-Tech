@@ -1,0 +1,85 @@
+class_name MainMenu
+extends Control
+@onready var settings_menu: Control = $SettingsMenu
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var continue_btn: UI_Button = %ContinueBtn
+@onready var start_btn: UI_Button = %StartBtn
+
+var lab_scene: String = "res://scenes/lab.tscn"
+var level_1: String = "res://scenes/Levels/level_1.tscn"
+var level_test: String = "res://scenes/Levels/playground_level.tscn"
+#var load_scene: String = "res://scenes/Levels/loading_screen.tscn"
+
+func _ready() -> void:
+	#if $MainMenmBGM.Volume < -10.0:
+		#$MainMenmBGM.Volume = -10.0
+
+	var tree = get_tree()
+	if tree.paused == true:
+		tree.paused = false
+
+	if SaveLoad.has_save_file():
+		continue_btn.show()
+		continue_btn.pressed.connect(_on_continue_pressed)
+	else:
+		continue_btn.hide()
+
+	start_btn.pressed.connect(_on_start_new_game_pressed)
+
+
+
+
+func _on_continue_pressed() -> void:
+	continue_btn.release_focus()
+	SaveLoad._load()
+	_play_transiiton(lab_scene, "continue_blink")
+
+func _on_start_new_game_pressed() -> void:
+	start_btn.release_focus()
+	SaveLoad._reset_save_file()
+	_play_transiiton(level_1, "blink")
+
+
+func _play_transiiton(target_scene: String, anim_name: String) -> void:
+	animation_player.play(anim_name)
+	$MainMenuBGM.volume_db = -80.0
+	#$MainMenmBGM.Volume = -80.0
+	await get_tree().create_timer(1.0).timeout
+	#if is_instance_valid($MainMenmBGM):
+		#$MainMenmBGM.queue_free()
+	#$MainMenmBGM.Volume
+	#LevelTransition.change_scene_to(target_scene)
+	LoadingSystem.load_scene(target_scene)
+
+
+
+func _on_quit_btn_pressed() -> void:
+	get_tree().quit()
+
+
+func _on_settings_btn_pressed() -> void:
+	animation_player.play("settings_blink")
+	await get_tree().create_timer(1.0).timeout
+	settings_menu.show()
+	animation_player.play("RESET")
+
+
+
+func _on_discord_pressed() -> void:
+	OS.shell_open("https://jammin804.itch.io/")
+
+
+func _on_itch_pressed() -> void:
+	OS.shell_open("https://jammin804.itch.io/")
+
+
+func _on_steam_pressed() -> void:
+	OS.shell_open("https://jammin804.itch.io/")
+
+
+func _on_mouse_entered() -> void:
+	print("Entered")
+
+
+func _on_test_btn_mouse_entered() -> void:
+	print("Entered")

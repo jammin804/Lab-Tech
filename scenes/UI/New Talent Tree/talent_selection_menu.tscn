@@ -1,0 +1,274 @@
+[gd_scene format=3 uid="uid://bbc5rwyvte2rm"]
+
+[ext_resource type="Texture2D" uid="uid://bqhyv3bwx2cyb" path="res://assets/backgrounds/alex-gundam-arm-prints-v0-xvrq5hp0m3x71.webp" id="1_hmhfo"]
+[ext_resource type="Script" uid="uid://cm4d5xwuwrdue" path="res://scripts/ui/Talent Tree/talent_selection_menu.gd" id="1_qki3v"]
+[ext_resource type="Texture2D" uid="uid://c8ersntq6naw8" path="res://assets/backgrounds/c88c4a37fce58e80302ceb2a5c135b5b.jpg" id="2_qki3v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ikxxn"]
+bg_color = Color(0.039215688, 0.02745098, 0.14901961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kxefw"]
+bg_color = Color(0.0627451, 0.03137255, 0.03137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ar84w"]
+bg_color = Color(0.6, 0.6, 0.6, 0.5372549)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qki3v"]
+bg_color = Color(0.19076231, 0.19076234, 0.19076222, 0.47058824)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qti4y"]
+bg_color = Color(0.6, 0.6, 0.6, 0.47058824)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qk3sa"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+bg_color = Color(0.039215688, 0.02745098, 0.14901961, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.05882353, 0.27058825, 0.21176471, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mlq07"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+bg_color = Color(0.039215688, 0.02745098, 0.14901961, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.6784314, 0.81960785, 0.45882353, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pj8ty"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+bg_color = Color(0.039215688, 0.02745098, 0.14901961, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.6784314, 0.81960785, 0.45882353, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="TalentSelectionMenu" type="Control" unique_id=1680291744 node_paths=PackedStringArray("arm_button", "body_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qki3v")
+arm_button = NodePath("HBoxContainer/ArmButton")
+body_button = NodePath("HBoxContainer/BodyButton")
+
+[node name="BGPanel" type="Panel" parent="." unique_id=1742214129]
+z_index = -2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ikxxn")
+
+[node name="TitleNameContainer" type="PanelContainer" parent="." unique_id=127623588]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -42.0
+offset_top = 2.0
+offset_right = 43.0
+offset_bottom = 18.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_kxefw")
+
+[node name="Label" type="Label" parent="TitleNameContainer" unique_id=1979995002]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.16862746, 0.9137255, 1, 1)
+theme_override_font_sizes/font_size = 8
+text = " skill upgrades"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="SubPanelMargin" type="MarginContainer" parent="." unique_id=436273773]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="ColorRect" type="ColorRect" parent="SubPanelMargin" unique_id=2121247338]
+layout_mode = 2
+color = Color(0, 0.0627451, 0.12941177, 1)
+
+[node name="SubPanel" type="Panel" parent="SubPanelMargin" unique_id=829618116]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ar84w")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1461568128]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -101.0
+offset_top = -57.0
+offset_right = 94.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 9
+
+[node name="ArmButton" type="Button" parent="HBoxContainer" unique_id=326550164]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/ArmButton" unique_id=895271324]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_hmhfo")
+expand_mode = 1
+
+[node name="Panel" type="Panel" parent="HBoxContainer/ArmButton" unique_id=982548025]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qki3v")
+
+[node name="Label" type="Label" parent="HBoxContainer/ArmButton" unique_id=116085145]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -11.5
+offset_right = 50.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.16862746, 0.9137255, 1, 1)
+theme_override_font_sizes/font_size = 8
+text = "Unavailabe in Alpha"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="BodyButton" type="Button" parent="HBoxContainer" unique_id=1391541413]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/BodyButton" unique_id=151911894]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_qki3v")
+expand_mode = 1
+
+[node name="Panel" type="Panel" parent="HBoxContainer/BodyButton" unique_id=1593013933]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qti4y")
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/BodyButton" unique_id=2034978668]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.6, 0.6, 0.6, 0.47058824)
+
+[node name="Label" type="Label" parent="HBoxContainer/BodyButton" unique_id=1200150303]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.16862746, 0.9137255, 1, 1)
+text = "Body"
+uppercase = true
+
+[node name="BackBtn" type="Button" parent="." unique_id=1734017578]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 3.0000005
+offset_top = 4.0
+offset_right = 71.0
+offset_bottom = 23.0
+scale = Vector2(0.75, 0.75)
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_qk3sa")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mlq07")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pj8ty")
+text = "Back"
+
+[node name="BackToLab" type="Button" parent="." unique_id=873635865]
+layout_mode = 0
+offset_left = 3.0000005
+offset_top = 4.0
+offset_right = 71.0
+offset_bottom = 23.0
+scale = Vector2(0.75, 0.75)
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_qk3sa")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mlq07")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pj8ty")
+text = "Back"
+
+[connection signal="pressed" from="BackToLab" to="." method="_on_back_to_lab_pressed"]

@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bgqua4u04goks"]
+
+[ext_resource type="Script" uid="uid://txbrbq2y72mm" path="res://plugin/OvaniPlugin/OvaniPlayer.gd" id="1_4vva8"]
+[ext_resource type="Script" uid="uid://m1bfaxshhh8l" path="res://plugin/OvaniPlugin/OvaniSong.gd" id="2_cplph"]
+[ext_resource type="Resource" uid="uid://8oofuwkj0u4f" path="res://resources/Ovani/Depressed.tres" id="3_831wi"]
+
+[node name="LabBGM" type="Node" unique_id=2000966970]
+script = ExtResource("1_4vva8")
+QueuedSongs = Array[ExtResource("2_cplph")]([ExtResource("3_831wi")])
+Volume = -10.0
+Bus = &"Music"
+metadata/_custom_type_script = "uid://txbrbq2y72mm"

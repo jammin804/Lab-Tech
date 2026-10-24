@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Zones" format=3 uid="uid://dy8ftrq87fktm"]
+
+[ext_resource type="Script" uid="uid://ds2yhq10kkevo" path="res://resources/Levels/zones.gd" id="1_ojx2k"]
+
+[resource]
+script = ExtResource("1_ojx2k")
+zone_name = "Bunker"
+zone_requirement = 350
+num_until_boss = 100
+waves_left_to_complete_goal = 7
+metadata/_custom_type_script = "uid://ds2yhq10kkevo"

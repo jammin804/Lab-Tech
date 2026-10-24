@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://drt2x820oqt7s"]
+
+[ext_resource type="Script" uid="uid://bt0wkvv5778n1" path="res://scenes/Playground Scenes/battery_test.gd" id="1_l2why"]
+[ext_resource type="PackedScene" uid="uid://drdlmsifm1unh" path="res://scenes/Entities_New/player.tscn" id="1_ugjhc"]
+[ext_resource type="PackedScene" uid="uid://sknra82q76tt" path="res://scenes/UI/New Talent Tree/talent_menu_manager.tscn" id="3_kuftf"]
+
+[node name="BatteryTest" type="Node2D" unique_id=145906837]
+script = ExtResource("1_l2why")
+
+[node name="Player" parent="." unique_id=98801044 instance=ExtResource("1_ugjhc")]
+position = Vector2(144, 87)
+
+[node name="TestBtnContainers" type="Control" parent="." unique_id=177179806]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HealBtn" type="Button" parent="TestBtnContainers" unique_id=723679249]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 150.5
+offset_right = 129.0
+offset_bottom = 181.5
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(62.5, 15)
+text = "Full Heal Player"
+
+[node name="AddMoneyBtn" type="Button" parent="TestBtnContainers" unique_id=1834499903]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -31.0
+offset_top = 36.0
+offset_right = 94.0
+offset_bottom = 67.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(62.5, 15)
+text = "Gain Money"
+
+[node name="UpgradeMaxHealthBtn" type="Button" parent="TestBtnContainers" unique_id=1609326060]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 76.0
+offset_top = 150.5
+offset_right = 243.0
+offset_bottom = 181.5
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(62.5, 15)
+text = "Upgrade Max Health"
+
+[node name="ResetMaxHealthBtn" type="Button" parent="TestBtnContainers" unique_id=1428146342]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 171.0
+offset_top = 150.5
+offset_right = 338.0
+offset_bottom = 181.5
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(62.5, 15)
+text = "Reset Max Health"
+
+[node name="HealthLabel" type="Label" parent="TestBtnContainers" unique_id=1950055952]
+layout_mode = 0
+offset_top = 29.0
+offset_right = 88.0
+offset_bottom = 52.0
+scale = Vector2(0.4, 0.4)
+text = "Health: 999/999"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1674644350]
+
+[node name="TalentMenuManager" parent="CanvasLayer" unique_id=491223868 instance=ExtResource("3_kuftf")]
+visible = false
+
+[connection signal="pressed" from="TestBtnContainers/HealBtn" to="." method="_on_heal_btn_pressed"]
+[connection signal="pressed" from="TestBtnContainers/AddMoneyBtn" to="." method="_on_add_money_btn_pressed"]
+[connection signal="pressed" from="TestBtnContainers/UpgradeMaxHealthBtn" to="." method="_on_upgrade_max_health_btn_pressed"]
+[connection signal="pressed" from="TestBtnContainers/ResetMaxHealthBtn" to="." method="_on_reset_max_health_btn_pressed"]
+
+[editable path="Player"]

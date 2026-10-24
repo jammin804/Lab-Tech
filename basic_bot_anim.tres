@@ -1,0 +1,34 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://bqmihelqdobus"]
+
+[ext_resource type="Texture2D" uid="uid://vxcgvx8a67u6" path="res://assets/enemy/sentinel1.png" id="1_cy2ld"]
+[ext_resource type="Texture2D" uid="uid://dubovpnsxaadm" path="res://assets/enemy/sentinel2.png" id="2_flw3o"]
+[ext_resource type="Texture2D" uid="uid://c2kj0viatkflt" path="res://assets/enemy/sentinel3.png" id="3_b0xcx"]
+[ext_resource type="Texture2D" uid="uid://dojfgm4us20c2" path="res://assets/enemy/sentinel4.png" id="4_mj24h"]
+[ext_resource type="Texture2D" uid="uid://8h202vivcuyp" path="res://assets/enemy/sentinel5.png" id="5_toint"]
+[ext_resource type="Texture2D" uid="uid://bsgfofj11g115" path="res://assets/enemy/sentinel6.png" id="6_710gw"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_cy2ld")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_flw3o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_b0xcx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mj24h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_toint")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_710gw")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]

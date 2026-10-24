@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dns3qgwnnowek"
+path="res://.godot/imported/Chiptune Vol2 Evil Grudge Cut 30.wav-121d2bebfdf3a36afe13713f4327c662.sample"
+
+[deps]
+
+source_file="res://assets/music/bgm/Evil Grudge (RT 1.875)/Chiptune Vol2 Evil Grudge Cut 30.wav"
+dest_files=["res://.godot/imported/Chiptune Vol2 Evil Grudge Cut 30.wav-121d2bebfdf3a36afe13713f4327c662.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

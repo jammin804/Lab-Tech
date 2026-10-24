@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://c286uo55rxlc2"]
+
+[ext_resource type="Script" uid="uid://xoa04x32nwfd" path="res://scripts/ui/tooltip.gd" id="1_ne664"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s5m6i"]
+bg_color = Color(0.16715145, 0.16247946, 0.24234396, 0.5294118)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Tooltip" type="PanelContainer" unique_id=1930704416]
+top_level = true
+offset_top = 40.0
+offset_right = 48.0
+offset_bottom = 64.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_s5m6i")
+script = ExtResource("1_ne664")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=2112038651]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 6
+theme_override_font_sizes/bold_font_size = 6
+theme_override_font_sizes/bold_italics_font_size = 6
+theme_override_font_sizes/italics_font_size = 6
+theme_override_font_sizes/mono_font_size = 6
+bbcode_enabled = true
+fit_content = true

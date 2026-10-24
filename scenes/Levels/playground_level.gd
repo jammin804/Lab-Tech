@@ -1,0 +1,168 @@
+class_name Playground
+extends Node
+
+enum Row {TOP_ROW, BOTTOM_ROW}
+
+@export var level_info : Levels
+@export var enemy_scene: PackedScene
+@export var enemies_remaining_label: Label
+@export var spawns_remaining_label: Label
+
+
+var player : PlayerNew = null
+var spawn_points: Array[Marker2D]
+var spawn_point : Marker2D
+var current_row : int
+var enemy: Enemy
+var num_to_succeed : int
+var num_killed : int = 0
+var enemies_destoryed : int = 0
+var enemies_to_spawn: int:
+	set(value):
+		enemies_to_spawn = max(0, value)
+var total_num_of_enemies_in_level: int
+var is_win_condition_met:bool = false
+
+@onready var bottom_spawn_point: Marker2D = %BottomSpawnPoint
+@onready var switch_collision: Area2D = $Pausable/SwitchCollision
+@onready var top_spawn_point: Marker2D = %TopSpawnPoint
+
+func _ready() -> void:
+	#Initializing signals
+	Events.enemy_died.connect(_on_enemy_killed)
+	Events.check_remaining.connect(_on_enemy_queue_free)
+
+	#Setting up spawning points
+	spawn_points += [bottom_spawn_point, top_spawn_point]
+
+	#Collecting Condition Gates information
+	num_to_succeed = level_info.enemies_to_defeat
+	enemies_to_spawn = level_info.enemies_to_spawn
+	total_num_of_enemies_in_level = enemies_to_spawn
+
+	#Spawing Logic
+	_spawn_enemy()
+
+	#Updating UI
+	update_kill_counter()
+	update_spawn_counter()
+
+
+	#Add timer
+	player = get_tree().get_first_node_in_group("player")
+
+	#print("player is", player.level_enemies_killed)
+
+
+func _on_switch_collision_body_entered(body: Enemy) -> void:
+
+	if body.escape_option == body.ESCAPE_OPTIONS.NORMAL:
+		_normal_escape_pattern(body)
+	if body.escape_option == body.ESCAPE_OPTIONS.SPEED_UP:
+		_normal_escape_pattern(body)
+		body.current_data.move_speed = 100
+	elif body.escape_option == body.ESCAPE_OPTIONS.TELEPORT:
+		_teleport_escape_pattern(body)
+
+func _spawn_enemy() -> void:
+	var new_enemy = level_info.enemies_type.pick_random().instantiate()
+	spawn_point = spawn_points.pick_random()
+
+	new_enemy.global_position = spawn_point.global_position
+	get_node("Pausable").add_child(new_enemy)
+
+	enemies_to_spawn -= 1
+
+	if bottom_spawn_point.global_position.y == new_enemy.global_position.y: #bottom row
+		current_row = 1
+		print("On Bottom Row")
+	elif top_spawn_point.global_position.y == new_enemy.global_position.y:
+		current_row = 0
+		print("On Top Row")
+
+	if enemies_to_spawn != 0:
+		$Pausable/Timer.start()
+	else:
+		$Pausable/Timer.stop()
+
+
+
+
+func _normal_escape_pattern(body: Enemy):
+	change_lanes(body)
+	body.change_direction()
+
+func change_lanes(body: Enemy):
+	if is_equal_approx(body.global_position.y, bottom_spawn_point.global_position.y):
+		body.global_position.y = top_spawn_point.global_position.y
+	else:
+		body.global_position.y = bottom_spawn_point.global_position.y
+
+func _teleport_escape_pattern(body) -> void:
+	body.global_position.x = %TeleportPoint.global_position.x
+	body.change_direction()
+
+func _on_enemy_killed() -> void:
+	num_killed += 1
+
+	update_kill_counter()
+	#if enemies_to_spawn == 0:
+		#_check_win_condition()
+
+
+func update_kill_counter():
+	enemies_remaining_label.text = str(num_killed) + "/" + str(num_to_succeed)
+
+	if num_killed >= num_to_succeed:
+		enemies_remaining_label.modulate = Color.WEB_GREEN
+	else:
+		enemies_remaining_label.modulate = Color.WHITE
+
+
+
+func update_spawn_counter():
+	spawns_remaining_label.text = str(enemies_to_spawn)
+
+	if enemies_to_spawn <= 3:
+		spawns_remaining_label.modulate = Color.FIREBRICK
+
+
+
+
+func _on_timer_timeout() -> void:
+	if enemies_to_spawn >= 0:
+
+		_spawn_enemy()
+
+		update_spawn_counter()
+	else:
+		return
+
+
+func _check_win_condition():
+	if num_killed >= num_to_succeed:
+		is_win_condition_met = true
+		#TODO Setup reward: increment the level/amount of enemies destroyed for the lab scene
+		Globals.enemies_killed += num_killed
+		Events.win_condition_success.emit()
+		#get_tree().change_scene_to_file("res://scenes/lab.tscn")
+	else:
+		is_win_condition_met = false
+		#TODO Setup punishment: Lose life/lose resource/ lose upgrade
+		Globals.player_lives -= 1
+		print("Number of lives left", Globals.player_lives)
+		Events.win_condition_fail.emit()
+		#play animation to show number (or array of hearts) then choose the last heart and show heart break animation
+		if Globals.player_lives <= 0:
+			get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	print("Win condition ", is_win_condition_met)
+
+
+func _on_enemy_queue_free() -> void:
+	enemies_destoryed += 1
+	print("Enemy destroyed ", enemies_destoryed, " out of ", total_num_of_enemies_in_level)
+	if enemies_destoryed == total_num_of_enemies_in_level:
+		print("Start checking process")
+		_check_win_condition()
+	#else:
+		#print("Start losing process")

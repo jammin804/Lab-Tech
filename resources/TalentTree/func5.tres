@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="DamageChange" format=3 uid="uid://28xv0tanhghb"]
+
+[ext_resource type="Script" uid="uid://bskir8vlxkkgv" path="res://resources/TalentTree/scripts/func5.gd" id="1_7qbp5"]
+
+[resource]
+script = ExtResource("1_7qbp5")
+metadata/_custom_type_script = "uid://bskir8vlxkkgv"

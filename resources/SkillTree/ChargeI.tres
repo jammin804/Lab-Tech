@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://bc57wmg0lfui2"]
+
+[ext_resource type="Script" uid="uid://fa5x46oa8uta" path="res://resources/SkillTree/skill.gd" id="1_fhxme"]
+[ext_resource type="Script" uid="uid://d332ldvfmgnhy" path="res://resources/PlayerData/player_stats.gd" id="2_5x458"]
+[ext_resource type="Texture2D" uid="uid://bp4n4b1ar2gak" path="res://assets/ui/skill_tree/charge.png" id="3_jvilo"]
+
+[sub_resource type="Resource" id="Resource_hyse7"]
+script = ExtResource("2_5x458")
+battery_tanks = 2
+battery_tank_points = 0
+power = 0
+rapid = 0.0
+metadata/_custom_type_script = "uid://d332ldvfmgnhy"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqing"]
+atlas = ExtResource("3_jvilo")
+region = Rect2(17, 2, 30, 27)
+
+[resource]
+script = ExtResource("1_fhxme")
+name = "Charge I"
+texture = SubResource("AtlasTexture_uqing")
+cost = 10
+stats = SubResource("Resource_hyse7")
+metadata/_custom_type_script = "uid://fa5x46oa8uta"

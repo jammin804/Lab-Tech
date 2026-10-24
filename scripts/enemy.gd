@@ -1,0 +1,263 @@
+class_name Enemy
+extends CharacterBody2D
+
+signal enemy_health_change
+
+enum ESCAPE_OPTIONS { NORMAL, ZIG_ZAG, SPEED_UP, TELEPORT}
+@export var escape_options : ESCAPE_OPTIONS
+#region DEBUG OPTIONS
+@export_category("DEBUG OPTIONS")
+@export var is_in_debug_mode : bool = false
+
+#endregion
+
+@export_category("Base Variables")
+@export var stats: Resource
+@export var is_in_battle_scene : bool = false
+
+@export_category("Sine Wave")
+@export var should_wave : bool = false
+@export var time: float = 0.0
+@export_range(0.0, 100.0, 1.0) var frequency: float
+@export_range(0.0, 100.0, 1.0) var amplitude: float
+
+@export_category("Item Drop") #TODO Make this into a resource so i can just add to enemy
+@export var loot_drop_type : PackedScene
+@export_range(0, 100, 1.0, "suffix:%") var drop_rate
+
+var max_enemy_health : float
+var current_enemy_health : float
+var current_data: EnemyStats
+var explosion_damage_dealt : int = 40
+var is_dead : bool = false
+
+var rng = RandomNumberGenerator.new()
+
+var loot_amount : Array = []
+var weights
+
+var direction: int = -1
+var escape_option: int
+
+
+@onready var enemy_sprite: AnimatedSprite2D = $enemy
+@onready var status_component: Node = $StatusComponent
+@onready var hit_flash_anim: AnimationPlayer = $HitFlashAnim
+@onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
+@onready var destroy_anim: AnimatedSprite2D = $DestroyAnim
+@onready var spawner: Marker2D = $Spawner
+@onready var damage_number_spawner: DamageNumberSpawner = $DamageNumberSpawner2
+@onready var money_label: Label = $MoneyNumberOrigin/MoneyLabel
+@onready var pattern_indicator: Sprite2D = $PatternIndicator
+@onready var hp_label: Label = $HPLabel
+
+@onready var shaker := Shaker.new(enemy_sprite)
+
+func _ready() -> void:
+	#Signal Initalization
+
+	#End
+
+	#Choose escape options
+	_choose_escape_option(randi_range(0, 3) as ESCAPE_OPTIONS)
+
+	destroy_anim.hide()
+	if stats:
+		current_data = stats.duplicate()
+		loot_amount = [
+			randi_range(current_data.loot_tier_1_currency_min, current_data.loot_tier_1_currency_max),
+			randi_range(current_data.loot_tier_2_currency_min, current_data.loot_tier_2_currency_max),
+			randi_range(current_data.loot_tier_3_currency_min, current_data.loot_tier_3_currency_max)
+		]
+		weights = PackedFloat32Array(
+			[
+				current_data.loot_tier_1_drop_rate,
+				current_data.loot_tier_2_drop_rate,
+				current_data.loot_tier_3_drop_rate
+			])
+
+	#Change health based on level
+	current_enemy_health = current_data.health
+	current_enemy_health = floor( (current_enemy_health + 10) * Globals.level * randf_range(1.0, 1.5) )
+
+	if is_in_debug_mode:
+		current_enemy_health = 40
+		current_data.move_speed = 0
+
+	max_enemy_health = current_enemy_health
+
+	update_hp_label()
+	#print("enemy health ", current_enemy_health)
+
+func _process(delta: float) -> void:
+	if should_wave:
+		var pos : Vector2 = position
+		#var offset = position.y
+		time += delta
+		pos.y = sin(time * frequency) * amplitude + 130.0
+
+		position.y = pos.y
+
+	if not is_dead:
+		move_enemy(delta)
+
+
+func take_damage(incoming_damage: float, incoming_element:WeaponData.Element) -> void:
+
+
+	if is_dead:
+		return
+
+	var final_damage = incoming_damage
+	match incoming_element:
+		WeaponData.Element.WATER:
+			##Apply wet status
+			status_component.apply_status(WeaponData.Element.WATER, 5.0)
+		WeaponData.Element.LIGHTING:
+			if status_component.has_status(WeaponData.Element.WATER):
+				final_damage *= 2.0 #double the damage
+				#print("SYNERGY: Wet + Lighting")
+				#TODO: Trigger chain-lighting visual or AOE here
+		WeaponData.Element.FIRE:
+			#Apply Burn Status
+			status_component.apply_status(WeaponData.Element.FIRE, 3.0)
+
+	current_enemy_health -= final_damage
+
+
+	hit_flash_anim.play("hit")
+	damage_number_spawner.spawn_label(incoming_damage)
+	shaker.shake(4.0, 0.2)
+	update_hp_label()
+
+	if current_enemy_health <= 0:
+		destroy()
+		return
+
+	Events.damage_dealt.emit(incoming_damage)
+
+	#TODO Spawn floating damage numbers here using 'final damage'
+	if Globals.can_screenshake == true:
+		Events.screen_shake_requested.emit(2.0, 0.5)
+
+
+	#gpu_particles_2d.restart()
+	#gpu_particles_2d.emitting = true
+
+	enemy_sprite.speed_scale = 5.0
+	should_wave = false
+	await get_tree().create_timer(1.0).timeout
+	enemy_sprite.speed_scale = 1.0
+	should_wave = true
+
+
+
+
+func destroy():
+	is_dead = true
+
+	if should_wave == true:
+		should_wave = false
+
+	Events.enemy_died.emit()
+	#Events.check_remaining.emit()
+
+
+	enemy_sprite.stop()
+	enemy_sprite.hide()
+
+	#turn off collsiion so shots can go through and hit the next enemy
+	set_deferred("collision_layer", 0)
+	set_deferred("collision_mask", 0)
+
+
+	#$Death.play()
+	destroy_anim.show()
+	destroy_anim.play("default")
+	hit_flash_anim.play("death")
+
+func move_enemy(delta):
+
+	#position.y = sin(time * 90) * 1
+	if is_in_battle_scene or is_in_debug_mode:
+		position.x += current_data.move_speed * delta * direction
+		enemy_sprite.play()
+
+func _drop_item() -> void:
+	pass
+
+##FIXME Need to fix the issue of the shader studder
+func _on_hit_flash_anim_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "death":
+		#print("Enemy Dropped: ", loot_amount[rng.rand_weighted(weights)])
+		var amount = loot_amount[rng.rand_weighted(weights)]
+		money_label.text = str("$", amount)
+		money_label.show()
+		TweenFX.punch_in(money_label)
+		await TweenFX.punch_in(money_label).finished
+		money_label.hide()
+
+		Events.increase_currency.emit(amount)
+
+		#if loot_drop_type:
+			#var rng = randf() * 100
+			#if rng <= drop_rate:
+				#var loot = loot_drop_type.instantiate()
+				#loot.global_transform = spawner.global_transform
+				#get_tree().current_scene.add_child(loot)
+
+		self.queue_free()
+		#Events.enemy_died.emit()
+		Events.check_remaining.emit()
+
+func _on_lab_battle_scene_start() -> void:
+	is_in_battle_scene = true
+
+func _on_lab_uprgrade_scene_start() -> void:
+	is_in_battle_scene = false
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	queue_free()
+	Events.check_remaining.emit()
+
+
+func change_direction():
+	direction *= -1
+	enemy_sprite.scale.x *= -1
+
+
+func _choose_escape_option(options: ESCAPE_OPTIONS) -> void:
+	match options:
+		ESCAPE_OPTIONS.NORMAL:
+			#print("Normal Exit")
+			pattern_indicator.modulate = Color.ALICE_BLUE
+			escape_option = 0
+		ESCAPE_OPTIONS.ZIG_ZAG:
+			#print("Zig Exit")
+			pattern_indicator.modulate = Color.GOLD
+			escape_option = 1
+		ESCAPE_OPTIONS.SPEED_UP:
+			#print("Fast Exit")
+			pattern_indicator.modulate = Color.NAVY_BLUE
+
+			escape_option = 2
+		ESCAPE_OPTIONS.TELEPORT:
+			#print("Tele Exit")
+			pattern_indicator.modulate = Color.DARK_MAGENTA
+
+			escape_option = 3
+
+
+func update_hp_label():
+	if current_enemy_health < 0.0:
+		hp_label.text = str(0)
+	hp_label.text = str( int(current_enemy_health) )
+
+	if max_enemy_health > current_enemy_health:
+		hp_label.self_modulate = Color.FIREBRICK
+
+		var tween = create_tween()
+		tween.tween_property(hp_label, "self_modulate:s", 0.5, 1.0).from(1.0)
+
+	print("Max HP: ", max_enemy_health, ", Current Health: ", current_enemy_health)

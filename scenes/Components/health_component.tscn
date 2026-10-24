@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dhod2uhsxtvbi"]
+
+[ext_resource type="Texture2D" uid="uid://bwvjfvn1mt8h2" path="res://assets/ui/hud/player_heart.png" id="1_3uywa"]
+[ext_resource type="Script" uid="uid://draheyqsgnkug" path="res://scenes/Components/health_component.gd" id="1_rds26"]
+
+[node name="HealthComponent" type="Node" unique_id=1542304812]
+script = ExtResource("1_rds26")
+
+[node name="HeartContainer" type="Control" parent="." unique_id=1055081377]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HeartContainer" unique_id=1740556468]
+layout_mode = 1
+offset_right = 71.0
+offset_bottom = 10.0
+
+[node name="Heart" type="TextureRect" parent="HeartContainer/HBoxContainer" unique_id=841238297]
+custom_maximum_size = Vector2(11, 10)
+layout_mode = 2
+texture = ExtResource("1_3uywa")
+stretch_mode = 2

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cnosuv70ino1f"]
+
+[ext_resource type="Script" uid="uid://dn6bsl278t50l" path="res://scripts/debug/Testing/attachment_component.gd" id="1_xiell"]
+
+[node name="AttachmentComponent" type="Node" unique_id=1882574464]
+script = ExtResource("1_xiell")

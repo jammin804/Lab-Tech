@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="ChargeUnlock" format=3 uid="uid://dqa1k4c5x0hxi"]
+
+[ext_resource type="Script" uid="uid://bkghdfhx1mw1k" path="res://resources/TalentTree/scripts/func3.gd" id="1_61gxj"]
+
+[resource]
+script = ExtResource("1_61gxj")

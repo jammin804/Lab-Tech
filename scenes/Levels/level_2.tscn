@@ -1,0 +1,154 @@
+[gd_scene format=3 uid="uid://bsap60e55pre1"]
+
+[ext_resource type="Script" uid="uid://1ehntiymepan" path="res://scripts/levels/level_2.gd" id="1_0lf7e"]
+[ext_resource type="Texture2D" uid="uid://hw3yy7aoqac3" path="res://assets/backgrounds/bg-1.png" id="2_iatiq"]
+[ext_resource type="PackedScene" uid="uid://blqe7ke2t7a3n" path="res://scenes/UI/custom_mouse.tscn" id="3_1eg0c"]
+[ext_resource type="PackedScene" uid="uid://b3gf3rdu50uej" path="res://scenes/UI/battery_hud.tscn" id="4_vgjor"]
+[ext_resource type="PackedScene" uid="uid://cooeppa7wcj7x" path="res://scenes/camera.tscn" id="5_toot3"]
+[ext_resource type="PackedScene" uid="uid://83rd1mmscj3k" path="res://scenes/Playground Scenes/wave_manager.tscn" id="6_a5tp3"]
+[ext_resource type="Script" uid="uid://bta3my2bfuxdr" path="res://resources/WaveData/wave_data.gd" id="7_udsrb"]
+[ext_resource type="Resource" uid="uid://b53godrykoobg" path="res://resources/WaveData/level1_waves/wave_01.tres" id="8_06kn0"]
+[ext_resource type="Resource" uid="uid://8yrefwd8f06d" path="res://resources/WaveData/level1_waves/wave_02.tres" id="9_qvmeu"]
+[ext_resource type="Resource" uid="uid://bd605r2uk7n3t" path="res://resources/WaveData/level1_waves/wave_03.tres" id="10_bnx7l"]
+[ext_resource type="Texture2D" uid="uid://b8h7y5diislmb" path="res://assets/ui/hud/Settigns.png" id="11_mqswj"]
+[ext_resource type="Script" uid="uid://txbrbq2y72mm" path="res://plugin/OvaniPlugin/OvaniPlayer.gd" id="12_pp7tw"]
+[ext_resource type="Script" uid="uid://m1bfaxshhh8l" path="res://plugin/OvaniPlugin/OvaniSong.gd" id="13_2t7ys"]
+[ext_resource type="Resource" uid="uid://srv7ffo3rdex" path="res://resources/Ovani/EvilGrudge.tres" id="14_1dm7w"]
+[ext_resource type="PackedScene" uid="uid://dg66c7f7p6iii" path="res://scenes/pause_menu.tscn" id="15_uh25c"]
+[ext_resource type="PackedScene" uid="uid://bd1e7fmt2sl4m" path="res://scenes/UI/settings_menu.tscn" id="16_64ir8"]
+[ext_resource type="PackedScene" uid="uid://lccgrpafmldk" path="res://scenes/debug/debug_text_overlay.tscn" id="17_7i883"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkca0"]
+atlas = ExtResource("2_iatiq")
+region = Rect2(0, 0, 288, 208)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lskjy"]
+atlas = ExtResource("11_mqswj")
+region = Rect2(26, 2, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qm3lx"]
+atlas = ExtResource("11_mqswj")
+region = Rect2(26, 42, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5bt8"]
+atlas = ExtResource("11_mqswj")
+region = Rect2(26, 21, 16, 16)
+
+[node name="Level2" type="Node" unique_id=1489670400 node_paths=PackedStringArray("pause_menu", "settings_menu", "player_spawn")]
+process_mode = 3
+script = ExtResource("1_0lf7e")
+pause_menu = NodePath("PauseMenu")
+settings_menu = NodePath("SettingsMenu")
+player_spawn = NodePath("Pausable/PlayerSpawnPoint")
+
+[node name="Background" type="TextureRect" parent="." unique_id=62776617]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_jkca0")
+expand_mode = 2
+
+[node name="CustomMouse" parent="." unique_id=289937816 instance=ExtResource("3_1eg0c")]
+layer = 128
+
+[node name="Pausable" type="Control" parent="." unique_id=604897688]
+process_mode = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Battery" parent="Pausable" unique_id=1694848608 instance=ExtResource("4_vgjor")]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="InBetweenWaves" type="Timer" parent="Pausable" unique_id=182636926]
+unique_name_in_owner = true
+one_shot = true
+autostart = true
+
+[node name="Camera" parent="Pausable" unique_id=263792174 instance=ExtResource("5_toot3")]
+position = Vector2(160, 90)
+
+[node name="EnemySpawnPoint" type="Marker2D" parent="Pausable" unique_id=195233964 groups=["ground_spawns"]]
+unique_name_in_owner = true
+position = Vector2(314, 157)
+
+[node name="EnemySpawnPoint2" type="Marker2D" parent="Pausable" unique_id=1077596327 groups=["ground_spawns"]]
+unique_name_in_owner = true
+position = Vector2(314, 107)
+
+[node name="Enemies" type="Node2D" parent="Pausable" unique_id=374635073]
+
+[node name="WaveManager" parent="Pausable" unique_id=1472363141 node_paths=PackedStringArray("ground_spawn_point", "air_spawn_point", "enemy_container") instance=ExtResource("6_a5tp3")]
+waves = Array[ExtResource("7_udsrb")]([ExtResource("8_06kn0"), ExtResource("9_qvmeu"), ExtResource("10_bnx7l")])
+ground_spawn_point = NodePath("../EnemySpawnPoint")
+air_spawn_point = NodePath("../EnemySpawnPoint2")
+enemy_container = NodePath("../Enemies")
+
+[node name="PauseBtn" type="TextureButton" parent="Pausable" unique_id=1050029617]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -27.0
+offset_top = 7.0
+offset_right = -11.0
+offset_bottom = 23.0
+grow_horizontal = 0
+texture_normal = SubResource("AtlasTexture_lskjy")
+texture_pressed = SubResource("AtlasTexture_qm3lx")
+texture_hover = SubResource("AtlasTexture_p5bt8")
+
+[node name="LabBGM" type="Node" parent="Pausable" unique_id=34785919]
+script = ExtResource("12_pp7tw")
+QueuedSongs = Array[ExtResource("13_2t7ys")]([ExtResource("14_1dm7w")])
+Volume = -10.0
+Intensity = 1.0
+Bus = &"Music"
+metadata/_custom_type_script = "uid://txbrbq2y72mm"
+
+[node name="PlayerSpawnPoint" type="Marker2D" parent="Pausable" unique_id=282894702]
+unique_name_in_owner = true
+position = Vector2(38, 154)
+
+[node name="PauseMenu" parent="." unique_id=1716673666 instance=ExtResource("15_uh25c")]
+process_mode = 2
+visible = false
+
+[node name="SettingsMenu" parent="." unique_id=1195811390 instance=ExtResource("16_64ir8")]
+process_mode = 2
+visible = false
+
+[node name="DebugLayer" type="CanvasLayer" parent="." unique_id=389921551]
+process_mode = 3
+layer = 128
+visible = false
+
+[node name="DebugRoot" type="Control" parent="DebugLayer" unique_id=1584273552]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+mouse_filter = 2
+mouse_behavior_recursive = 1
+
+[node name="DebugTextOverlay" parent="DebugLayer/DebugRoot" unique_id=1309649993 instance=ExtResource("17_7i883")]
+layout_mode = 1
+offset_top = -46.0
+offset_bottom = -46.0
+
+[connection signal="timeout" from="Pausable/InBetweenWaves" to="Pausable/WaveManager" method="_on_in_between_waves_timeout"]
+[connection signal="pressed" from="Pausable/PauseBtn" to="." method="_on_pause_btn_pressed"]

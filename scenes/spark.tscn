@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://d37hr5i350lqv"]
+
+[ext_resource type="Texture2D" uid="uid://bt6k81kq2ei6h" path="res://assets/particles/hit-b.png" id="1_p3mhk"]
+[ext_resource type="Texture2D" uid="uid://ha8b722k8kc4" path="res://assets/particles/electric-explosion.png" id="1_vit8h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dy83x"]
+atlas = ExtResource("1_vit8h")
+region = Rect2(928, 0, 116, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2ocf"]
+atlas = ExtResource("1_vit8h")
+region = Rect2(1044, 0, 116, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnbwe"]
+atlas = ExtResource("1_vit8h")
+region = Rect2(1160, 0, 116, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jylo4"]
+atlas = ExtResource("1_vit8h")
+region = Rect2(1276, 0, 116, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vit8h"]
+atlas = ExtResource("1_p3mhk")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1eabr"]
+atlas = ExtResource("1_p3mhk")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dwls8"]
+atlas = ExtResource("1_p3mhk")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6o4bs"]
+atlas = ExtResource("1_p3mhk")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dy83x"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dy83x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2ocf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnbwe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jylo4")
+}],
+"loop": false,
+"name": &"electric",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vit8h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1eabr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dwls8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6o4bs")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"spark",
+"speed": 15.0
+}]
+
+[node name="Spark" type="Node2D" unique_id=515015113]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1652750483]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_dy83x")

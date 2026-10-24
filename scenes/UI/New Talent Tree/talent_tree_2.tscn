@@ -1,0 +1,398 @@
+[gd_scene format=3 uid="uid://ds2efap35m8d2"]
+
+[ext_resource type="PackedScene" uid="uid://cd5t621s5krvm" path="res://scenes/UI/New Talent Tree/talent_icon.tscn" id="1_3glmu"]
+[ext_resource type="Theme" uid="uid://b2yiqfrkj5dmr" path="res://resources/Theme/ui_theme.tres" id="1_ggf8e"]
+[ext_resource type="Script" uid="uid://dntgfdcmywxgc" path="res://scripts/ui/Talent Tree/talent_tree_2.gd" id="1_vtkmw"]
+[ext_resource type="Resource" uid="uid://b62c15rpfg3b3" path="res://resources/TalentTree/skill1.tres" id="3_h1iur"]
+[ext_resource type="Resource" uid="uid://vrjifu2bc331" path="res://resources/TalentTree/func2.tres" id="5_h1iur"]
+[ext_resource type="Resource" uid="uid://c8jowgsk5odo0" path="res://resources/TalentTree/func1.tres" id="5_qwupu"]
+[ext_resource type="Resource" uid="uid://doxltg15e0ph3" path="res://resources/TalentTree/skill3.tres" id="5_spest"]
+[ext_resource type="Resource" uid="uid://bps7lgdts2c0m" path="res://resources/TalentTree/skill2.tres" id="6_l0tbs"]
+[ext_resource type="Resource" uid="uid://dqa1k4c5x0hxi" path="res://resources/TalentTree/func3.tres" id="6_spest"]
+[ext_resource type="Resource" uid="uid://c8a5ybbctvqr7" path="res://resources/TalentTree/func4.tres" id="8_w3p7k"]
+[ext_resource type="Resource" uid="uid://du7hcnodfc7mj" path="res://resources/TalentTree/skill4.tres" id="9_jqipk"]
+[ext_resource type="Resource" uid="uid://v4q3d7tc5xxo" path="res://resources/TalentTree/skill5.tres" id="11_pdpgr"]
+[ext_resource type="Resource" uid="uid://28xv0tanhghb" path="res://resources/TalentTree/func5.tres" id="12_grnvs"]
+[ext_resource type="Resource" uid="uid://bnue7ecflmmhu" path="res://resources/TalentTree/skill6.tres" id="13_2x64b"]
+[ext_resource type="Resource" uid="uid://de38nb3gl4a2i" path="res://resources/TalentTree/func6.tres" id="14_hfupw"]
+[ext_resource type="StyleBox" uid="uid://h4hbbqa8c1d3" path="res://themes/text_boxes.tres" id="15_4qkwr"]
+[ext_resource type="Texture2D" uid="uid://bmgd5bh11073r" path="res://assets/ui/hud/coins-chests-etc-2-0.png" id="16_ggf8e"]
+[ext_resource type="Texture2D" uid="uid://brvmjalwweco2" path="res://assets/ui/hud/Sprite-0001.png" id="17_6a0bt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s5m6i"]
+bg_color = Color(0.32941177, 0.6627451, 0.5294118, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5m6i"]
+atlas = ExtResource("17_6a0bt")
+region = Rect2(0.9977226, 112.08851, 12.112375, 16.503242)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qti4y"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.0627451, 0.03137255, 0.03137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g18rp"]
+atlas = ExtResource("17_6a0bt")
+region = Rect2(67.195816, 112.06311, 12.030907, 16.16101)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cw33r"]
+bg_color = Color(0.6, 0.6, 0.6, 0.5372549)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ggf8e"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.0627451, 0.03137255, 0.03137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b1g2q"]
+bg_color = Color(0.0627451, 0.03137255, 0.03137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qti4y"]
+atlas = ExtResource("16_ggf8e")
+region = Rect2(209.21545, 18.05703, 13.842438, 14.251785)
+
+[node name="TalentTree2" type="Control" unique_id=2011149392 node_paths=PackedStringArray("current_money_label", "info_name_label", "info_desc_label", "info_cost_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_ggf8e")
+script = ExtResource("1_vtkmw")
+current_money_label = NodePath("MoneyPanel/MarginContainer/HBoxContainer/AmountLabel")
+info_name_label = NodePath("InfoPanel/VBoxContainer/PanelContainer/NameLabel")
+info_desc_label = NodePath("InfoPanel/VBoxContainer/PanelContainer2/DescriptionLabel")
+info_cost_label = NodePath("CostPanel/MarginContainer/HBoxContainer/AmountLabel")
+metadata/_edit_vertical_guides_ = [20.0]
+metadata/_edit_horizontal_guides_ = [89.0]
+
+[node name="BGPanel" type="Panel" parent="." unique_id=1883183045]
+visible = false
+z_index = -2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_s5m6i")
+
+[node name="TitleContainer" type="HBoxContainer" parent="." unique_id=193196420]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -44.0
+offset_top = 2.0
+offset_right = 44.0
+offset_bottom = 18.0
+grow_horizontal = 2
+theme_override_constants/separation = 1
+
+[node name="TextureButton2" type="TextureButton" parent="TitleContainer" unique_id=409418439]
+layout_mode = 2
+size_flags_horizontal = 0
+texture_normal = SubResource("AtlasTexture_s5m6i")
+
+[node name="Control2" type="Control" parent="TitleContainer" unique_id=2132117868]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TitleNameContainer" type="PanelContainer" parent="TitleContainer" unique_id=209267891]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_qti4y")
+
+[node name="Label" type="Label" parent="TitleContainer/TitleNameContainer" unique_id=422849017]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.16862746, 0.9137255, 1, 1)
+theme_override_font_sizes/font_size = 8
+text = "Blaster"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Control" type="Control" parent="TitleContainer" unique_id=1088861151]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TextureButton" type="TextureButton" parent="TitleContainer" unique_id=1290676919]
+layout_mode = 2
+size_flags_horizontal = 8
+texture_normal = SubResource("AtlasTexture_g18rp")
+
+[node name="SubPanelMargin" type="MarginContainer" parent="." unique_id=1919027397]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="ColorRect" type="ColorRect" parent="SubPanelMargin" unique_id=1468762421]
+layout_mode = 2
+color = Color(0, 0.0627451, 0.12941177, 1)
+
+[node name="SubPanel" type="Panel" parent="SubPanelMargin" unique_id=1833251774]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cw33r")
+
+[node name="InfoPanel" type="Panel" parent="." unique_id=40070868]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -168.0
+offset_top = -53.0
+offset_right = -7.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("15_4qkwr")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InfoPanel" unique_id=1000811966]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.5
+offset_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="InfoPanel/VBoxContainer" unique_id=344098555]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_qti4y")
+
+[node name="NameLabel" type="Label" parent="InfoPanel/VBoxContainer/PanelContainer" unique_id=1012148583]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.16862746, 0.9137255, 1, 1)
+theme_override_font_sizes/font_size = 8
+text = "Buster+"
+uppercase = true
+
+[node name="PanelContainer2" type="PanelContainer" parent="InfoPanel/VBoxContainer" unique_id=1084258246]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ggf8e")
+
+[node name="DescriptionLabel" type="Label" parent="InfoPanel/VBoxContainer/PanelContainer2" unique_id=1546630465]
+custom_minimum_size = Vector2(157, 25)
+layout_mode = 2
+theme_override_constants/paragraph_spacing = 0
+theme_override_font_sizes/font_size = 8
+text = "Upgrades Level 2 
+Charge Shot"
+autowrap_mode = 3
+
+[node name="CostPanel" type="Panel" parent="." unique_id=442454594]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -70.0
+offset_top = 25.0
+offset_right = -7.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b1g2q")
+
+[node name="MarginContainer" type="MarginContainer" parent="CostPanel" unique_id=1198450417]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CostPanel/MarginContainer" unique_id=1607009832]
+layout_mode = 2
+
+[node name="CostLabel" type="Label" parent="CostPanel/MarginContainer/HBoxContainer" unique_id=336926679]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 9
+text = "COST"
+vertical_alignment = 1
+
+[node name="AmountLabel" type="Label" parent="CostPanel/MarginContainer/HBoxContainer" unique_id=1474499407]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(1, 0.30588236, 0.23529412, 1)
+theme_override_font_sizes/font_size = 9
+text = "0"
+vertical_alignment = 1
+
+[node name="MoneyPanel" type="Panel" parent="." unique_id=842886115]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -61.0
+offset_top = 3.0
+offset_right = -4.0
+offset_bottom = 17.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b1g2q")
+
+[node name="TextureRect" type="TextureRect" parent="MoneyPanel" unique_id=2050451765]
+custom_minimum_size = Vector2(12, 8)
+layout_mode = 0
+offset_left = 4.0
+offset_top = 2.0000002
+offset_right = 16.0
+offset_bottom = 15.333332
+scale = Vector2(0.75, 0.75)
+size_flags_horizontal = 0
+texture = SubResource("AtlasTexture_qti4y")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MoneyPanel" unique_id=1546945628]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_right = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MoneyPanel/MarginContainer" unique_id=625847364]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="AmountLabel" type="Label" parent="MoneyPanel/MarginContainer/HBoxContainer" unique_id=2064013651]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0.16862746, 0.92941177, 1, 1)
+theme_override_font_sizes/font_size = 9
+text = "999"
+
+[node name="TalentIconMarginContainer" type="MarginContainer" parent="." unique_id=660722612]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -52.0
+offset_right = 94.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TalentIconMarginContainer" unique_id=1569289851]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="RemoveLimitTalent" parent="TalentIconMarginContainer/HBoxContainer2" unique_id=2146772618 groups=["talents"] instance=ExtResource("1_3glmu")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+talent_resource = ExtResource("3_h1iur")
+talent_functionality = ExtResource("5_qwupu")
+
+[node name="TurretTalent" parent="TalentIconMarginContainer/HBoxContainer2" unique_id=440145942 groups=["talents"] instance=ExtResource("1_3glmu")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+talent_resource = ExtResource("6_l0tbs")
+talent_functionality = ExtResource("8_w3p7k")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TalentIconMarginContainer/HBoxContainer2" unique_id=2054928271]
+layout_mode = 2
+theme_override_constants/separation = 9
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TalentIconMarginContainer/HBoxContainer2/VBoxContainer" unique_id=1512974655]
+layout_mode = 2
+theme_override_constants/separation = 19
+
+[node name="ChargeTalent" parent="TalentIconMarginContainer/HBoxContainer2/VBoxContainer/HBoxContainer" unique_id=822119338 groups=["talents"] instance=ExtResource("1_3glmu")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+talent_resource = ExtResource("5_spest")
+talent_functionality = ExtResource("6_spest")
+
+[node name="HealthTalent" parent="TalentIconMarginContainer/HBoxContainer2/VBoxContainer/HBoxContainer" unique_id=300042390 groups=["talents"] instance=ExtResource("1_3glmu")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+talent_resource = ExtResource("9_jqipk")
+talent_functionality = ExtResource("5_h1iur")
+
+[node name="RapidShot" parent="TalentIconMarginContainer/HBoxContainer2/VBoxContainer" unique_id=412150652 groups=["talents"] instance=ExtResource("1_3glmu")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+talent_resource = ExtResource("13_2x64b")
+talent_functionality = ExtResource("14_hfupw")
+
+[node name="DamageTalent" parent="TalentIconMarginContainer/HBoxContainer2/VBoxContainer" unique_id=855016925 groups=["talents"] instance=ExtResource("1_3glmu")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+talent_resource = ExtResource("11_pdpgr")
+talent_functionality = ExtResource("12_grnvs")
+
+[node name="TempLoadButton" type="Button" parent="." unique_id=1066708615]
+visible = false
+layout_mode = 0
+offset_left = 10.0
+offset_top = 28.0
+offset_right = 56.0
+offset_bottom = 59.0
+text = "Load"
+
+[node name="TempSaveButton" type="Button" parent="." unique_id=1802294260]
+visible = false
+layout_mode = 0
+offset_left = 11.0
+offset_top = 64.0
+offset_right = 57.0
+offset_bottom = 95.0
+text = "Save"
+
+[connection signal="pressed" from="TempLoadButton" to="." method="_on_temp_load_button_pressed"]
+[connection signal="pressed" from="TempSaveButton" to="." method="_on_temp_save_button_pressed"]

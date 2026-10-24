@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="TalentResource2" format=3 uid="uid://chrsya883mkfb"]
+
+[ext_resource type="Script" uid="uid://cebb35bfecrsp" path="res://resources/TalentTree/scripts/talent_resource2.gd" id="1_er6nc"]
+[ext_resource type="Texture2D" uid="uid://nust27da1vec" path="res://assets/ui/skill_tree/Scifi weapons and items.png" id="2_4sr8t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_amf44"]
+atlas = ExtResource("2_4sr8t")
+region = Rect2(38.919792, 387.0595, 19.784485, 29.104431)
+
+[resource]
+script = ExtResource("1_er6nc")
+talent_id = "hybrid_charge"
+talent_icon = SubResource("AtlasTexture_amf44")
+talentName = "Hybrid Charge"
+talentDescription = "Bullets can now charge a small amount of your battery when it hits an enemy"
+cost = 75
+metadata/_custom_type_script = "uid://cebb35bfecrsp"
