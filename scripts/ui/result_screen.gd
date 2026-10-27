@@ -68,8 +68,8 @@ func _button_animation(button: Button) -> void:
 	await get_tree().create_timer(.8).timeout
 
 func _update_level(level: int) -> void:
-	#print(level)
-	pass
+
+	print(level)
 
 func _on_lab_button_pressed() -> void:
 	print("Lab buttone pressed in result screen")

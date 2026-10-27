@@ -42,7 +42,6 @@ func _on_change_level() -> void: #FIXME Remove. Not being used
 		3:
 			print("Go to level 3")
 
-
 func _on_transition_player_animation_finished(anim_name: StringName) -> void:
 	var lab = "uid://dmqv875jehqwm"
 	#if anim_name == "transition" and scene_to_load == lab:

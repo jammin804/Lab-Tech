@@ -10,6 +10,7 @@ var zone: int = 1
 var zones_unlocked: int = 1
 var total_zones: int = 5
 
+
 var can_screenshake : bool = true #When damage or upgrade is at a certian level screen shake
 var enemies_killed : int = 0
 var num_kills_need : int = 350

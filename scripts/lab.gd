@@ -17,6 +17,7 @@ extends Node2D
 @export var zones : Array[Zones] = [null]
 @export var levels : Array[String] = []
 
+
 var is_option_menu_open : bool = false
 var main_menu: String = "res://scenes/main_menu.tscn"
 var level_1: String = "uid://bdpj78s126rdu"
@@ -35,6 +36,7 @@ var level_1: String = "uid://bdpj78s126rdu"
 @onready var skill_tree: Control = %SkillTree
 @onready var talent_menu_manager: TalentMenuManager = %TalentMenuManager
 @onready var lab_gui: LabGui = $CanvasLayer/LabGui
+
 
 
 @onready var resume_btn: UI_Button = %ResumeBtn
@@ -58,6 +60,7 @@ func _ready() -> void:
 	hide_menu()
 
 	#Initializing signals
+
 	pause_menu.resume_game.connect(_on_resume_btn_pressed)
 	pause_menu.open_options.connect(_on_options_btn_pressed)
 	pause_menu.exit_to_title.connect(_on_quit_btn_pressed)
@@ -67,8 +70,6 @@ func _ready() -> void:
 	lab_gui.initialize(zones[0].zone_name, zones[0].zone_requirement, zones[0].waves_left_to_complete_goal, Globals.enemies_killed)
 	#lab_gui
 	#update_level_meter()
-
-
 
 func _process(delta: float) -> void:
 	pass
@@ -129,6 +130,7 @@ func _on_upgrades_btn_pressed() -> void:
 
 func _on_scene_loading_finished() -> void:
 	print("Start Music")
+
 	print("Start Animation")
 	lab_gui.update_progress_bar(0)
 	Events.lab_transition_finished.emit()

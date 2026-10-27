@@ -69,14 +69,18 @@ func _ready() -> void:
 	#enemies_to_spawn = level_info.enemies_to_spawn
 	total_num_of_enemies_in_level = enemy_spawner.enemies_to_spawn
 
-	#Initializing signals
+
 	pause_menu.resume_game.connect(_on_resume_btn_pressed)
 	pause_menu.open_options.connect(_on_options_btn_pressed)
 	pause_menu.retreat.connect(_on_retreat_button_pressed)
 	pause_menu.exit_to_title.connect(_on_quit_btn_pressed)
 	settings_menu.back_button_pressed.connect(_on_back_btn_pressed)
 
+
+	#Initializing signals
+	#Events.enemy_died.connect(_on_enemy_killed)
 	Events.check_remaining.connect(_on_enemy_queue_free)
+	#Events.level_complete.connect(_on_result_screen_shown)
 	Events.wave_completed.connect(_on_wave_change)
 	Events.enemy_died.connect(_update_enemy_counter)
 	Events.damage_dealt.connect(_on_damage_done)
