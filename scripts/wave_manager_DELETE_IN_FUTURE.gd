@@ -1,6 +1,8 @@
 class_name Wave_Manager
 extends Node
 
+#FIXME Tighten up Wave Manager, Currently the spanwns are off and the enemies and clumping
+
 #signal wave_update
 
 @export_category("Dependencies")

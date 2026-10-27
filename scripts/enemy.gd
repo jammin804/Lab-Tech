@@ -87,7 +87,7 @@ func _ready() -> void:
 	max_enemy_health = current_enemy_health
 
 	update_hp_label()
-	#print("enemy health ", current_enemy_health)
+
 
 func _process(delta: float) -> void:
 	if should_wave:
@@ -130,11 +130,7 @@ func take_damage(incoming_damage: float, incoming_element:WeaponData.Element) ->
 	shaker.shake(4.0, 0.2)
 	update_hp_label()
 
-	if current_enemy_health <= 0:
-		destroy()
-		return
 
-	Events.damage_dealt.emit(incoming_damage)
 
 	#TODO Spawn floating damage numbers here using 'final damage'
 	if Globals.can_screenshake == true:
@@ -151,7 +147,10 @@ func take_damage(incoming_damage: float, incoming_element:WeaponData.Element) ->
 	should_wave = true
 
 
+	if current_enemy_health <= 0:
+		destroy()
 
+	Events.damage_dealt.emit(incoming_damage)
 
 func destroy():
 	is_dead = true
@@ -250,8 +249,6 @@ func _choose_escape_option(options: ESCAPE_OPTIONS) -> void:
 
 
 func update_hp_label():
-	if current_enemy_health < 0.0:
-		hp_label.text = str(0)
 	hp_label.text = str( int(current_enemy_health) )
 
 	if max_enemy_health > current_enemy_health:

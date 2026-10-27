@@ -21,9 +21,6 @@ var is_option_menu_open : bool = false
 var main_menu: String = "res://scenes/main_menu.tscn"
 var level_1: String = "uid://bdpj78s126rdu"
 
-var new_enemies_killed: int
-var prev_enemies_killed: int
-
 
 
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
@@ -50,11 +47,6 @@ var prev_enemies_killed: int
 
 func _ready() -> void:
 	print("Num of enemies killed ", Globals.enemies_killed)
-	print("Num of previous enemies defeated, ", Globals.prev_enemies_killed)
-	prev_enemies_killed = Globals.prev_enemies_killed
-	new_enemies_killed = Globals.enemies_killed
-
-
 	if Engine.time_scale < 1.0:
 		Engine.time_scale = 1.0
 
@@ -72,11 +64,10 @@ func _ready() -> void:
 	settings_menu.back_button_pressed.connect(_on_back_btn_pressed)
 	LevelTransition.scene_loading_finished.connect(_on_scene_loading_finished)
 
-	print("Start Init bar")
-	#Initialize the bar
-	lab_gui.initialize(zones[0].zone_name, zones[0].zone_requirement, prev_enemies_killed, new_enemies_killed, zones[0].waves_left_to_complete_goal)
+	lab_gui.initialize(zones[0].zone_name, zones[0].zone_requirement, zones[0].waves_left_to_complete_goal, Globals.enemies_killed)
+	#lab_gui
+	#update_level_meter()
 
-	print("End Init bar")
 
 
 func _process(delta: float) -> void:
@@ -139,12 +130,8 @@ func _on_upgrades_btn_pressed() -> void:
 func _on_scene_loading_finished() -> void:
 	print("Start Music")
 	print("Start Animation")
-	await get_tree().create_timer(1.0).timeout
-	lab_gui.update_progress_bar(prev_enemies_killed, new_enemies_killed)
-	Globals.prev_enemies_killed = new_enemies_killed
-
+	lab_gui.update_progress_bar(0)
 	Events.lab_transition_finished.emit()
-	print("end of tranisition")
 
 
 func update_level_meter():
@@ -152,4 +139,4 @@ func update_level_meter():
 
 
 func _on_test_button_pressed() -> void:
-	LevelTransition.change_scene_to("res://scenes/Playground Scenes/playground2.tscn")
+	lab_gui.update_progress_bar(100)

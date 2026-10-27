@@ -1,5 +1,7 @@
 class_name MainMenu
 extends Control
+
+#FIXME The large asset error that appears when I save this scene
 @onready var settings_menu: Control = $SettingsMenu
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var continue_btn: UI_Button = %ContinueBtn

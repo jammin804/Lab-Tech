@@ -32,7 +32,7 @@ var is_passives_active : bool
 
 func _ready() -> void:
 	#Updated Code:
-	var stats = PlayerManager.current_stats
+	var stats = PlayerManager.current_stats #FIXME The autoload wouldn't allow me to name is GlobalPlayerManager
 	recalculate_max_health()
 	current_health = max_health
 

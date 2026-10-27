@@ -32,6 +32,16 @@ func _load_new_scene() -> void:
 	scene_loading_finished.emit()
 
 
+func _on_change_level() -> void: #FIXME Remove. Not being used
+	match Globals.level:
+		1:
+			print("Go to level 1")
+			change_scene_to(levels[0])
+		2:
+			print("Go to level 2")
+		3:
+			print("Go to level 3")
+
 
 func _on_transition_player_animation_finished(anim_name: StringName) -> void:
 	var lab = "uid://dmqv875jehqwm"

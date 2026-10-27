@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://mpstfr41bcbc" path="res://scenes/Playground Scenes/playground_2.gd" id="1_ndrat"]
 [ext_resource type="Texture2D" uid="uid://8aayan6npc78" path="res://assets/backgrounds/tileset.png" id="1_ro015"]
+[ext_resource type="PackedScene" uid="uid://drdlmsifm1unh" path="res://scenes/Entities_New/player.tscn" id="2_gfvp1"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_qg6ga"]
 tile_data = PackedInt32Array(0, 131072, 2, 1, 131072, 2, 2, 131072, 2, 3, 131072, 2, 4, 131072, 2, 5, 131072, 2, 6, 131072, 2, 7, 131072, 2, 8, 131072, 2, 9, 131072, 2, 10, 131072, 2, 11, 131072, 2, 12, 131072, 2, 13, 131072, 2, 14, 131072, 2, 15, 131072, 2, 16, 131072, 2, 17, 131072, 2, 18, 131072, 2, 19, 131072, 2, 20, 131072, 2, 21, 131072, 2, 22, 131072, 2, 23, 131072, 2, 24, 131072, 2, 25, 131072, 2, 26, 131072, 2, 27, 131072, 2, 28, 131072, 2, 29, 131072, 2, 30, 131072, 2, 31, 131072, 2, 32, 131072, 2, 33, 131072, 2, 34, 131072, 2, 35, 131072, 2, 36, 131072, 2, 37, 131072, 2, 38, 131072, 2, 39, 131072, 2)
@@ -93,22 +94,6 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "test"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=862725944]
-offset_left = 104.0
-offset_top = 136.0
-offset_right = 514.0
-offset_bottom = 176.0
+[node name="Player" parent="." unique_id=98801044 instance=ExtResource("2_gfvp1")]
 
-[node name="DefeatedLabel" type="Label" parent="VBoxContainer" unique_id=941842185]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 6
-text = "hello"
-
-[node name="LastDefeatedLabel" type="Label" parent="VBoxContainer" unique_id=1294307957]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Last"
-
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]

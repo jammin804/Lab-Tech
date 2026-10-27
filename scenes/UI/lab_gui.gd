@@ -15,39 +15,36 @@ func _ready() -> void:
 	Events.lab_transition_finished.connect(_on_lab_transition_finished)
 	pass
 
-func initialize(zone_name, zone_req, prev_killed, total_killed, waves_to_complete) ->void:
+func initialize(zone_name, zone_req, waves_to_complete, current_enemies_killed = 0) ->void:
 	zone_label.text = zone_name
 	enemies_required_label.text = str(zone_req)
-	enemies_killed_label.text = str(prev_killed)
+	enemies_killed_label.text = str(current_enemies_killed)
 
 	progress_bar.max_value = zone_req
-	progress_bar.value = prev_killed
+	progress_bar.value = current_enemies_killed
 
 	waves = waves_to_complete
 	wave_label.text = "Waves Left: " + str(waves)
 
-func update_progress_bar(start_value, enemies_defeated, ):
-
+func update_progress_bar(enemies_defeated):
 	if waves > 0:
 		waves -= 1
 	wave_label.text = str(waves)
 
 
-	animate_value(start_value, enemies_defeated)
+	animate_value(enemies_defeated)
 
 func _on_lab_transition_finished(enemies_defeated):
 	#update_progress_bar(10)
 	pass
 
-func animate_value(start, target, tween_duration=1.0):
-	progress_bar.value = start
-
+func animate_value(target, tween_duration=1.0):
 	var tween : Tween
 	tween = create_tween().set_trans(Tween.TRANS_SINE)
 
 	tween.tween_property(progress_bar, "value", target, tween_duration)
 	tween.set_parallel()
-	tween.tween_method(_set_label_text, start, target, tween_duration)
+	tween.tween_method(_set_label_text, 0, target, tween_duration)
 
 
 

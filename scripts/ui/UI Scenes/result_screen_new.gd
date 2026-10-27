@@ -121,6 +121,11 @@ func _on_continue_pressed ()-> void:
 	queue_free()
 	LevelTransition.change_scene_to("res://scenes/Levels/level_2.tscn")
 
+func _on_return_pressed ()-> void:
+	get_tree().paused = false
+	queue_free()
+	LevelTransition.change_scene_to("res://scenes/lab.tscn")
+
 
 func _on_return_btn_pressed() -> void:
 	#print("clicking return")
