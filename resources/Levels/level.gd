@@ -1,5 +1,7 @@
-class_name Levels
+class_name Level
 extends Resource
+
+
 
 @export var enemies_to_defeat: int
 @export var enemies_to_spawn : int

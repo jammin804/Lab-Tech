@@ -13,6 +13,7 @@ var total_zones: int = 5
 
 var can_screenshake : bool = true #When damage or upgrade is at a certian level screen shake
 var enemies_killed : int = 0
+var previous_killed: int
 var num_kills_need : int = 350
 var num_until_boss : int
 var player_lives: int = 3:  # need this to be saved in the save system after update of lives

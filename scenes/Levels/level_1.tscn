@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://bdpj78s126rdu"]
 
 [ext_resource type="Script" uid="uid://084flrltlmjn" path="res://scenes/battle_screen.gd" id="1_iiv34"]
+[ext_resource type="Resource" uid="uid://igc7qidevev0" path="res://resources/Levels/Zones/Levels/level_1_1.tres" id="2_a60bd"]
 [ext_resource type="PackedScene" uid="uid://drdlmsifm1unh" path="res://scenes/Entities_New/player.tscn" id="2_vtd0g"]
 [ext_resource type="Texture2D" uid="uid://cvjej43nsn7ha" path="res://assets/backgrounds/level_3.png" id="3_hk2jt"]
 [ext_resource type="PackedScene" uid="uid://blqe7ke2t7a3n" path="res://scenes/UI/custom_mouse.tscn" id="4_5gowt"]
@@ -280,7 +281,7 @@ region = Rect2(26, 21, 16, 16)
 [node name="Level1" type="Node" unique_id=1489670400 node_paths=PackedStringArray("pause_menu", "settings_menu", "player_spawn", "enemies_remaining_label", "spawns_remaining_label")]
 process_mode = 3
 script = ExtResource("1_iiv34")
-level_info = ExtResource("10_hk2jt")
+level_info = ExtResource("2_a60bd")
 pause_menu = NodePath("UILayer/Menus/PauseMenu/PauseLayer/PauseMenu")
 settings_menu = NodePath("UILayer/Menus/PauseMenu/PauseLayer/SettingsMenu")
 player = ExtResource("2_vtd0g")

@@ -8,12 +8,14 @@ extends Control
 @onready var wave_label: Label = %WaveLabel
 
 var waves: int = 0
+var start
+var prev
 
 
 func _ready() -> void:
 	#Initalize the signals
 	Events.lab_transition_finished.connect(_on_lab_transition_finished)
-	pass
+	#prev = Globals
 
 func initialize(zone_name, zone_req, waves_to_complete, current_enemies_killed = 0) ->void:
 	zone_label.text = zone_name
@@ -44,7 +46,7 @@ func animate_value(target, tween_duration=1.0):
 
 	tween.tween_property(progress_bar, "value", target, tween_duration)
 	tween.set_parallel()
-	tween.tween_method(_set_label_text, 0, target, tween_duration)
+	tween.tween_method(_set_label_text, start, target, tween_duration)
 
 
 

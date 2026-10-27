@@ -2,7 +2,7 @@ class_name Level_1
 extends Node
 
 @export_group("Level Information")
-@export var level_info : Levels
+@export var level_info: Levels
 
 @export_category("Menu UI Components")
 @export var pause_menu: PauseMenu
