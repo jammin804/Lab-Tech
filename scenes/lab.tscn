@@ -343,3 +343,4 @@ text = "test"
 [connection signal="finished" from="CanvasLayer/Pausable/UpgradeScene/ClickSound" to="CanvasLayer/Pausable/UpgradeScene/Clicker" method="_on_click_sound_finished"]
 [connection signal="pressed" from="CanvasLayer/Pausable/UpgradeScene/BattleBtn" to="." method="_on_battle_btn_pressed"]
 [connection signal="pressed" from="CanvasLayer/Pausable/PauseBtn" to="." method="_on_pause_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/TestButton" to="." method="_on_test_button_pressed"]

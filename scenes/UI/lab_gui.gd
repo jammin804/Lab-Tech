@@ -8,22 +8,24 @@ extends Control
 @onready var wave_label: Label = %WaveLabel
 
 var waves: int = 0
-var start
-var prev
+#var start
+var prev_killed
+var new_killed
 
 
 func _ready() -> void:
 	#Initalize the signals
-	#prev = Globals
+	prev_killed = Globals.previous_killed
+	new_killed = Globals.enemies_killed
 	pass
 
-func initialize(zone_name, zone_req, waves_to_complete, current_enemies_killed = 0) ->void:
+func initialize(zone_name, zone_req, waves_to_complete) ->void:
 	zone_label.text = zone_name
 	enemies_required_label.text = str(zone_req)
-	enemies_killed_label.text = str(current_enemies_killed)
+	enemies_killed_label.text = str(prev_killed)
 
 	progress_bar.max_value = zone_req
-	#progress_bar.value = current_enemies_killed
+	progress_bar.value = prev_killed
 
 	waves = waves_to_complete
 	wave_label.text = "Waves Left: " + str(waves)

@@ -69,8 +69,7 @@ func _ready() -> void:
 	LevelTransition.scene_loading_finished.connect(_on_scene_loading_finished)
 
 	zone_info = zones[zone_index]
-	print("Zone information - Name ", zone_info.zone_name)
-	lab_gui.initialize(zone_info.zone_name, zone_info.zone_requirement, zone_info.waves_left_to_complete_goal, Globals.enemies_killed)
+	lab_gui.initialize(zone_info.zone_name, zone_info.zone_requirement, zone_info.waves_left_to_complete_goal)
 
 func update_energy() -> void:
 	if current_energy < max_energy:
@@ -130,9 +129,14 @@ func _on_scene_loading_finished() -> void:
 	print("Start Music")
 
 	print("Start Animation")
-	lab_gui.update_progress_bar(0, Globals.enemies_killed)
-	Events.lab_transition_finished.emit()
+	lab_gui.update_progress_bar(Globals.previous_killed, Globals.enemies_killed)
+	Globals.previous_killed = Globals.enemies_killed
+	#Events.lab_transition_finished.emit()
 
 
 func update_level_meter():
 	return
+
+
+func _on_test_button_pressed() -> void:
+	LevelTransition.change_scene_to("res://scenes/Playground Scenes/playground2.tscn")
