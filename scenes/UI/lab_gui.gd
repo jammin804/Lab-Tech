@@ -14,8 +14,8 @@ var prev
 
 func _ready() -> void:
 	#Initalize the signals
-	Events.lab_transition_finished.connect(_on_lab_transition_finished)
 	#prev = Globals
+	pass
 
 func initialize(zone_name, zone_req, waves_to_complete, current_enemies_killed = 0) ->void:
 	zone_label.text = zone_name
@@ -23,24 +23,22 @@ func initialize(zone_name, zone_req, waves_to_complete, current_enemies_killed =
 	enemies_killed_label.text = str(current_enemies_killed)
 
 	progress_bar.max_value = zone_req
-	progress_bar.value = current_enemies_killed
+	#progress_bar.value = current_enemies_killed
 
 	waves = waves_to_complete
 	wave_label.text = "Waves Left: " + str(waves)
 
-func update_progress_bar(enemies_defeated):
+	#animate_value()
+
+func update_progress_bar(prev_enemies, enemies_defeated):
 	if waves > 0:
 		waves -= 1
 	wave_label.text = str(waves)
 
 
-	animate_value(enemies_defeated)
+	animate_value(prev_enemies, enemies_defeated)
 
-func _on_lab_transition_finished(enemies_defeated):
-	#update_progress_bar(10)
-	pass
-
-func animate_value(target, tween_duration=1.0):
+func animate_value(start, target, tween_duration=1.0):
 	var tween : Tween
 	tween = create_tween().set_trans(Tween.TRANS_SINE)
 

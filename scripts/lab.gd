@@ -16,7 +16,8 @@ extends Node2D
 @export_category("Levels")
 @export var zones : Array[Zones] = [null]
 @export var levels : Array[String] = []
-
+var zone_info : Zones
+var zone_index : int = 0
 
 var is_option_menu_open : bool = false
 var main_menu: String = "res://scenes/main_menu.tscn"
@@ -67,12 +68,9 @@ func _ready() -> void:
 	settings_menu.back_button_pressed.connect(_on_back_btn_pressed)
 	LevelTransition.scene_loading_finished.connect(_on_scene_loading_finished)
 
-	lab_gui.initialize(zones[0].zone_name, zones[0].zone_requirement, zones[0].waves_left_to_complete_goal, Globals.enemies_killed)
-	#lab_gui
-	#update_level_meter()
-
-func _process(delta: float) -> void:
-	pass
+	zone_info = zones[zone_index]
+	print("Zone information - Name ", zone_info.zone_name)
+	lab_gui.initialize(zone_info.zone_name, zone_info.zone_requirement, zone_info.waves_left_to_complete_goal, Globals.enemies_killed)
 
 func update_energy() -> void:
 	if current_energy < max_energy:
@@ -132,13 +130,9 @@ func _on_scene_loading_finished() -> void:
 	print("Start Music")
 
 	print("Start Animation")
-	lab_gui.update_progress_bar(0)
+	lab_gui.update_progress_bar(0, Globals.enemies_killed)
 	Events.lab_transition_finished.emit()
 
 
 func update_level_meter():
 	return
-
-
-func _on_test_button_pressed() -> void:
-	lab_gui.update_progress_bar(100)

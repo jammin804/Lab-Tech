@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_ojx2k")
 zone_name = "Bunker"
-zone_requirement = 350
-num_until_boss = 100
-waves_left_to_complete_goal = 7
+zone_requirement = 20
+num_until_boss = 10
+waves_left_to_complete_goal = 5
 metadata/_custom_type_script = "uid://ds2yhq10kkevo"

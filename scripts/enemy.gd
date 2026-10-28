@@ -1,7 +1,7 @@
 class_name Enemy
 extends CharacterBody2D
 
-signal enemy_health_change
+#signal enemy_health_change
 
 enum ESCAPE_OPTIONS { NORMAL, ZIG_ZAG, SPEED_UP, TELEPORT}
 @export var escape_options : ESCAPE_OPTIONS
@@ -104,7 +104,6 @@ func _process(delta: float) -> void:
 
 func take_damage(incoming_damage: float, incoming_element:WeaponData.Element) -> void:
 
-
 	if is_dead:
 		return
 
@@ -122,6 +121,8 @@ func take_damage(incoming_damage: float, incoming_element:WeaponData.Element) ->
 			#Apply Burn Status
 			status_component.apply_status(WeaponData.Element.FIRE, 3.0)
 
+
+
 	current_enemy_health -= final_damage
 
 
@@ -129,6 +130,7 @@ func take_damage(incoming_damage: float, incoming_element:WeaponData.Element) ->
 	damage_number_spawner.spawn_label(incoming_damage)
 	shaker.shake(4.0, 0.2)
 	update_hp_label()
+
 
 
 
@@ -142,25 +144,23 @@ func take_damage(incoming_damage: float, incoming_element:WeaponData.Element) ->
 
 	enemy_sprite.speed_scale = 5.0
 	should_wave = false
-	await get_tree().create_timer(1.0).timeout
+	#await get_tree().create_timer(1.0).timeout
 	enemy_sprite.speed_scale = 1.0
 	should_wave = true
 
-
 	if current_enemy_health <= 0:
 		destroy()
+
 
 	Events.damage_dealt.emit(incoming_damage)
 
 func destroy():
 	is_dead = true
 
-	if should_wave == true:
-		should_wave = false
+	#if should_wave == true:
+		#should_wave = false
 
 	Events.enemy_died.emit()
-	#Events.check_remaining.emit()
-
 
 	enemy_sprite.stop()
 	enemy_sprite.hide()
@@ -197,13 +197,6 @@ func _on_hit_flash_anim_animation_finished(anim_name: StringName) -> void:
 		money_label.hide()
 
 		Events.increase_currency.emit(amount)
-
-		#if loot_drop_type:
-			#var rng = randf() * 100
-			#if rng <= drop_rate:
-				#var loot = loot_drop_type.instantiate()
-				#loot.global_transform = spawner.global_transform
-				#get_tree().current_scene.add_child(loot)
 
 		self.queue_free()
 		#Events.enemy_died.emit()
