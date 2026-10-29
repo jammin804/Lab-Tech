@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Zones" format=3 uid="uid://bcit1sxqou1jm"]
+
+[ext_resource type="Script" uid="uid://ds2yhq10kkevo" path="res://resources/Levels/zones.gd" id="1_va5sf"]
+
+[resource]
+script = ExtResource("1_va5sf")
+zone_name = "Lava"
+zone_requirement = 40
+num_until_boss = 20
+waves_left_to_complete_goal = 7
+metadata/_custom_type_script = "uid://ds2yhq10kkevo"

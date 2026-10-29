@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://mhmvngsgg13v" path="res://assets/props/lab-table.png" id="3_f680m"]
 [ext_resource type="Resource" uid="uid://dy8ftrq87fktm" path="res://resources/Levels/Zones/zone1.tres" id="3_ftxkm"]
 [ext_resource type="Texture2D" uid="uid://dxyc6i7d1knac" path="res://assets/props/console.png" id="4_q4uld"]
+[ext_resource type="Resource" uid="uid://bcit1sxqou1jm" path="res://resources/Levels/Zones/zone2.tres" id="4_xu0ho"]
 [ext_resource type="Theme" uid="uid://65aipdpydskv" path="res://resources/Theme/main_theme.tres" id="6_kfqsw"]
 [ext_resource type="Texture2D" uid="uid://dwfn7p11er8rd" path="res://assets/props/lab-table_hover.png" id="8_ijdgx"]
 [ext_resource type="Texture2D" uid="uid://qj56axi37uo" path="res://assets/props/console_hover.png" id="9_eavsi"]
@@ -115,8 +116,8 @@ process_mode = 3
 script = ExtResource("1_f1r8i")
 pause_menu = NodePath("CanvasLayer/PauseMenu")
 settings_menu = NodePath("CanvasLayer/SettingsMenu")
-zones = Array[ExtResource("2_ijdgx")]([ExtResource("3_ftxkm")])
-levels = Array[String](["res://scenes/battle_screen.tscn", "res://scenes/Levels/level_2.tscn"])
+zones = Array[ExtResource("2_ijdgx")]([ExtResource("3_ftxkm"), ExtResource("4_xu0ho")])
+levels = Array[String](["uid://bdpj78s126rdu", "res://scenes/Levels/level_2.tscn"])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1472098651]
 process_mode = 3

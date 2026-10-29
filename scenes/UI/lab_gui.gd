@@ -30,8 +30,6 @@ func initialize(zone_name, zone_req, waves_to_complete) ->void:
 	waves = waves_to_complete
 	wave_label.text = "Waves Left: " + str(waves)
 
-	#animate_value()
-
 func update_progress_bar(prev_enemies, enemies_defeated):
 	if waves > 0:
 		waves -= 1
@@ -39,6 +37,8 @@ func update_progress_bar(prev_enemies, enemies_defeated):
 
 
 	animate_value(prev_enemies, enemies_defeated)
+	#if abs(progress_bar.max_value - progress_bar.value) - 0.01 or progress_bar.value == progress_bar.max_value:
+		#progress_bar.value = 0
 
 func animate_value(start, target, tween_duration=1.0):
 	var tween : Tween
@@ -47,7 +47,15 @@ func animate_value(start, target, tween_duration=1.0):
 	tween.tween_property(progress_bar, "value", target, tween_duration)
 	tween.set_parallel()
 	tween.tween_method(_set_label_text, start, target, tween_duration)
+	await tween.finished
+	print("hello ", target)
 
+	if abs(progress_bar.max_value - progress_bar.value) - 0.01 or target == progress_bar.max_value:
+		progress_bar.value = 0
+	#if target == progress_bar.max_value:
+		#print("Can play sfx to indicate level transition zone info")
+		#print("emit level up")
+		#progress_bar.value = 0
 
 
 

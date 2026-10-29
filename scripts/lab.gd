@@ -21,7 +21,8 @@ var zone_index : int = 0
 
 var is_option_menu_open : bool = false
 var main_menu: String = "res://scenes/main_menu.tscn"
-var level_1: String = "uid://bdpj78s126rdu"
+var level_1: String #"uid://bdpj78s126rdu"
+var level: String
 
 
 
@@ -68,6 +69,8 @@ func _ready() -> void:
 	settings_menu.back_button_pressed.connect(_on_back_btn_pressed)
 	LevelTransition.scene_loading_finished.connect(_on_scene_loading_finished)
 
+	level = levels[zone_index]
+
 	zone_info = zones[zone_index]
 	lab_gui.initialize(zone_info.zone_name, zone_info.zone_requirement, zone_info.waves_left_to_complete_goal)
 
@@ -77,6 +80,17 @@ func update_energy() -> void:
 	else:
 		current_energy = max_energy
 	resource_numbers.text = str(current_energy) + "/ " + str(max_energy)
+
+
+func level_up():
+	Globals.zone += 1
+	zone_index = Globals.zone - 1
+	#get_new_level()
+
+
+func get_new_level() -> String:
+	return levels[zone_index]
+
 
 func hide_menu() -> void:
 	if settings_menu == null:
@@ -92,11 +106,18 @@ func _input(event: InputEvent) -> void:
 
 		toggle_pause()
 
+func toggle_pause() -> void:
+	var tree = get_tree()
+	tree.paused = !tree.paused
+	pause_menu.visible = tree.paused
+
+
 func _on_battle_btn_pressed() -> void:
 	#TODO Have a function or a condition to check when level the player is currently on then send them to that level
-	print("Transitioning from Lab to Level 1")
-	LevelTransition.change_scene_to(level_1)
+	#print("Transitioning from Lab to ", str(levels[zone_index]))
+	LevelTransition.change_scene_to(level)
 
+#region Settins and UI signals
 func _on_pause_btn_pressed() -> void:
 	toggle_pause()
 
@@ -104,10 +125,6 @@ func _on_back_btn_pressed() -> void:
 	settings_menu.visible = false
 	pause_menu.show()
 
-func toggle_pause() -> void:
-	var tree = get_tree()
-	tree.paused = !tree.paused
-	pause_menu.visible = tree.paused
 
 func _on_resume_btn_pressed() -> void:
 	toggle_pause()
@@ -120,22 +137,19 @@ func _on_options_btn_pressed() -> void:
 	settings_menu.visible = true
 	pause_menu.hide()
 
+#endregion
 
 func _on_upgrades_btn_pressed() -> void:
 	talent_menu_manager.show()
-
 
 func _on_scene_loading_finished() -> void:
 	print("Start Music")
 
 	print("Start Animation")
+
 	lab_gui.update_progress_bar(Globals.previous_killed, Globals.enemies_killed)
 	Globals.previous_killed = Globals.enemies_killed
 	#Events.lab_transition_finished.emit()
-
-
-func update_level_meter():
-	return
 
 
 func _on_test_button_pressed() -> void:
