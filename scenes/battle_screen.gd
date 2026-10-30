@@ -78,9 +78,7 @@ func _ready() -> void:
 
 
 	#Initializing signals
-	#Events.enemy_died.connect(_on_enemy_killed)
 	Events.check_remaining.connect(_on_enemy_queue_free)
-	#Events.level_complete.connect(_on_result_screen_shown)
 	Events.wave_completed.connect(_on_wave_change)
 	Events.enemy_died.connect(_update_enemy_counter)
 	Events.damage_dealt.connect(_on_damage_done)
@@ -143,9 +141,6 @@ func _on_options_btn_pressed() -> void:
 	settings_menu.visible = true
 	pause_menu.hide()
 
-#func _on_result_screen_shown() -> void:
-	#result_screen.show()
-	#is_result_screen_open = true
 
 func _reset_flags() -> void:
 	if is_result_screen_open == true:

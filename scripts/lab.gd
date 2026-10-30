@@ -38,6 +38,7 @@ var level: String
 @onready var skill_tree: Control = %SkillTree
 @onready var talent_menu_manager: TalentMenuManager = %TalentMenuManager
 @onready var lab_gui: LabGui = $CanvasLayer/LabGui
+@onready var zone_complete: Control = %ZoneComplete
 
 
 
@@ -108,6 +109,7 @@ func _input(event: InputEvent) -> void:
 
 func toggle_pause() -> void:
 	var tree = get_tree()
+
 	tree.paused = !tree.paused
 	pause_menu.visible = tree.paused
 
@@ -152,3 +154,9 @@ func _on_scene_loading_finished() -> void:
 
 func _on_test_button_pressed() -> void:
 	LevelTransition.change_scene_to("res://scenes/Playground Scenes/playground2.tscn")
+
+
+func _on_lab_gui_zone_completed() -> void:
+	#TODO 10/30 Figure out pause bug where the player can press the esc key and unpause the game but i just want to show the menu
+	get_tree().paused = true
+	zone_complete.show()

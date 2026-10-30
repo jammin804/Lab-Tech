@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://4cascoqhclqt"]
+
+[ext_resource type="Theme" uid="uid://b2yiqfrkj5dmr" path="res://resources/Theme/ui_theme.tres" id="1_f3t2w"]
+
+[node name="ZoneComplete" type="Control" unique_id=1441511533]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1125575485]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer" unique_id=1386327328]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/CenterContainer" unique_id=416547099]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TitleLabel" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer" unique_id=1783078537]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Zone Complete"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer" unique_id=1067242424]
+layout_mode = 2
+
+[node name="UpgradeButton" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer/HBoxContainer" unique_id=1453995880]
+layout_mode = 2
+theme = ExtResource("1_f3t2w")
+text = "Upgrade"
+
+[node name="ZoneButton" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer/HBoxContainer" unique_id=302952877]
+layout_mode = 2
+theme = ExtResource("1_f3t2w")
+text = "Next zone"

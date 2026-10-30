@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://hk8jsqntk3b5" path="res://assets/ui/hud/battleButton.png" id="18_eavsi"]
 [ext_resource type="PackedScene" uid="uid://3ylvkfrfqqst" path="res://scenes/UI/lab_gui.tscn" id="18_ftxkm"]
 [ext_resource type="PackedScene" uid="uid://blqe7ke2t7a3n" path="res://scenes/UI/custom_mouse.tscn" id="18_ijdgx"]
+[ext_resource type="PackedScene" uid="uid://4cascoqhclqt" path="res://scenes/UI/zone_complete.tscn" id="22_kvhjj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hem3r"]
 atlas = ExtResource("1_bb6uc")
@@ -320,6 +321,11 @@ texture_normal = SubResource("AtlasTexture_kxeyc")
 texture_pressed = SubResource("AtlasTexture_jie0k")
 texture_hover = SubResource("AtlasTexture_ffhs6")
 
+[node name="ZoneComplete" parent="CanvasLayer/Pausable" unique_id=1441511533 instance=ExtResource("22_kvhjj")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
 [node name="Node" type="Node" parent="CanvasLayer/Pausable" unique_id=1789906161]
 
 [node name="PauseMenu" parent="CanvasLayer" unique_id=1716673666 instance=ExtResource("17_ijdgx")]
@@ -340,7 +346,7 @@ offset_right = 56.0
 grow_vertical = 0
 text = "test"
 
-[connection signal="on_maxed_meter" from="CanvasLayer/LabGui" to="CanvasLayer/LabGui" method="_on_on_maxed_meter"]
+[connection signal="zone_completed" from="CanvasLayer/LabGui" to="." method="_on_lab_gui_zone_completed"]
 [connection signal="pressed" from="CanvasLayer/Pausable/UpgradeScene/Props/UpgradesBtn" to="." method="_on_upgrades_btn_pressed"]
 [connection signal="finished" from="CanvasLayer/Pausable/UpgradeScene/ClickSound" to="CanvasLayer/Pausable/UpgradeScene/Clicker" method="_on_click_sound_finished"]
 [connection signal="pressed" from="CanvasLayer/Pausable/UpgradeScene/BattleBtn" to="." method="_on_battle_btn_pressed"]

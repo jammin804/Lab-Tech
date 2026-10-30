@@ -3,6 +3,7 @@ extends Control
 
 
 signal on_maxed_meter
+signal zone_completed
 
 @onready var zone_label: Label = %ZoneLabel
 @onready var enemies_killed_label: Label = %EnemiesKilledLabel
@@ -48,6 +49,7 @@ func update_progress_bar(prev_enemies, enemies_defeated):
 
 	#xp_to_next(enemies_defeated)
 	animate_value(prev_enemies, enemies_defeated)
+	#HACK May change to just show boss screen and now wrap. It will just reinitiate
 	if abs(progress_bar.max_value - progress_bar.value) < 0.01 or enemies_defeated == progress_bar.max_value:
 		progress_bar.value = 0
 
@@ -82,5 +84,6 @@ func _check_bar_progress(amount: int) -> void:
 
 		tween = create_tween().set_trans(Tween.TRANS_SINE)
 		tween.tween_property(progress_bar, "value", amount-progress_bar.max_value, 1.0)
-		#TODO FOR 10/30: Call level up function to increment the zone index or show zone complete screen
+		#TODO FOR 10/30: Call level up function to increment the zone index
+		zone_completed.emit()
 		#TODO FOR 10/30: Move up to next zone/level and the information with it
