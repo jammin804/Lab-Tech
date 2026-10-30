@@ -141,6 +141,7 @@ func _on_options_btn_pressed() -> void:
 
 func _on_upgrades_btn_pressed() -> void:
 	talent_menu_manager.show()
+	#TODO 10/30: Create a new UI for UI upgrade cards
 
 func _on_scene_loading_finished() -> void:
 

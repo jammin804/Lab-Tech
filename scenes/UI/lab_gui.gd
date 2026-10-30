@@ -82,4 +82,5 @@ func _check_bar_progress(amount: int) -> void:
 
 		tween = create_tween().set_trans(Tween.TRANS_SINE)
 		tween.tween_property(progress_bar, "value", amount-progress_bar.max_value, 1.0)
-		#TODO FOR 10/30: Call level up function to increment the zone index or show level up screen
+		#TODO FOR 10/30: Call level up function to increment the zone index or show zone complete screen
+		#TODO FOR 10/30: Move up to next zone/level and the information with it
