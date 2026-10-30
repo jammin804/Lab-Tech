@@ -143,9 +143,6 @@ func _on_upgrades_btn_pressed() -> void:
 	talent_menu_manager.show()
 
 func _on_scene_loading_finished() -> void:
-	print("Start Music")
-
-	print("Start Animation")
 
 	lab_gui.update_progress_bar(Globals.previous_killed, Globals.enemies_killed)
 	Globals.previous_killed = Globals.enemies_killed

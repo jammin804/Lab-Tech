@@ -116,3 +116,5 @@ size_flags_horizontal = 8
 theme_override_font_sizes/font_size = 10
 text = "Waves Left: 99"
 horizontal_alignment = 2
+
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer/ProgressBar" to="." method="_on_progress_bar_value_changed"]

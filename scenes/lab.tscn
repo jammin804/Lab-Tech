@@ -340,6 +340,7 @@ offset_right = 56.0
 grow_vertical = 0
 text = "test"
 
+[connection signal="on_maxed_meter" from="CanvasLayer/LabGui" to="CanvasLayer/LabGui" method="_on_on_maxed_meter"]
 [connection signal="pressed" from="CanvasLayer/Pausable/UpgradeScene/Props/UpgradesBtn" to="." method="_on_upgrades_btn_pressed"]
 [connection signal="finished" from="CanvasLayer/Pausable/UpgradeScene/ClickSound" to="CanvasLayer/Pausable/UpgradeScene/Clicker" method="_on_click_sound_finished"]
 [connection signal="pressed" from="CanvasLayer/Pausable/UpgradeScene/BattleBtn" to="." method="_on_battle_btn_pressed"]
