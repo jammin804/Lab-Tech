@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://4cascoqhclqt"]
 
 [ext_resource type="Theme" uid="uid://b2yiqfrkj5dmr" path="res://resources/Theme/ui_theme.tres" id="1_f3t2w"]
+[ext_resource type="Script" uid="uid://c2kkcm13qf0at" path="res://scenes/UI/zone_complete.gd" id="1_tnwb2"]
 
 [node name="ZoneComplete" type="Control" unique_id=1441511533]
 layout_mode = 3
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_tnwb2")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1125575485]
 layout_mode = 1
@@ -42,3 +44,6 @@ text = "Upgrade"
 layout_mode = 2
 theme = ExtResource("1_f3t2w")
 text = "Next zone"
+
+[connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/HBoxContainer/UpgradeButton" to="." method="_on_upgrade_button_pressed"]
+[connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/HBoxContainer/ZoneButton" to="." method="_on_zone_button_pressed"]

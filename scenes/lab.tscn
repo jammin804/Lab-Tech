@@ -118,7 +118,7 @@ script = ExtResource("1_f1r8i")
 pause_menu = NodePath("CanvasLayer/PauseMenu")
 settings_menu = NodePath("CanvasLayer/SettingsMenu")
 zones = Array[ExtResource("2_ijdgx")]([ExtResource("3_ftxkm"), ExtResource("4_xu0ho")])
-levels = Array[String](["uid://bdpj78s126rdu", "res://scenes/Levels/level_2.tscn"])
+levels = Array[String](["uid://bdpj78s126rdu", "uid://07o755mijima"])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1472098651]
 process_mode = 3
@@ -127,8 +127,6 @@ metadata/_edit_vertical_guides_ = [-86.0]
 
 [node name="CustomMouse" parent="CanvasLayer" unique_id=289937816 instance=ExtResource("18_ijdgx")]
 layer = 128
-
-[node name="LabGui" parent="CanvasLayer" unique_id=1716525560 instance=ExtResource("18_ftxkm")]
 
 [node name="Pausable" type="Control" parent="CanvasLayer" unique_id=1461376495]
 process_mode = 1
@@ -139,6 +137,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="LabGui" parent="CanvasLayer/Pausable" unique_id=1716525560 instance=ExtResource("18_ftxkm")]
+unique_name_in_owner = true
+layout_mode = 1
 
 [node name="UpgradeScene" type="Control" parent="CanvasLayer/Pausable" unique_id=1309087774]
 unique_name_in_owner = true
@@ -294,12 +296,6 @@ texture_normal = SubResource("AtlasTexture_kfqsw")
 texture_pressed = SubResource("AtlasTexture_kvhjj")
 texture_hover = SubResource("AtlasTexture_iyn56")
 
-[node name="TalentMenuManager" parent="CanvasLayer/Pausable/UpgradeScene" unique_id=491223868 instance=ExtResource("13_ijdgx")]
-unique_name_in_owner = true
-visible = false
-z_index = 2
-layout_mode = 1
-
 [node name="LabBGM" type="AudioStreamPlayer2D" parent="CanvasLayer/Pausable" unique_id=49252936]
 stream = ExtResource("13_ds7rc")
 volume_db = 8.0
@@ -321,12 +317,18 @@ texture_normal = SubResource("AtlasTexture_kxeyc")
 texture_pressed = SubResource("AtlasTexture_jie0k")
 texture_hover = SubResource("AtlasTexture_ffhs6")
 
+[node name="Node" type="Node" parent="CanvasLayer/Pausable" unique_id=1789906161]
+
 [node name="ZoneComplete" parent="CanvasLayer/Pausable" unique_id=1441511533 instance=ExtResource("22_kvhjj")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
 
-[node name="Node" type="Node" parent="CanvasLayer/Pausable" unique_id=1789906161]
+[node name="TalentMenuManager" parent="CanvasLayer/Pausable" unique_id=491223868 instance=ExtResource("13_ijdgx")]
+unique_name_in_owner = true
+visible = false
+z_index = 2
+layout_mode = 1
 
 [node name="PauseMenu" parent="CanvasLayer" unique_id=1716673666 instance=ExtResource("17_ijdgx")]
 process_mode = 2
@@ -338,6 +340,7 @@ process_mode = 2
 visible = false
 
 [node name="TestButton" type="Button" parent="CanvasLayer" unique_id=952711644]
+visible = false
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -346,7 +349,7 @@ offset_right = 56.0
 grow_vertical = 0
 text = "test"
 
-[connection signal="zone_completed" from="CanvasLayer/LabGui" to="." method="_on_lab_gui_zone_completed"]
+[connection signal="zone_completed" from="CanvasLayer/Pausable/LabGui" to="." method="_on_lab_gui_zone_completed"]
 [connection signal="pressed" from="CanvasLayer/Pausable/UpgradeScene/Props/UpgradesBtn" to="." method="_on_upgrades_btn_pressed"]
 [connection signal="finished" from="CanvasLayer/Pausable/UpgradeScene/ClickSound" to="CanvasLayer/Pausable/UpgradeScene/Clicker" method="_on_click_sound_finished"]
 [connection signal="pressed" from="CanvasLayer/Pausable/UpgradeScene/BattleBtn" to="." method="_on_battle_btn_pressed"]

@@ -50,8 +50,8 @@ func update_progress_bar(prev_enemies, enemies_defeated):
 	#xp_to_next(enemies_defeated)
 	animate_value(prev_enemies, enemies_defeated)
 	#HACK May change to just show boss screen and now wrap. It will just reinitiate
-	if abs(progress_bar.max_value - progress_bar.value) < 0.01 or enemies_defeated == progress_bar.max_value:
-		progress_bar.value = 0
+	#if abs(progress_bar.max_value - progress_bar.value) < 0.01 or enemies_defeated == progress_bar.max_value:
+		#progress_bar.value = 0
 
 func animate_value(start, target, tween_duration=1.0):
 	var tween : Tween
@@ -62,7 +62,7 @@ func animate_value(start, target, tween_duration=1.0):
 	tween.tween_method(_set_label_text, start, target, tween_duration)
 	await tween.finished
 	_check_bar_progress(target)
-
+	#TODO 11/2 Have the bar make sfx when its is progressing
 
 
 
@@ -78,12 +78,11 @@ func xp_to_next(enemies_defeated):
 
 func _check_bar_progress(amount: int) -> void:
 	if amount >= progress_bar.max_value:
-		var tween : Tween
-		print("Start the animation again")
-		progress_bar.value = 0
+		#var tween : Tween
+		#print("Start the animation again")
+		#progress_bar.value = 0
+#
+		#tween = create_tween().set_trans(Tween.TRANS_SINE)
+		#tween.tween_property(progress_bar, "value", amount-progress_bar.max_value, 1.0)
 
-		tween = create_tween().set_trans(Tween.TRANS_SINE)
-		tween.tween_property(progress_bar, "value", amount-progress_bar.max_value, 1.0)
-		#TODO FOR 10/30: Call level up function to increment the zone index
 		zone_completed.emit()
-		#TODO FOR 10/30: Move up to next zone/level and the information with it

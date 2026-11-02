@@ -66,7 +66,6 @@ func _ready() -> void:
 
 	#Collecting Condition Gates information
 	num_to_succeed = level_info.enemies_to_defeat
-	#enemies_to_spawn = level_info.enemies_to_spawn
 	total_num_of_enemies_in_level = enemy_spawner.enemies_to_spawn
 
 
