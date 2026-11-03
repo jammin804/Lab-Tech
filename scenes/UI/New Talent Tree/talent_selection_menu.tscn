@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bbc5rwyvte2rm"]
 
 [ext_resource type="Script" uid="uid://cm4d5xwuwrdue" path="res://scripts/ui/Talent Tree/talent_selection_menu.gd" id="1_qki3v"]
-[ext_resource type="Texture2D" uid="uid://b64r65c87lxaq" path="res://assets/ui/hud/rapid_4.png" id="2_hmhfo"]
+[ext_resource type="PackedScene" uid="uid://cov3u17kl0xe3" path="res://scenes/Upgrades/pick_3.tscn" id="2_hmhfo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ikxxn"]
 bg_color = Color(0.039215688, 0.02745098, 0.14901961, 1)
@@ -19,20 +19,6 @@ border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s5m6i"]
-bg_color = Color(0.14328164, 0.11628904, 0.3735965, 0.39215687)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0, 0.6850721, 0.75401115, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-shadow_size = 1
-shadow_offset = Vector2(0, -0.5)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qk3sa"]
 content_margin_left = 20.0
@@ -76,7 +62,7 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
-[node name="TalentSelectionMenu" type="Control" unique_id=1680291744 node_paths=PackedStringArray("arm_button", "body_button")]
+[node name="TalentSelectionMenu" type="Control" unique_id=1680291744]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -84,8 +70,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qki3v")
-arm_button = NodePath("")
-body_button = NodePath("")
 
 [node name="BGPanel" type="Panel" parent="." unique_id=1742214129]
 z_index = -2
@@ -140,73 +124,12 @@ color = Color(0, 0.0627451, 0.12941177, 1)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ar84w")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1461568128]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -101.0
-offset_top = -57.0
-offset_right = 94.0
-offset_bottom = 72.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 9
-
-[node name="Panel" type="Panel" parent="HBoxContainer" unique_id=52405510]
-custom_minimum_size = Vector2(50, 80)
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_s5m6i")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Panel" unique_id=1789858351]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/Panel/VBoxContainer" unique_id=1989830597]
-layout_mode = 2
-theme_override_constants/margin_left = 3
-theme_override_constants/margin_top = 2
-
-[node name="UpgradeNameLabel" type="Label" parent="HBoxContainer/Panel/VBoxContainer/MarginContainer2" unique_id=1161884043]
-layout_mode = 2
-theme_override_font_sizes/font_size = 6
-text = "Name"
-
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Panel/VBoxContainer" unique_id=1405563840]
-layout_mode = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 12
-
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Panel/VBoxContainer/MarginContainer" unique_id=1397565587]
-custom_minimum_size = Vector2(24, 13)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("2_hmhfo")
-stretch_mode = 2
-
-[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer/Panel/VBoxContainer" unique_id=606951881]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-theme_override_constants/margin_left = 3
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 3
-
-[node name="UpgradeDescriptionLabel" type="Label" parent="HBoxContainer/Panel/VBoxContainer/MarginContainer3" unique_id=226741065]
-custom_minimum_size = Vector2(45, 0)
-layout_mode = 2
-theme_override_constants/line_spacing = -1
-theme_override_font_sizes/font_size = 6
-text = "Hello world my name is ed"
-autowrap_mode = 2
+[node name="Pick3" parent="." unique_id=1535268448 instance=ExtResource("2_hmhfo")]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 314.0
+offset_bottom = 157.0
 
 [node name="BackBtn" type="Button" parent="." unique_id=1734017578]
 unique_name_in_owner = true

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="UpgradeResource" format=3 uid="uid://dxjwlygjadts7"]
+
+[ext_resource type="Texture2D" uid="uid://cxitpepyc3el1" path="res://assets/character/shot1.png" id="1_i7ba3"]
+[ext_resource type="Script" uid="uid://7pod45ky1nt3" path="res://resources/Pick3/upgrade_resource.gd" id="2_7qb7k"]
+
+[resource]
+script = ExtResource("2_7qb7k")
+icon = ExtResource("1_i7ba3")
+upgrade_name = "Charge Beam"
+upgrade_description = "Charge Shot Becomes a Piercing Beam"
+metadata/_custom_type_script = "uid://7pod45ky1nt3"

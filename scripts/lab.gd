@@ -77,7 +77,7 @@ func _ready() -> void:
 
 	zone_info = zones[zone_index]
 
-	#TODO [URGENT] 11/2 Fix so the lab gui pull the exact zone information once it comes back to lab
+	#TODO [URGENT] 11/3 Fix so the lab gui pull the exact zone information once it comes back to lab
 	lab_gui.initialize(zone_info.zone_name, zone_info.zone_requirement, zone_info.waves_left_to_complete_goal)
 
 func update_energy() -> void:
@@ -118,7 +118,7 @@ func toggle_pause() -> void:
 
 
 func _on_battle_btn_pressed() -> void:
-	#TODO 11/2 Make sure this goes to the proper zone and sub level
+	#TODO [For Level Increment Branch] 11/3 Make sure this goes to the proper zone and sub level
 	LevelTransition.change_scene_to(level)
 
 #region Settins and UI signals
@@ -145,7 +145,7 @@ func _on_options_btn_pressed() -> void:
 
 func _on_upgrades_btn_pressed() -> void:
 	open_upgrade_shop()
-	#TODO 11/2: Create a new UI for UI upgrade cards
+	#TODO 11/3: Create a new UI for UI upgrade cards
 
 func _on_scene_loading_finished() -> void:
 

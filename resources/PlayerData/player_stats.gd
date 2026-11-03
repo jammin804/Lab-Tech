@@ -28,3 +28,20 @@ enum Form {DEFAULT, COMBINED, AVATAR}
 @export var charge_rate : float = 40.0
 @export var charge_damage_multipler : float = 2.0
 @export var double_down : bool = true
+
+
+#region Testing Code for upgrade
+enum upgrades {ADD_DAMAGE, ADD_ATTACK_SPEED, ADD_BULLET, ADD_HEALTH, ADD_TO_CHARGE, ADD_TO_BULLET}
+
+#Base Stats
+var damage = 200
+var hp = 100
+var bullets = 1
+
+#Upgrade Stats
+var addHealth = 0
+var damageMulti = 0
+var attackSpeedMulti = 0
+
+
+#endregion

@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://bbjl6ngi80t6h"]
+
+[ext_resource type="Texture2D" uid="uid://b64r65c87lxaq" path="res://assets/ui/hud/rapid_4.png" id="1_fsvsc"]
+[ext_resource type="Script" uid="uid://satubmelja5r" path="res://scripts/upgrade/upgrade_card.gd" id="1_yurow"]
+[ext_resource type="Resource" uid="uid://bnue7ecflmmhu" path="res://resources/TalentTree/skill6.tres" id="2_k7liv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s5m6i"]
+bg_color = Color(0.14328164, 0.11628904, 0.3735965, 0.39215687)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.6850721, 0.75401115, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_size = 1
+shadow_offset = Vector2(0, -0.5)
+
+[node name="Panel" type="Panel" unique_id=1519812236]
+custom_minimum_size = Vector2(50, 70)
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_s5m6i")
+script = ExtResource("1_yurow")
+upgrade_resource = ExtResource("2_k7liv")
+icon = ExtResource("1_fsvsc")
+upgrade_name = "Rapid Sho"
+upgrade = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1243305988]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer" unique_id=1837356218]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+
+[node name="UpgradeNameLabel" type="Label" parent="VBoxContainer/MarginContainer2" unique_id=460460117]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Name"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=1270053848]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 12
+
+[node name="UpgradeIcon" type="TextureRect" parent="VBoxContainer/MarginContainer" unique_id=191992342]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 13)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_fsvsc")
+stretch_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer" unique_id=330026633]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 3
+
+[node name="UpgradeDescriptionLabel" type="Label" parent="VBoxContainer/MarginContainer3" unique_id=1538574610]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+theme_override_constants/line_spacing = -1
+theme_override_font_sizes/font_size = 5
+text = "Hello world my name is ed"
+autowrap_mode = 2
