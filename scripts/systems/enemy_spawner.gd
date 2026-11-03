@@ -3,7 +3,7 @@ extends Node2D
 
 const ENEMY = preload("uid://cqueta70ubjqr")
 @export_category("Level Information")
-@export var level_info : Levels = null
+@export var level_info : Resource
 
 @export_category("HUD Labels")
 @export var enemies_remaining_label: Label

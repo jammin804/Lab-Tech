@@ -14,11 +14,15 @@ extends Node2D
 @export var settings_menu: Settings
 
 @export_category("Levels")
-@export var levels : Array[String]
+@export var zones : Array[Zones] = [null]
+@export var levels : Array[String] = []
+var zone_info : Zones
+var zone_index : int = 0
 
 var is_option_menu_open : bool = false
 var main_menu: String = "res://scenes/main_menu.tscn"
-var level_1: String = "uid://bdpj78s126rdu"
+var level_1: String #"uid://bdpj78s126rdu"
+var level: String
 
 
 
@@ -33,6 +37,9 @@ var level_1: String = "uid://bdpj78s126rdu"
 @onready var end_level_pop_up: CanvasLayer = %EndLevelPopUp
 @onready var skill_tree: Control = %SkillTree
 @onready var talent_menu_manager: TalentMenuManager = %TalentMenuManager
+@onready var lab_gui: LabGui = %LabGui
+@onready var zone_complete: ZoneComplete = %ZoneComplete
+
 
 
 @onready var resume_btn: UI_Button = %ResumeBtn
@@ -55,15 +62,23 @@ func _ready() -> void:
 
 	hide_menu()
 
+	#Initializing signals
+
 	pause_menu.resume_game.connect(_on_resume_btn_pressed)
 	pause_menu.open_options.connect(_on_options_btn_pressed)
 	pause_menu.exit_to_title.connect(_on_quit_btn_pressed)
 	settings_menu.back_button_pressed.connect(_on_back_btn_pressed)
+	zone_complete.go_to_next_stage.connect(_on_next_zone_btn_pressed)
+	zone_complete.open_upgrade_screen.connect(_on_zone_upgrade_btn_pressed)
+
 	LevelTransition.scene_loading_finished.connect(_on_scene_loading_finished)
 
+	level = levels[zone_index]
 
-func _process(delta: float) -> void:
-	pass
+	zone_info = zones[zone_index]
+
+	#TODO [URGENT] 11/2 Fix so the lab gui pull the exact zone information once it comes back to lab
+	lab_gui.initialize(zone_info.zone_name, zone_info.zone_requirement, zone_info.waves_left_to_complete_goal)
 
 func update_energy() -> void:
 	if current_energy < max_energy:
@@ -71,6 +86,15 @@ func update_energy() -> void:
 	else:
 		current_energy = max_energy
 	resource_numbers.text = str(current_energy) + "/ " + str(max_energy)
+
+
+func level_up():
+	Globals.zone += 1
+	zone_index = Globals.zone - 1
+
+func get_new_level() -> String:
+	return levels[zone_index]
+
 
 func hide_menu() -> void:
 	if settings_menu == null:
@@ -80,17 +104,24 @@ func hide_menu() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
 		if is_option_menu_open:
-			#print("Close Option Menu")
 			settings_menu.visible = false
 			is_option_menu_open = false
 
 		toggle_pause()
 
-func _on_battle_btn_pressed() -> void:
-	#TODO Have a function or a condition to check when level the player is currently on then send them to that level
-	print("Transitioning from Lab to Level 1")
-	LevelTransition.change_scene_to(level_1)
+func toggle_pause() -> void:
+	var tree = get_tree()
+	pause_menu.visible = !tree.paused
 
+	tree.paused = !tree.paused
+	pause_menu.visible = tree.paused
+
+
+func _on_battle_btn_pressed() -> void:
+	#TODO 11/2 Make sure this goes to the proper zone and sub level
+	LevelTransition.change_scene_to(level)
+
+#region Settins and UI signals
 func _on_pause_btn_pressed() -> void:
 	toggle_pause()
 
@@ -98,10 +129,6 @@ func _on_back_btn_pressed() -> void:
 	settings_menu.visible = false
 	pause_menu.show()
 
-func toggle_pause() -> void:
-	var tree = get_tree()
-	tree.paused = !tree.paused
-	pause_menu.visible = tree.paused
 
 func _on_resume_btn_pressed() -> void:
 	toggle_pause()
@@ -114,11 +141,41 @@ func _on_options_btn_pressed() -> void:
 	settings_menu.visible = true
 	pause_menu.hide()
 
+#endregion
 
 func _on_upgrades_btn_pressed() -> void:
-	talent_menu_manager.show()
-
+	open_upgrade_shop()
+	#TODO 11/2: Create a new UI for UI upgrade cards
 
 func _on_scene_loading_finished() -> void:
-	print("Start Music")
-	#TODO Think about if we should wait until the full load because game start. As of now wait
+
+	lab_gui.update_progress_bar(Globals.previous_killed, Globals.enemies_killed)
+	Globals.previous_killed = Globals.enemies_killed
+	#Events.lab_transition_finished.emit()
+
+
+func _on_test_button_pressed() -> void:
+	LevelTransition.change_scene_to("res://scenes/Playground Scenes/playground2.tscn")
+
+
+func _on_lab_gui_zone_completed() -> void:
+	print("Current Zone " + zones[zone_index].zone_name +  " & Level " + level)
+	prepare_next_stage()
+	print("Next Zone " + zones[zone_index].zone_name + "& Level " + level)
+
+	zone_complete.show()
+
+func prepare_next_stage():
+	zone_index = 1
+	level = levels[zone_index]
+
+
+func _on_next_zone_btn_pressed() -> void:
+	LevelTransition.change_scene_to(levels[1])
+
+func _on_zone_upgrade_btn_pressed() -> void:
+	open_upgrade_shop()
+
+
+func open_upgrade_shop():
+	talent_menu_manager.show()

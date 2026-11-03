@@ -41,3 +41,10 @@ func _on_change_level() -> void: #FIXME Remove. Not being used
 			print("Go to level 2")
 		3:
 			print("Go to level 3")
+
+func _on_transition_player_animation_finished(anim_name: StringName) -> void:
+	var lab = "uid://dmqv875jehqwm"
+	#if anim_name == "transition" and scene_to_load == lab:
+		#emit the start animation for the gui animation to start
+		#Events.lab_transition_finished.emit()
+	pass

@@ -26,4 +26,8 @@ signal win_condition_success
 signal spawn_enemy(body: Enemy)
 
 
+#Scene Management
+signal lab_transition_finished
+
+
 var target_talent_tab : int = 0

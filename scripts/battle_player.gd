@@ -1,6 +1,7 @@
 class_name Battle_Player
 extends Player
 
+#FIXME Try to remove when creating new branch
 @export var current_weapon: WeaponData
 @export var drain_amount: int = 10
 @export var turret: PackedScene

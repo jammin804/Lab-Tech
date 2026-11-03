@@ -3,8 +3,11 @@
 [ext_resource type="Texture2D" uid="uid://c50ph4scvg3u2" path="res://assets/backgrounds/TechLab-battle.png" id="1_bb6uc"]
 [ext_resource type="Script" uid="uid://62af6pey5nu4" path="res://scripts/lab.gd" id="1_f1r8i"]
 [ext_resource type="Texture2D" uid="uid://4ice6uiioh1a" path="res://assets/props/capsule2.png" id="2_hem3r"]
+[ext_resource type="Script" uid="uid://ds2yhq10kkevo" path="res://resources/Levels/zones.gd" id="2_ijdgx"]
 [ext_resource type="Texture2D" uid="uid://mhmvngsgg13v" path="res://assets/props/lab-table.png" id="3_f680m"]
+[ext_resource type="Resource" uid="uid://dy8ftrq87fktm" path="res://resources/Levels/Zones/zone1.tres" id="3_ftxkm"]
 [ext_resource type="Texture2D" uid="uid://dxyc6i7d1knac" path="res://assets/props/console.png" id="4_q4uld"]
+[ext_resource type="Resource" uid="uid://bcit1sxqou1jm" path="res://resources/Levels/Zones/zone2.tres" id="4_xu0ho"]
 [ext_resource type="Theme" uid="uid://65aipdpydskv" path="res://resources/Theme/main_theme.tres" id="6_kfqsw"]
 [ext_resource type="Texture2D" uid="uid://dwfn7p11er8rd" path="res://assets/props/lab-table_hover.png" id="8_ijdgx"]
 [ext_resource type="Texture2D" uid="uid://qj56axi37uo" path="res://assets/props/console_hover.png" id="9_eavsi"]
@@ -16,7 +19,9 @@
 [ext_resource type="Texture2D" uid="uid://b8h7y5diislmb" path="res://assets/ui/hud/Settigns.png" id="17_ftxkm"]
 [ext_resource type="PackedScene" uid="uid://dg66c7f7p6iii" path="res://scenes/pause_menu.tscn" id="17_ijdgx"]
 [ext_resource type="Texture2D" uid="uid://hk8jsqntk3b5" path="res://assets/ui/hud/battleButton.png" id="18_eavsi"]
+[ext_resource type="PackedScene" uid="uid://3ylvkfrfqqst" path="res://scenes/UI/lab_gui.tscn" id="18_ftxkm"]
 [ext_resource type="PackedScene" uid="uid://blqe7ke2t7a3n" path="res://scenes/UI/custom_mouse.tscn" id="18_ijdgx"]
+[ext_resource type="PackedScene" uid="uid://4cascoqhclqt" path="res://scenes/UI/zone_complete.tscn" id="22_kvhjj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hem3r"]
 atlas = ExtResource("1_bb6uc")
@@ -112,7 +117,8 @@ process_mode = 3
 script = ExtResource("1_f1r8i")
 pause_menu = NodePath("CanvasLayer/PauseMenu")
 settings_menu = NodePath("CanvasLayer/SettingsMenu")
-levels = Array[String](["res://scenes/battle_screen.tscn", "res://scenes/Levels/level_2.tscn"])
+zones = Array[ExtResource("2_ijdgx")]([ExtResource("3_ftxkm"), ExtResource("4_xu0ho")])
+levels = Array[String](["uid://bdpj78s126rdu", "uid://07o755mijima"])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1472098651]
 process_mode = 3
@@ -131,6 +137,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="LabGui" parent="CanvasLayer/Pausable" unique_id=1716525560 instance=ExtResource("18_ftxkm")]
+unique_name_in_owner = true
+layout_mode = 1
 
 [node name="UpgradeScene" type="Control" parent="CanvasLayer/Pausable" unique_id=1309087774]
 unique_name_in_owner = true
@@ -286,12 +296,6 @@ texture_normal = SubResource("AtlasTexture_kfqsw")
 texture_pressed = SubResource("AtlasTexture_kvhjj")
 texture_hover = SubResource("AtlasTexture_iyn56")
 
-[node name="TalentMenuManager" parent="CanvasLayer/Pausable/UpgradeScene" unique_id=491223868 instance=ExtResource("13_ijdgx")]
-unique_name_in_owner = true
-visible = false
-z_index = 2
-layout_mode = 1
-
 [node name="LabBGM" type="AudioStreamPlayer2D" parent="CanvasLayer/Pausable" unique_id=49252936]
 stream = ExtResource("13_ds7rc")
 volume_db = 8.0
@@ -315,6 +319,17 @@ texture_hover = SubResource("AtlasTexture_ffhs6")
 
 [node name="Node" type="Node" parent="CanvasLayer/Pausable" unique_id=1789906161]
 
+[node name="ZoneComplete" parent="CanvasLayer/Pausable" unique_id=1441511533 instance=ExtResource("22_kvhjj")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="TalentMenuManager" parent="CanvasLayer/Pausable" unique_id=491223868 instance=ExtResource("13_ijdgx")]
+unique_name_in_owner = true
+visible = false
+z_index = 2
+layout_mode = 1
+
 [node name="PauseMenu" parent="CanvasLayer" unique_id=1716673666 instance=ExtResource("17_ijdgx")]
 process_mode = 2
 visible = false
@@ -324,7 +339,19 @@ z_index = 3
 process_mode = 2
 visible = false
 
+[node name="TestButton" type="Button" parent="CanvasLayer" unique_id=952711644]
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -24.0
+offset_right = 56.0
+grow_vertical = 0
+text = "test"
+
+[connection signal="zone_completed" from="CanvasLayer/Pausable/LabGui" to="." method="_on_lab_gui_zone_completed"]
 [connection signal="pressed" from="CanvasLayer/Pausable/UpgradeScene/Props/UpgradesBtn" to="." method="_on_upgrades_btn_pressed"]
 [connection signal="finished" from="CanvasLayer/Pausable/UpgradeScene/ClickSound" to="CanvasLayer/Pausable/UpgradeScene/Clicker" method="_on_click_sound_finished"]
 [connection signal="pressed" from="CanvasLayer/Pausable/UpgradeScene/BattleBtn" to="." method="_on_battle_btn_pressed"]
 [connection signal="pressed" from="CanvasLayer/Pausable/PauseBtn" to="." method="_on_pause_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/TestButton" to="." method="_on_test_button_pressed"]

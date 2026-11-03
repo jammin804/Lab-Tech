@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://djuh4frs5ltrc"]
 
-[ext_resource type="Script" uid="uid://b850wre5f8oip" path="res://scripts/enemy.gd" id="1_w0ojr"]
-[ext_resource type="PackedScene" uid="uid://c3j8bdc87ysqc" path="res://scenes/Currency/pickups.tscn" id="3_qv6qb"]
+[ext_resource type="Script" uid="uid://bbjvpnkvxf5fe" path="res://scenes/Enemies/enemy_kaju.gd" id="1_2dpn2"]
 [ext_resource type="Texture2D" uid="uid://ctklqo2kh5et3" path="res://assets/enemy/kaju/rino-fish1.png" id="4_fjf8t"]
 [ext_resource type="PackedScene" uid="uid://cluqesxih2vx0" path="res://scenes/enemy_sprite.tscn" id="4_goy13"]
 [ext_resource type="Texture2D" uid="uid://dfvb7i8ko7u0i" path="res://assets/enemy/kaju/rino-fish2.png" id="5_5ii61"]
@@ -34,7 +33,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_m21rq"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5kv8w"]
 resource_local_to_scene = true
 shader = ExtResource("5_k8v0n")
 shader_parameter/hit_flash_color = Color(1, 1, 1, 1)
@@ -222,10 +221,7 @@ animations = [{
 
 [node name="EnemyKaju" type="CharacterBody2D" unique_id=1965764076 groups=["enemy"]]
 scale = Vector2(0.5, 0.5)
-script = ExtResource("1_w0ojr")
-is_in_battle_scene = true
-loot_drop_type = ExtResource("3_qv6qb")
-drop_rate = 100.0
+script = ExtResource("1_2dpn2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=695249661]
 scale = Vector2(-1, 1)
@@ -233,7 +229,7 @@ sprite_frames = SubResource("SpriteFrames_qti4y")
 frame_progress = 0.26422307
 
 [node name="enemy" parent="." unique_id=1601589879 instance=ExtResource("4_goy13")]
-material = SubResource("ShaderMaterial_m21rq")
+material = SubResource("ShaderMaterial_5kv8w")
 rotation = -3.1415927
 scale = Vector2(1, -1)
 sprite_frames = ExtResource("6_ef401")
