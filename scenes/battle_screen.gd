@@ -38,7 +38,7 @@ var total_cores_gained : int = 0
 var status = ""
 var grade = ""
 
-@onready var result_screen: Result_Screen = $ResultScreen
+#@onready var result_screen: Result_Screen = $ResultScreen
 @onready var wave_label: Label = $Pausable/WaveLabel
 @onready var enemies_in_wave_label: Label = $Pausable/EnemiesInWaveLabel
 @onready var enemy_spawner: Enemy_Spawner = %EnemySpawner

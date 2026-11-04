@@ -1,12 +1,11 @@
-[gd_resource type="Resource" script_class="Levels" format=3 uid="uid://teyevye2m5hu"]
+[gd_resource type="Resource" script_class="Level" format=3 uid="uid://teyevye2m5hu"]
 
 [ext_resource type="PackedScene" uid="uid://cqueta70ubjqr" path="res://scenes/enemy.tscn" id="1_u3o3w"]
-[ext_resource type="PackedScene" uid="uid://djuh4frs5ltrc" path="res://scenes/Enemies/enemy_kaju.tscn" id="2_tmftr"]
-[ext_resource type="Script" uid="uid://ci2m2uau1arlp" path="res://scripts/levels/level.gd" id="3_lj4ns"]
+[ext_resource type="Script" uid="uid://ci2m2uau1arlp" path="res://resources/Levels/level.gd" id="3_lj4ns"]
 
 [resource]
 script = ExtResource("3_lj4ns")
 enemies_to_defeat = 10
 enemies_to_spawn = 15
-enemies_type = Array[PackedScene]([ExtResource("1_u3o3w"), ExtResource("2_tmftr")])
+enemies_type = Array[PackedScene]([ExtResource("1_u3o3w")])
 metadata/_custom_type_script = "uid://ci2m2uau1arlp"

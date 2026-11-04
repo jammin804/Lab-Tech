@@ -405,6 +405,7 @@ one_shot = true
 autostart = true
 
 [node name="EnemiesInWaveLabel" type="Label" parent="Pausable" unique_id=1084878349]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
 anchors_preset = 1

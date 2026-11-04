@@ -171,7 +171,8 @@ func prepare_next_stage():
 
 
 func _on_next_zone_btn_pressed() -> void:
-	LevelTransition.change_scene_to(levels[1])
+	print(levels[1])
+	LevelTransition.change_scene_to("res://scenes/Levels/level_2.tscn")
 
 func _on_zone_upgrade_btn_pressed() -> void:
 	open_upgrade_shop()
