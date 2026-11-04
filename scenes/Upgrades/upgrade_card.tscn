@@ -24,9 +24,6 @@ size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_s5m6i")
 script = ExtResource("1_yurow")
 upgrade_resource = ExtResource("2_k7liv")
-icon = ExtResource("1_fsvsc")
-upgrade_name = "Rapid Sho"
-upgrade = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1243305988]
 layout_mode = 1

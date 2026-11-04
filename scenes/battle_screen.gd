@@ -133,7 +133,10 @@ func _on_quit_btn_pressed() -> void:
 	LevelTransition.change_scene_to(main_menu)
 
 func _on_retreat_button_pressed() -> void:
+	#print(get_tree_string_pretty())
+	#Events.share_current_scene_name.emit(get_tree().current_scene.name)
 	LevelTransition.change_scene_to(lab)
+
 
 func _on_options_btn_pressed() -> void:
 	is_option_menu_open = true

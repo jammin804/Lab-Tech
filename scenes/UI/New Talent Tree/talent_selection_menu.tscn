@@ -125,11 +125,16 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ar84w")
 
 [node name="Pick3" parent="." unique_id=1535268448 instance=ExtResource("2_hmhfo")]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 0.0
 offset_top = 0.0
-offset_right = 314.0
-offset_bottom = 157.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="BackBtn" type="Button" parent="." unique_id=1734017578]
 unique_name_in_owner = true

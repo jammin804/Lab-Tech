@@ -26,7 +26,7 @@ func _ready() -> void:
 	new_killed = Globals.enemies_killed
 
 
-func initialize(zone_name, zone_req, waves_to_complete) ->void:
+func initialize(zone_name, zone_req, waves_to_complete, is_new_zone) ->void:
 	kills_to_next = zone_req
 
 	zone_label.text = zone_name
@@ -34,7 +34,10 @@ func initialize(zone_name, zone_req, waves_to_complete) ->void:
 	enemies_killed_label.text = str(prev_killed)
 
 	progress_bar.max_value = kills_to_next
-	progress_bar.value = prev_killed
+	if is_new_zone:
+		progress_bar.value = 0
+	else:
+		progress_bar.value = prev_killed
 
 	waves = waves_to_complete
 	wave_label.text = "Waves Left: " + str(waves)
@@ -45,7 +48,7 @@ func update_progress_bar(prev_enemies, enemies_defeated):
 
 	if waves > 0:
 		waves -= 1
-	wave_label.text = str(waves)
+	wave_label.text = "Waves Left: " + str(waves)
 
 	#xp_to_next(enemies_defeated)
 	animate_value(prev_enemies, enemies_defeated)
@@ -78,11 +81,4 @@ func xp_to_next(enemies_defeated):
 
 func _check_bar_progress(amount: int) -> void:
 	if amount >= progress_bar.max_value:
-		#var tween : Tween
-		#print("Start the animation again")
-		#progress_bar.value = 0
-#
-		#tween = create_tween().set_trans(Tween.TRANS_SINE)
-		#tween.tween_property(progress_bar, "value", amount-progress_bar.max_value, 1.0)
-
 		zone_completed.emit()

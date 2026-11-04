@@ -1,11 +1,8 @@
 [gd_scene format=3 uid="uid://cov3u17kl0xe3"]
 
 [ext_resource type="PackedScene" uid="uid://bbjl6ngi80t6h" path="res://scenes/Upgrades/upgrade_card.tscn" id="1_0pj4t"]
-[ext_resource type="Script" uid="uid://7pod45ky1nt3" path="res://resources/Pick3/upgrade_resource.gd" id="3_d4dvf"]
-
-[sub_resource type="Resource" id="Resource_sy5iv"]
-script = ExtResource("3_d4dvf")
-metadata/_custom_type_script = "uid://7pod45ky1nt3"
+[ext_resource type="Script" uid="uid://mfmy7eahpx3g" path="res://scenes/Upgrades/pick_3.gd" id="1_di6f7"]
+[ext_resource type="Resource" uid="uid://dxjwlygjadts7" path="res://resources/Pick3/charge_beam.tres" id="3_di6f7"]
 
 [node name="Pick3" type="Control" unique_id=1535268448]
 layout_mode = 3
@@ -14,8 +11,10 @@ offset_left = 3.0
 offset_top = 20.0
 offset_right = 317.0
 offset_bottom = 177.0
+script = ExtResource("1_di6f7")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=144668489]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -29,13 +28,34 @@ offset_bottom = 63.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 9
+alignment = 1
 
 [node name="Panel" parent="HBoxContainer" unique_id=1519812236 instance=ExtResource("1_0pj4t")]
 layout_mode = 2
-upgrade_resource = SubResource("Resource_sy5iv")
+upgrade_resource = ExtResource("3_di6f7")
 
 [node name="Panel2" parent="HBoxContainer" unique_id=1228928118 instance=ExtResource("1_0pj4t")]
 layout_mode = 2
+upgrade_resource = ExtResource("3_di6f7")
 
 [node name="Panel3" parent="HBoxContainer" unique_id=1128156253 instance=ExtResource("1_0pj4t")]
 layout_mode = 2
+upgrade_resource = ExtResource("3_di6f7")
+
+[node name="UpgradeSelected" type="PanelContainer" parent="." unique_id=77943265]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 56.0
+offset_top = 28.0
+offset_right = -56.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UpgradeSelected" unique_id=1368252888]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "upgrade selected"

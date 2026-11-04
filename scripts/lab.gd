@@ -23,7 +23,7 @@ var is_option_menu_open : bool = false
 var main_menu: String = "res://scenes/main_menu.tscn"
 var level_1: String #"uid://bdpj78s126rdu"
 var level: String
-
+var is_new_zone: bool = false
 
 
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
@@ -72,13 +72,14 @@ func _ready() -> void:
 	zone_complete.open_upgrade_screen.connect(_on_zone_upgrade_btn_pressed)
 
 	LevelTransition.scene_loading_finished.connect(_on_scene_loading_finished)
+	#Events.share_current_scene_name.connect(_on_scene_name_shared)
+
+	zone_index = Globals.zone - 1
 
 	level = levels[zone_index]
 
 	zone_info = zones[zone_index]
-
-	#TODO [URGENT] 11/4 Fix so the lab gui pull the exact zone information once it comes back to lab
-	lab_gui.initialize(zone_info.zone_name, zone_info.zone_requirement, zone_info.waves_left_to_complete_goal)
+	lab_gui.initialize(zone_info.zone_name, zone_info.zone_requirement, zone_info.waves_left_to_complete_goal, is_new_zone)
 
 func update_energy() -> void:
 	if current_energy < max_energy:
@@ -91,6 +92,7 @@ func update_energy() -> void:
 func level_up():
 	Globals.zone += 1
 	zone_index = Globals.zone - 1
+	Globals.previous_killed = 0
 
 func get_new_level() -> String:
 	return levels[zone_index]
@@ -151,7 +153,6 @@ func _on_scene_loading_finished() -> void:
 
 	lab_gui.update_progress_bar(Globals.previous_killed, Globals.enemies_killed)
 	Globals.previous_killed = Globals.enemies_killed
-	#Events.lab_transition_finished.emit()
 
 
 func _on_test_button_pressed() -> void:
@@ -160,19 +161,16 @@ func _on_test_button_pressed() -> void:
 
 func _on_lab_gui_zone_completed() -> void:
 	print("Current Zone " + zones[zone_index].zone_name +  " & Level " + level)
-	prepare_next_stage()
 	print("Next Zone " + zones[zone_index].zone_name + "& Level " + level)
 
+	level_up()
 	zone_complete.show()
-
-func prepare_next_stage():
-	zone_index = 1
-	level = levels[zone_index]
-
 
 func _on_next_zone_btn_pressed() -> void:
 	#TODO 11/5 [For Level Increment Branch] make sure the zone index and incrementing and the level change follows
-	print(levels[1])
+	#print(levels[1])
+	Globals.enemies_killed = 0
+	Globals.previous_killed = 0
 	LevelTransition.change_scene_to(levels[zone_index])
 
 func _on_zone_upgrade_btn_pressed() -> void:
@@ -181,3 +179,8 @@ func _on_zone_upgrade_btn_pressed() -> void:
 
 func open_upgrade_shop():
 	talent_menu_manager.show()
+
+
+func check_zone_index():
+	if zone_index == null:
+		zone_index = 0

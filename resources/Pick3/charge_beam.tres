@@ -8,4 +8,5 @@ script = ExtResource("2_7qb7k")
 icon = ExtResource("1_i7ba3")
 upgrade_name = "Charge Beam"
 upgrade_description = "Charge Shot Becomes a Piercing Beam"
+stat = 1
 metadata/_custom_type_script = "uid://7pod45ky1nt3"

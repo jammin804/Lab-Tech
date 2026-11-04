@@ -1,3 +1,4 @@
+class_name UpgradeCard
 extends Panel
 
 
@@ -12,13 +13,13 @@ var stat: int
 
 
 func _ready() -> void:
-	upgrade_name_label.text = upgrade_resource.talentName
-	upgrade_description_label.text = upgrade_resource.talentDescription
-	upgrade_icon.texture = upgrade_resource.talent_icon
+	upgrade_name_label.text = upgrade_resource.upgrade_name
+	upgrade_description_label.text = upgrade_resource.upgrade_description
+	upgrade_icon.texture = upgrade_resource.icon
 	stat = upgrade_resource.stat
 
 func _apply_upgrade():
 
-	PlayerManager.add_upgrade(upgrade_resource.upgrade, stat)
+	PlayerManager.add_upgrade(upgrade_resource.upgrade, stat) #TODO 11/4: Test this
 
 	upgrade_selected.emit()
