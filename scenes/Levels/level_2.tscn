@@ -274,9 +274,16 @@ region = Rect2(26, 42, 16, 16)
 atlas = ExtResource("11_mqswj")
 region = Rect2(26, 21, 16, 16)
 
-[node name="Level2" type="Node" unique_id=1489670400]
+[node name="Level2" type="Node" unique_id=1489670400 node_paths=PackedStringArray("pause_menu", "settings_menu", "player_spawn", "enemies_remaining_label", "spawns_remaining_label")]
 process_mode = 3
 script = ExtResource("1_0lf7e")
+level_info = ExtResource("2_4i6gi")
+pause_menu = NodePath("UILayer/Menus/PauseMenu/PauseLayer/PauseMenu")
+settings_menu = NodePath("UILayer/Menus/PauseMenu/PauseLayer/SettingsMenu")
+player = ExtResource("5_ttcij")
+player_spawn = NodePath("Pausable/PlayerSpawnPoint")
+enemies_remaining_label = NodePath("UILayer/HUD/LevelGUI/MarginContainer/HBoxContainer/StatsLabels/EnemiesRemainingLabel")
+spawns_remaining_label = NodePath("UILayer/HUD/LevelGUI/MarginContainer/HBoxContainer/StatsLabels/SpawnsRemainingLabel")
 metadata/_edit_vertical_guides_ = [32.0, 621.0]
 metadata/_edit_horizontal_guides_ = [265.0, 204.00975, 128.0, 94.0, 8.0]
 

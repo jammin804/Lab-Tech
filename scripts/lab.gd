@@ -77,7 +77,7 @@ func _ready() -> void:
 
 	zone_info = zones[zone_index]
 
-	#TODO [URGENT] 11/3 Fix so the lab gui pull the exact zone information once it comes back to lab
+	#TODO [URGENT] 11/4 Fix so the lab gui pull the exact zone information once it comes back to lab
 	lab_gui.initialize(zone_info.zone_name, zone_info.zone_requirement, zone_info.waves_left_to_complete_goal)
 
 func update_energy() -> void:
@@ -145,7 +145,7 @@ func _on_options_btn_pressed() -> void:
 
 func _on_upgrades_btn_pressed() -> void:
 	open_upgrade_shop()
-	#TODO 11/3: Create a new UI for UI upgrade cards
+	#TODO 11/4: Create a new UI for UI upgrade cards
 
 func _on_scene_loading_finished() -> void:
 
@@ -171,8 +171,9 @@ func prepare_next_stage():
 
 
 func _on_next_zone_btn_pressed() -> void:
+	#TODO 11/5 [For Level Increment Branch] make sure the zone index and incrementing and the level change follows
 	print(levels[1])
-	LevelTransition.change_scene_to("res://scenes/Levels/level_2.tscn")
+	LevelTransition.change_scene_to(levels[zone_index])
 
 func _on_zone_upgrade_btn_pressed() -> void:
 	open_upgrade_shop()
