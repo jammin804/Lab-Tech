@@ -29,9 +29,10 @@ enum Form {DEFAULT, COMBINED, AVATAR}
 @export var charge_damage_multipler : float = 2.0
 @export var double_down : bool = true
 
-
-#region Testing Code for upgrade
 enum upgrades {ADD_DAMAGE, ADD_ATTACK_SPEED, ADD_BULLET, ADD_TO_BULLET, ADD_HEALTH, ADD_TO_CHARGE, REDUCE_CHARGE_RATE}
+
+#TODO 11/5: Continue to work on getting the upgrades to fit with the player stats
+#region Testing Code for upgrade
 
 #Base Stats
 var damage = 200

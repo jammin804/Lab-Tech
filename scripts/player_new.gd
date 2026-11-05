@@ -98,7 +98,7 @@ func die()-> void:
 	var grade: int = 0
 
 	Events.show_result_screen.emit(level_enemies_killed, level_damage_done, level_damage_taken, level_money, level_scraps, level_cores, status, grade)
-	#TODO Have Teleport Animation Like Megamnan
+	#TODO [Polishing] Have Teleport Animation Like Megamnan
 	#battery_empty.emit()
 	await get_tree().create_timer(1.0).timeout
 	#save when

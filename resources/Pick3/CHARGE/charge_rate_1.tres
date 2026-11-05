@@ -12,6 +12,6 @@ script = ExtResource("2_p343f")
 icon = SubResource("AtlasTexture_e1vxt")
 upgrade_name = "Charge Rate"
 upgrade_description = "Reduce charge rate by 2%"
-upgrade = 4
+upgrade = 6
 stat = 2
 metadata/_custom_type_script = "uid://7pod45ky1nt3"

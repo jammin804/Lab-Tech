@@ -58,6 +58,8 @@ func _process_charging(delta: float) -> void:
 			is_charging = true
 
 		charge_percent += delta * 40
+		#charge_percent += delta * 40
+
 		charge_percent = clampf(charge_percent, 0.0, 100.0)
 
 		charge_progress_bar_container.get_child(0).value = charge_percent
