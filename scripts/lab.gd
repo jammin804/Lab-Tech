@@ -120,7 +120,7 @@ func toggle_pause() -> void:
 
 
 func _on_battle_btn_pressed() -> void:
-	#TODO [For Level Increment Branch] 11/3 Make sure this goes to the proper zone and sub level
+	#TODO [For Level Increment Branch] 11/6 Make sure this goes to the proper zone and sub level
 	LevelTransition.change_scene_to(level)
 
 #region Settins and UI signals
@@ -147,7 +147,7 @@ func _on_options_btn_pressed() -> void:
 
 func _on_upgrades_btn_pressed() -> void:
 	open_upgrade_shop()
-	#TODO 11/4: Create a new UI for UI upgrade cards
+	#TODO 11/5: Create a new UI for UI upgrade cards
 
 func _on_scene_loading_finished() -> void:
 
@@ -167,7 +167,7 @@ func _on_lab_gui_zone_completed() -> void:
 	zone_complete.show()
 
 func _on_next_zone_btn_pressed() -> void:
-	#TODO 11/5 [For Level Increment Branch] make sure the zone index and incrementing and the level change follows
+	#TODO 11/6 [For Level Increment Branch] make sure the zone index and incrementing and the level change follows
 	#print(levels[1])
 	Globals.enemies_killed = 0
 	Globals.previous_killed = 0

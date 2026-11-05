@@ -26,17 +26,18 @@ func load_player_state(player) -> void:
 		player.current_health = current_health_cache
 
 func add_upgrade(upgrade, stats):
+	print("Current stats: ", current_stats.damageMulti)
+	#for stat in current_stats
+
 	if upgrade == current_stats.upgrades.ADD_DAMAGE:
-		print(current_stats.upgrades.ADD_DAMAGE)
 		current_stats.damageMulti += stats
 	elif upgrade == current_stats.upgrades.ADD_ATTACK_SPEED:
-		print(current_stats.upgrades.ADD_ATTACK_SPEED)
 		current_stats.attackSpeedMulti += stats
 	elif upgrade == current_stats.upgrades.ADD_BULLET:
-		print(current_stats.upgrades.ADD_BULLET)
 		current_stats.bullets += stats
 	elif upgrade == current_stats.upgrades.ADD_HEALTH:
-		print(current_stats.upgrades.ADD_HEALTH)
 		current_stats.addHealth += stats
+
+	print("Stats after upgrade ", current_stats)
 
 	stats_updated.emit()

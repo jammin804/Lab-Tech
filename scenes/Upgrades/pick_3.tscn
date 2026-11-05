@@ -2,7 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://bbjl6ngi80t6h" path="res://scenes/Upgrades/upgrade_card.tscn" id="1_0pj4t"]
 [ext_resource type="Script" uid="uid://mfmy7eahpx3g" path="res://scenes/Upgrades/pick_3.gd" id="1_di6f7"]
-[ext_resource type="Resource" uid="uid://dxjwlygjadts7" path="res://resources/Pick3/charge_beam.tres" id="3_di6f7"]
+[ext_resource type="Resource" uid="uid://dxjwlygjadts7" path="res://resources/Pick3/CHARGE/charge_beam.tres" id="3_di6f7"]
+[ext_resource type="Resource" uid="uid://b1bsqlpv8mo5t" path="res://resources/Pick3/DMG UP/bullet_dmg_1.tres" id="5_wy5na"]
 
 [node name="Pick3" type="Control" unique_id=1535268448]
 layout_mode = 3
@@ -36,11 +37,10 @@ upgrade_resource = ExtResource("3_di6f7")
 
 [node name="Panel2" parent="HBoxContainer" unique_id=1228928118 instance=ExtResource("1_0pj4t")]
 layout_mode = 2
-upgrade_resource = ExtResource("3_di6f7")
 
 [node name="Panel3" parent="HBoxContainer" unique_id=1128156253 instance=ExtResource("1_0pj4t")]
 layout_mode = 2
-upgrade_resource = ExtResource("3_di6f7")
+upgrade_resource = ExtResource("5_wy5na")
 
 [node name="UpgradeSelected" type="PanelContainer" parent="." unique_id=77943265]
 visible = false

@@ -6,6 +6,10 @@ signal upgrade_selected
 @export var upgrade_resource: UpgradeResource
 
 var stat: int
+var animation_tween: Tween
+var hover_scale: Vector2 = Vector2(1.1, 1.1)
+var hover_animation_length: float = 0.1
+var un_hover_animation_length: float = 0.1
 
 @onready var upgrade_name_label: Label = %UpgradeNameLabel
 @onready var upgrade_icon: TextureRect = %UpgradeIcon
@@ -18,8 +22,25 @@ func _ready() -> void:
 	upgrade_icon.texture = upgrade_resource.icon
 	stat = upgrade_resource.stat
 
-func _apply_upgrade():
+	pivot_offset_ratio = Vector2.ONE / 2.0
 
-	PlayerManager.add_upgrade(upgrade_resource.upgrade, stat) #TODO 11/4: Test this
+func apply_upgrade():
+
+	PlayerManager.add_upgrade(upgrade_resource.upgrade, stat) #TODO 11/5: Test this
 
 	upgrade_selected.emit()
+
+
+func _on_mouse_entered() -> void:
+	if animation_tween:
+		animation_tween.kill()
+
+	animation_tween = create_tween().set_trans(Tween.TRANS_SINE)
+	animation_tween.tween_property(self, "scale", hover_scale, hover_animation_length)
+
+func _on_mouse_exited() -> void:
+	if animation_tween:
+		animation_tween.kill()
+
+	animation_tween = create_tween().set_trans(Tween.TRANS_SINE)
+	animation_tween.tween_property(self, "scale", Vector2.ONE, un_hover_animation_length)

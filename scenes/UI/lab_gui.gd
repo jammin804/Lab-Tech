@@ -65,7 +65,7 @@ func animate_value(start, target, tween_duration=1.0):
 	tween.tween_method(_set_label_text, start, target, tween_duration)
 	await tween.finished
 	_check_bar_progress(target)
-	#TODO [POLISHING] 11/2 Have the bar make sfx when its is progressing
+	#TODO [POLISHING] 11/6 Have the bar make sfx when its is progressing
 
 
 

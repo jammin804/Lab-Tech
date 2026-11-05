@@ -8,10 +8,12 @@ func _ready() -> void:
 		node.upgrade_selected.connect(_on_upgrade_selected)
 
 func _input(event: InputEvent) -> void:
-	#TODO 11/4 [URGENT] finish the implimentation of the selection of an upgrade
 	var mouse_pos = get_global_mouse_position()
-	if event is InputEventMouse and event.button_index == 1:
-		pass
+	if event is InputEventMouseButton and event.button_index == 1 and event.is_pressed():
+		for node:UpgradeCard in pick3_card_container.get_children():
+			if node.get_global_rect().has_point(mouse_pos):
+				node.apply_upgrade()
+
 
 func _on_upgrade_selected() -> void:
 	pick3_card_container.hide()

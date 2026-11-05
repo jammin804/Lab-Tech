@@ -22,7 +22,7 @@ enum Form {DEFAULT, COMBINED, AVATAR}
 @export var super_click : bool = false
 @export var auto_fire : bool = false
 @export var power : int = 10
-@export var range : int = 2
+#@export var range : int = 2
 @export var rapid : int = 1 #Bullets per shot
 @export var can_charge : bool = true
 @export var charge_rate : float = 40.0
@@ -31,7 +31,7 @@ enum Form {DEFAULT, COMBINED, AVATAR}
 
 
 #region Testing Code for upgrade
-enum upgrades {ADD_DAMAGE, ADD_ATTACK_SPEED, ADD_BULLET, ADD_HEALTH, ADD_TO_CHARGE, ADD_TO_BULLET}
+enum upgrades {ADD_DAMAGE, ADD_ATTACK_SPEED, ADD_BULLET, ADD_TO_BULLET, ADD_HEALTH, ADD_TO_CHARGE, REDUCE_CHARGE_RATE}
 
 #Base Stats
 var damage = 200
