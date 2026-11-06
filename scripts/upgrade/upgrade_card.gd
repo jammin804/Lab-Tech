@@ -26,7 +26,7 @@ func _ready() -> void:
 
 func apply_upgrade():
 
-	PlayerManager.add_upgrade(upgrade_resource.upgrade, stat) #TODO 11/5: Test this
+	PlayerManager.add_upgrade(upgrade_resource.upgrade, upgrade_resource.stat) #TODO 11/5: Test this
 
 	upgrade_selected.emit()
 

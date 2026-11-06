@@ -13,7 +13,7 @@ signal drain_battery(amount)
 
 var PROJECTILE_SCENE = preload("res://scenes/projectile.tscn")
 var num_of_bullets : int = 1
-var bullet_strength: int = 0
+var bullet_strength: float = 0.0
 var is_limit_unlocked : bool = false
 var can_charge : bool = false
 var is_charging : bool = false
@@ -31,9 +31,11 @@ var charge_scale: Vector2 = Vector2.ONE
 func _process(delta: float) -> void:
 	_check_limiter_lock()
 	_check_charge_lock()
+	#_check_bullet_power()
 	_check_number_of_bullets()
 	_handle_firing_inputs(delta)
 	_handle_animation()
+
 
 
 func _handle_firing_inputs(delta: float) -> void:
@@ -93,14 +95,15 @@ func _shoot(charge_percentage : float):
 	elif is_limit_unlocked == false:
 		shoot_cooldown_timer.wait_time = 1.0
 
+	var bullet_damage = PlayerManager.current_stats.power + PlayerManager.current_stats.damage_multipler
 
 	if charge_percentage >= 100.0:
 		charge_scale = Vector2(2.0, 2.0)
-		bullet_strength = int(PlayerManager.current_stats.power * PlayerManager.current_stats.charge_damage_multipler)
+		bullet_strength = ceil(bullet_damage * PlayerManager.current_stats.charge_damage_multipler)
 		drain_battery.emit(drain_amount)
 	else:
 		charge_scale = Vector2.ONE
-		bullet_strength = PlayerManager.current_stats.power
+		bullet_strength = ceil(bullet_damage)
 
 
 	shoot_cooldown_timer.start()
@@ -111,7 +114,7 @@ func _shoot(charge_percentage : float):
 		_create_bullet(i, burst_count)
 
 	Events.bullet_fired.emit()
-	print("Current Battery", player.current_health)
+	print("Current Battery ", player.current_health)
 
 func _create_bullet(bullet_index: int, total_bullets: int) -> void:
 	var bullet : Projectile = PROJECTILE_SCENE.instantiate()
@@ -146,3 +149,8 @@ func _handle_animation() -> void:
 func _on_charging_up_finished() -> void:
 	charging_up_sfx.stop()
 	charging_repeat_sfx.play()
+
+
+func _check_bullet_power():
+	bullet_strength = PlayerManager.current_stats.power * PlayerManager.current_stats.damage_multipler
+	print(bullet_strength)

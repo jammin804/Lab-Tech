@@ -5,6 +5,6 @@ extends Resource
 @export var upgrade_name: String
 @export var upgrade_description: String
 @export var upgrade: PlayerStats.upgrades
-@export var stat: int
+@export var stat: float
 
 #TODO 11/5: Add 2 more upgrades and add the functionality to queue free the selection and apply the updgrades

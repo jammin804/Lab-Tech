@@ -16,12 +16,13 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -59.0
+offset_top = -88.0
 offset_right = 110.0
 grow_vertical = 0
 theme_override_constants/margin_left = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=367694274]
+visible = false
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = -2
@@ -45,3 +46,36 @@ theme_override_constants/line_spacing = -2
 theme_override_font_sizes/font_size = 6
 text = "MegaIncrement
 Developed by Mike Harris"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer" unique_id=233457003]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = -1
+
+[node name="BulletPowerLabel" type="Label" parent="MarginContainer/VBoxContainer2" unique_id=630566155]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.30060697, 0.7792928, 1.540184e-06, 1)
+theme_override_font_sizes/font_size = 6
+text = "Bullet Power: "
+
+[node name="ChargeRateLabel" type="Label" parent="MarginContainer/VBoxContainer2" unique_id=1023334183]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.30060697, 0.7792928, 1.540184e-06, 1)
+theme_override_font_sizes/font_size = 6
+text = "Charge Rate: "
+
+[node name="BatteryDrainLabel" type="Label" parent="MarginContainer/VBoxContainer2" unique_id=1873494270]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.30060697, 0.7792928, 1.540184e-06, 1)
+theme_override_font_sizes/font_size = 6
+text = "Battery Drain: "
+
+[node name="ChargePowerLabel" type="Label" parent="MarginContainer/VBoxContainer2" unique_id=1222768343]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.30060697, 0.7792928, 1.540184e-06, 1)
+theme_override_font_sizes/font_size = 6
+text = "Charge Power: "

@@ -11,7 +11,7 @@ enum Form {DEFAULT, COMBINED, AVATAR}
 
 #Multiplers
 @export var damage_multipler: float  = 1.0
-@export var fire_rate_multipler: float
+@export var fire_rate_multipler: float = 1.0
 @export var element_override: WeaponData.Element = WeaponData.Element.DEFAULT
 
 @export var current_weapon : WeaponData = null
@@ -31,7 +31,7 @@ enum Form {DEFAULT, COMBINED, AVATAR}
 
 enum upgrades {ADD_DAMAGE, ADD_ATTACK_SPEED, ADD_BULLET, ADD_TO_BULLET, ADD_HEALTH, ADD_TO_CHARGE, REDUCE_CHARGE_RATE}
 
-#TODO 11/5: Continue to work on getting the upgrades to fit with the player stats
+#TODO [High Prio] 11/6: Continue to work on getting the upgrades to fit with the player stats. Link the remaining upgrades
 #region Testing Code for upgrade
 
 #Base Stats
