@@ -5,7 +5,7 @@ extends Panel
 signal upgrade_selected
 @export var upgrade_resource: UpgradeResource
 
-var stat: int
+var stat: float
 var animation_tween: Tween
 var hover_scale: Vector2 = Vector2(1.1, 1.1)
 var hover_animation_length: float = 0.1

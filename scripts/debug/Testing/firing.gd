@@ -31,7 +31,6 @@ var charge_scale: Vector2 = Vector2.ONE
 func _process(delta: float) -> void:
 	_check_limiter_lock()
 	_check_charge_lock()
-	#_check_bullet_power()
 	_check_number_of_bullets()
 	_handle_firing_inputs(delta)
 	_handle_animation()
@@ -59,8 +58,8 @@ func _process_charging(delta: float) -> void:
 			charging_up_sfx.play()
 			is_charging = true
 
-		charge_percent += delta * 40
-		#charge_percent += delta * 40
+		charge_percent += delta * PlayerManager.current_stats.charge_rate
+		#charge_percent += delta * 110
 
 		charge_percent = clampf(charge_percent, 0.0, 100.0)
 
@@ -73,7 +72,7 @@ func _process_charging(delta: float) -> void:
 			Events.blaster_fully_charged.emit()
 
 func _release_charging() -> void:
-	if charge_percent >= 15.0:
+	if charge_percent >= 25.0:
 		_shoot(charge_percent)
 
 	is_charging = false
@@ -149,8 +148,3 @@ func _handle_animation() -> void:
 func _on_charging_up_finished() -> void:
 	charging_up_sfx.stop()
 	charging_repeat_sfx.play()
-
-
-func _check_bullet_power():
-	bullet_strength = PlayerManager.current_stats.power * PlayerManager.current_stats.damage_multipler
-	print(bullet_strength)

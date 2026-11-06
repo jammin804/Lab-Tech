@@ -37,6 +37,8 @@ func add_upgrade(upgrade, stats):
 		current_stats.bullets += stats
 	elif upgrade == current_stats.upgrades.ADD_HEALTH:
 		current_stats.addHealth += stats
+	elif upgrade == PlayerManager.current_stats.upgrades.REDUCE_CHARGE_RATE:
+		PlayerManager.current_stats.charge_rate += stats
 
 	print("Stats after upgrade ", PlayerManager.current_stats.damage_multipler)
 

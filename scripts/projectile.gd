@@ -8,10 +8,12 @@ var speed : float = 750.0
 var damage : float = 1.0
 var has_collided : bool = false
 var life_steal : int = 5
+var is_piercing: bool = true
 
 @onready var hit: AnimatedSprite2D = $Hit
 @onready var bullet: Sprite2D = $Bullet
 
+#TODO 11/6 Work on piercing bullet
 var current_element : WeaponData.Element = WeaponData.Element.DEFAULT
 
 func _ready() -> void:
@@ -29,13 +31,11 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	# Ignore new collisions if we are already playing the hit animation
-	if has_collided:
+	if has_collided and !is_piercing:
 		return
 
 	if body.has_method("take_damage"):
 		Events.enemy_hit_by_projectile.emit(life_steal)
-
-		#print(damage)
 
 		body.take_damage(damage, WeaponData.Element.DEFAULT)
 
