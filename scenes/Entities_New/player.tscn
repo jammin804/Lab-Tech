@@ -3,12 +3,12 @@
 [ext_resource type="Shader" uid="uid://cht2qws53baj7" path="res://shaders/hitflash.gdshader" id="1_ghd54"]
 [ext_resource type="Script" uid="uid://caphs0h78cho4" path="res://scripts/player_new.gd" id="1_nbenk"]
 [ext_resource type="Texture2D" uid="uid://b3ntyiv7oq1hh" path="res://assets/character/player.png" id="2_8mbqp"]
-[ext_resource type="Resource" uid="uid://de4hg033shlx6" path="res://resources/TalentTree/entities/player.tres" id="2_xvrsg"]
 [ext_resource type="PackedScene" uid="uid://ejl5hhaam80k" path="res://scenes/Components/firing.tscn" id="4_xvrsg"]
 [ext_resource type="PackedScene" uid="uid://cnosuv70ino1f" path="res://scenes/Components/attachment_component.tscn" id="5_cnbk4"]
 [ext_resource type="PackedScene" uid="uid://dyk04xec0djot" path="res://scenes/UI/charge_progress_bar_container.tscn" id="6_s81oc"]
 [ext_resource type="PackedScene" uid="uid://d37hr5i350lqv" path="res://scenes/spark.tscn" id="8_db7qb"]
 [ext_resource type="PackedScene" uid="uid://dc6oenvkn8v04" path="res://scenes/Components/move_component.tscn" id="8_ee40u"]
+[ext_resource type="PackedScene" uid="uid://dgacer11dg0jq" path="res://scenes/debug_skills.tscn" id="9_ghd54"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ghd54"]
 shader = ExtResource("1_ghd54")
@@ -122,7 +122,6 @@ radius = 100.0
 collision_layer = 2
 collision_mask = 16
 script = ExtResource("1_nbenk")
-character_resource = ExtResource("2_xvrsg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1621476336]
 material = SubResource("ShaderMaterial_ghd54")
@@ -177,6 +176,9 @@ shape = SubResource("CircleShape2D_qti4y")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Magnet" unique_id=968443923]
 position = Vector2(6, 0)
 shape = SubResource("CircleShape2D_ghd54")
+
+[node name="DebugSkills" parent="." unique_id=550271367 instance=ExtResource("9_ghd54")]
+visible = false
 
 [connection signal="drain_battery" from="FiringComponent" to="." method="_on_firing_component_drain_battery"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

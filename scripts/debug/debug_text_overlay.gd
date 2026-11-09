@@ -26,7 +26,7 @@ func _add_version_to_label() -> void:
 
 
 func _update_player_info():
-	bullet_power_label.text = "Bullet Power: " + str(PlayerManager.current_stats.power)
+	bullet_power_label.text = "Bullet Power: " + str(PlayerManager.current_stats.damage_multipler + PlayerManager.current_stats.damage)
 	charge_rate_label.text = "Charge Rate: " + str(PlayerManager.current_stats.charge_rate)
 
 

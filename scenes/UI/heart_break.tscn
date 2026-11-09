@@ -50,35 +50,59 @@ layout_mode = 2
 theme_override_constants/separation = 15
 theme_override_styles/separator = SubResource("StyleBoxEmpty_plk1n")
 
-[node name="ButtonOptionRow" type="HBoxContainer" parent="PanelContainer/HeartContianer/VBoxContainer" unique_id=1110906478]
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/HeartContianer" unique_id=736564908]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/HeartContianer/VBoxContainer2" unique_id=1189079875]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_top = 30
+
+[node name="ButtonOptionRow" type="HBoxContainer" parent="PanelContainer/HeartContianer/VBoxContainer2/MarginContainer" unique_id=1110906478]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="RetryButton" type="Button" parent="PanelContainer/HeartContianer/VBoxContainer/ButtonOptionRow" unique_id=421433287]
+[node name="RetryButton" type="Button" parent="PanelContainer/HeartContianer/VBoxContainer2/MarginContainer/ButtonOptionRow" unique_id=421433287]
 unique_name_in_owner = true
 visible = false
+custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
+size_flags_horizontal = 0
 theme = ExtResource("3_plk1n")
 theme_override_font_sizes/font_size = 8
 text = "Retry?"
 
-[node name="ReturnButton" type="Button" parent="PanelContainer/HeartContianer/VBoxContainer/ButtonOptionRow" unique_id=626246015]
+[node name="ReturnButton" type="Button" parent="PanelContainer/HeartContianer/VBoxContainer2/MarginContainer/ButtonOptionRow" unique_id=626246015]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+size_flags_horizontal = 8
 theme = ExtResource("3_plk1n")
 theme_override_font_sizes/font_size = 8
 text = "Retrun
 to Base"
 
-[node name="ButtonOptionRow2" type="HBoxContainer" parent="PanelContainer/HeartContianer/VBoxContainer" unique_id=2064386374]
+[node name="ButtonOptionRow2" type="HBoxContainer" parent="PanelContainer/HeartContianer/VBoxContainer2/MarginContainer" unique_id=2064386374]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 offset_transform_enabled = true
 offset_transform_pivot = Vector2(102, 19)
 
-[node name="DoubleDownButton" type="Button" parent="PanelContainer/HeartContianer/VBoxContainer/ButtonOptionRow2" unique_id=173711335]
+[node name="DoubleDownButton" type="Button" parent="PanelContainer/HeartContianer/VBoxContainer2/MarginContainer/ButtonOptionRow2" unique_id=173711335]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -99,7 +123,7 @@ grow_horizontal = 0
 theme_override_font_sizes/font_size = 8
 text = "Break Heart"
 
-[connection signal="pressed" from="PanelContainer/HeartContianer/VBoxContainer/ButtonOptionRow/RetryButton" to="." method="_on_retry_button_pressed"]
-[connection signal="pressed" from="PanelContainer/HeartContianer/VBoxContainer/ButtonOptionRow/ReturnButton" to="." method="_on_return_button_pressed"]
-[connection signal="pressed" from="PanelContainer/HeartContianer/VBoxContainer/ButtonOptionRow2/DoubleDownButton" to="." method="_on_double_down_button_pressed"]
+[connection signal="pressed" from="PanelContainer/HeartContianer/VBoxContainer2/MarginContainer/ButtonOptionRow/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="PanelContainer/HeartContianer/VBoxContainer2/MarginContainer/ButtonOptionRow/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="PanelContainer/HeartContianer/VBoxContainer2/MarginContainer/ButtonOptionRow2/DoubleDownButton" to="." method="_on_double_down_button_pressed"]
 [connection signal="pressed" from="BreakHeart" to="." method="_on_break_heart_pressed"]

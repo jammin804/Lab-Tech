@@ -25,6 +25,7 @@ func _ready() -> void:
 
 
 
+
 func _update_labels() -> void:
 	battery_tanks.text = "Battery Tanks: " + str(PlayerManager.current_stats.battery_tanks)
 	battery_points.text = "Battery Points: " + str(PlayerManager.current_stats.battery_tank_points)

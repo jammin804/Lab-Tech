@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="UpgradeResource" format=3 uid="uid://ch0d7gm1vsuip"]
+
+[ext_resource type="Texture2D" uid="uid://jei3hjcvv27" path="res://assets/ui/skill_tree/spritesheet.png" id="1_twldj"]
+[ext_resource type="Script" uid="uid://7pod45ky1nt3" path="res://resources/Pick3/upgrade_resource.gd" id="2_5m37s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_twldj"]
+atlas = ExtResource("1_twldj")
+region = Rect2(48, 40, 16, 20)
+
+[resource]
+script = ExtResource("2_5m37s")
+icon = SubResource("AtlasTexture_twldj")
+upgrade_name = "Flat DMG UP"
+upgrade_description = "+3 projectile DMG "
+stat = 3.0
+metadata/_custom_type_script = "uid://7pod45ky1nt3"

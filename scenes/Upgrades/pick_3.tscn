@@ -15,6 +15,24 @@ offset_right = 317.0
 offset_bottom = 177.0
 script = ExtResource("1_di6f7")
 
+[node name="UpgradeSelected" type="PanelContainer" parent="." unique_id=77943265]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 56.0
+offset_top = 28.0
+offset_right = -56.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UpgradeSelected" unique_id=1368252888]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "upgrade selected"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=144668489]
 unique_name_in_owner = true
 layout_mode = 1
@@ -43,21 +61,3 @@ upgrade_resource = ExtResource("4_wy5na")
 [node name="Panel3" parent="HBoxContainer" unique_id=1128156253 instance=ExtResource("1_0pj4t")]
 layout_mode = 2
 upgrade_resource = ExtResource("5_wy5na")
-
-[node name="UpgradeSelected" type="PanelContainer" parent="." unique_id=77943265]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 56.0
-offset_top = 28.0
-offset_right = -56.0
-offset_bottom = -28.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="UpgradeSelected" unique_id=1368252888]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "upgrade selected"
