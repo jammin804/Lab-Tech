@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://dmgewjjqd1dva"]
+
+[ext_resource type="PackedScene" uid="uid://cov3u17kl0xe3" path="res://scenes/Upgrades/pick_3.tscn" id="1_3nr0x"]
+[ext_resource type="Script" uid="uid://ca80lio667nbm" path="res://scripts/playgroundtesting/upgrade_playground.gd" id="1_rioud"]
+[ext_resource type="PackedScene" uid="uid://lccgrpafmldk" path="res://scenes/debug/debug_text_overlay.tscn" id="2_e4bd0"]
+[ext_resource type="PackedScene" uid="uid://drdlmsifm1unh" path="res://scenes/Entities_New/player.tscn" id="4_rioud"]
+
+[node name="Upgrade Playground" type="Control" unique_id=900757078 node_paths=PackedStringArray("player")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_rioud")
+player = NodePath("Pausable/Player")
+
+[node name="Pick3" parent="." unique_id=1535268448 instance=ExtResource("1_3nr0x")]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 314.0
+offset_bottom = 157.0
+
+[node name="DebugTextOverlay" parent="." unique_id=1309649993 instance=ExtResource("2_e4bd0")]
+layout_mode = 1
+
+[node name="Pausable" type="Control" parent="." unique_id=1699397222]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Player" parent="Pausable" unique_id=98801044 instance=ExtResource("4_rioud")]

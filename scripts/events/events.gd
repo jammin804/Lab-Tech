@@ -28,6 +28,7 @@ signal spawn_enemy(body: Enemy)
 
 #Scene Management
 signal lab_transition_finished
+signal share_current_scene_name(scene_name: String)
 
 
 var target_talent_tab : int = 0

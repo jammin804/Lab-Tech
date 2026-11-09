@@ -13,7 +13,7 @@ signal drain_battery(amount)
 
 var PROJECTILE_SCENE = preload("res://scenes/projectile.tscn")
 var num_of_bullets : int = 1
-var bullet_strength: int = 0
+var bullet_strength: float = 0.0
 var is_limit_unlocked : bool = false
 var can_charge : bool = false
 var is_charging : bool = false
@@ -34,6 +34,7 @@ func _process(delta: float) -> void:
 	_check_number_of_bullets()
 	_handle_firing_inputs(delta)
 	_handle_animation()
+
 
 
 func _handle_firing_inputs(delta: float) -> void:
@@ -57,7 +58,9 @@ func _process_charging(delta: float) -> void:
 			charging_up_sfx.play()
 			is_charging = true
 
-		charge_percent += delta * 40
+		charge_percent += delta * PlayerManager.current_stats.charge_rate
+		#charge_percent += delta * 110
+
 		charge_percent = clampf(charge_percent, 0.0, 100.0)
 
 		charge_progress_bar_container.get_child(0).value = charge_percent
@@ -69,7 +72,7 @@ func _process_charging(delta: float) -> void:
 			Events.blaster_fully_charged.emit()
 
 func _release_charging() -> void:
-	if charge_percent >= 15.0:
+	if charge_percent >= 25.0:
 		_shoot(charge_percent)
 
 	is_charging = false
@@ -91,14 +94,15 @@ func _shoot(charge_percentage : float):
 	elif is_limit_unlocked == false:
 		shoot_cooldown_timer.wait_time = 1.0
 
+	var bullet_damage = PlayerManager.current_stats.power + PlayerManager.current_stats.damage_multipler
 
 	if charge_percentage >= 100.0:
 		charge_scale = Vector2(2.0, 2.0)
-		bullet_strength = int(PlayerManager.current_stats.power * PlayerManager.current_stats.charge_damage_multipler)
+		bullet_strength = ceil(bullet_damage * PlayerManager.current_stats.charge_damage_multipler)
 		drain_battery.emit(drain_amount)
 	else:
 		charge_scale = Vector2.ONE
-		bullet_strength = PlayerManager.current_stats.power
+		bullet_strength = ceil(bullet_damage)
 
 
 	shoot_cooldown_timer.start()
@@ -109,7 +113,7 @@ func _shoot(charge_percentage : float):
 		_create_bullet(i, burst_count)
 
 	Events.bullet_fired.emit()
-	print("Current Battery", player.current_health)
+	print("Current Battery ", player.current_health)
 
 func _create_bullet(bullet_index: int, total_bullets: int) -> void:
 	var bullet : Projectile = PROJECTILE_SCENE.instantiate()

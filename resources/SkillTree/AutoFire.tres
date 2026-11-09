@@ -10,7 +10,6 @@ battery_tanks = 0
 battery_tank_points = 0
 auto_fire = true
 power = 0
-rapid = 0.0
 charge_rate = 0.0
 charge_damage_multipler = 0.0
 metadata/_custom_type_script = "uid://d332ldvfmgnhy"

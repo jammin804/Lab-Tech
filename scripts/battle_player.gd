@@ -96,6 +96,7 @@ func _process(delta: float) -> void:
 					shoot(0.0)
 
 			if Input.is_action_pressed("left_click"):
+				#print("Player charge rate: ", stats.charge_rate)
 				current_charge_percent += delta * stats.charge_rate
 				current_charge_percent = clampf(current_charge_percent, 0.0, max_charge_percent)
 				time_held += 1

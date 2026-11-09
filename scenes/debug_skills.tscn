@@ -53,6 +53,7 @@ offset_bottom = 48.0
 
 [node name="StatLabel" type="Label" parent="Stat/VBoxContainer2" unique_id=2040987504]
 layout_mode = 2
+theme_override_font_sizes/font_size = 10
 text = "Player Stats"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Stat/VBoxContainer2" unique_id=800852768]
@@ -60,11 +61,13 @@ layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="BatteryTanks" type="Label" parent="Stat/VBoxContainer2/VBoxContainer" unique_id=899973061]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 6
 text = "Battery Tanks:"
 
 [node name="BatteryPoints" type="Label" parent="Stat/VBoxContainer2/VBoxContainer" unique_id=331169819]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 6
 text = "Battery Points:"
@@ -85,16 +88,19 @@ theme_override_font_sizes/font_size = 6
 text = "Charge Power:"
 
 [node name="ChargeCheck" type="Label" parent="Stat/VBoxContainer2/VBoxContainer" unique_id=1726053570]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 6
 text = "Can Charge:"
 
 [node name="LimiterCheck" type="Label" parent="Stat/VBoxContainer2/VBoxContainer" unique_id=2043671890]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 6
 text = "Limiter:"
 
 [node name="TurretCheck" type="Label" parent="Stat/VBoxContainer2/VBoxContainer" unique_id=1100313790]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 6
 text = "Turret:"
@@ -109,6 +115,7 @@ theme_override_font_sizes/font_size = 6
 text = "Money:"
 
 [node name="Scraps" type="Label" parent="Stat/VBoxContainer2/MoneyContainer" unique_id=1858041552]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 6
 text = "Scraps:"
@@ -119,6 +126,7 @@ theme_override_font_sizes/font_size = 6
 text = "Power:"
 
 [node name="Control" type="Control" parent="." unique_id=154605309]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

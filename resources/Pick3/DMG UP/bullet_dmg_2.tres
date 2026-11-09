@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="UpgradeResource" format=3 uid="uid://lqbphr3q5a3"]
+
+[ext_resource type="Texture2D" uid="uid://jei3hjcvv27" path="res://assets/ui/skill_tree/spritesheet.png" id="1_5gnl3"]
+[ext_resource type="Script" uid="uid://7pod45ky1nt3" path="res://resources/Pick3/upgrade_resource.gd" id="2_13uoy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gnl3"]
+atlas = ExtResource("1_5gnl3")
+region = Rect2(144, 0, 16, 20)
+
+[resource]
+script = ExtResource("2_13uoy")
+icon = SubResource("AtlasTexture_5gnl3")
+upgrade_name = "Bullet DMG UP II"
+upgrade_description = "+10 projectile DMG "
+stat = 10
+metadata/_custom_type_script = "uid://7pod45ky1nt3"

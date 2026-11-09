@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UpgradeResource" format=3 uid="uid://dxpcd2dlp23g0"]
+
+[ext_resource type="Script" uid="uid://7pod45ky1nt3" path="res://resources/Pick3/upgrade_resource.gd" id="1_0vqyv"]
+[ext_resource type="Texture2D" uid="uid://jei3hjcvv27" path="res://assets/ui/skill_tree/spritesheet.png" id="1_105rx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1vxt"]
+atlas = ExtResource("1_105rx")
+region = Rect2(0, 20, 16, 20)
+
+[resource]
+script = ExtResource("1_0vqyv")
+icon = SubResource("AtlasTexture_e1vxt")
+upgrade_name = "Charge Rate II"
+upgrade_description = "Reduce charge rate by 10%"
+upgrade = 6
+stat = 10.0
+metadata/_custom_type_script = "uid://7pod45ky1nt3"

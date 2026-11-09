@@ -36,11 +36,6 @@ func is_upgradable() -> bool:
 	else:
 		if get_parent().get_child(get_index() - 1).enabled == true:
 			return true
-	#elif get_index() > 0:
-		#if get_parent().get_child(get_index() - 1).enabled == true:
-			#return true
-		#else:
-			#return false
 
 	return false
 

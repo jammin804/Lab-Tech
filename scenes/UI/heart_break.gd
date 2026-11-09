@@ -10,9 +10,8 @@ extends CanvasLayer
 @onready var double_down_button: Button = %DoubleDownButton
 
 var hearts_array: Array[HeartIcon] = []
-var is_double_down_unlocked : bool = true
+var is_double_down_unlocked : bool = false
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_check_double_down_unlock()
 	update_hearts()

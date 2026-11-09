@@ -118,7 +118,7 @@ script = ExtResource("1_f1r8i")
 pause_menu = NodePath("CanvasLayer/PauseMenu")
 settings_menu = NodePath("CanvasLayer/SettingsMenu")
 zones = Array[ExtResource("2_ijdgx")]([ExtResource("3_ftxkm"), ExtResource("4_xu0ho")])
-levels = Array[String](["uid://bdpj78s126rdu", "uid://07o755mijima"])
+levels = Array[String](["uid://bdpj78s126rdu", "res://scenes/Levels/level_2.tscn"])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1472098651]
 process_mode = 3

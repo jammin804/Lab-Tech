@@ -38,7 +38,7 @@ var total_cores_gained : int = 0
 var status = ""
 var grade = ""
 
-@onready var result_screen: Result_Screen = $ResultScreen
+#@onready var result_screen: Result_Screen = $ResultScreen
 @onready var wave_label: Label = $Pausable/WaveLabel
 @onready var enemies_in_wave_label: Label = $Pausable/EnemiesInWaveLabel
 @onready var enemy_spawner: Enemy_Spawner = %EnemySpawner
@@ -133,7 +133,10 @@ func _on_quit_btn_pressed() -> void:
 	LevelTransition.change_scene_to(main_menu)
 
 func _on_retreat_button_pressed() -> void:
+	#print(get_tree_string_pretty())
+	#Events.share_current_scene_name.emit(get_tree().current_scene.name)
 	LevelTransition.change_scene_to(lab)
+
 
 func _on_options_btn_pressed() -> void:
 	is_option_menu_open = true
