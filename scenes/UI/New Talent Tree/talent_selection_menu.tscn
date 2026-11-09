@@ -20,6 +20,44 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ghft2"]
+content_margin_left = 40.0
+content_margin_top = 4.0
+content_margin_right = 40.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+border_width_left = 1
+border_width_right = 1
+border_color = Color(0.175, 0.175, 0.175, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hmhfo"]
+content_margin_left = 40.0
+content_margin_top = 4.0
+content_margin_right = 40.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+border_width_top = 2
+border_color = Color(1, 1, 1, 0.75)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qki3v"]
+content_margin_left = 40.0
+content_margin_top = 4.0
+content_margin_right = 40.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.6)
+border_width_left = 1
+border_width_right = 1
+border_color = Color(0.175, 0.175, 0.175, 1)
+corner_detail = 1
+
+[sub_resource type="Theme" id="Theme_hmhfo"]
+TabContainer/font_sizes/font_size = 9
+TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_ghft2")
+TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_hmhfo")
+TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_qki3v")
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qk3sa"]
 content_margin_left = 20.0
 content_margin_right = 20.0
@@ -124,7 +162,41 @@ color = Color(0, 0.0627451, 0.12941177, 1)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ar84w")
 
+[node name="TabContainer" type="TabContainer" parent="." unique_id=1893481362]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 28.0
+offset_right = 295.0
+offset_bottom = 169.0
+theme = SubResource("Theme_hmhfo")
+current_tab = 0
+
+[node name="Upgrade" type="TabBar" parent="TabContainer" unique_id=1519256631]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Label" type="Label" parent="TabContainer/Upgrade" unique_id=24092329]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -8.0
+offset_right = 20.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "test"
+
+[node name="Weapons" type="TabBar" parent="TabContainer" unique_id=1219099874]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
 [node name="Pick3" parent="." unique_id=1535268448 instance=ExtResource("2_hmhfo")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
