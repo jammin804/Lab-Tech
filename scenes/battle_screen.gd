@@ -133,8 +133,6 @@ func _on_quit_btn_pressed() -> void:
 	LevelTransition.change_scene_to(main_menu)
 
 func _on_retreat_button_pressed() -> void:
-	#print(get_tree_string_pretty())
-	#Events.share_current_scene_name.emit(get_tree().current_scene.name)
 	LevelTransition.change_scene_to(lab)
 
 
@@ -179,7 +177,6 @@ func update_wave_counter(number_defeated: int):
 
 func _on_currency_gained(amount: int) -> void:
 	total_money_gained += amount
-	#money_label.text = str("$", total_money_gained)
 
 
 func _on_enemy_queue_free() -> void:
@@ -193,7 +190,10 @@ func _check_win_condition():
 		is_win_condition_met = true
 		#TODO Setup reward: increment the level/amount of enemies destroyed for the lab scene
 		Globals.enemies_killed += enemies_defeated
-		#get_tree().change_scene_to_file("res://scenes/lab.tscn")
+		if enemies_defeated > enemies_to_defeat:
+			total_cores_gained += 1
+			SaveLoad.SaveFileData.core += total_cores_gained
+
 		Events.win_condition_success.emit()
 
 	else:
