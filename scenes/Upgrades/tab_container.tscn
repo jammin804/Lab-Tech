@@ -140,6 +140,7 @@ text = "99"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Upgrade/MarginContainer/VBoxContainer" unique_id=1957647241]
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer" unique_id=775993335]
 layout_mode = 2
@@ -150,11 +151,12 @@ theme_override_constants/separation = 2
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="Label" type="Label" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/StatsIncrease1" unique_id=53771326]
+[node name="DMGLabel" type="Label" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/StatsIncrease1" unique_id=53771326]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 9
-text = "DMG UP"
+text = "DMG UP v1"
 
 [node name="Label3" type="Label" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/StatsIncrease1" unique_id=2049322599]
 visible = false
@@ -181,6 +183,7 @@ theme_override_font_sizes/font_size = 9
 text = "+"
 
 [node name="StatsIncrease2" type="HBoxContainer" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=109309881]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 12
 
@@ -203,6 +206,7 @@ theme_override_font_sizes/font_size = 9
 text = "+"
 
 [node name="StatsIncrease3" type="HBoxContainer" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1044181744]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 12
 
@@ -224,6 +228,7 @@ theme_override_font_sizes/font_size = 9
 text = "+"
 
 [node name="StatsIncrease4" type="HBoxContainer" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1076358595]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 12
 
@@ -299,6 +304,7 @@ text = "Turret:"
 [node name="HBoxContainer3" type="HBoxContainer" parent="Upgrade/MarginContainer/VBoxContainer" unique_id=815944252]
 layout_mode = 2
 size_flags_horizontal = 8
+size_flags_vertical = 8
 
 [node name="ConfirmBtn" type="Button" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=982660893]
 layout_mode = 2
@@ -426,3 +432,4 @@ text = "Purchased"
 
 [connection signal="pressed" from="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/StatsIncrease1/HBoxContainer/DMGMinusButton" to="." method="_on_dmg_minus_button_pressed"]
 [connection signal="pressed" from="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/StatsIncrease1/HBoxContainer/DMGPlusButton" to="." method="_on_dmg_plus_button_pressed"]
+[connection signal="pressed" from="Upgrade/MarginContainer/VBoxContainer/HBoxContainer3/ConfirmBtn" to="." method="_on_confirm_btn_pressed"]

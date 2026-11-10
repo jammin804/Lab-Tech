@@ -30,7 +30,7 @@ func add_upgrade(upgrade, stats):
 	#for stat in current_stats
 
 	if upgrade == PlayerManager.current_stats.upgrades.ADD_DAMAGE:
-		PlayerManager.current_stats.damage_multipler += stats
+		PlayerManager.current_stats.power += stats
 	elif upgrade == current_stats.upgrades.ADD_ATTACK_SPEED:
 		current_stats.attackSpeedMulti += stats
 	elif upgrade == current_stats.upgrades.ADD_BULLET:

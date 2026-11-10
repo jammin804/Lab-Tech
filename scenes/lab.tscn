@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://hk8jsqntk3b5" path="res://assets/ui/hud/battleButton.png" id="18_eavsi"]
 [ext_resource type="PackedScene" uid="uid://3ylvkfrfqqst" path="res://scenes/UI/lab_gui.tscn" id="18_ftxkm"]
 [ext_resource type="PackedScene" uid="uid://blqe7ke2t7a3n" path="res://scenes/UI/custom_mouse.tscn" id="18_ijdgx"]
+[ext_resource type="PackedScene" uid="uid://c02u2173kl6mu" path="res://scenes/Upgrades/upgrade_selection_menu.tscn" id="21_kxeyc"]
 [ext_resource type="PackedScene" uid="uid://4cascoqhclqt" path="res://scenes/UI/zone_complete.tscn" id="22_kvhjj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hem3r"]
@@ -325,6 +326,12 @@ visible = false
 layout_mode = 1
 
 [node name="TalentMenuManager" parent="CanvasLayer/Pausable" unique_id=491223868 instance=ExtResource("13_ijdgx")]
+unique_name_in_owner = true
+visible = false
+z_index = 2
+layout_mode = 1
+
+[node name="UpgradeSelectionMenu" parent="CanvasLayer/Pausable" unique_id=1680291744 instance=ExtResource("21_kxeyc")]
 unique_name_in_owner = true
 visible = false
 z_index = 2

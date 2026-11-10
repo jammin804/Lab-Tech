@@ -37,6 +37,8 @@ var is_new_zone: bool = false
 @onready var end_level_pop_up: CanvasLayer = %EndLevelPopUp
 @onready var skill_tree: Control = %SkillTree
 @onready var talent_menu_manager: TalentMenuManager = %TalentMenuManager
+@onready var upgrade_selection_menu: UpgradeSelectionMenu = %UpgradeSelectionMenu
+
 @onready var lab_gui: LabGui = %LabGui
 @onready var zone_complete: ZoneComplete = %ZoneComplete
 
@@ -177,7 +179,7 @@ func _on_zone_upgrade_btn_pressed() -> void:
 
 
 func open_upgrade_shop():
-	talent_menu_manager.show()
+	upgrade_selection_menu.show()
 
 
 func check_zone_index():
