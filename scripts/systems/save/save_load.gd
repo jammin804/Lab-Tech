@@ -8,7 +8,7 @@ var infinite_money: int = 999
 
 func _ready() -> void:
 	#Cheats
-	SaveFileData.money = infinite_money
+	#SaveFileData.money = infinite_money
 	_load()
 
 func _save():

@@ -1,0 +1,39 @@
+[gd_resource type="Theme" format=3 uid="uid://c6v36clmecx3r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ghft2"]
+content_margin_left = 40.0
+content_margin_top = 4.0
+content_margin_right = 40.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+border_width_left = 1
+border_width_right = 1
+border_color = Color(0.175, 0.175, 0.175, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hmhfo"]
+content_margin_left = 40.0
+content_margin_top = 4.0
+content_margin_right = 40.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+border_width_top = 2
+border_color = Color(1, 1, 1, 0.75)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qki3v"]
+content_margin_left = 40.0
+content_margin_top = 4.0
+content_margin_right = 40.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.6)
+border_width_left = 1
+border_width_right = 1
+border_color = Color(0.175, 0.175, 0.175, 1)
+corner_detail = 1
+
+[resource]
+TabContainer/font_sizes/font_size = 9
+TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_ghft2")
+TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_hmhfo")
+TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_qki3v")

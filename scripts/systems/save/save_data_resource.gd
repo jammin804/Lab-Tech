@@ -3,6 +3,6 @@ extends Resource
 
 @export var money : int = 0
 @export var scrap : int = 0
-@export var core : int = 0
+@export var core : int = 3
 @export var unlocked_talents: Array = []
 @export var levels : int = 0
