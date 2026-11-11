@@ -301,6 +301,7 @@ texture = ExtResource("12_otmr2")
 [node name="Death" type="AudioStreamPlayer2D" parent="." unique_id=1842636281]
 rotation = 3.1415925
 scale = Vector2(1, -1)
+bus = &"SFX"
 
 [node name="HPLabel" type="Label" parent="." unique_id=592802929]
 anchors_preset = 7

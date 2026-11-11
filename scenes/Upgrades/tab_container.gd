@@ -9,7 +9,6 @@ extends TabContainer
 #upgrade level info
 var max_upgrade_lvl: int = 3
 
-
 #currency
 var cores: int = 0
 var starting_cores: int = 0
