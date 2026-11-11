@@ -292,10 +292,16 @@ layer = 400
 
 [node name="Control" type="Control" parent="." unique_id=1058736315]
 layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 320.0
+offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
 
 [node name="Background" type="TextureRect" parent="Control" unique_id=62776617]
 texture_filter = 1
@@ -303,8 +309,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 321.77777
-offset_bottom = 181.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -312,7 +316,6 @@ size_flags_vertical = 3
 mouse_filter = 0
 texture = ExtResource("5_4i6gi")
 expand_mode = 2
-stretch_mode = 4
 
 [node name="Background3" type="TextureRect" parent="Control" unique_id=2105731366]
 texture_filter = 1
@@ -320,8 +323,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 327.11108
-offset_bottom = 184.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -329,7 +330,6 @@ size_flags_vertical = 3
 mouse_filter = 0
 texture = ExtResource("6_xi46r")
 expand_mode = 2
-stretch_mode = 4
 
 [node name="Background2" type="TileMapLayer" parent="." unique_id=1617975859]
 visible = false
@@ -351,6 +351,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 320.0
+offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2

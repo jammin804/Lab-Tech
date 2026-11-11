@@ -33,7 +33,7 @@ enum upgrades {ADD_DAMAGE, ADD_DAMAGE_MULTI, ADD_ATTACK_SPEED, ADD_BULLET, ADD_T
 
 
 
-#TODO [High Prio] 11/6: Continue to work on getting the upgrades to fit with the player stats. Link the remaining upgrades
+#TODO [URGENT] 11/11: Continue to work on getting the upgrades to fit with the player stats. Link the remaining upgrades
 #region Testing Code for upgrade
 
 #Base Stats

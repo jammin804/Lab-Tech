@@ -15,7 +15,6 @@ var tree_name : String
 
 func _ready() -> void:
 
-	#FIXME FIX THIS Bug that causes a null instance
 	tree_name = get_parent().get_parent().name
 	if tree_name == "Lab":
 		retreat_btn.hide()

@@ -1,7 +1,6 @@
 class_name Battle_Player
 extends Player
 
-#FIXME Try to remove when creating new branch
 @export var current_weapon: WeaponData
 @export var drain_amount: int = 10
 @export var turret: PackedScene
@@ -102,7 +101,7 @@ func _process(delta: float) -> void:
 				time_held += 1
 				#print(time_held)
 				if time_held >= 20:
-					charge_progress_bar.call_deferred("show") #TODO Polish - make the transition smoother
+					charge_progress_bar.call_deferred("show")
 
 				charge_progress_bar.value = current_charge_percent
 				#When at 100% have the bar modulate with a yellow outline or tint

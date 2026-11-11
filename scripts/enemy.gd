@@ -185,7 +185,7 @@ func move_enemy(delta):
 func _drop_item() -> void:
 	pass
 
-##FIXME Need to fix the issue of the shader studder
+#BUG Need to fix the issue of the shader studder
 func _on_hit_flash_anim_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "death":
 		#print("Enemy Dropped: ", loot_amount[rng.rand_weighted(weights)])

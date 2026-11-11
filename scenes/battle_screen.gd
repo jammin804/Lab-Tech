@@ -51,9 +51,9 @@ var grade = ""
 #@onready var spawns_remaining_label: Label = %SpawnsRemainingLabel
 
 
+
 func _ready() -> void:
 	#Load player at spawn
-	#BUG 11/10 [URGENT] Fixing scaling on level 1 level
 	#TODO Need to create a load data for the player to save information between scenes
 	var player_inst = player.instantiate()
 	$Pausable.add_child(player_inst)

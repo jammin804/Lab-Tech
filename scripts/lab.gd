@@ -65,7 +65,6 @@ func _ready() -> void:
 	hide_menu()
 
 	#Initializing signals
-
 	pause_menu.resume_game.connect(_on_resume_btn_pressed)
 	pause_menu.open_options.connect(_on_options_btn_pressed)
 	pause_menu.exit_to_title.connect(_on_quit_btn_pressed)
@@ -122,7 +121,7 @@ func toggle_pause() -> void:
 
 
 func _on_battle_btn_pressed() -> void:
-	#TODO [For Level Increment Branch] 11/9 Make sure this goes to the proper zone and sub level
+	#TODO [For Level Increment Branch] 11/12 Make sure this goes to the proper zone and sub level
 	LevelTransition.change_scene_to(level)
 
 #region Settins and UI signals
@@ -168,7 +167,7 @@ func _on_lab_gui_zone_completed() -> void:
 	zone_complete.show()
 
 func _on_next_zone_btn_pressed() -> void:
-	#TODO 11/9 [For Level Increment Branch] make sure the zone index and incrementing and the level change follows
+	#TODO 11/12 [For Level Increment Branch] make sure the zone index and incrementing and the level change follows
 	#print(levels[1])
 	Globals.enemies_killed = 0
 	Globals.previous_killed = 0

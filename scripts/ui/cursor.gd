@@ -1,6 +1,6 @@
 extends Sprite2D
 
-#FIXME Fix custom cursor fly in bug
+
 var hotspot : Vector2 = Vector2(16, 16)
 
 func _ready() -> void:

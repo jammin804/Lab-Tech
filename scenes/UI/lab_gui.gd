@@ -44,6 +44,7 @@ func initialize(zone_name, zone_req, waves_to_complete, is_new_zone) ->void:
 
 func update_progress_bar(prev_enemies, enemies_defeated):
 	if waves == 0:
+		#TODO 11/11 Add Game Over condition (to be tested)
 		print("Game Over")
 
 	if waves > 0:
@@ -65,7 +66,8 @@ func animate_value(start, target, tween_duration=1.0):
 	tween.tween_method(_set_label_text, start, target, tween_duration)
 	await tween.finished
 	_check_bar_progress(target)
-	#TODO [POLISHING] 11/6 Have the bar make sfx when its is progressing
+	#TODO [POLISHING] 11/11 Have the bar make sfx when its is progressing
+	#BUG 11/11 Lab Waves left counter is broken
 
 
 
