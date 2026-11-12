@@ -101,7 +101,7 @@ func die()-> void:
 	#TODO [Polishing] Have Teleport Animation Like Megamnan
 	#battery_empty.emit()
 	await get_tree().create_timer(1.0).timeout
-	#save when
+
 
 
 func _on_area_2d_mouse_entered() -> void:

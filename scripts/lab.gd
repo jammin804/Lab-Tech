@@ -80,7 +80,9 @@ func _ready() -> void:
 	level = levels[zone_index]
 
 	zone_info = zones[zone_index]
-	lab_gui.initialize(zone_info.zone_name, zone_info.zone_requirement, zone_info.waves_left_to_complete_goal, is_new_zone)
+
+	lab_gui.initialize(zone_info.zone_name, zone_info.zone_requirement, is_new_zone)
+
 
 func update_energy() -> void:
 	if current_energy < max_energy:
@@ -152,7 +154,9 @@ func _on_upgrades_btn_pressed() -> void:
 func _on_scene_loading_finished() -> void:
 
 	lab_gui.update_progress_bar(Globals.previous_killed, Globals.enemies_killed)
+	lab_gui.update_wave_label(5)
 	Globals.previous_killed = Globals.enemies_killed
+	#Globals.prev_wave = Globals.current_wave
 
 
 func _on_test_button_pressed() -> void:
@@ -178,7 +182,7 @@ func _on_zone_upgrade_btn_pressed() -> void:
 
 
 func open_upgrade_shop():
-	#upgrade_selection_menu.show()
+	#upgrade_selection_menu.show() #TODO [DO NOT DELETE] this will be the new system in the future
 	talent_menu_manager.show()
 
 

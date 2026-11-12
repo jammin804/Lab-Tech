@@ -2,6 +2,7 @@ extends Node
 class_name Global
 
 var current_wave: int = 1
+var prev_wave: int = 0
 var moving_to_next_wave: bool
 var level: int = 1
 var total_levels : int = 3
@@ -9,6 +10,8 @@ var total_levels : int = 3
 var zone: int = 1
 var zones_unlocked: int = 1
 var total_zones: int = 5
+
+
 
 
 var can_screenshake : bool = true #When damage or upgrade is at a certian level screen shake

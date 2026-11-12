@@ -91,7 +91,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("pause"): #and is_result_screen_open == false:
+	if event.is_action_pressed("pause"):
 		if is_option_menu_open:
 			print("Close Option Menu")
 			settings_menu.visible = false
@@ -189,7 +189,7 @@ func _on_enemy_queue_free() -> void:
 func _check_win_condition():
 	if enemies_defeated >= num_to_succeed:
 		is_win_condition_met = true
-		#TODO Setup reward: increment the level/amount of enemies destroyed for the lab scene
+		#TODO [Risk Reward Branch] Setup reward: increment the level/amount of enemies destroyed for the lab scene
 		Globals.enemies_killed += enemies_defeated
 		if enemies_defeated > enemies_to_defeat:
 			total_cores_gained += 1
@@ -199,7 +199,7 @@ func _check_win_condition():
 
 	else:
 		is_win_condition_met = false
-		#TODO Setup punishment: Lose life/lose resource/ lose upgrade
+		#TODO [Risk Reward Branch] Setup punishment: Lose life/lose resource/ lose upgrade
 		Globals.player_lives -= 1
 		print("Number of lives left", Globals.player_lives)
 		Events.win_condition_fail.emit()

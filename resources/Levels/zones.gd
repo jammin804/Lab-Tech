@@ -6,3 +6,4 @@ extends Resource
 @export var zone_requirement : int
 @export var num_until_boss : int
 @export var waves_left_to_complete_goal: int
+@export var is_new_zone: bool

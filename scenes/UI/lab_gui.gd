@@ -2,7 +2,7 @@ class_name LabGui
 extends Control
 
 
-signal on_maxed_meter
+#signal on_maxed_meter
 signal zone_completed
 
 @onready var zone_label: Label = %ZoneLabel
@@ -11,7 +11,8 @@ signal zone_completed
 @onready var enemies_required_label: Label = %EnemiesRequiredLabel
 @onready var wave_label: Label = %WaveLabel
 
-var waves: int = 0
+var waves: int
+var prev_waves: int
 #var start
 var prev_killed: int
 var new_killed: int
@@ -26,9 +27,8 @@ func _ready() -> void:
 	new_killed = Globals.enemies_killed
 
 
-func initialize(zone_name, zone_req, waves_to_complete, is_new_zone) ->void:
+func initialize(zone_name, zone_req, is_new_zone) ->void:
 	kills_to_next = zone_req
-
 	zone_label.text = zone_name
 	enemies_required_label.text = str(kills_to_next)
 	enemies_killed_label.text = str(prev_killed)
@@ -39,17 +39,12 @@ func initialize(zone_name, zone_req, waves_to_complete, is_new_zone) ->void:
 	else:
 		progress_bar.value = prev_killed
 
-	waves = waves_to_complete
+
+	#waves = Globals.current_wave
 	wave_label.text = "Waves Left: " + str(waves)
 
 func update_progress_bar(prev_enemies, enemies_defeated):
-	if waves == 0:
-		#TODO 11/11 Add Game Over condition (to be tested)
-		print("Game Over")
-
-	if waves > 0:
-		waves -= 1
-	wave_label.text = "Waves Left: " + str(waves)
+	update_wave_label(5)
 
 	animate_value(prev_enemies, enemies_defeated)
 
@@ -63,7 +58,7 @@ func animate_value(start, target, tween_duration=1.0):
 	tween.tween_method(_set_label_text, start, target, tween_duration)
 	await tween.finished
 	_check_bar_progress(target)
-	#TODO [POLISHING] 11/11 Have the bar make sfx when its is progressing
+	#TODO [POLISHING] 11/13 Have the bar make sfx when its is progressing
 	#BUG 11/11 Lab Waves left counter is broken
 
 
@@ -81,3 +76,21 @@ func xp_to_next(enemies_defeated):
 func _check_bar_progress(amount: int) -> void:
 	if amount >= progress_bar.max_value:
 		zone_completed.emit()
+
+
+func update_wave_label(curr_wave):
+	#TODO [URGENT] Fix the wave lablel update. may need to use prev and current to keep progressing down
+	curr_wave -= 1
+	wave_label.text = "Waves Left: " + str(curr_wave)
+
+
+#region Working Code
+	#if waves == 0:
+		##TODO 11/11 Add Game Over condition (to be tested)
+		#print("Game Over")
+#
+	#if waves > 0:
+		#waves -= 1
+#
+	#wave_label.text = "Waves Left: " + str(waves)
+#endregion

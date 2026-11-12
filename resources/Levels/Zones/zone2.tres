@@ -8,4 +8,5 @@ zone_name = "Forest"
 zone_requirement = 40
 num_until_boss = 20
 waves_left_to_complete_goal = 7
+is_new_zone = true
 metadata/_custom_type_script = "uid://ds2yhq10kkevo"
