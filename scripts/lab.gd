@@ -178,7 +178,8 @@ func _on_zone_upgrade_btn_pressed() -> void:
 
 
 func open_upgrade_shop():
-	upgrade_selection_menu.show()
+	#upgrade_selection_menu.show()
+	talent_menu_manager.show()
 
 
 func check_zone_index():

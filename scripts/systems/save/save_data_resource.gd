@@ -8,4 +8,4 @@ extends Resource
 @export var levels : int = 1
 @export var zones: int = 1
 
-#TODO 11/11 [URGENT: SAVE SYSTEM BRANCH] Fix the save system to work with new upgrade system
+#TODO 11/12 [URGENT: SAVE SYSTEM BRANCH] Fix the save system to work with new upgrade system

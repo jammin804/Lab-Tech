@@ -51,11 +51,8 @@ func update_progress_bar(prev_enemies, enemies_defeated):
 		waves -= 1
 	wave_label.text = "Waves Left: " + str(waves)
 
-	#xp_to_next(enemies_defeated)
 	animate_value(prev_enemies, enemies_defeated)
-	#HACK May change to just show boss screen and now wrap. It will just reinitiate
-	#if abs(progress_bar.max_value - progress_bar.value) < 0.01 or enemies_defeated == progress_bar.max_value:
-		#progress_bar.value = 0
+
 
 func animate_value(start, target, tween_duration=1.0):
 	var tween : Tween
