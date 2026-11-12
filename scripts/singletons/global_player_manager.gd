@@ -2,7 +2,6 @@ extends Node
 
 signal stats_updated
 
-#FIXME Ask if there is a better way (or simpiler way) to move player to another scene with current hp unless its a new level or play just visited the lab to heal and upgrade
 var starting_stats_ref_path: String = "res://resources/PlayerData/starting_stats.tres"
 var current_stats : PlayerStats
 var current_health_cache: float = -1.0
@@ -30,7 +29,7 @@ func add_upgrade(upgrade, stats):
 	#for stat in current_stats
 
 	if upgrade == PlayerManager.current_stats.upgrades.ADD_DAMAGE:
-		PlayerManager.current_stats.damage_multipler += stats
+		PlayerManager.current_stats.power += stats
 	elif upgrade == current_stats.upgrades.ADD_ATTACK_SPEED:
 		current_stats.attackSpeedMulti += stats
 	elif upgrade == current_stats.upgrades.ADD_BULLET:

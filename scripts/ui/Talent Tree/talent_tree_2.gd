@@ -214,7 +214,6 @@ func _on_temp_save_button_pressed() -> void:
 func _checked_if_talents_are_unlocked():
 	var resources = get_tree().get_nodes_in_group("talents")
 
-	#Think about if i need to call this on load?
 	for talent in SaveLoad.SaveFileData.unlocked_talents: #Pull talent name from data
 		for resource : TalentIcon in resources:
 			if talent == resource.talent_resource.talent_id:

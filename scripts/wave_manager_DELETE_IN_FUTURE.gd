@@ -1,7 +1,6 @@
 class_name Wave_Manager
 extends Node
 
-#FIXME Tighten up Wave Manager, Currently the spanwns are off and the enemies and clumping
 
 #signal wave_update
 
@@ -35,7 +34,7 @@ func start_wave():
 		_spawn_enemies(current_wave)
 
 func _spawn_enemies(wave: WaveData):
-	#TODO JUICE: Call an animation signal to tell the wave to start
+	#TODO [POLISH]: Call an animation signal to tell the wave to start
 	var global_spawn_counter: int = 0
 
 	for spawn_group in wave.spawns:

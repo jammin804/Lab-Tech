@@ -7,4 +7,4 @@ extends Resource
 @export var upgrade: PlayerStats.upgrades
 @export var stat: float
 
-#TODO 11/5: Add 2 more upgrades and add the functionality to queue free the selection and apply the updgrades
+#TODO 11/12: Add 2 more upgrades and add the functionality to queue free the selection and apply the updgrades

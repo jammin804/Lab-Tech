@@ -6,6 +6,7 @@ extends Resource
 @export var enemies_to_defeat: int
 @export var enemies_to_spawn : int
 @export var enemies_type : Array[PackedScene]
+@export var cores: int
 
 func _init(p_num_to_kill = 1, p_num_to_spawn = 1) -> void:
 	enemies_to_defeat = p_num_to_kill

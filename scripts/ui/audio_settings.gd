@@ -14,7 +14,7 @@ func _ready() -> void:
 	music_slider.value_changed.connect(_on_music_volume_changed)
 	sfx_slider.value_changed.connect(_on_sfx_volume_changed)
 
-func _sync_sliders(): #FIXME Need to remove in the future. Currently scared it will break the game
+func _sync_sliders():
 	master_slider.value = _db_to_slider(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
 	music_slider.value = _db_to_slider(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music")))
 	sfx_slider.value  = _db_to_slider(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX")))

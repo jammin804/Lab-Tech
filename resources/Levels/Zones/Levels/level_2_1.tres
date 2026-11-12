@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="Level" format=3 uid="uid://teyevye2m5hu"]
+[gd_resource type="Resource" script_class="Levels" format=3 uid="uid://teyevye2m5hu"]
 
 [ext_resource type="PackedScene" uid="uid://cqueta70ubjqr" path="res://scenes/enemy.tscn" id="1_u3o3w"]
-[ext_resource type="Script" uid="uid://ci2m2uau1arlp" path="res://resources/Levels/level.gd" id="3_lj4ns"]
+[ext_resource type="Script" uid="uid://ci2m2uau1arlp" path="res://scripts/levels/level.gd" id="3_lj4ns"]
 
 [resource]
 script = ExtResource("3_lj4ns")

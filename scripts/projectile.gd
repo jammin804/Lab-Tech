@@ -13,7 +13,7 @@ var is_piercing: bool = true
 @onready var hit: AnimatedSprite2D = $Hit
 @onready var bullet: Sprite2D = $Bullet
 
-#TODO 11/6 Work on piercing bullet
+#TODO 11/11 Work on piercing bullet
 var current_element : WeaponData.Element = WeaponData.Element.DEFAULT
 
 func _ready() -> void:

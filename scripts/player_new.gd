@@ -119,7 +119,6 @@ func _on_magnet_area_entered(area: Area2D) -> void:
 func _load_skills():
 	#May remove
 	print("Load Skills")
-	#print("Current Skills to Load ", SaveLoad.SaveFileData.unlocked_talents)
 	for talent in SaveLoad.SaveFileData.unlocked_talents:
 		print("Talents that need be to loaded ", talent)
 

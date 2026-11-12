@@ -5,4 +5,7 @@ extends Resource
 @export var scrap : int = 0
 @export var core : int = 0
 @export var unlocked_talents: Array = []
-@export var levels : int = 0
+@export var levels : int = 1
+@export var zones: int = 1
+
+#TODO 11/12 [URGENT: SAVE SYSTEM BRANCH] Fix the save system to work with new upgrade system

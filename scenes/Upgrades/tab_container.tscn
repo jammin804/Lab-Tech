@@ -1,0 +1,435 @@
+[gd_scene format=3 uid="uid://bo3j466gpp7o0"]
+
+[ext_resource type="Theme" uid="uid://c6v36clmecx3r" path="res://themes/tab_theme.tres" id="1_c0tag"]
+[ext_resource type="Texture2D" uid="uid://bmgd5bh11073r" path="res://assets/ui/hud/coins-chests-etc-2-0.png" id="1_viyux"]
+[ext_resource type="Script" uid="uid://dv7j576l5jalc" path="res://scenes/Upgrades/tab_container.gd" id="2_0mdag"]
+[ext_resource type="Texture2D" uid="uid://nust27da1vec" path="res://assets/ui/skill_tree/Scifi weapons and items.png" id="2_c0tag"]
+[ext_resource type="Texture2D" uid="uid://btt7iex4c0cf0" path="res://assets/props/currency.png" id="2_souo5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g18rp"]
+atlas = ExtResource("2_souo5")
+region = Rect2(42, 10, 12, 12)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0mdag"]
+content_margin_left = 20.0
+content_margin_top = 2.0
+content_margin_right = 20.0
+content_margin_bottom = 2.0
+bg_color = Color(0.039215688, 0.02745098, 0.14901961, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.05882353, 0.27058825, 0.21176471, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2gmvp"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+bg_color = Color(0.039215688, 0.02745098, 0.14901961, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.6784314, 0.81960785, 0.45882353, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sro78"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+bg_color = Color(0.039215688, 0.02745098, 0.14901961, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.6784314, 0.81960785, 0.45882353, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n48gt"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+bg_color = Color(0.039299987, 0.027000003, 0.15, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.05882353, 0.27058825, 0.21176471, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qti4y"]
+atlas = ExtResource("1_viyux")
+region = Rect2(17, 18, 14, 14)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qti4y"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.10872077, 0.10872077, 0.10872076, 0.45882353)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5m6i"]
+atlas = ExtResource("2_c0tag")
+region = Rect2(34, 41, 28, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikxxn"]
+atlas = ExtResource("2_c0tag")
+region = Rect2(96, 165, 31, 20)
+
+[node name="TabContainer" type="TabContainer" unique_id=554234808 node_paths=PackedStringArray("power", "shots_per", "charge_power", "cores_label", "confirm_btn")]
+offset_left = 25.0
+offset_top = 28.0
+offset_right = 295.0
+offset_bottom = 169.0
+theme = ExtResource("1_c0tag")
+current_tab = 0
+script = ExtResource("2_0mdag")
+power = NodePath("Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Power")
+shots_per = NodePath("Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Shots Per")
+charge_power = NodePath("Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Charge Power")
+cores_label = NodePath("Upgrade/MarginContainer/VBoxContainer/HBoxContainer2/CoresLabel")
+confirm_btn = NodePath("Upgrade/MarginContainer/VBoxContainer/HBoxContainer3/ConfirmBtn")
+
+[node name="Upgrade" type="TabBar" parent="." unique_id=1458397806]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Upgrade" unique_id=1735348914]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Upgrade/MarginContainer" unique_id=208661918]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Upgrade/MarginContainer/VBoxContainer" unique_id=1243418420]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=583576005]
+layout_mode = 2
+texture = SubResource("AtlasTexture_g18rp")
+expand_mode = 2
+
+[node name="CoresLabel" type="Label" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=578315190]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 10
+text = "99"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Upgrade/MarginContainer/VBoxContainer" unique_id=1957647241]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer" unique_id=775993335]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_constants/separation = 2
+
+[node name="StatsIncrease1" type="HBoxContainer" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=2064907637]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="DMGLabel" type="Label" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/StatsIncrease1" unique_id=53771326]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 9
+text = "DMG UP v1"
+
+[node name="Label3" type="Label" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/StatsIncrease1" unique_id=2049322599]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 9
+text = "I"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/StatsIncrease1" unique_id=1360265375]
+layout_mode = 2
+
+[node name="DMGMinusButton" type="Button" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/StatsIncrease1/HBoxContainer" unique_id=1646943904]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 9
+text = "-"
+
+[node name="DMGPlusButton" type="Button" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/StatsIncrease1/HBoxContainer" unique_id=1224467794]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 9
+text = "+"
+
+[node name="StatsIncrease2" type="HBoxContainer" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=109309881]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/StatsIncrease2" unique_id=653899037]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 9
+text = "Atk Spd UP"
+
+[node name="Label3" type="Label" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/StatsIncrease2" unique_id=610294644]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 9
+text = "I"
+
+[node name="Button2" type="Button" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/StatsIncrease2" unique_id=1952606882]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 9
+text = "+"
+
+[node name="StatsIncrease3" type="HBoxContainer" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1044181744]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/StatsIncrease3" unique_id=440178122]
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "Chg DMG UP"
+
+[node name="Label3" type="Label" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/StatsIncrease3" unique_id=155984602]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 9
+text = "I"
+
+[node name="Button2" type="Button" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/StatsIncrease3" unique_id=1998003413]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 9
+text = "+"
+
+[node name="StatsIncrease4" type="HBoxContainer" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1076358595]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/StatsIncrease4" unique_id=1579503973]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 9
+text = "Atk Spd UP"
+
+[node name="Label3" type="Label" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/StatsIncrease4" unique_id=1674607970]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 9
+text = "I"
+
+[node name="Button2" type="Button" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/StatsIncrease4" unique_id=2031571706]
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "+"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1915149061]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="BatteryTanks" type="Label" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=1785753464]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Battery Tanks:"
+
+[node name="BatteryPoints" type="Label" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=1072495568]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Battery Points:"
+
+[node name="Power" type="Label" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=2084065911]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Power:"
+
+[node name="Shots Per" type="Label" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=19807664]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Shots Per:"
+
+[node name="Charge Power" type="Label" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=1832597050]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Charge Power:"
+
+[node name="ChargeCheck" type="Label" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=1278912261]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Can Charge:"
+
+[node name="LimiterCheck" type="Label" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=554975209]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Limiter:"
+
+[node name="TurretCheck" type="Label" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=2135986969]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Turret:"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Upgrade/MarginContainer/VBoxContainer" unique_id=815944252]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="ConfirmBtn" type="Button" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=982660893]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_0mdag")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2gmvp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_sro78")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_n48gt")
+text = "Confirm"
+
+[node name="Weapons" type="TabBar" parent="." unique_id=624011663]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Weapons" unique_id=1058863678]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Weapons/MarginContainer" unique_id=425546971]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Weapons/MarginContainer/VBoxContainer" unique_id=312984592]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="Weapons/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=917798061]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = SubResource("AtlasTexture_qti4y")
+
+[node name="Label" type="Label" parent="Weapons/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=154433671]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 10
+text = "Money: 999"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Weapons/MarginContainer/VBoxContainer" unique_id=1245422096]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Weapons/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1570246205]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_constants/separation = 2
+
+[node name="Weapon1" type="HBoxContainer" parent="Weapons/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=869217766]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Weapons/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Weapon1" unique_id=375510260]
+custom_minimum_size = Vector2(112, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_qti4y")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Weapons/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Weapon1/PanelContainer" unique_id=1579022273]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Weapons/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Weapon1/PanelContainer/HBoxContainer" unique_id=1295121298]
+layout_mode = 2
+texture = SubResource("AtlasTexture_s5m6i")
+
+[node name="Label" type="Label" parent="Weapons/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Weapon1/PanelContainer/HBoxContainer" unique_id=1684916530]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 8
+text = "Burst Rifle"
+
+[node name="Button" type="Button" parent="Weapons/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Weapon1/PanelContainer/HBoxContainer" unique_id=393298686]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "Burst Rifle"
+
+[node name="PurchasedLabel" type="Label" parent="Weapons/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Weapon1/PanelContainer" unique_id=178529006]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 10
+text = "Purchased"
+
+[node name="Weapon2" type="HBoxContainer" parent="Weapons/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=184434892]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Weapons/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Weapon2" unique_id=543243845]
+custom_minimum_size = Vector2(112, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_qti4y")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Weapons/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Weapon2/PanelContainer" unique_id=2119643200]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Weapons/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Weapon2/PanelContainer/HBoxContainer" unique_id=1405312668]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ikxxn")
+
+[node name="Label" type="Label" parent="Weapons/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Weapon2/PanelContainer/HBoxContainer" unique_id=1629769928]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 8
+text = "Plasma Cannon"
+
+[node name="Button" type="Button" parent="Weapons/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Weapon2/PanelContainer/HBoxContainer" unique_id=237721812]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "Burst Rifle"
+
+[node name="PurchasedLabel" type="Label" parent="Weapons/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Weapon2/PanelContainer" unique_id=719583667]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 10
+text = "Purchased"
+
+[connection signal="pressed" from="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/StatsIncrease1/HBoxContainer/DMGMinusButton" to="." method="_on_dmg_minus_button_pressed"]
+[connection signal="pressed" from="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/StatsIncrease1/HBoxContainer/DMGPlusButton" to="." method="_on_dmg_plus_button_pressed"]
+[connection signal="pressed" from="Upgrade/MarginContainer/VBoxContainer/HBoxContainer3/ConfirmBtn" to="." method="_on_confirm_btn_pressed"]
