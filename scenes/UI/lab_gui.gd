@@ -14,7 +14,6 @@ signal game_over
 
 var wave: int
 var prev_waves: int
-#var start
 var prev_killed: int
 var new_killed: int
 var kills_to_next: int
@@ -26,9 +25,6 @@ func _ready() -> void:
 	#Initalize the signals
 	prev_killed = Globals.previous_killed
 	new_killed = Globals.enemies_killed
-	#waves = Globals.current_wave
-
-	#update_wave_label(5)
 
 
 func initialize(zone_name, zone_req, prev_wave, is_new_zone) ->void:
@@ -44,7 +40,6 @@ func initialize(zone_name, zone_req, prev_wave, is_new_zone) ->void:
 		progress_bar.value = prev_killed
 
 
-	#waves = Globals.current_wave
 	wave_label.text = "Waves Left: " + str(prev_wave)
 
 
@@ -62,7 +57,6 @@ func animate_value(start, target, tween_duration=1.0):
 	await tween.finished
 	_check_bar_progress(target)
 	#TODO [POLISHING] 11/13 Have the bar make sfx when its is progressing
-	#BUG 11/11 Lab Waves left counter is broken
 
 
 
@@ -75,7 +69,6 @@ func xp_to_next(enemies_defeated):
 	progress_bar.value = enemies_defeated
 
 
-
 func _check_bar_progress(amount: int) -> void:
 	if amount >= progress_bar.max_value:
 		zone_completed.emit()
@@ -83,7 +76,6 @@ func _check_bar_progress(amount: int) -> void:
 
 func update_wave_label(waves):
 
-#region Working Code
 	if waves == 0:
 		#TODO 11/11 Add Game Over condition (to be tested)
 		print("Game Over")
@@ -93,9 +85,9 @@ func update_wave_label(waves):
 
 	wave_label.text = "Waves Left: " + str(Globals.current_wave)
 	_check_wave_num()
-#endregion
 
 
 func _check_wave_num():
 	if Globals.current_wave < 1:
-		print("GAMEOVER")
+		print("GAMEOVER from Lab_Gui")
+		game_over.emit()

@@ -1,6 +1,8 @@
 class_name GameManager
 extends Node2D
 
+#signal game_over
+
 
 @export_category("Debug Varibles")
 @export var toggle_debug : bool = false
@@ -16,6 +18,7 @@ extends Node2D
 @export_category("Levels")
 @export var zones : Array[Zones] = [null]
 @export var levels : Array[String] = []
+
 var zone_info : Zones
 var zone_index : int = 0
 
@@ -42,12 +45,14 @@ var is_game_over: bool = false
 
 @onready var lab_gui: LabGui = %LabGui
 @onready var zone_complete: ZoneComplete = %ZoneComplete
+@onready var game_over: Control = %GameOver
 
 
 
 @onready var resume_btn: UI_Button = %ResumeBtn
 @onready var options_btn: UI_Button = %OptionsBtn
 @onready var quit_btn: UI_Button = %QuitBtn
+@onready var lab_bgm: AudioStreamPlayer2D = %LabBGM
 
 
 #TODO I have alot of repeated code in each level
@@ -72,6 +77,7 @@ func _ready() -> void:
 	settings_menu.back_button_pressed.connect(_on_back_btn_pressed)
 	zone_complete.go_to_next_stage.connect(_on_next_zone_btn_pressed)
 	zone_complete.open_upgrade_screen.connect(_on_zone_upgrade_btn_pressed)
+	lab_gui.game_over.connect(_on_lab_gui_game_over)
 
 	LevelTransition.scene_loading_finished.connect(_on_scene_loading_finished)
 	#Events.share_current_scene_name.connect(_on_scene_name_shared)
@@ -110,7 +116,7 @@ func hide_menu() -> void:
 	settings_menu.hide()
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("pause"):
+	if event.is_action_pressed("pause") and !game_over:
 		if is_option_menu_open:
 			settings_menu.visible = false
 			is_option_menu_open = false
@@ -126,7 +132,7 @@ func toggle_pause() -> void:
 
 
 func _on_battle_btn_pressed() -> void:
-	#TODO [For Level Increment Branch] 11/12 Make sure this goes to the proper zone and sub level
+	#TODO [For Level Increment Branch] 11/13 Make sure this goes to the proper zone and sub level
 	LevelTransition.change_scene_to(level)
 
 #region Settins and UI signals
@@ -204,4 +210,7 @@ func _is_wave_set():
 
 func _on_lab_gui_game_over() -> void:
 	is_game_over = true
-	#TODO 11/13 SHOW GAME OVER OVERLAY
+	print("GAMEOVER from Lab")
+
+	lab_bgm.stop()
+	game_over.show()
