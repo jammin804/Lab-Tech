@@ -23,7 +23,6 @@ func change_scene_to(scene_path: String) -> void:
 	await transition_player.animation_finished
 	_load_new_scene()
 
-	#Implement updating wave system
 
 
 func _load_new_scene() -> void:

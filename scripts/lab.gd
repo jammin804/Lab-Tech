@@ -24,6 +24,7 @@ var main_menu: String = "res://scenes/main_menu.tscn"
 var level_1: String #"uid://bdpj78s126rdu"
 var level: String
 var is_new_zone: bool = false
+var is_game_over: bool = false
 
 
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
@@ -81,9 +82,8 @@ func _ready() -> void:
 
 	zone_info = zones[zone_index]
 
-	#lab_gui.wave_label.text = str(5)#str(Globals.current_wave)
 
-	lab_gui.initialize(zone_info.zone_name, zone_info.zone_requirement, is_new_zone)
+	lab_gui.initialize(zone_info.zone_name, zone_info.zone_requirement, Globals.prev_wave, is_new_zone)
 	#lab_gui.update_wave_label(5)
 
 
@@ -154,9 +154,13 @@ func _on_upgrades_btn_pressed() -> void:
 	open_upgrade_shop()
 
 func _on_scene_loading_finished() -> void:
-
+	#TODO 11/13 Make sure the set wave doesn't run if its supposed to be a game over
+	_is_wave_set()
 	lab_gui.update_progress_bar(Globals.previous_killed, Globals.enemies_killed)
+
+	lab_gui.update_wave_label(Globals.current_wave)
 	Globals.previous_killed = Globals.enemies_killed
+	Globals.prev_wave = Globals.current_wave
 
 
 func _on_test_button_pressed() -> void:
@@ -190,3 +194,14 @@ func open_upgrade_shop():
 func check_zone_index():
 	if zone_index == null:
 		zone_index = 0
+
+
+func _is_wave_set():
+	if Globals.current_wave == 0 and !is_game_over:
+		Globals.current_wave = zone_info.waves_left_to_complete_goal
+		Globals.prev_wave = Globals.current_wave
+
+
+func _on_lab_gui_game_over() -> void:
+	is_game_over = true
+	#TODO 11/13 SHOW GAME OVER OVERLAY
