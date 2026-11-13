@@ -11,7 +11,7 @@ signal zone_completed
 @onready var enemies_required_label: Label = %EnemiesRequiredLabel
 @onready var wave_label: Label = %WaveLabel
 
-var waves: int
+var wave: int
 var prev_waves: int
 #var start
 var prev_killed: int
@@ -25,6 +25,9 @@ func _ready() -> void:
 	#Initalize the signals
 	prev_killed = Globals.previous_killed
 	new_killed = Globals.enemies_killed
+	#waves = Globals.current_wave
+
+	update_wave_label(5)
 
 
 func initialize(zone_name, zone_req, is_new_zone) ->void:
@@ -41,10 +44,10 @@ func initialize(zone_name, zone_req, is_new_zone) ->void:
 
 
 	#waves = Globals.current_wave
-	wave_label.text = "Waves Left: " + str(waves)
+	#wave_label.text = "Waves Left: " + str(waves)
 
 func update_progress_bar(prev_enemies, enemies_defeated):
-	update_wave_label(5)
+	#update_wave_label(current_wave)
 
 	animate_value(prev_enemies, enemies_defeated)
 
@@ -78,19 +81,15 @@ func _check_bar_progress(amount: int) -> void:
 		zone_completed.emit()
 
 
-func update_wave_label(curr_wave):
-	#TODO [URGENT] Fix the wave lablel update. may need to use prev and current to keep progressing down
-	curr_wave -= 1
-	wave_label.text = "Waves Left: " + str(curr_wave)
-
+func update_wave_label(waves):
 
 #region Working Code
-	#if waves == 0:
-		##TODO 11/11 Add Game Over condition (to be tested)
-		#print("Game Over")
+	if waves == 0:
+		#TODO 11/11 Add Game Over condition (to be tested)
+		print("Game Over")
 #
-	#if waves > 0:
+	#if wave > 0:
 		#waves -= 1
-#
-	#wave_label.text = "Waves Left: " + str(waves)
+
+	wave_label.text = "Waves Left: " + str(waves)
 #endregion

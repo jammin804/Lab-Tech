@@ -47,9 +47,6 @@ var grade = ""
 @onready var bottom_spawn_point: Marker2D = %BottomSpawnPoint
 @onready var teleport_point: Marker2D = %TeleportPoint
 @onready var top_spawn_point: Marker2D = %TopSpawnPoint
-#@onready var enemies_remaining_label: Label = %EnemiesRemainingLabel
-#@onready var spawns_remaining_label: Label = %SpawnsRemainingLabel
-
 
 
 func _ready() -> void:
@@ -70,14 +67,13 @@ func _ready() -> void:
 	total_num_of_enemies_in_level = enemy_spawner.enemies_to_spawn
 
 
+	#Initializing signals
 	pause_menu.resume_game.connect(_on_resume_btn_pressed)
 	pause_menu.open_options.connect(_on_options_btn_pressed)
 	pause_menu.retreat.connect(_on_retreat_button_pressed)
 	pause_menu.exit_to_title.connect(_on_quit_btn_pressed)
 	settings_menu.back_button_pressed.connect(_on_back_btn_pressed)
 
-
-	#Initializing signals
 	Events.check_remaining.connect(_on_enemy_queue_free)
 	Events.wave_completed.connect(_on_wave_change)
 	Events.enemy_died.connect(_update_enemy_counter)
@@ -187,6 +183,7 @@ func _on_enemy_queue_free() -> void:
 		_check_win_condition()
 
 func _check_win_condition():
+	#TODO 11/13 Money can be automatically pulled at the end of the wave, but not all of it
 	if enemies_defeated >= num_to_succeed:
 		is_win_condition_met = true
 		#TODO [Risk Reward Branch] Setup reward: increment the level/amount of enemies destroyed for the lab scene
@@ -194,6 +191,7 @@ func _check_win_condition():
 		if enemies_defeated > enemies_to_defeat:
 			total_cores_gained += 1
 			SaveLoad.SaveFileData.core += total_cores_gained
+
 
 		Events.win_condition_success.emit()
 

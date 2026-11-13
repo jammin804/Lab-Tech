@@ -1,7 +1,7 @@
 extends Node
 class_name Global
 
-var current_wave: int = 1
+var current_wave: int = 0
 var prev_wave: int = 0
 var moving_to_next_wave: bool
 var level: int = 1

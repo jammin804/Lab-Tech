@@ -125,15 +125,25 @@ func _on_return_pressed ()-> void:
 	get_tree().paused = false
 	queue_free()
 	LevelTransition.change_scene_to("res://scenes/lab.tscn")
+	update_wave_data()
 
 
 func _on_return_btn_pressed() -> void:
-	#print("clicking return")
+	print("clicking return")
+	update_wave_data()
 	get_tree().paused = false
 	queue_free()
+
 	LevelTransition.change_scene_to("res://scenes/lab.tscn")
 
 
 func _on_win_condition_success() -> void:
 	#show()
 	Events.level_complete.emit()
+
+
+func update_wave_data():
+	Globals.prev_wave = Globals.current_wave
+	Globals.current_wave -= 1
+	print("Previous Wave ", Globals.prev_wave)
+	print("Current Wave ", Globals.current_wave)

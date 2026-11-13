@@ -81,7 +81,10 @@ func _ready() -> void:
 
 	zone_info = zones[zone_index]
 
+	#lab_gui.wave_label.text = str(5)#str(Globals.current_wave)
+
 	lab_gui.initialize(zone_info.zone_name, zone_info.zone_requirement, is_new_zone)
+	#lab_gui.update_wave_label(5)
 
 
 func update_energy() -> void:
@@ -134,7 +137,6 @@ func _on_back_btn_pressed() -> void:
 	settings_menu.visible = false
 	pause_menu.show()
 
-
 func _on_resume_btn_pressed() -> void:
 	toggle_pause()
 
@@ -154,9 +156,7 @@ func _on_upgrades_btn_pressed() -> void:
 func _on_scene_loading_finished() -> void:
 
 	lab_gui.update_progress_bar(Globals.previous_killed, Globals.enemies_killed)
-	lab_gui.update_wave_label(5)
 	Globals.previous_killed = Globals.enemies_killed
-	#Globals.prev_wave = Globals.current_wave
 
 
 func _on_test_button_pressed() -> void:
@@ -175,6 +175,7 @@ func _on_next_zone_btn_pressed() -> void:
 	#print(levels[1])
 	Globals.enemies_killed = 0
 	Globals.previous_killed = 0
+	Globals.current_wave = zones[zone_index].waves_left_to_complete_goal
 	LevelTransition.change_scene_to(levels[zone_index])
 
 func _on_zone_upgrade_btn_pressed() -> void:
