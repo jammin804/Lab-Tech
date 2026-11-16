@@ -110,14 +110,17 @@ func _shoot(charge_percentage : float):
 	#For the rapid shot
 	var burst_count = clampi(num_of_bullets, 1, 4)
 	for i in range(burst_count):
-		_create_bullet(i, burst_count)
+		_create_bullet(i, burst_count, charge_percentage)
 
-	Events.bullet_fired.emit()
+	Events.bullet_fired.emit(charge_percentage)
 	print("Current Battery ", player.current_health)
 
-func _create_bullet(bullet_index: int, total_bullets: int) -> void:
+func _create_bullet(bullet_index: int, total_bullets: int, charge) -> void:
 	var bullet : Projectile = PROJECTILE_SCENE.instantiate()
 	bullet.scale = charge_scale
+
+	if charge == 100:
+		pass
 
 	var spawn_pos = spawn_point.global_position
 	if total_bullets > 1 and not is_charging:

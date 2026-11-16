@@ -1,10 +1,11 @@
+class_name GameOver
 extends Control
 
+signal reset_zone
 
 
 func _on_retry_zone_button_pressed() -> void:
-	#Reset the values of kills and the wave information
-	pass # Replace with function body.
+	reset_zone.emit()
 
 
 func _on_return_to_main_button_pressed() -> void:

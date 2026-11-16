@@ -8,6 +8,7 @@ const GRADE_RANKS = ["F", "D", "C", "B", "A", "S"]
 
 var player_won: bool = false #this will be change after a certain event is called
 var cash_total: int = 0
+var scene_name: String
 
 @onready var success_label: Label = %SuccessLabel
 @onready var enemy_label:Label = %EnemyDestoryedLabel
@@ -23,6 +24,8 @@ var cash_total: int = 0
 
 func _ready() -> void:
 	Events.win_condition_success.connect(_on_win_condition_success)
+
+	scene_name = get_tree().current_scene.name
 
 func setup(enemies:int, damage_done:int, damage_taken:int, money:int, scraps:int, cores:int, success: String = "vicotry", grade_index = "A")->void:
 	return_btn.hide()
@@ -123,17 +126,22 @@ func _on_continue_pressed ()-> void:
 
 func _on_return_pressed ()-> void:
 	get_tree().paused = false
+
 	queue_free()
+
+
 	LevelTransition.change_scene_to("res://scenes/lab.tscn")
 	update_wave_data()
 
 
 func _on_return_btn_pressed() -> void:
 	print("clicking return")
+
+
 	update_wave_data()
 	get_tree().paused = false
 	queue_free()
-
+	Events.share_current_scene_name.emit(scene_name)
 	LevelTransition.change_scene_to("res://scenes/lab.tscn")
 
 
@@ -144,6 +152,6 @@ func _on_win_condition_success() -> void:
 
 func update_wave_data():
 	Globals.prev_wave = Globals.current_wave
-	Globals.current_wave -= 1
+	#Globals.current_wave -= 1
 	print("Previous Wave ", Globals.prev_wave)
 	print("Current Wave ", Globals.current_wave)

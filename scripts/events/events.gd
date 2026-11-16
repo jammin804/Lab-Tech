@@ -11,7 +11,7 @@ signal pause_auto_actions
 signal level_complete
 signal show_result_screen(enemies_killed:int, damage_done:int, damage_taken:int, money_earned:int, scraps_earned:int, cores_earned:int, success:String, grade:int)
 signal talent_icon_clicked
-signal bullet_fired
+signal bullet_fired(charge_percent)
 signal blaster_fully_charged
 signal charge_released
 signal health_changed

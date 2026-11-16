@@ -8,17 +8,16 @@ var speed : float = 750.0
 var damage : float = 1.0
 var has_collided : bool = false
 var life_steal : int = 5
-var is_piercing: bool = true
+var is_piercing: bool = false
 
 @onready var hit: AnimatedSprite2D = $Hit
 @onready var bullet: Sprite2D = $Bullet
 
-#TODO 11/11 Work on piercing bullet
 var current_element : WeaponData.Element = WeaponData.Element.DEFAULT
 
 func _ready() -> void:
-	print("From projectile" + str(damage))
-	pass
+	#initalize the signals
+	Events.bullet_fired.connect(_on_bullet_fired)
 
 func _physics_process(delta: float) -> void:
 	if not has_collided:
@@ -39,8 +38,12 @@ func _on_body_entered(body: Node2D) -> void:
 
 		body.take_damage(damage, WeaponData.Element.DEFAULT)
 
-	has_collided = true
-	bullet.hide()
+	if is_piercing == true:
+		has_collided = false
+	else:
+		has_collided = true
+		bullet.hide()
+
 	if show_collision_sprite == true:
 		hit.show()
 		hit.play("hit")
@@ -48,3 +51,8 @@ func _on_body_entered(body: Node2D) -> void:
 		await hit.animation_finished
 		queue_free()
 	queue_free()
+
+
+func _on_bullet_fired(charge) -> void:
+	if charge >= 100:
+		is_piercing = true

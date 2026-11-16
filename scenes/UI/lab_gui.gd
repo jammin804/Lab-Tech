@@ -5,6 +5,7 @@ extends Control
 #signal on_maxed_meter
 signal zone_completed
 signal game_over
+signal check_wave
 
 @onready var zone_label: Label = %ZoneLabel
 @onready var enemies_killed_label: Label = %EnemiesKilledLabel
@@ -19,12 +20,17 @@ var new_killed: int
 var kills_to_next: int
 var zone_num: int = 0
 var zone_can_change: bool = false
+var scene_name: String
 
 
 func _ready() -> void:
-	#Initalize the signals
 	prev_killed = Globals.previous_killed
 	new_killed = Globals.enemies_killed
+	check_wave.emit()
+
+	#Initalize the signals
+	Events.share_current_scene_name.connect(_update_scene_name)
+
 
 
 func initialize(zone_name, zone_req, prev_wave, is_new_zone) ->void:
@@ -38,7 +44,6 @@ func initialize(zone_name, zone_req, prev_wave, is_new_zone) ->void:
 		progress_bar.value = 0
 	else:
 		progress_bar.value = prev_killed
-
 
 	wave_label.text = "Waves Left: " + str(prev_wave)
 
@@ -75,7 +80,8 @@ func _check_bar_progress(amount: int) -> void:
 
 
 func update_wave_label(waves):
-
+	if scene_name.contains("Level"):
+		print("Hello ", scene_name)
 	if waves == 0:
 		#TODO 11/11 Add Game Over condition (to be tested)
 		print("Game Over")
@@ -91,3 +97,8 @@ func _check_wave_num():
 	if Globals.current_wave < 1:
 		print("GAMEOVER from Lab_Gui")
 		game_over.emit()
+
+
+func _update_scene_name(level_name) -> void:
+	scene_name = level_name
+	#update_wave_label()

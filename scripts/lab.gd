@@ -3,6 +3,8 @@ extends Node2D
 
 #signal game_over
 
+#TODO 11/13 work on the restart scene after game over
+#TODO 11/13 [Afternoon] Link the game flow together from starting a new game to losing and to continue
 
 @export_category("Debug Varibles")
 @export var toggle_debug : bool = false
@@ -45,7 +47,7 @@ var is_game_over: bool = false
 
 @onready var lab_gui: LabGui = %LabGui
 @onready var zone_complete: ZoneComplete = %ZoneComplete
-@onready var game_over: Control = %GameOver
+@onready var game_over: GameOver = %GameOver
 
 
 
@@ -78,9 +80,13 @@ func _ready() -> void:
 	zone_complete.go_to_next_stage.connect(_on_next_zone_btn_pressed)
 	zone_complete.open_upgrade_screen.connect(_on_zone_upgrade_btn_pressed)
 	lab_gui.game_over.connect(_on_lab_gui_game_over)
+	lab_gui.check_wave.connect(_on_lab_load)
+	game_over.reset_zone.connect(_reset_zone)
+
+
 
 	LevelTransition.scene_loading_finished.connect(_on_scene_loading_finished)
-	#Events.share_current_scene_name.connect(_on_scene_name_shared)
+	#Events.return_from_level.connect(_update_wave_info)
 
 	zone_index = Globals.zone - 1
 
@@ -88,10 +94,7 @@ func _ready() -> void:
 
 	zone_info = zones[zone_index]
 
-
 	lab_gui.initialize(zone_info.zone_name, zone_info.zone_requirement, Globals.prev_wave, is_new_zone)
-	#lab_gui.update_wave_label(5)
-
 
 func update_energy() -> void:
 	if current_energy < max_energy:
@@ -116,7 +119,7 @@ func hide_menu() -> void:
 	settings_menu.hide()
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("pause") and !game_over:
+	if event.is_action_pressed("pause") and is_game_over == false:
 		if is_option_menu_open:
 			settings_menu.visible = false
 			is_option_menu_open = false
@@ -164,9 +167,9 @@ func _on_scene_loading_finished() -> void:
 	_is_wave_set()
 	lab_gui.update_progress_bar(Globals.previous_killed, Globals.enemies_killed)
 
-	lab_gui.update_wave_label(Globals.current_wave)
 	Globals.previous_killed = Globals.enemies_killed
 	Globals.prev_wave = Globals.current_wave
+	_update_wave_info()
 
 
 func _on_test_button_pressed() -> void:
@@ -182,10 +185,8 @@ func _on_lab_gui_zone_completed() -> void:
 
 func _on_next_zone_btn_pressed() -> void:
 	#TODO 11/12 [For Level Increment Branch] make sure the zone index and incrementing and the level change follows
-	#print(levels[1])
-	Globals.enemies_killed = 0
-	Globals.previous_killed = 0
-	Globals.current_wave = zones[zone_index].waves_left_to_complete_goal
+	reset_zone_information()
+
 	LevelTransition.change_scene_to(levels[zone_index])
 
 func _on_zone_upgrade_btn_pressed() -> void:
@@ -214,3 +215,23 @@ func _on_lab_gui_game_over() -> void:
 
 	lab_bgm.stop()
 	game_over.show()
+
+func _reset_zone() -> void:
+	reset_zone_information()
+	LevelTransition.change_scene_to("res://scenes/lab.tscn")
+
+
+func reset_zone_information():
+	Globals.enemies_killed = 0
+	Globals.previous_killed = 0
+	Globals.current_wave = zones[zone_index].waves_left_to_complete_goal
+
+
+func _update_wave_info() -> void:
+	lab_gui.update_wave_label(Globals.current_wave)
+
+
+func _on_lab_load() -> void:
+	if Globals.current_wave == 0:
+		Globals.current_wave = zones[zone_index].waves_left_to_complete_goal
+		print(Globals.current_wave)
