@@ -16,6 +16,8 @@ var money: int = 0
 
 #stats
 var damage: int = 0
+var dmg_prev: int = 0
+var dmg_cost: int = 0
 var atk_speed: int = 0
 var charge_damage: float = 0.0
 var damage_percentage: float = 0.0
@@ -62,7 +64,7 @@ func update_labels():
 
 
 func _add_core(amount: int):
-	#TODO 11/18 Think about how to exponetially increase the amound depending on what button was pressed
+	#POLISH Think about how to exponetially increase the amound depending on what button was pressed
 	cores += amount
 	update_labels()
 
@@ -79,7 +81,7 @@ func _on_minus_enemy_btn_pressed() -> void:
 		_add_core(3)
 
 func _on_add_enemy_button_pressed() -> void:
-	if cores > 0 and upgrade_level["add_enemy_lvl"] < 3:
+	if cores > 0 and upgrade_level["add_enemy_lvl"] < 4:
 		if cores > 3:
 			upgrade_level["add_enemy_lvl"] +=1
 			_remove_core(3)
@@ -88,6 +90,7 @@ func _on_add_enemy_button_pressed() -> void:
 #region dmg btns
 func _on_dmg_plus_button_pressed() -> void:
 	if cores > 0 and upgrade_level["dmg_lvl"] < 3:
+		#_check_cost()
 		damage += 5
 		upgrade_level["dmg_lvl"] += 1
 		#update_labels()
@@ -96,11 +99,12 @@ func _on_dmg_plus_button_pressed() -> void:
 
 func _on_dmg_minus_button_pressed() -> void:
 	if cores < starting_cores and upgrade_level["dmg_lvl"] > 1:
+		#_check_cost()
 		upgrade_level["dmg_lvl"] -= 1
 		damage -= 5
+		_add_core(1)
 		#upgrade_level["dmg_lvl"] += 1
 		#update_labels()
-		_add_core(1)
 #endregion
 
 func _on_confirm_btn_pressed() -> void:

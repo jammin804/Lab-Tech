@@ -1,7 +1,7 @@
 class_name MainMenu
 extends Control
 
-#FIXME 11/12 [Polish] Text font could be easier to read (Experiment with a different font)
+#POLISH 11/12 [URGENT] Text font could be easier to read (Experiment with a different font)
 @onready var settings_menu: Control = $SettingsMenu
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var continue_btn: UI_Button = %ContinueBtn
