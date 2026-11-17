@@ -3,7 +3,7 @@ extends Node
 @export var enemy_scene: PackedScene = preload("res://scenes/enemy.tscn")
 @export var canister_collectable_scene: PackedScene = preload("res://scenes/Currency/pickups.tscn")
 
-@onready var player : Player = $Player
+@onready var player : PlayerNew = $Player
 
 func spawn_canister() -> void:
 	var new_canister = canister_collectable_scene.instantiate()

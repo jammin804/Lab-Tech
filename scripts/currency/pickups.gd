@@ -6,6 +6,7 @@ var speed : float = 175.0
 var collected: bool
 #var currency_name = type.resource_path.get_file().trim_suffix(".tres")
 
+#TODO 11/17 Have the currency explode from enemy using particles and have them magentize to player and increase the money, similar to Well Dweller
 @export var type : Currency:
 	set(value):
 		type = value

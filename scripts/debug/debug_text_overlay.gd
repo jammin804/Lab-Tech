@@ -13,7 +13,7 @@ const VERSION_SETTING : String = "application/config/version"
 
 func _ready() -> void:
 	_add_version_to_label()
-	_update_player_info()
+	#_update_player_info()
 
 	PlayerManager.stats_updated.connect(_on_stats_updated)
 

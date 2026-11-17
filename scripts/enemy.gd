@@ -24,7 +24,9 @@ enum ESCAPE_OPTIONS { NORMAL, ZIG_ZAG, SPEED_UP, TELEPORT}
 @export_category("Item Drop") #TODO Make this into a resource so i can just add to enemy
 @export var loot_drop_type : PackedScene
 @export_range(0, 100, 1.0, "suffix:%") var drop_rate
+@export var money_number_origin: Node2D
 
+var MONEY_SCENE = preload("res://scenes/Currency/pickups.tscn")
 var max_enemy_health : float
 var current_enemy_health : float
 var current_data: EnemyStats
@@ -157,9 +159,6 @@ func take_damage(incoming_damage: float, incoming_element:WeaponData.Element) ->
 func destroy():
 	is_dead = true
 
-	#if should_wave == true:
-		#should_wave = false
-
 	Events.enemy_died.emit()
 
 	enemy_sprite.stop()
@@ -187,9 +186,12 @@ func _drop_item() -> void:
 
 #BUG Need to fix the issue of the shader studder
 func _on_hit_flash_anim_animation_finished(anim_name: StringName) -> void:
+	#var bullet : Projectile = PROJECTILE_SCENE.instantiate()
+	var money: Pickup = MONEY_SCENE.instantiate()
 	if anim_name == "death":
-		#print("Enemy Dropped: ", loot_amount[rng.rand_weighted(weights)])
+
 		var amount = loot_amount[rng.rand_weighted(weights)]
+
 		money_label.text = str("$", amount)
 		money_label.show()
 		TweenFX.punch_in(money_label)
@@ -198,7 +200,11 @@ func _on_hit_flash_anim_animation_finished(anim_name: StringName) -> void:
 
 		Events.increase_currency.emit(amount)
 
+		#TODO 11/16 Fix the spawn of the currency to explode out then go to player magnet
+		spawner.add_child(money)
 		self.queue_free()
+		#spawn money
+
 		#Events.enemy_died.emit()
 		Events.check_remaining.emit()
 

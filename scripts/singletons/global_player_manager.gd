@@ -28,6 +28,19 @@ func add_upgrade(upgrade, stats):
 	print("Current stats: ", PlayerManager.current_stats.damage_multipler)
 	#for stat in current_stats
 
+	match upgrade:
+		PlayerManager.current_stats.upgrades.ADD_DAMAGE:
+			PlayerManager.current_stats.power += stats
+		PlayerManager.current_stats.upgrades.ADD_ATTACK_SPEED:
+			current_stats.attackSpeedMulti += stats
+		PlayerManager.current_stats.upgrades.ADD_BULLET:
+			current_stats.bullets += stats
+		PlayerManager.current_stats.upgrades.ADD_HEALTH:
+			current_stats.addHealth += stats
+		PlayerManager.current_stats.upgrades.REDUCE_CHARGE_RATE:
+			PlayerManager.current_stats.charge_rate += stats
+		#PlayerManager.current_stats.upgrades.ADD_ENEMY:
+
 	if upgrade == PlayerManager.current_stats.upgrades.ADD_DAMAGE:
 		PlayerManager.current_stats.power += stats
 	elif upgrade == current_stats.upgrades.ADD_ATTACK_SPEED:
@@ -38,6 +51,7 @@ func add_upgrade(upgrade, stats):
 		current_stats.addHealth += stats
 	elif upgrade == PlayerManager.current_stats.upgrades.REDUCE_CHARGE_RATE:
 		PlayerManager.current_stats.charge_rate += stats
+	#elif upgrade
 
 	print("Stats after upgrade ", PlayerManager.current_stats.damage_multipler)
 

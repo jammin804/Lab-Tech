@@ -5,6 +5,7 @@ extends Area2D
 
 var direction : Vector2 = Vector2.RIGHT
 var speed : float = 750.0
+var charge_shot_speed: float = speed/2
 var damage : float = 1.0
 var has_collided : bool = false
 var life_steal : int = 5
@@ -21,8 +22,10 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if not has_collided:
-		position += direction * speed * delta
-		#damage = PlayerManager.po
+		if is_piercing == true:
+			position += direction * charge_shot_speed * delta
+		else:
+			position += direction * speed * delta
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
@@ -44,13 +47,14 @@ func _on_body_entered(body: Node2D) -> void:
 		has_collided = true
 		bullet.hide()
 
-	if show_collision_sprite == true:
-		hit.show()
-		hit.play("hit")
+	if has_collided == true:
+		if show_collision_sprite == true:
+			hit.show()
+			hit.play("hit")
 
-		await hit.animation_finished
+			await hit.animation_finished
+			queue_free()
 		queue_free()
-	queue_free()
 
 
 func _on_bullet_fired(charge) -> void:

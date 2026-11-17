@@ -4,7 +4,7 @@ extends Resource
 #TODO Help creating skill tree and have the skill tree communicate with the player stats with passives
 enum Form {DEFAULT, COMBINED, AVATAR}
 
-enum upgrades {ADD_DAMAGE, ADD_DAMAGE_MULTI, ADD_ATTACK_SPEED, ADD_BULLET, ADD_TO_BULLET, ADD_HEALTH, ADD_TO_CHARGE, REDUCE_CHARGE_RATE, ADD_SHIELD}
+enum upgrades {ADD_DAMAGE, ADD_DAMAGE_MULTI, ADD_ATTACK_SPEED, ADD_BULLET, ADD_TO_BULLET, ADD_HEALTH, ADD_TO_CHARGE, REDUCE_CHARGE_RATE, ADD_SHIELD, ADD_ENEMY}
 
 @export var battery_tanks : int = 1 #Player Max HP
 @export var battery_tank_points : int = 100 #how much health is in 1 tank
@@ -28,7 +28,7 @@ enum upgrades {ADD_DAMAGE, ADD_DAMAGE_MULTI, ADD_ATTACK_SPEED, ADD_BULLET, ADD_T
 @export var rapid : int = 1 #Bullets per shot
 @export var can_charge : bool = true
 @export var charge_rate : float = 40.0
-@export var charge_damage_multipler : float = 2.0
+@export var charge_damage_multipler : float = 1.5
 @export var double_down : bool = false
 
 

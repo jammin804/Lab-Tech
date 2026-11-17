@@ -130,7 +130,6 @@ func _create_bullet(bullet_index: int, total_bullets: int, charge) -> void:
 
 	bullet.damage = bullet_strength
 	bullet.global_position = spawn_pos
-	print("Current Bullet Str: ", bullet.damage)
 	get_tree().current_scene.find_child("Pausable").add_child(bullet)
 
 func _check_charge_lock():
