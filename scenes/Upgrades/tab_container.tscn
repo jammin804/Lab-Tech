@@ -155,8 +155,9 @@ theme_override_constants/separation = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 9
+theme_override_font_sizes/font_size = 11
 text = "DMG UP v1"
+uppercase = true
 
 [node name="Label3" type="Label" parent="Upgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/StatsIncrease1" unique_id=2049322599]
 visible = false

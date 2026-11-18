@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://mpstfr41bcbc" path="res://scenes/Playground Scenes/playground_2.gd" id="1_ndrat"]
 [ext_resource type="Texture2D" uid="uid://8aayan6npc78" path="res://assets/backgrounds/tileset.png" id="1_ro015"]
+[ext_resource type="FontFile" uid="uid://ced5sda2dkxr7" path="res://font/Silver.ttf" id="3_ol57b"]
+[ext_resource type="FontFile" uid="uid://cwugpk2ueb6nb" path="res://font/m6x11plus.ttf" id="4_6deo2"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_qg6ga"]
 tile_data = PackedInt32Array(0, 131072, 2, 1, 131072, 2, 2, 131072, 2, 3, 131072, 2, 4, 131072, 2, 5, 131072, 2, 6, 131072, 2, 7, 131072, 2, 8, 131072, 2, 9, 131072, 2, 10, 131072, 2, 11, 131072, 2, 12, 131072, 2, 13, 131072, 2, 14, 131072, 2, 15, 131072, 2, 16, 131072, 2, 17, 131072, 2, 18, 131072, 2, 19, 131072, 2, 20, 131072, 2, 21, 131072, 2, 22, 131072, 2, 23, 131072, 2, 24, 131072, 2, 25, 131072, 2, 26, 131072, 2, 27, 131072, 2, 28, 131072, 2, 29, 131072, 2, 30, 131072, 2, 31, 131072, 2, 32, 131072, 2, 33, 131072, 2, 34, 131072, 2, 35, 131072, 2, 36, 131072, 2, 37, 131072, 2, 38, 131072, 2, 39, 131072, 2)
@@ -92,5 +94,43 @@ offset_bottom = 216.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "test"
+
+[node name="Control" type="Control" parent="." unique_id=1570649389]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 641.0
+offset_bottom = 360.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=501087099]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.5
+offset_top = -59.0
+offset_right = 41.5
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer" unique_id=1131920998]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ol57b")
+theme_override_font_sizes/font_size = 24
+text = "hello world"
+uppercase = true
+
+[node name="Label2" type="Label" parent="Control/VBoxContainer" unique_id=1028361499]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_6deo2")
+theme_override_font_sizes/font_size = 24
+text = "hello world"
+uppercase = true
+
+[node name="Label3" type="Label" parent="Control/VBoxContainer" unique_id=1468990257]
+layout_mode = 2
+text = "hello world"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
