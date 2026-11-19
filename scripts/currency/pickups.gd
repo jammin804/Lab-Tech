@@ -49,6 +49,6 @@ func _on_area_entered(area: Area2D) -> void:
 		#print("Type is " + currency_name)
 
 
-func _on_mouse_entered() -> void:
-	print("Mouse entered")
-	#queue_free()
+func _input(event: InputEvent) -> void:
+	#TODO: 11/19 Set up the player has click the currecny to collect
+	pass
