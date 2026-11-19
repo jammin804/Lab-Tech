@@ -7,6 +7,7 @@ signal health_changed
 
 #const TALENT_TREE = preload("res://scenes/UI/New Talent Tree/talent_tree_2.tscn")
 
+@export var is_magnetize = false
 var is_talent_tree_open = false
 var level_damage_taken : int = 0
 var level_damage_done : int = 0
@@ -111,7 +112,7 @@ func _on_area_2d_mouse_entered() -> void:
 
 
 func _on_magnet_area_entered(area: Area2D) -> void:
-	if area.has_method("follow"):
+	if area.has_method("follow") and is_magnetize == true:
 		area.follow(self)
 
 

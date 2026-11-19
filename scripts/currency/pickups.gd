@@ -6,7 +6,9 @@ var speed : float = 175.0
 var collected: bool
 #var currency_name = type.resource_path.get_file().trim_suffix(".tres")
 
-#TODO 11/17 Have the currency explode from enemy using particles and have them magentize to player and increase the money, similar to Well Dweller
+#POLISH 11/20 Have the currency explode from enemy using particles and have them magentize to player and increase the money, similar to Well Dweller
+#TODO 11/19 Money can be automatically pulled at the end of the wave, but not all of it
+#TODO 11/19 Need to share the money value of th enemy killed to update the amount of money the pick will have
 @export var type : Currency:
 	set(value):
 		type = value
@@ -18,7 +20,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if player_reference:
+	if player_reference and player_reference.is_magnetize == true:
 		var step = speed * delta
 
 		global_position = global_position.move_toward(player_reference.global_position, step)
@@ -45,3 +47,8 @@ func _on_area_entered(area: Area2D) -> void:
 
 		queue_free()
 		#print("Type is " + currency_name)
+
+
+func _on_mouse_entered() -> void:
+	print("Mouse entered")
+	#queue_free()

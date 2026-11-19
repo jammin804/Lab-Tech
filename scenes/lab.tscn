@@ -11,7 +11,6 @@
 [ext_resource type="Theme" uid="uid://65aipdpydskv" path="res://resources/Theme/main_theme.tres" id="6_kfqsw"]
 [ext_resource type="Texture2D" uid="uid://dwfn7p11er8rd" path="res://assets/props/lab-table_hover.png" id="8_ijdgx"]
 [ext_resource type="Texture2D" uid="uid://qj56axi37uo" path="res://assets/props/console_hover.png" id="9_eavsi"]
-[ext_resource type="PackedScene" uid="uid://dbxsfllyrb1yt" path="res://scenes/player.tscn" id="11_xu7et"]
 [ext_resource type="AudioStream" uid="uid://c4s1hjl635w5k" path="res://assets/music/bgm/Depressed (RT 1.875)/Chiptune Vol2 Depressed Main.wav" id="13_ds7rc"]
 [ext_resource type="PackedScene" uid="uid://sknra82q76tt" path="res://scenes/UI/New Talent Tree/talent_menu_manager.tscn" id="13_ijdgx"]
 [ext_resource type="AudioStream" uid="uid://c6pwf33mn2agb" path="res://assets/music/sfx/steam_hiss.wav" id="14_5tteu"]
@@ -164,11 +163,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_hem3r")
 expand_mode = 2
-
-[node name="Player" parent="CanvasLayer/Pausable/UpgradeScene" unique_id=2126503732 instance=ExtResource("11_xu7et")]
-unique_name_in_owner = true
-position = Vector2(250, 118)
-autoplay = "idle"
 
 [node name="Clicker" type="TextureButton" parent="CanvasLayer/Pausable/UpgradeScene" unique_id=1143035170]
 unique_name_in_owner = true

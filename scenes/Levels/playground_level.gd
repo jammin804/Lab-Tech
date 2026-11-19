@@ -7,6 +7,7 @@ enum Row {TOP_ROW, BOTTOM_ROW}
 @export var enemy_scene: PackedScene
 @export var enemies_remaining_label: Label
 @export var spawns_remaining_label: Label
+@export var can_spawn: bool = false
 
 
 var player : PlayerNew = null
@@ -41,7 +42,8 @@ func _ready() -> void:
 	total_num_of_enemies_in_level = enemies_to_spawn
 
 	#Spawing Logic
-	_spawn_enemy()
+	if can_spawn == true:
+		_spawn_enemy()
 
 	#Updating UI
 	update_kill_counter()
@@ -130,7 +132,7 @@ func update_spawn_counter():
 
 
 func _on_timer_timeout() -> void:
-	if enemies_to_spawn >= 0:
+	if enemies_to_spawn >= 0 and can_spawn == true:
 
 		_spawn_enemy()
 

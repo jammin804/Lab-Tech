@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://bd1e7fmt2sl4m" path="res://scenes/UI/settings_menu.tscn" id="12_1n1l4"]
 [ext_resource type="PackedScene" uid="uid://whd42y28mu3l" path="res://scenes/UI/new_hud_ui.tscn" id="13_7u17y"]
 [ext_resource type="PackedScene" uid="uid://dg66c7f7p6iii" path="res://scenes/pause_menu.tscn" id="13_yhe24"]
+[ext_resource type="Theme" uid="uid://dx0gf6gbauc7h" path="res://themes/lab_gui_theme.tres" id="14_a60bd"]
 [ext_resource type="PackedScene" uid="uid://edlqqwhtasyq" path="res://scenes/UI/heart_break.tscn" id="17_a60bd"]
 [ext_resource type="PackedScene" uid="uid://bogawab6ydtph" path="res://scenes/UI/result_screen_new.tscn" id="18_811s2"]
 
@@ -285,7 +286,7 @@ pause_menu = NodePath("UILayer/Menus/PauseMenu/PauseLayer/PauseMenu")
 settings_menu = NodePath("UILayer/Menus/PauseMenu/PauseLayer/SettingsMenu")
 player = ExtResource("2_vtd0g")
 player_spawn = NodePath("Pausable/PlayerSpawnPoint")
-enemies_remaining_label = NodePath("UILayer/HUD/LevelGUI/MarginContainer/HBoxContainer/StatsLabels/EnemiesRemainingLabel")
+enemies_remaining_label = NodePath("UILayer/HUD/LevelGUI/MarginContainer/HBoxContainer/StatsLabels/EnemiesRemainingLabel2")
 spawns_remaining_label = NodePath("UILayer/HUD/LevelGUI/MarginContainer/HBoxContainer/StatsLabels/SpawnsRemainingLabel")
 metadata/_edit_vertical_guides_ = [32.0, 621.0]
 metadata/_edit_horizontal_guides_ = [265.0, 204.00975, 128.0, 94.0, 8.0]
@@ -366,7 +367,7 @@ position = Vector2(32, 265)
 unique_name_in_owner = true
 position = Vector2(312, 128)
 level_info = ExtResource("2_a60bd")
-enemies_remaining_label = NodePath("../../UILayer/HUD/LevelGUI/MarginContainer/HBoxContainer/StatsLabels/EnemiesRemainingLabel")
+enemies_remaining_label = NodePath("")
 spawns_remaining_label = NodePath("../../UILayer/HUD/LevelGUI/MarginContainer/HBoxContainer/StatsLabels/SpawnsRemainingLabel")
 total_waves = 10
 spawn_locations = [NodePath("../SpawnPoints/BottomSpawnPoint"), NodePath("../SpawnPoints/TopSpawnPoint")]
@@ -448,6 +449,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("14_a60bd")
 
 [node name="MarginContainer" type="MarginContainer" parent="UILayer/HUD/LevelGUI" unique_id=242458686]
 layout_mode = 1
@@ -471,7 +473,8 @@ theme_override_constants/separation = 25
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="EnemiesRemainingLabel" type="Label" parent="UILayer/HUD/LevelGUI/MarginContainer/HBoxContainer/StatsLabels" unique_id=322624520]
+[node name="EnemiesRemainingLabel2" type="Label" parent="UILayer/HUD/LevelGUI/MarginContainer/HBoxContainer/StatsLabels" unique_id=389964970]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "99/99"

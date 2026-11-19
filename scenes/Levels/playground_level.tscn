@@ -13,6 +13,7 @@
 [ext_resource type="FontFile" uid="uid://c2a35mxw7sbmh" path="res://font/PressStart2P.ttf" id="11_f8ofd"]
 [ext_resource type="PackedScene" uid="uid://whd42y28mu3l" path="res://scenes/UI/new_hud_ui.tscn" id="12_0nsmb"]
 [ext_resource type="PackedScene" uid="uid://lccgrpafmldk" path="res://scenes/debug/debug_text_overlay.tscn" id="12_3vacm"]
+[ext_resource type="PackedScene" uid="uid://c3j8bdc87ysqc" path="res://scenes/Currency/pickups.tscn" id="12_w4kf8"]
 [ext_resource type="PackedScene" uid="uid://bd1e7fmt2sl4m" path="res://scenes/UI/settings_menu.tscn" id="13_jevph"]
 [ext_resource type="PackedScene" uid="uid://dg66c7f7p6iii" path="res://scenes/pause_menu.tscn" id="14_xuedy"]
 [ext_resource type="PackedScene" uid="uid://cqueta70ubjqr" path="res://scenes/enemy.tscn" id="15_85ul7"]
@@ -139,6 +140,7 @@ position = Vector2(312, 65)
 
 [node name="Enemy2" parent="Pausable/Enemies" unique_id=1965764076 instance=ExtResource("15_85ul7")]
 position = Vector2(187, 133)
+is_in_debug_mode = true
 
 [node name="PauseBtn" type="TextureButton" parent="Pausable" unique_id=1050029617]
 visible = false
@@ -216,6 +218,15 @@ shape = SubResource("RectangleShape2D_s5m6i")
 wait_time = 2.0
 one_shot = true
 autostart = true
+
+[node name="Pickups" parent="Pausable" unique_id=1694982520 instance=ExtResource("12_w4kf8")]
+position = Vector2(122, 59)
+
+[node name="Pickups2" parent="Pausable" unique_id=756765294 instance=ExtResource("12_w4kf8")]
+position = Vector2(163, 68)
+
+[node name="Pickups3" parent="Pausable" unique_id=548230137 instance=ExtResource("12_w4kf8")]
+position = Vector2(200, 56)
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=459962682]
 process_mode = 3

@@ -43,6 +43,7 @@ var grade = ""
 @onready var enemies_in_wave_label: Label = $Pausable/EnemiesInWaveLabel
 @onready var enemy_spawner: Enemy_Spawner = %EnemySpawner
 @onready var money_label: Label = %MoneyLabel
+@onready var money_label_2: Label = %MoneyLabel2
 
 @onready var bottom_spawn_point: Marker2D = %BottomSpawnPoint
 @onready var teleport_point: Marker2D = %TeleportPoint

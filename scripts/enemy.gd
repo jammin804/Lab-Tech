@@ -4,6 +4,9 @@ extends CharacterBody2D
 #signal enemy_health_change
 
 enum ESCAPE_OPTIONS { NORMAL, ZIG_ZAG, SPEED_UP, TELEPORT}
+
+
+
 @export var escape_options : ESCAPE_OPTIONS
 #region DEBUG OPTIONS
 @export_category("DEBUG OPTIONS")
@@ -186,7 +189,6 @@ func _drop_item() -> void:
 
 #BUG Need to fix the issue of the shader studder
 func _on_hit_flash_anim_animation_finished(anim_name: StringName) -> void:
-	#var bullet : Projectile = PROJECTILE_SCENE.instantiate()
 	var money: Pickup = MONEY_SCENE.instantiate()
 	if anim_name == "death":
 
@@ -201,11 +203,11 @@ func _on_hit_flash_anim_animation_finished(anim_name: StringName) -> void:
 		Events.increase_currency.emit(amount)
 
 		#TODO 11/16 Fix the spawn of the currency to explode out then go to player magnet
-		spawner.add_child(money)
+		money.global_transform = spawner.get_global_transform()
+		get_tree().current_scene.find_child("Pausable").add_child(money)
+		#print(get_tree().current_scene.find_child("Pausable"))
 		self.queue_free()
-		#spawn money
 
-		#Events.enemy_died.emit()
 		Events.check_remaining.emit()
 
 func _on_lab_battle_scene_start() -> void:

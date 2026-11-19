@@ -1,7 +1,7 @@
 class_name MainMenu
 extends Control
 
-#POLISH 11/12 [URGENT] Text font could be easier to read (Experiment with a different font)
+#POLISH 11/19 [URGENT] Going to use the m6x11 need to add to all before push
 @onready var settings_menu: Control = $SettingsMenu
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var continue_btn: UI_Button = %ContinueBtn

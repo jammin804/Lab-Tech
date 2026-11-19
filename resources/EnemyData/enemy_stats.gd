@@ -6,7 +6,7 @@ extends Resource
 
 @export var attack_power: int
 @export var move_speed: float
-@export var loot_type : String #TODO Change to only look for Loot Types
+@export var loot_type : String
 
 @export var loot_tier_1_drop_rate : float = 1.0
 @export var loot_tier_2_drop_rate : float = 1.0
