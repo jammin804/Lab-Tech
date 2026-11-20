@@ -363,11 +363,10 @@ zoom = Vector2(0.5, 0.5)
 unique_name_in_owner = true
 position = Vector2(32, 265)
 
-[node name="EnemySpawner" parent="Pausable" unique_id=1886090633 node_paths=PackedStringArray("enemies_remaining_label", "spawns_remaining_label", "spawn_locations") instance=ExtResource("10_0r5j3")]
+[node name="EnemySpawner" parent="Pausable" unique_id=1886090633 node_paths=PackedStringArray("spawns_remaining_label", "spawn_locations") instance=ExtResource("10_0r5j3")]
 unique_name_in_owner = true
 position = Vector2(312, 128)
 level_info = ExtResource("2_a60bd")
-enemies_remaining_label = NodePath("")
 spawns_remaining_label = NodePath("../../UILayer/HUD/LevelGUI/MarginContainer/HBoxContainer/StatsLabels/SpawnsRemainingLabel")
 total_waves = 10
 spawn_locations = [NodePath("../SpawnPoints/BottomSpawnPoint"), NodePath("../SpawnPoints/TopSpawnPoint")]
@@ -530,6 +529,7 @@ offset_right = 283.0
 offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="ResultScreenNew" parent="UILayer/Menus/VictoryScreen" unique_id=908788247 instance=ExtResource("18_811s2")]
 visible = false

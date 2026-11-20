@@ -103,6 +103,26 @@ unique_name_in_owner = true
 position = Vector2(167, 103)
 is_in_debug_mode = true
 
+[node name="Enemy3" parent="Pausable" unique_id=700218837 instance=ExtResource("8_onhm6")]
+unique_name_in_owner = true
+position = Vector2(280, 96)
+is_in_debug_mode = true
+
+[node name="Enemy4" parent="Pausable" unique_id=1087347961 instance=ExtResource("8_onhm6")]
+unique_name_in_owner = true
+position = Vector2(238, 154)
+is_in_debug_mode = true
+
+[node name="Enemy5" parent="Pausable" unique_id=1835460958 instance=ExtResource("8_onhm6")]
+unique_name_in_owner = true
+position = Vector2(80, 161)
+is_in_debug_mode = true
+
+[node name="Enemy6" parent="Pausable" unique_id=105783438 instance=ExtResource("8_onhm6")]
+unique_name_in_owner = true
+position = Vector2(228, 45)
+is_in_debug_mode = true
+
 [node name="Control" type="Control" parent="." unique_id=1570649389]
 visible = false
 layout_mode = 3

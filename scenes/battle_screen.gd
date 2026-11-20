@@ -1,6 +1,7 @@
 class_name Level_1
 extends Node
 
+#BUG 11/20 The UI Canvas is preventing me from clicking the currency
 @export_group("Level Information")
 @export var level_info: Levels
 
@@ -16,6 +17,7 @@ var main_menu : String = "res://scenes/main_menu.tscn"
 var lab : String = "uid://dmqv875jehqwm"
 var is_option_menu_open : bool = false
 var is_result_screen_open : bool = false
+var player_inst: PlayerNew
 
 var enemies_to_defeat: int = 0
 var enemies_defeated: int = 0 #when player kills enemy
@@ -53,7 +55,7 @@ var grade = ""
 func _ready() -> void:
 	#Load player at spawn
 	#TODO Need to create a load data for the player to save information between scenes
-	var player_inst = player.instantiate()
+	player_inst = player.instantiate()
 	$Pausable.add_child(player_inst)
 	player_inst.global_position = %PlayerSpawnPoint.global_position
 	#money_label.text = str("$",total_money_gained)
@@ -85,6 +87,7 @@ func _ready() -> void:
 
 	_reset_flags()
 	update_kill_counter()
+	toggle_magnetize()
 
 
 func _input(event: InputEvent) -> void:
@@ -185,8 +188,11 @@ func _on_enemy_queue_free() -> void:
 
 func _check_win_condition():
 	#TODO 11/13 Money can be automatically pulled at the end of the wave, but not all of it
+
 	if enemies_defeated >= num_to_succeed:
 		is_win_condition_met = true
+		#BUG 11/20 Wait a couple of seconds to grab some currency before the result menu starts and pause process
+		player_inst.is_magnetize = true
 		#TODO [Risk Reward Branch] Setup reward: increment the level/amount of enemies destroyed for the lab scene
 		Globals.enemies_killed += enemies_defeated
 		if enemies_defeated > enemies_to_defeat:
@@ -243,3 +249,11 @@ func update_kill_counter():
 		enemies_remaining_label.modulate = Color.WEB_GREEN
 	else:
 		enemies_remaining_label.modulate = Color.WHITE
+
+
+func toggle_magnetize():
+	if player_inst == null:
+		return
+
+	if player_inst.is_magnetize == true: #TODO [FOR FUTURE UPGRADE] Add if player doesn't have the magnet perk
+		player_inst.is_magnetize = false

@@ -135,12 +135,13 @@ func _on_return_pressed ()-> void:
 
 
 func _on_return_btn_pressed() -> void:
-	print("clicking return")
+	#print("clicking return")
 
 
 	update_wave_data()
 	get_tree().paused = false
 	queue_free()
+	#Events.update_
 	Events.share_current_scene_name.emit(scene_name)
 	LevelTransition.change_scene_to("res://scenes/lab.tscn")
 

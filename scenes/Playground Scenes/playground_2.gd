@@ -11,7 +11,9 @@ func _on_button_pressed() -> void:
 
 
 func _on_kill_button_pressed() -> void:
-	enemy_2.destroy()
+	var enemies = get_tree().get_nodes_in_group("enemy")
+	for enemy in enemies:
+		enemy.destroy()
 
 
 func _on_reset_button_pressed() -> void:

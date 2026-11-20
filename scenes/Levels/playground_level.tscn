@@ -219,13 +219,15 @@ wait_time = 2.0
 one_shot = true
 autostart = true
 
-[node name="Pickups" parent="Pausable" unique_id=1694982520 instance=ExtResource("12_w4kf8")]
+[node name="Node2D" type="Node2D" parent="Pausable" unique_id=361489703]
+
+[node name="Pickups" parent="Pausable/Node2D" unique_id=1694982520 instance=ExtResource("12_w4kf8")]
 position = Vector2(122, 59)
 
-[node name="Pickups2" parent="Pausable" unique_id=756765294 instance=ExtResource("12_w4kf8")]
+[node name="Pickups2" parent="Pausable/Node2D" unique_id=756765294 instance=ExtResource("12_w4kf8")]
 position = Vector2(163, 68)
 
-[node name="Pickups3" parent="Pausable" unique_id=548230137 instance=ExtResource("12_w4kf8")]
+[node name="Pickups3" parent="Pausable/Node2D" unique_id=548230137 instance=ExtResource("12_w4kf8")]
 position = Vector2(200, 56)
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=459962682]
@@ -238,6 +240,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="PlayerHUD" type="Control" parent="UILayer/HUD" unique_id=1727063206]
 layout_mode = 1
@@ -301,6 +304,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 
 [node name="PauseMenu" type="Control" parent="UILayer/Menus" unique_id=1683304652]
 anchors_preset = 0
@@ -335,6 +339,7 @@ offset_right = 283.0
 offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="ResultScreenNew" parent="UILayer/Menus/VictoryScreen" unique_id=908788247 instance=ExtResource("16_d748c")]
 visible = false
@@ -343,7 +348,7 @@ player = ExtResource("2_ecuf2")
 
 [node name="DebugLayer" type="CanvasLayer" parent="." unique_id=389921551]
 process_mode = 3
-layer = 128
+visible = false
 
 [node name="DebugRoot" type="Control" parent="DebugLayer" unique_id=1584273552]
 layout_mode = 3
