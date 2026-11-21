@@ -203,7 +203,6 @@ func _on_hit_flash_anim_animation_finished(anim_name: StringName) -> void:
 		Events.increase_currency.emit(amount)
 
 
-		#TODO 11/16 Fix the spawn of the currency to explode out then go to player magnet
 		money.global_transform = spawner.get_global_transform()
 		get_tree().current_scene.find_child("Pausable").add_child(money)
 		Events.update_curreny_amount.emit(amount)

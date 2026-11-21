@@ -16,6 +16,7 @@ var num_of_bullets : int = 1
 var bullet_strength: float = 0.0
 var is_limit_unlocked : bool = false
 var can_charge : bool = false
+var can_fire: bool = true
 var is_charging : bool = false
 var is_shooting : bool = false
 var charge_percent : float = 0.0
@@ -26,6 +27,9 @@ var charge_scale: Vector2 = Vector2.ONE
 @onready var fire_sfx: AudioStreamPlayer2D = $Fire
 @onready var charging_up_sfx: AudioStreamPlayer2D = $ChargingUp
 @onready var charging_repeat_sfx: AudioStreamPlayer2D = $ChargingRepeat
+
+func _ready() -> void:
+	Events.win_condition_fail.connect(_on_failed_condition)
 
 
 func _process(delta: float) -> void:
@@ -39,7 +43,7 @@ func _process(delta: float) -> void:
 
 func _handle_firing_inputs(delta: float) -> void:
 #Regular Fire Code
-	if Input.is_action_just_pressed("left_click") and shoot_cooldown_timer.is_stopped():
+	if Input.is_action_just_pressed("left_click") and shoot_cooldown_timer.is_stopped() and can_fire == true:
 		_shoot(0.0)
 	else:
 		is_shooting = false
@@ -150,3 +154,7 @@ func _handle_animation() -> void:
 func _on_charging_up_finished() -> void:
 	charging_up_sfx.stop()
 	charging_repeat_sfx.play()
+
+
+func _on_failed_condition() -> void:
+	can_fire = false

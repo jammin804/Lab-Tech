@@ -8,7 +8,6 @@ var money_amount: int = 0
 var can_click: bool = false
 
 #POLISH 11/20 Have the currency explode from enemy using particles and have them magentize to player and increase the money, similar to Well Dweller
-#TODO 11/20 Money can be automatically pulled at the end of the wave, but not all of it
 @export var type : Currency:
 	set(value):
 		type = value

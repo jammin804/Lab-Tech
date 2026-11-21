@@ -43,6 +43,7 @@ func _on_break_heart_pressed() -> void:
 	run_animations()
 
 func _on_win_condition_failed() -> void:
+	#get_tree().paused = true
 	show()
 	await get_tree().create_timer(1.0).timeout
 

@@ -147,7 +147,6 @@ func _on_return_btn_pressed() -> void:
 
 
 func _on_win_condition_success() -> void:
-	#show()
 	Events.level_complete.emit()
 
 

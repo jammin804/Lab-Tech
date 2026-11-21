@@ -428,8 +428,11 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="PlayerHUD" type="Control" parent="UILayer/HUD" unique_id=1134543982]
 layout_mode = 1
@@ -438,6 +441,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="HUD2" parent="UILayer/HUD/PlayerHUD" unique_id=1596168860 instance=ExtResource("13_7u17y")]
 
@@ -448,6 +452,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("14_a60bd")
 
 [node name="MarginContainer" type="MarginContainer" parent="UILayer/HUD/LevelGUI" unique_id=242458686]
@@ -457,6 +462,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 10
@@ -529,7 +535,7 @@ offset_right = 283.0
 offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+mouse_filter = 2
 
 [node name="ResultScreenNew" parent="UILayer/Menus/VictoryScreen" unique_id=908788247 instance=ExtResource("18_811s2")]
 visible = false

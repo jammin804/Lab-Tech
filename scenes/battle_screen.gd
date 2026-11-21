@@ -1,7 +1,6 @@
 class_name Level_1
 extends Node
 
-#BUG 11/20 The UI Canvas is preventing me from clicking the currency
 @export_group("Level Information")
 @export var level_info: Levels
 
@@ -187,13 +186,11 @@ func _on_enemy_queue_free() -> void:
 		_check_win_condition()
 
 func _check_win_condition():
-	#TODO 11/13 Money can be automatically pulled at the end of the wave, but not all of it
-
 	if enemies_defeated >= num_to_succeed:
-		is_win_condition_met = true
-		#BUG 11/20 Wait a couple of seconds to grab some currency before the result menu starts and pause process
 		player_inst.is_magnetize = true
-		#TODO [Risk Reward Branch] Setup reward: increment the level/amount of enemies destroyed for the lab scene
+		is_win_condition_met = true
+		await get_tree().create_timer(1.0).timeout
+		#TODO [fUTURE - Risk Reward Branch] Setup reward: increment the level/amount of enemies destroyed for the lab scene
 		Globals.enemies_killed += enemies_defeated
 		if enemies_defeated > enemies_to_defeat:
 			total_cores_gained += 1
@@ -204,7 +201,7 @@ func _check_win_condition():
 
 	else:
 		is_win_condition_met = false
-		#TODO [Risk Reward Branch] Setup punishment: Lose life/lose resource/ lose upgrade
+		#TODO [FUTURE - Risk Reward Branch] Setup punishment: Lose life/lose resource/ lose upgrade
 		Globals.player_lives -= 1
 		print("Number of lives left", Globals.player_lives)
 		Events.win_condition_fail.emit()

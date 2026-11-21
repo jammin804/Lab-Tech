@@ -11,7 +11,7 @@ func _show_result_screen(enemies_killed:int, damage_done:int, damage_taken:int, 
 	var result_screen : ResultScreenNew = RESULT_SCREEN.instantiate()
 
 	add_child(result_screen)
-
+	#await get_tree().create_timer(2.0).timeout
 	get_tree().paused = true
 
 	result_screen.setup(enemies_killed, damage_done, damage_taken, money_earned, scraps_earned, cores_earned, success, grade)

@@ -6,7 +6,7 @@ signal health_changed
 @export var toggle_debug: bool = false
 
 #const TALENT_TREE = preload("res://scenes/UI/New Talent Tree/talent_tree_2.tscn")
-
+#TODO 11/21 ADD the ability for player to figure only when the player clicks the player
 @export var is_magnetize = false
 var is_talent_tree_open = false
 var level_damage_taken : int = 0
@@ -99,7 +99,7 @@ func die()-> void:
 	var grade: int = 0
 
 	Events.show_result_screen.emit(level_enemies_killed, level_damage_done, level_damage_taken, level_money, level_scraps, level_cores, status, grade)
-	#TODO [Polishing] Have Teleport Animation Like Megamnan
+	#POLISH [Polishing] Have Teleport Animation Like Megamnan
 	#battery_empty.emit()
 	await get_tree().create_timer(1.0).timeout
 
