@@ -1,0 +1,6 @@
+[gd_resource type="Theme" format=3 uid="uid://cqurd70fpc20v"]
+
+[ext_resource type="FontFile" uid="uid://utb4hn11qnhy" path="res://font/m6x11.ttf" id="1_ryomt"]
+
+[resource]
+Button/fonts/font = ExtResource("1_ryomt")

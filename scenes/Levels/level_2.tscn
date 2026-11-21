@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://b8h7y5diislmb" path="res://assets/ui/hud/Settigns.png" id="11_mqswj"]
 [ext_resource type="PackedScene" uid="uid://bktpyu7vhq0km" path="res://scenes/Systems/enemySpawner.tscn" id="11_u84qy"]
 [ext_resource type="AudioStream" uid="uid://bki6hpddo6sgq" path="res://assets/music/bgm/Evil Grudge (RT 1.875)/Chiptune Vol2 Evil Grudge Main.wav" id="13_5crkq"]
+[ext_resource type="FontFile" uid="uid://utb4hn11qnhy" path="res://font/m6x11.ttf" id="14_4i6gi"]
 [ext_resource type="PackedScene" uid="uid://whd42y28mu3l" path="res://scenes/UI/new_hud_ui.tscn" id="14_c6w1e"]
 [ext_resource type="PackedScene" uid="uid://dg66c7f7p6iii" path="res://scenes/pause_menu.tscn" id="15_uh25c"]
 [ext_resource type="PackedScene" uid="uid://bd1e7fmt2sl4m" path="res://scenes/UI/settings_menu.tscn" id="16_64ir8"]
@@ -260,6 +261,10 @@ size = Vector2(20, 192)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a60bd"]
 size = Vector2(20, 192)
 
+[sub_resource type="Theme" id="Theme_6qxha"]
+Label/font_sizes/font_size = 8
+Label/fonts/font = ExtResource("14_4i6gi")
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qti4y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4xsrm"]
@@ -301,6 +306,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Background" type="TextureRect" parent="Control" unique_id=62776617]
@@ -313,7 +319,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-mouse_filter = 0
+mouse_filter = 2
 texture = ExtResource("5_4i6gi")
 expand_mode = 2
 
@@ -327,7 +333,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-mouse_filter = 0
+mouse_filter = 2
 texture = ExtResource("6_xi46r")
 expand_mode = 2
 
@@ -458,6 +464,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+theme = SubResource("Theme_6qxha")
 
 [node name="PlayerHUD" type="Control" parent="UILayer/HUD" unique_id=1134543982]
 layout_mode = 1
@@ -466,6 +474,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="HUD2" parent="UILayer/HUD/PlayerHUD" unique_id=1596168860 instance=ExtResource("14_c6w1e")]
 
@@ -476,6 +485,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="UILayer/HUD/LevelGUI" unique_id=242458686]
 layout_mode = 1
@@ -484,6 +494,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 10
@@ -501,13 +512,11 @@ theme_override_constants/separation = 2
 
 [node name="EnemiesRemainingLabel" type="Label" parent="UILayer/HUD/LevelGUI/MarginContainer/HBoxContainer/StatsLabels" unique_id=322624520]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
 text = "99/99"
 horizontal_alignment = 2
 
 [node name="SpawnsRemainingLabel" type="Label" parent="UILayer/HUD/LevelGUI/MarginContainer/HBoxContainer/StatsLabels" unique_id=1228669626]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
 text = "10"
 horizontal_alignment = 2
 
@@ -555,6 +564,7 @@ offset_right = 283.0
 offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="ResultScreenNew" parent="UILayer/Menus/VictoryScreen" unique_id=908788247 instance=ExtResource("18_l61k0")]
 visible = false

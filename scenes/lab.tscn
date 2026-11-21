@@ -8,9 +8,9 @@
 [ext_resource type="Resource" uid="uid://dy8ftrq87fktm" path="res://resources/Levels/Zones/zone1.tres" id="3_ftxkm"]
 [ext_resource type="Texture2D" uid="uid://dxyc6i7d1knac" path="res://assets/props/console.png" id="4_q4uld"]
 [ext_resource type="Resource" uid="uid://bcit1sxqou1jm" path="res://resources/Levels/Zones/zone2.tres" id="4_xu0ho"]
-[ext_resource type="Theme" uid="uid://65aipdpydskv" path="res://resources/Theme/main_theme.tres" id="6_kfqsw"]
 [ext_resource type="Texture2D" uid="uid://dwfn7p11er8rd" path="res://assets/props/lab-table_hover.png" id="8_ijdgx"]
 [ext_resource type="Texture2D" uid="uid://qj56axi37uo" path="res://assets/props/console_hover.png" id="9_eavsi"]
+[ext_resource type="FontFile" uid="uid://utb4hn11qnhy" path="res://font/m6x11.ttf" id="9_kxeyc"]
 [ext_resource type="AudioStream" uid="uid://c4s1hjl635w5k" path="res://assets/music/bgm/Depressed (RT 1.875)/Chiptune Vol2 Depressed Main.wav" id="13_ds7rc"]
 [ext_resource type="PackedScene" uid="uid://sknra82q76tt" path="res://scenes/UI/New Talent Tree/talent_menu_manager.tscn" id="13_ijdgx"]
 [ext_resource type="AudioStream" uid="uid://c6pwf33mn2agb" path="res://assets/music/sfx/steam_hiss.wav" id="14_5tteu"]
@@ -199,12 +199,12 @@ offset_bottom = 49.0
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(39, 12)
-theme = ExtResource("6_kfqsw")
 theme_override_colors/font_color = Color(0, 1, 0.9411765, 1)
-theme_override_font_sizes/font_size = 8
+theme_override_fonts/font = ExtResource("9_kxeyc")
 text = "Upgrades"
 horizontal_alignment = 1
 vertical_alignment = 1
+uppercase = true
 
 [node name="StatsLabel" type="Label" parent="CanvasLayer/Pausable/UpgradeScene/Props" unique_id=2016514304]
 visible = false

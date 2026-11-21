@@ -8,7 +8,7 @@ signal drain_battery(amount)
 @export var spawn_point : Marker2D
 @export var charge_progress_bar_container: HBoxContainer
 @export var spawn_offset : float = 30.0
-@export var drain_amount: int = 25
+@export var drain_amount: int = 70
 
 
 var PROJECTILE_SCENE = preload("res://scenes/projectile.tscn")

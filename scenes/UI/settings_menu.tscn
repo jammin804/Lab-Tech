@@ -13,6 +13,8 @@
 [ext_resource type="Script" uid="uid://dg0yx0yjxtcel" path="res://scripts/ui/audio_settings.gd" id="7_ecjli"]
 [ext_resource type="Script" uid="uid://c1y88j5pwfyu8" path="res://scripts/button.gd" id="8_jfsmy"]
 
+[sub_resource type="Theme" id="Theme_apu74"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqqt6"]
 content_margin_left = 20.0
 content_margin_right = 20.0
@@ -92,14 +94,16 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -31.0
-offset_right = 31.0
-offset_bottom = 23.0
+offset_left = -49.0
+offset_top = 5.0
+offset_right = 49.0
+offset_bottom = 33.0
 grow_horizontal = 2
 theme = ExtResource("2_878o3")
-theme_override_fonts/font = ExtResource("3_3i1ia")
 text = "Options"
+horizontal_alignment = 1
 vertical_alignment = 1
+uppercase = true
 
 [node name="SettingsMenuButtons" type="VBoxContainer" parent="." unique_id=627617667]
 layout_mode = 1
@@ -107,9 +111,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -102.0
-offset_top = 27.0
+offset_top = 33.0
 offset_right = 102.0
-offset_bottom = 67.0
+offset_bottom = 73.0
 grow_horizontal = 2
 theme = ExtResource("3_878o3")
 
@@ -117,14 +121,14 @@ theme = ExtResource("3_878o3")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
+theme = SubResource("Theme_apu74")
 
 [node name="VideoBtn" type="Button" parent="SettingsMenuButtons/HBoxContainer" unique_id=651002308 node_paths=PackedStringArray("click", "hover")]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(0.6784314, 0.81960785, 0.45882353, 1)
-theme_override_font_sizes/font_size = 12
 toggle_mode = true
-text = "Video"
+text = "VIDEO"
 script = ExtResource("1_uxg4l")
 click = NodePath("Click")
 hover = NodePath("Hover")
@@ -143,12 +147,11 @@ bus = &"SFX"
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(0.6784314, 0.81960785, 0.45882353, 1)
-theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_rtw2f")
 theme_override_styles/hover = SubResource("StyleBoxFlat_rtw2f")
 toggle_mode = true
-text = "Audio"
+text = "AUDIO"
 script = ExtResource("4_878o3")
 click = NodePath("Click")
 hover = NodePath("Hover")
@@ -209,8 +212,8 @@ vsync_check = NodePath("Vsync")
 
 [node name="Label" type="Label" parent="SettingsContainer/VideoSettings" unique_id=759306528]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
 text = "Resolution"
+uppercase = true
 
 [node name="Resolution" type="OptionButton" parent="SettingsContainer/VideoSettings" unique_id=704822925]
 layout_mode = 2
@@ -218,8 +221,8 @@ size_flags_horizontal = 10
 
 [node name="Label2" type="Label" parent="SettingsContainer/VideoSettings" unique_id=86790897]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
 text = "Fullscreen"
+uppercase = true
 
 [node name="Fullscreen" type="CheckBox" parent="SettingsContainer/VideoSettings" unique_id=1031827975]
 layout_mode = 2
@@ -227,8 +230,8 @@ size_flags_horizontal = 8
 
 [node name="Label3" type="Label" parent="SettingsContainer/VideoSettings" unique_id=759024881]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
 text = "Borderless"
+uppercase = true
 
 [node name="Borderless" type="CheckBox" parent="SettingsContainer/VideoSettings" unique_id=31009869]
 layout_mode = 2
@@ -236,8 +239,8 @@ size_flags_horizontal = 8
 
 [node name="Label4" type="Label" parent="SettingsContainer/VideoSettings" unique_id=1277347757]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
 text = "VSync"
+uppercase = true
 
 [node name="Vsync" type="CheckBox" parent="SettingsContainer/VideoSettings" unique_id=2006964494]
 layout_mode = 2

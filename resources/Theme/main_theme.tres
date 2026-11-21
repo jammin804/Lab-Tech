@@ -1,7 +1,9 @@
 [gd_resource type="Theme" format=3 uid="uid://65aipdpydskv"]
 
-[ext_resource type="FontFile" uid="uid://cno3po4cl2ol2" path="res://font/Cyberphont 3.0 A.ttf" id="1_ik7p3"]
+[ext_resource type="FontFile" uid="uid://utb4hn11qnhy" path="res://font/m6x11.ttf" id="1_67ara"]
 
 [resource]
+Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("1_67ara")
 Label/font_sizes/font_size = 8
-Label/fonts/font = ExtResource("1_ik7p3")
+Label/fonts/font = ExtResource("1_67ara")

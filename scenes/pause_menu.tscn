@@ -1,8 +1,12 @@
 [gd_scene format=3 uid="uid://dg66c7f7p6iii"]
 
+[ext_resource type="FontFile" uid="uid://utb4hn11qnhy" path="res://font/m6x11.ttf" id="1_5d2l8"]
 [ext_resource type="Script" uid="uid://jknf7kxvaq51" path="res://scripts/ui/pause_menu.gd" id="1_myx47"]
 [ext_resource type="PackedScene" uid="uid://cbvkqygoialpb" path="res://scenes/button.tscn" id="1_n87rw"]
-[ext_resource type="FontFile" uid="uid://c2a35mxw7sbmh" path="res://font/PressStart2P.ttf" id="3_kukqi"]
+
+[sub_resource type="Theme" id="Theme_l003u"]
+Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("1_5d2l8")
 
 [node name="PauseMenu" type="Control" unique_id=1716673666]
 layout_mode = 3
@@ -11,6 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_l003u")
 script = ExtResource("1_myx47")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=781056045]
@@ -45,30 +50,22 @@ theme_override_constants/separation = 15
 [node name="ResumeBtn" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=1002760254 instance=ExtResource("1_n87rw")]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_kukqi")
-theme_override_font_sizes/font_size = 6
 text = "Resume"
 
 [node name="OptionsBtn" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=13100885 instance=ExtResource("1_n87rw")]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_kukqi")
-theme_override_font_sizes/font_size = 6
 text = "Options"
 
 [node name="RetreatBtn" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=1752175586 instance=ExtResource("1_n87rw")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_kukqi")
-theme_override_font_sizes/font_size = 6
 text = "Retreat To Lab"
 
 [node name="QuitBtn" parent="CenterContainer/MarginContainer/VBoxContainer" unique_id=919113196 instance=ExtResource("1_n87rw")]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_kukqi")
-theme_override_font_sizes/font_size = 6
 text = "Exit To Title Screen"
 
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/ResumeBtn" to="." method="_on_resume_btn_pressed"]
