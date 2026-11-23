@@ -1,0 +1,84 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://fw4i8w201h46"]
+
+[ext_resource type="Texture2D" uid="uid://b3d6aeoryuucg" path="res://assets/enemy/kaju/rino-fish/Rino Fish Addon/rino-fish-idle/sprites/rino-fish1.png" id="1_5x6ve"]
+[ext_resource type="Texture2D" uid="uid://bkk140wiwmxxm" path="res://assets/enemy/kaju/rino-fish/Rino Fish Addon/rino-fish-rolling/sprites/rino-fish-rolling1.png" id="1_8tfrl"]
+[ext_resource type="Texture2D" uid="uid://c0vo8eaw0key7" path="res://assets/enemy/kaju/rino-fish/Rino Fish Addon/rino-fish-rolling/sprites/rino-fish-rolling2.png" id="2_pl1gn"]
+[ext_resource type="Texture2D" uid="uid://clwvnfpqji5ms" path="res://assets/enemy/kaju/rino-fish/Rino Fish Addon/rino-fish-idle/sprites/rino-fish2.png" id="2_qxr1r"]
+[ext_resource type="Texture2D" uid="uid://d0ovo1lkr3d8" path="res://assets/enemy/kaju/rino-fish/Rino Fish Addon/rino-fish-idle/sprites/rino-fish3.png" id="3_0sckf"]
+[ext_resource type="Texture2D" uid="uid://bdugw5dl8b7rn" path="res://assets/enemy/kaju/rino-fish/Rino Fish Addon/rino-fish-rolling/sprites/rino-fish-rolling3.png" id="3_e3l4i"]
+[ext_resource type="Texture2D" uid="uid://cerufa63p125g" path="res://assets/enemy/kaju/rino-fish/Rino Fish Addon/rino-fish-rolling/sprites/rino-fish-rolling4.png" id="4_8fwq5"]
+[ext_resource type="Texture2D" uid="uid://duqvimmhar7ue" path="res://assets/enemy/kaju/rino-fish/Rino Fish Addon/rino-fish-idle/sprites/rino-fish4.png" id="4_svaqs"]
+[ext_resource type="Texture2D" uid="uid://cjxvafc8c08xm" path="res://assets/enemy/kaju/rino-fish/Rino Fish Addon/rino-fish-rolling/sprites/rino-fish-rolling5.png" id="5_5x6ve"]
+[ext_resource type="Texture2D" uid="uid://dqq8s2epoeq2n" path="res://assets/enemy/kaju/rino-fish/Rino Fish Addon/rino-fish-rolling/sprites/rino-fish-rolling6.png" id="6_qxr1r"]
+[ext_resource type="Texture2D" uid="uid://col85lg36m5hn" path="res://assets/enemy/kaju/rino-fish/Rino Fish Addon/rino-fish-rolling/sprites/rino-fish-rolling7.png" id="7_0sckf"]
+[ext_resource type="Texture2D" uid="uid://cyyacewndclsb" path="res://assets/enemy/kaju/rino-fish/Rino Fish Addon/rino-fish-rolling/sprites/rino-fish-rolling8.png" id="8_svaqs"]
+[ext_resource type="Texture2D" uid="uid://db4c11cx77k7f" path="res://assets/enemy/kaju/rino-fish/running/rino-fish1.png" id="9_osh4q"]
+[ext_resource type="Texture2D" uid="uid://c82h1ih22v2ry" path="res://assets/enemy/kaju/rino-fish/running/rino-fish2.png" id="10_hrqd6"]
+[ext_resource type="Texture2D" uid="uid://pvyhqpcvo6n1" path="res://assets/enemy/kaju/rino-fish/running/rino-fish3.png" id="11_tidpg"]
+[ext_resource type="Texture2D" uid="uid://ccuceuu1ru4s5" path="res://assets/enemy/kaju/rino-fish/running/rino-fish4.png" id="12_tis5t"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_5x6ve")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_qxr1r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0sckf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_svaqs")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8tfrl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_pl1gn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_e3l4i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_8fwq5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_5x6ve")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_qxr1r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_0sckf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_svaqs")
+}],
+"loop": 1,
+"name": &"rolling",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_osh4q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_hrqd6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_tidpg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_tis5t")
+}],
+"loop": 1,
+"name": &"running",
+"speed": 12.0
+}]

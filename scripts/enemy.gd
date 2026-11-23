@@ -17,6 +17,8 @@ enum ESCAPE_OPTIONS { NORMAL, ZIG_ZAG, SPEED_UP, TELEPORT}
 @export_category("Base Variables")
 @export var stats: Resource
 @export var is_in_battle_scene : bool = false
+@export var enemy_sprite: AnimatedSprite2D
+
 
 @export_category("Sine Wave")
 @export var should_wave : bool = false
@@ -45,7 +47,6 @@ var direction: int = -1
 var escape_option: int
 
 
-@onready var enemy_sprite: AnimatedSprite2D = $enemy
 @onready var status_component: Node = $StatusComponent
 @onready var hit_flash_anim: AnimationPlayer = $HitFlashAnim
 @onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
@@ -172,6 +173,7 @@ func destroy():
 	set_deferred("collision_mask", 0)
 
 
+	#BUG Death animation is loud when multiple enmies are dying. fix this
 	#$Death.play()
 	destroy_anim.show()
 	destroy_anim.play("default")
@@ -187,7 +189,6 @@ func move_enemy(delta):
 func _drop_item() -> void:
 	pass
 
-#BUG Need to fix the issue of the shader studder
 func _on_hit_flash_anim_animation_finished(anim_name: StringName) -> void:
 	var money: Pickup = MONEY_SCENE.instantiate()
 	if anim_name == "death":

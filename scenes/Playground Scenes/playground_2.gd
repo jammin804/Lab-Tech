@@ -11,10 +11,21 @@ func _on_button_pressed() -> void:
 
 
 func _on_kill_button_pressed() -> void:
-	var enemies = get_tree().get_nodes_in_group("enemy")
+	var enemies = _look_for_enemies()
 	for enemy in enemies:
 		enemy.destroy()
 
 
 func _on_reset_button_pressed() -> void:
 	get_tree().reload_current_scene()
+
+
+func _on_basic_bot_btn_pressed() -> void:
+	var enemies = _look_for_enemies()
+	for enemy : Enemy in enemies:
+		print(enemy.enemy_sprite.sprite_frames)
+
+
+func _look_for_enemies() -> Array[Node]:
+	var enemies = get_tree().get_nodes_in_group("enemy")
+	return enemies

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b850wre5f8oip" path="res://scripts/enemy.gd" id="1_4ra3w"]
 [ext_resource type="PackedScene" uid="uid://cluqesxih2vx0" path="res://scenes/enemy_sprite.tscn" id="2_5uy6h"]
 [ext_resource type="PackedScene" uid="uid://c3j8bdc87ysqc" path="res://scenes/Currency/pickups.tscn" id="2_c4w8v"]
-[ext_resource type="Resource" uid="uid://c6lgcvy8xml40" path="res://resources/EnemyData/BasicBot.tres" id="2_xwavj"]
+[ext_resource type="Resource" uid="uid://c6lgcvy8xml40" path="res://resources/EnemyData/bot/BasicBot.tres" id="2_xwavj"]
 [ext_resource type="Shader" uid="uid://cht2qws53baj7" path="res://shaders/hitflash.gdshader" id="3_c4w8v"]
 [ext_resource type="Texture2D" uid="uid://dcstwgwvdksfg" path="res://assets/enemy/explosions/explode9.png" id="4_5uy6h"]
 [ext_resource type="SpriteFrames" uid="uid://bqmihelqdobus" path="res://basic_bot_anim.tres" id="6_8qclf"]
@@ -216,11 +216,12 @@ animations = [{
 "speed": 13.0
 }]
 
-[node name="Enemy2" type="CharacterBody2D" unique_id=1965764076 node_paths=PackedStringArray("money_number_origin") groups=["enemy"]]
+[node name="Enemy2" type="CharacterBody2D" unique_id=1965764076 node_paths=PackedStringArray("enemy_sprite", "money_number_origin") groups=["enemy"]]
 script = ExtResource("1_4ra3w")
 escape_options = 3
 stats = ExtResource("2_xwavj")
 is_in_battle_scene = true
+enemy_sprite = NodePath("enemy")
 loot_drop_type = ExtResource("2_c4w8v")
 drop_rate = 100.0
 money_number_origin = NodePath("MoneyNumberOrigin")
@@ -230,6 +231,7 @@ material = SubResource("ShaderMaterial_wtq4b")
 rotation = -3.1415927
 scale = Vector2(1, -1)
 sprite_frames = ExtResource("6_8qclf")
+animation = &"default"
 frame_progress = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=570825910]

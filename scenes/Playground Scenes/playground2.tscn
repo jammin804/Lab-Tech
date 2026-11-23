@@ -3,11 +3,7 @@
 [ext_resource type="Script" uid="uid://mpstfr41bcbc" path="res://scenes/Playground Scenes/playground_2.gd" id="1_ndrat"]
 [ext_resource type="Texture2D" uid="uid://8aayan6npc78" path="res://assets/backgrounds/tileset.png" id="1_ro015"]
 [ext_resource type="PackedScene" uid="uid://blqe7ke2t7a3n" path="res://scenes/UI/custom_mouse.tscn" id="2_ro015"]
-[ext_resource type="FontFile" uid="uid://ced5sda2dkxr7" path="res://font/Silver.ttf" id="3_ol57b"]
-[ext_resource type="FontFile" uid="uid://cwugpk2ueb6nb" path="res://font/m6x11plus.ttf" id="4_6deo2"]
-[ext_resource type="FontFile" uid="uid://ubx6qf55niab" path="res://font/m3x6.ttf" id="4_sq108"]
-[ext_resource type="FontFile" uid="uid://d3dju86raomsu" path="res://font/m5x7.ttf" id="5_onhm6"]
-[ext_resource type="FontFile" uid="uid://utb4hn11qnhy" path="res://font/m6x11.ttf" id="7_so6co"]
+[ext_resource type="PackedScene" uid="uid://djuh4frs5ltrc" path="res://scenes/Enemies/enemy_kaju.tscn" id="4_abb1w"]
 [ext_resource type="PackedScene" uid="uid://cqueta70ubjqr" path="res://scenes/enemy.tscn" id="8_onhm6"]
 [ext_resource type="Theme" uid="uid://dx0gf6gbauc7h" path="res://themes/lab_gui_theme.tres" id="9_so6co"]
 
@@ -98,10 +94,8 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Enemy2" parent="Pausable" unique_id=1965764076 instance=ExtResource("8_onhm6")]
-unique_name_in_owner = true
-position = Vector2(167, 103)
-is_in_debug_mode = true
+[node name="EnemyKaju" parent="Pausable" unique_id=1965764076 instance=ExtResource("4_abb1w")]
+position = Vector2(158, 91)
 
 [node name="Enemy3" parent="Pausable" unique_id=700218837 instance=ExtResource("8_onhm6")]
 unique_name_in_owner = true
@@ -123,86 +117,49 @@ unique_name_in_owner = true
 position = Vector2(228, 45)
 is_in_debug_mode = true
 
-[node name="Control" type="Control" parent="." unique_id=1570649389]
+[node name="KillTestButtons" type="VBoxContainer" parent="." unique_id=380245731]
 visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 641.0
-offset_bottom = 360.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=501087099]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -78.5
-offset_top = -59.0
-offset_right = 41.5
-offset_bottom = -3.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="Control/VBoxContainer" unique_id=1131920998]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_ol57b")
-theme_override_font_sizes/font_size = 32
-text = "Silver"
-uppercase = true
-
-[node name="Label5" type="Label" parent="Control/VBoxContainer" unique_id=1882715984]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("4_sq108")
-theme_override_font_sizes/font_size = 32
-text = "m3x6"
-uppercase = true
-
-[node name="Label6" type="Label" parent="Control/VBoxContainer" unique_id=1240155591]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_onhm6")
-theme_override_font_sizes/font_size = 32
-text = "M5x7"
-uppercase = true
-
-[node name="Label2" type="Label" parent="Control/VBoxContainer" unique_id=1028361499]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("4_6deo2")
-theme_override_font_sizes/font_size = 32
-text = "Mx6 11 Plus"
-uppercase = true
-
-[node name="Label4" type="Label" parent="Control/VBoxContainer" unique_id=263288144]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("7_so6co")
-theme_override_font_sizes/font_size = 32
-text = "M6x11 "
-uppercase = true
-
-[node name="Label3" type="Label" parent="Control/VBoxContainer" unique_id=1468990257]
-layout_mode = 2
-text = "hello world"
-
-[node name="Button" type="Button" parent="Control/VBoxContainer" unique_id=1403529187]
-z_index = 2
-layout_mode = 2
-text = "test"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=380245731]
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="KillButton" type="Button" parent="VBoxContainer" unique_id=293905150]
+[node name="KillButton" type="Button" parent="KillTestButtons" unique_id=293905150]
 layout_mode = 2
 theme = ExtResource("9_so6co")
 text = "Kill Enemy"
 
-[node name="ResetButton" type="Button" parent="VBoxContainer" unique_id=48849464]
+[node name="ResetButton" type="Button" parent="KillTestButtons" unique_id=48849464]
 layout_mode = 2
 theme = ExtResource("9_so6co")
 text = "Reset Scene
 "
 
-[connection signal="pressed" from="Control/VBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/KillButton" to="." method="_on_kill_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
+[node name="ChangeEnemyButtons" type="VBoxContainer" parent="." unique_id=1487550559]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BasicBotBtn" type="Button" parent="ChangeEnemyButtons" unique_id=2059305372]
+layout_mode = 2
+theme = ExtResource("9_so6co")
+text = "Basic Bot
+
+"
+
+[node name="TerminatorBtn" type="Button" parent="ChangeEnemyButtons" unique_id=1378896967]
+layout_mode = 2
+theme = ExtResource("9_so6co")
+text = "Terminator"
+
+[node name="KajuBtn" type="Button" parent="ChangeEnemyButtons" unique_id=1073967692]
+layout_mode = 2
+theme = ExtResource("9_so6co")
+text = "Kaju"
+
+[node name="ResetButton" type="Button" parent="ChangeEnemyButtons" unique_id=738249699]
+layout_mode = 2
+theme = ExtResource("9_so6co")
+text = "Reset Scene
+"
+
+[connection signal="pressed" from="KillTestButtons/KillButton" to="." method="_on_kill_button_pressed"]
+[connection signal="pressed" from="KillTestButtons/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="ChangeEnemyButtons/BasicBotBtn" to="." method="_on_basic_bot_btn_pressed"]

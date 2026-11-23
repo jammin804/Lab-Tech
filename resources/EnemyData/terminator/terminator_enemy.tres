@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://25emugxmss3f"]
+
+[ext_resource type="Script" uid="uid://cktn3xnxs2ojs" path="res://resources/EnemyData/enemy_stats.gd" id="1_mfr40"]
+[ext_resource type="AudioStream" uid="uid://cyf75msosmf7h" path="res://assets/music/sfx/Boom.wav" id="2_i4nxr"]
+
+[resource]
+script = ExtResource("1_mfr40")
+health = 40
+attack_power = 20
+move_speed = 25.0
+has_range_attack = true
+sfx = ExtResource("2_i4nxr")
+metadata/_custom_type_script = "uid://cktn3xnxs2ojs"

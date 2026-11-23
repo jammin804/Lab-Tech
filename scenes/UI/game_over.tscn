@@ -2,6 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://b2yiqfrkj5dmr" path="res://resources/Theme/ui_theme.tres" id="1_njkqv"]
 [ext_resource type="Script" uid="uid://c8autoqrmwpe0" path="res://scripts/ui/UI Scenes/game_over.gd" id="1_vop4n"]
+[ext_resource type="FontFile" uid="uid://utb4hn11qnhy" path="res://font/m6x11.ttf" id="2_a2ham"]
 [ext_resource type="AudioStream" uid="uid://jd6x1vl10ko3" path="res://assets/music/bgm/lesiakower-8-bit-game-over-sound-effect-331435.mp3" id="3_l48yu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11a1n"]
@@ -39,28 +40,29 @@ theme_override_constants/separation = 20
 [node name="GameOverLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=500313310]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_a2ham")
+theme_override_font_sizes/font_size = 32
 text = "Game over"
 horizontal_alignment = 1
+uppercase = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=562717684]
 layout_mode = 2
 
 [node name="RetryZoneButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=61005845]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(120, 26)
+custom_minimum_size = Vector2(130, 26)
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("1_njkqv")
-theme_override_font_sizes/font_size = 8
 text = "Retry Zone?"
 
 [node name="ReturnToMainButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=643908612]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(120, 26)
+custom_minimum_size = Vector2(130, 26)
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("1_njkqv")
-theme_override_font_sizes/font_size = 8
 text = "Return to Title"
 
 [node name="GameOverMusic" type="AudioStreamPlayer2D" parent="." unique_id=1038476436]
