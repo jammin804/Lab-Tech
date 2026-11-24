@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://djuh4frs5ltrc"]
 
-[ext_resource type="Script" uid="uid://bbjvpnkvxf5fe" path="res://scenes/Enemies/enemy_kaju.gd" id="1_2dpn2"]
+[ext_resource type="Script" uid="uid://bbjvpnkvxf5fe" path="res://scenes/Enemies/Kaju/enemy_kaju.gd" id="1_2dpn2"]
 [ext_resource type="SpriteFrames" uid="uid://fw4i8w201h46" path="res://animations/enemies/kaju_animation.tres" id="2_xfk2f"]
 [ext_resource type="Script" uid="uid://bmfxk2cb1ujol" path="res://scripts/component/status_component.gd" id="7_hgioj"]
 [ext_resource type="Texture2D" uid="uid://dcstwgwvdksfg" path="res://assets/enemy/explosions/explode9.png" id="8_j0mgs"]

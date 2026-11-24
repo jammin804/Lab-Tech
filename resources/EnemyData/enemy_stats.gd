@@ -1,6 +1,8 @@
 class_name EnemyStats
 extends Resource
 
+
+@export var ai : PackedScene
 @export var health: int #How much Health does this Enemy have [(Health +10) * Wave Level * RNG(1.0-1.5)]
 #@export var sprite_frames: AnimatedSprite2D
 

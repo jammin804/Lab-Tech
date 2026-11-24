@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="SpawnInfo" format=3 uid="uid://dp1iphj31u35i"]
 
-[ext_resource type="Script" uid="uid://b850wre5f8oip" path="res://scripts/enemy.gd" id="1_ftqid"]
+[ext_resource type="Script" uid="uid://b850wre5f8oip" path="res://scenes/Enemies/enemy.gd" id="1_ftqid"]
 [ext_resource type="Script" uid="uid://dl60evs3evp8i" path="res://resources/WaveData/spawn_info.gd" id="1_r74f4"]
 [ext_resource type="Resource" uid="uid://c6lgcvy8xml40" path="res://resources/EnemyData/bot/BasicBot.tres" id="2_7rit3"]
 [ext_resource type="PackedScene" uid="uid://c3j8bdc87ysqc" path="res://scenes/Currency/pickups.tscn" id="3_3kc0g"]

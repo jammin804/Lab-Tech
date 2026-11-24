@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bta3my2bfuxdr" path="res://resources/WaveData/wave_data.gd" id="1_vx6sc"]
 [ext_resource type="Script" uid="uid://dl60evs3evp8i" path="res://resources/WaveData/spawn_info.gd" id="2_ry8iu"]
-[ext_resource type="Script" uid="uid://b850wre5f8oip" path="res://scripts/enemy.gd" id="3_yv7j8"]
+[ext_resource type="Script" uid="uid://b850wre5f8oip" path="res://scenes/Enemies/enemy.gd" id="3_yv7j8"]
 [ext_resource type="Resource" uid="uid://c6lgcvy8xml40" path="res://resources/EnemyData/bot/BasicBot.tres" id="4_o03ld"]
 [ext_resource type="PackedScene" uid="uid://c3j8bdc87ysqc" path="res://scenes/Currency/pickups.tscn" id="5_2ppj2"]
 [ext_resource type="PackedScene" uid="uid://cluqesxih2vx0" path="res://scenes/enemy_sprite.tscn" id="6_7f0xk"]

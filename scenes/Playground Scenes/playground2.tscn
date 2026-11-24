@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://mpstfr41bcbc" path="res://scenes/Playground Scenes/playground_2.gd" id="1_ndrat"]
 [ext_resource type="Texture2D" uid="uid://8aayan6npc78" path="res://assets/backgrounds/tileset.png" id="1_ro015"]
 [ext_resource type="PackedScene" uid="uid://blqe7ke2t7a3n" path="res://scenes/UI/custom_mouse.tscn" id="2_ro015"]
-[ext_resource type="PackedScene" uid="uid://djuh4frs5ltrc" path="res://scenes/Enemies/enemy_kaju.tscn" id="4_abb1w"]
+[ext_resource type="PackedScene" uid="uid://djuh4frs5ltrc" path="res://scenes/Enemies/Kaju/enemy_kaju.tscn" id="4_abb1w"]
 [ext_resource type="PackedScene" uid="uid://cqueta70ubjqr" path="res://scenes/enemy.tscn" id="8_onhm6"]
 [ext_resource type="Theme" uid="uid://dx0gf6gbauc7h" path="res://themes/lab_gui_theme.tres" id="9_so6co"]
 

@@ -5,9 +5,9 @@
 
 [resource]
 script = ExtResource("1_mfr40")
-health = 40
+health = 100
 attack_power = 20
-move_speed = 25.0
+move_speed = 15.0
 has_range_attack = true
 sfx = ExtResource("2_i4nxr")
 metadata/_custom_type_script = "uid://cktn3xnxs2ojs"

@@ -4,10 +4,13 @@ extends CharacterBody2D
 #signal enemy_health_change
 
 enum ESCAPE_OPTIONS { NORMAL, ZIG_ZAG, SPEED_UP, TELEPORT}
-
+enum ENEMY_TYPE {BOT, TERMINATOR, KAJU}
 
 
 @export var escape_options : ESCAPE_OPTIONS
+@export var enemy_type : ENEMY_TYPE
+@export var muzzle_point:Marker2D = null
+
 #region DEBUG OPTIONS
 @export_category("DEBUG OPTIONS")
 @export var is_in_debug_mode : bool = false
@@ -32,11 +35,14 @@ enum ESCAPE_OPTIONS { NORMAL, ZIG_ZAG, SPEED_UP, TELEPORT}
 @export var money_number_origin: Node2D
 
 var MONEY_SCENE = preload("res://scenes/Currency/pickups.tscn")
+var PROJECTILE_SCENE = preload("uid://dblngaa8rui4b")
+
 var max_enemy_health : float
 var current_enemy_health : float
 var current_data: EnemyStats
 var explosion_damage_dealt : int = 40
 var is_dead : bool = false
+var is_shooting: bool = false
 
 var rng = RandomNumberGenerator.new()
 
@@ -56,6 +62,7 @@ var escape_option: int
 @onready var money_label: Label = $MoneyNumberOrigin/MoneyLabel
 @onready var pattern_indicator: Sprite2D = $PatternIndicator
 @onready var hp_label: Label = $HPLabel
+@onready var shot_cooldown_timer: Timer = %ShotCooldownTimer
 
 @onready var shaker := Shaker.new(enemy_sprite)
 
@@ -64,10 +71,20 @@ func _ready() -> void:
 
 	#End
 
+	#if muzzle_point == null:
+		#return
+
 	#Choose escape options
-	_choose_escape_option(randi_range(0, 3) as ESCAPE_OPTIONS)
+	if enemy_type == ENEMY_TYPE.BOT:
+		_choose_escape_option(randi_range(0, 3) as ESCAPE_OPTIONS)
+	else:
+		_choose_escape_option(escape_options)
+
+	#if enemy_type == ENEMY_TYPE.TERMINATOR:
+		#pass
 
 	destroy_anim.hide()
+
 	if stats:
 		current_data = stats.duplicate()
 		loot_amount = [
@@ -98,7 +115,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if should_wave:
 		var pos : Vector2 = position
-		#var offset = position.y
 		time += delta
 		pos.y = sin(time * frequency) * amplitude + 130.0
 
@@ -106,7 +122,6 @@ func _process(delta: float) -> void:
 
 	if not is_dead:
 		move_enemy(delta)
-
 
 func take_damage(incoming_damage: float, incoming_element:WeaponData.Element) -> void:
 
@@ -181,10 +196,11 @@ func destroy():
 
 func move_enemy(delta):
 
-	#position.y = sin(time * 90) * 1
 	if is_in_battle_scene or is_in_debug_mode:
 		position.x += current_data.move_speed * delta * direction
 		enemy_sprite.play()
+		if enemy_type == ENEMY_TYPE.TERMINATOR and shot_cooldown_timer.is_stopped():
+			fire()
 
 func _drop_item() -> void:
 	pass
@@ -262,3 +278,13 @@ func update_hp_label():
 		tween.tween_property(hp_label, "self_modulate:s", 0.5, 1.0).from(1.0)
 
 	print("Max HP: ", max_enemy_health, ", Current Health: ", current_enemy_health)
+
+
+func fire():
+	#TODO 11/24 [Enemy to shoot player] Continue to work on this as to stop at enemy to fire shot at player then wait for a sec start moving and then do it again
+	if muzzle_point != null:
+		print("Can create projectile")
+		print("Start Cooldown timer")
+		shot_cooldown_timer.start()
+	else:
+		return

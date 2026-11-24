@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cooeppa7wcj7x" path="res://scenes/camera.tscn" id="7_jqjvn"]
 [ext_resource type="Texture2D" uid="uid://b8h7y5diislmb" path="res://assets/ui/hud/Settigns.png" id="8_o6lyy"]
 [ext_resource type="AudioStream" uid="uid://bki6hpddo6sgq" path="res://assets/music/bgm/Evil Grudge (RT 1.875)/Chiptune Vol2 Evil Grudge Main.wav" id="10_8hbam"]
+[ext_resource type="PackedScene" uid="uid://ckkt7ifvgmsbg" path="res://scenes/Enemies/Terminator/enemy_terminator.tscn" id="10_lstyb"]
 [ext_resource type="FontFile" uid="uid://c2a35mxw7sbmh" path="res://font/PressStart2P.ttf" id="11_f8ofd"]
 [ext_resource type="PackedScene" uid="uid://whd42y28mu3l" path="res://scenes/UI/new_hud_ui.tscn" id="12_0nsmb"]
 [ext_resource type="PackedScene" uid="uid://lccgrpafmldk" path="res://scenes/debug/debug_text_overlay.tscn" id="12_3vacm"]
@@ -139,8 +140,12 @@ position = Vector2(312, 65)
 [node name="Enemies" type="Node2D" parent="Pausable" unique_id=374635073]
 
 [node name="Enemy2" parent="Pausable/Enemies" unique_id=1965764076 instance=ExtResource("15_85ul7")]
+visible = false
 position = Vector2(187, 133)
 is_in_debug_mode = true
+
+[node name="EnemyTerminator" parent="Pausable/Enemies" unique_id=1374421613 instance=ExtResource("10_lstyb")]
+position = Vector2(232, 130)
 
 [node name="PauseBtn" type="TextureButton" parent="Pausable" unique_id=1050029617]
 visible = false

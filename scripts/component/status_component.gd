@@ -7,7 +7,7 @@ var active_statuses: Dictionary = {}
 func _process(delta: float) -> void:
 	for element_key in active_statuses.keys():
 		active_statuses[element_key] -= delta
-		
+
 		if active_statuses[element_key] <= 0:
 			active_statuses.erase(element_key)
 			_on_status_expired(element_key)
@@ -17,7 +17,7 @@ func apply_status(element: WeaponData.Element, duration: float) -> void:
 
 func has_status(element: WeaponData.Element) -> bool:
 	return active_statuses.has(element)
-	
+
 func _on_status_expired(element: WeaponData.Element) -> void:
 	match element:
 		WeaponData.Element.WATER:
@@ -32,4 +32,3 @@ func _on_status_applied(element: WeaponData.Element) -> void:
 		WeaponData.Element.FIRE:
 			# e.g., Start a repeating damage-over-time tick
 			pass
-	
