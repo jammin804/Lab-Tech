@@ -217,6 +217,7 @@ animations = [{
 }]
 
 [node name="Enemy2" type="CharacterBody2D" unique_id=1965764076 node_paths=PackedStringArray("enemy_sprite", "money_number_origin") groups=["enemy"]]
+collision_layer = 5
 script = ExtResource("1_4ra3w")
 escape_options = 3
 stats = ExtResource("2_xwavj")

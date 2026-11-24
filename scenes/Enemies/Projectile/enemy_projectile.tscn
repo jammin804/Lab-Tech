@@ -9,8 +9,8 @@ atlas = ExtResource("2_okq0s")
 region = Rect2(315, 26, 44, 29)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q3m7n"]
-radius = 8.0
-height = 16.0
+radius = 23.0
+height = 46.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6q2a6"]
 atlas = ExtResource("3_avg2t")
@@ -48,7 +48,7 @@ animations = [{
 "speed": 15.0
 }]
 
-[node name="EnemyProjectile" type="Area2D" unique_id=238537066]
+[node name="EnemyProjectile" type="Area2D" unique_id=238537066 groups=["enemy_projectile"]]
 script = ExtResource("1_b5bkw")
 
 [node name="Bullet" type="Sprite2D" parent="." unique_id=1767660927]

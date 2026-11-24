@@ -285,6 +285,15 @@ func fire():
 	if muzzle_point != null:
 		print("Can create projectile")
 		print("Start Cooldown timer")
+		enemy_sprite.stop()
+		current_data.move_speed = 0
+		enemy_sprite.play("fire")
+
+		var bullet : EnemyProjectile = PROJECTILE_SCENE.instantiate()
+		bullet.global_position = muzzle_point.global_position
+		bullet.damage = current_data.attack_power
+		get_tree().current_scene.find_child("Pausable").add_child(bullet)
+		shot_cooldown_timer.wait_time = 4.0
 		shot_cooldown_timer.start()
 	else:
 		return

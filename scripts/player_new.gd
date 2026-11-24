@@ -78,11 +78,15 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
 		var enemy_damage = body.explosion_damage_dealt
 
-		_damage_player(enemy_damage)
+		damage_player(enemy_damage)
+
+	if body.is_in_group("enemy_projectile"):
+		damage_player(body.damage)
+		print(body.damage)
 
 
 
-func _damage_player(damage_amount: int) -> void:
+func damage_player(damage_amount: int) -> void:
 	level_damage_taken += damage_amount
 
 	current_health -= damage_amount

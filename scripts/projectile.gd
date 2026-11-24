@@ -40,6 +40,8 @@ func _on_body_entered(body: Node2D) -> void:
 		Events.enemy_hit_by_projectile.emit(life_steal)
 
 		body.take_damage(damage, WeaponData.Element.DEFAULT)
+	if body.has_method("remove_block"):
+		body.remove_block()
 
 	if is_piercing == true:
 		has_collided = false
