@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bo6otk0hi0xyu"]
+
+[ext_resource type="Script" uid="uid://ceqcsrtlb4bih" path="res://scenes/Enemies/Components/enemy_move_component.gd" id="1_ocpri"]
+
+[node name="MoveComponent" type="Node" unique_id=331661676]
+script = ExtResource("1_ocpri")

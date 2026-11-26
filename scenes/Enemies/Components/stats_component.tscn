@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://drfvveitr0m1h"]
+
+[ext_resource type="Script" uid="uid://br2ji2mrcriy5" path="res://scenes/Enemies/Components/enemy_stats_component.gd" id="1_cbcac"]
+
+[node name="StatsComponent" type="Node" unique_id=1619784329]
+script = ExtResource("1_cbcac")

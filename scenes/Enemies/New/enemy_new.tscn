@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://ca572jsuqp2nd"]
+
+[ext_resource type="Script" uid="uid://bsfrv5neh6lhr" path="res://scenes/Enemies/New/enemy_new.gd" id="1_ukg55"]
+[ext_resource type="PackedScene" uid="uid://bo6otk0hi0xyu" path="res://scenes/Enemies/Components/move_component.tscn" id="2_ge601"]
+[ext_resource type="SpriteFrames" uid="uid://b5ob5de36sqtm" path="res://animations/enemies/terminator_animation.tres" id="2_hrc3p"]
+[ext_resource type="PackedScene" uid="uid://drfvveitr0m1h" path="res://scenes/Enemies/Components/stats_component.tscn" id="3_hrc3p"]
+[ext_resource type="Resource" uid="uid://25emugxmss3f" path="res://resources/EnemyData/terminator/terminator_enemy.tres" id="5_8c5mk"]
+[ext_resource type="PackedScene" uid="uid://bjwuvy74rnmsj" path="res://scenes/Enemies/Components/action_component.tscn" id="6_npb4g"]
+[ext_resource type="PackedScene" uid="uid://foiy4hwuhu4p" path="res://scenes/Enemies/Components/enemy_health_component.tscn" id="7_g5dfi"]
+
+[node name="EnemyNew" type="Node2D" unique_id=1545338994]
+scale = Vector2(-1, 1)
+script = ExtResource("1_ukg55")
+
+[node name="EnemySprite" type="AnimatedSprite2D" parent="." unique_id=1701616931]
+unique_name_in_owner = true
+sprite_frames = ExtResource("2_hrc3p")
+animation = &"walk"
+
+[node name="MoveComponent" parent="." unique_id=331661676 node_paths=PackedStringArray("enemy", "enemy_sprite", "enemy_stats") instance=ExtResource("2_ge601")]
+enemy = NodePath("..")
+enemy_sprite = NodePath("../EnemySprite")
+enemy_stats = NodePath("../StatsComponent")
+
+[node name="StatsComponent" parent="." unique_id=1619784329 instance=ExtResource("3_hrc3p")]
+enemy_stats = ExtResource("5_8c5mk")
+
+[node name="ActionComponent" parent="." unique_id=1815815976 instance=ExtResource("6_npb4g")]
+
+[node name="EnemyHealthComponent" parent="." unique_id=1175452589 node_paths=PackedStringArray("enemy_stats") instance=ExtResource("7_g5dfi")]
+enemy_stats = NodePath("../StatsComponent")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1322260817]
+
+[node name="ShakeComponent" type="Node" parent="." unique_id=794054134]
+
+[node name="FlashComponent" type="Node" parent="." unique_id=1726253833]
+
+[node name="HPLabel" type="Label" parent="." unique_id=104963525]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -9.0
+offset_top = 36.0
+offset_right = 9.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(9, 4)
+theme_override_font_sizes/font_size = 8
+text = "999"
+horizontal_alignment = 1
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
